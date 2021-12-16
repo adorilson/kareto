@@ -1,0 +1,2 @@
+language = "python_turtle"
+run = "python main.py"
