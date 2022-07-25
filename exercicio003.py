@@ -1,8 +1,8 @@
 """
 Exercícios
 
-1) Mude a ordem das cores
-2) Mude/defina a forma da tartaruga
+1) Mude/defina a forma da tartaruga
+2) Mude a ordem das cores
 3) Mude a largura da linha
 4) Faça a tartaruga desenhar dois quadrados
 """
