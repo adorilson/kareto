@@ -1,7 +1,7 @@
 """
 Exercicios:
 
-1) Mude a distancia entres as lentes dos óculos
+1) Mude a distancia entre as lentes dos óculos
 2) Mude o tamanho das lentes
 """
 

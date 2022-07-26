@@ -10,7 +10,7 @@ Exercícios
 import turtle
 
 turtle = turtle.Turtle()
-turtle.color ('red')
+turtle.color('red')
 
 for _ in [1, 2, 3]:
     turtle.forward(100)
