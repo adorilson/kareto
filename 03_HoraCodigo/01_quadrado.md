@@ -1,7 +1,7 @@
 # Quadrado
 
 Bem-vindo à Tartaruga Artista! Primeiro, vamos tentar fazer um quadrado simples
-usando os métodos ```rigth``` e ```forward```. Cada lado deve medir 100 pixels.
+usando os métodos ```right``` e ```forward```. Cada lado deve medir 100 pixels.
 
 ## Figura a ser desenhada
 ![Quadrado com lado de 100 pixels](01_quadrado.png "Quadrado com lado de 100 pixels")
@@ -18,4 +18,4 @@ usando os métodos ```rigth``` e ```forward```. Cada lado deve medir 100 pixels.
 
 ```turtle.right(90)```
 
-Anterior | [Próximo](02_diamante.md)
+[Próximo](02_diamante.md)

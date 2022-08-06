@@ -1,4 +1,4 @@
-# Hexagonos de hexágonos
+# Hexágono de hexágonos
 
 Faça 6 iterações no código abaixo do hexágono para criar um hexágono maior.
 Quantos graus você terá que virar de cada vez? Dica: divida o número de graus
