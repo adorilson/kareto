@@ -69,5 +69,4 @@ executados no código principal. Observe as mudanças nos padrões desenhados.
 
 ```pule(???)```
 
-[Anterior](08_flor_com_funcao.md) | [Próximo](10_...md)
-
+[Anterior](08_flor_com_funcao.md) | [Próximo](10_sua_vez.md)
