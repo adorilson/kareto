@@ -22,7 +22,7 @@ def desenhe_uma_flor():
 
 
 # chamando a função (apenas na chamada que a função é executada)
-desenhe_um_flor()
+desenhe_uma_flor()
 ```
 
 Use-a para desenhar essas flores juntamente com os novos blocos
