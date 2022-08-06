@@ -33,6 +33,6 @@ Não esqueça da identação.
 
 ```for _ in range(???):```
 
-[Anterior](06_flor_com_repeticao.md) | [Próximo](08_...md)
+[Anterior](06_flor_com_repeticao.md) | [Próximo](08_flor_com_funcao.md)
 
 
