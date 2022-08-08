@@ -1,12 +1,12 @@
 # Formas
 
-Temos agora uma função chamada ```desenhe_forma```, que programamos para
+Temos agora uma função chamada ```desenhe_forma()```, que programamos para
 desenhar hexágonos. Execute o código para ver o que ele faz e, em seguida,
 tente usá-lo com a função para ver o que acontece. Você consegue fazer com que
 ela desenhe um padrão de quadrados, triângulos ou octógonos? Ou melhor, crie
 novas funções para essas figuras.
 
-Também criamos uma nova função ```pule``` para faciltar o ação de pular,
+Também criamos uma nova função ```pule(???)``` para facilitar a ação de pular,
 incluindo pular para trás. Basta indicar um número negativo.
 
 ```python
@@ -53,11 +53,11 @@ executados no código principal. Observe as mudanças nos padrões desenhados.
 
 ```turtle = turtle.Turtle()```
 
-```turtle.forward(100)```
+```turtle.forward(???)```
 
-```turtle.left(90)```
+```turtle.left(???)```
 
-```turtle.right(90)```
+```turtle.right(???)```
 
 ```turtle.penup()```
 
