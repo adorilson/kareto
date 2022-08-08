@@ -11,10 +11,10 @@ Você pode desenhar este hexágono com lados de 100 pixels e ângulos de 60 grau
 
 ```turtle = turtle.Turtle()```
 
-```turtle.forward(100)```
+```turtle.forward(???)```
 
-```turtle.left(90)```
+```turtle.left(???)```
 
-```turtle.right(90)```
+```turtle.right(???)```
 
 [Anterior](02_diamante.md) | [Próximo](04_hexagono_com_repeticao.md)

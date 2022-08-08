@@ -1,4 +1,4 @@
-# Hexagono com repetição
+# Hexágono com repetição
 
 Agora você pode brincar com um novo bloco, o
 
@@ -23,7 +23,7 @@ turtle.right(60)
 Não esqueça da identação.
 
 ## Figura a ser desenhada
-![Hexagono com lado de 100 pixels](03_hexagono.png "Hexagono com lado de 100 pixels")
+![Hexágono com lado de 100 pixels](03_hexagono.png "Hexágono com lado de 100 pixels")
 
 ## Banco de instruções
 
@@ -31,11 +31,11 @@ Não esqueça da identação.
 
 ```turtle = turtle.Turtle()```
 
-```turtle.forward(100)```
+```turtle.forward(???)```
 
-```turtle.left(90)```
+```turtle.left(???)```
 
-```turtle.right(90)```
+```turtle.right(???)```
 
 ```for _ in range(???):```
 
