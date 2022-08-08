@@ -1,9 +1,10 @@
 # Flor de diamantes com repetição
 
 Observe abaixo como simplificamos o código do diamante, transformando-o em um
-laço. Compare com o que você fez no exercício 02.
-Você pode fazer 12 iterações de toda a sequência para desenhar a flor. Dica:
-você terá que virar 30 graus depois de iterar seu diamante para não continuar
+laço com a instrução ```for _ in range(???)```. Compare com o que você fez no
+[exercício 02](02_diamante.md). Você pode fazer 12 iterações (uma para cada pétala
+da flor) de toda a sequência para desenhar a flor.
+Dica: você terá que virar 30 graus depois de iterar seu diamante para não continuar
 desenhando o mesmo diamante todas as vezes.
 
 ```python
@@ -29,11 +30,11 @@ Não esqueça da identação.
 
 ```turtle = turtle.Turtle()```
 
-```turtle.forward(100)```
+```turtle.forward(???)```
 
-```turtle.left(90)```
+```turtle.left(???)```
 
-```turtle.right(90)```
+```turtle.right(???)```
 
 ```for _ in range(???):```
 

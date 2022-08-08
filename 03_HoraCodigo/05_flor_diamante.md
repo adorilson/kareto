@@ -28,11 +28,11 @@ Não esqueça da identação.
 
 ```turtle = turtle.Turtle()```
 
-```turtle.forward(100)```
+```turtle.forward(???)```
 
-```turtle.left(90)```
+```turtle.left(???)```
 
-```turtle.right(90)```
+```turtle.right(???)```
 
 ```for _ in range(???):```
 
