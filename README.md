@@ -30,4 +30,13 @@ plataforma Code.org](https://studio.code.org/s/artist/lessons/1/levels/1).
 
 ### Introdução Acelerada à Ciência da Computação
 
-1. Exercicios 1 a 10 (exercicio001.py a exercicio010.py)
+1. [Exercício 1](exercicio001.py) 
+1. [Exercício 2](exercicio002.py)
+1. [Exercício 3](exercicio003.py)
+1. [Exercício 4](exercicio004.py)
+1. [Exercício 5](exercicio005.py)
+1. [Exercício 6](exercicio006.py)
+1. [Exercício 7](exercicio007.py)
+1. [Exercício 8](exercicio008.py)
+1. [Exercício 9](exercicio009.py)
+1. [Exercício 10](exercicio010.py)
