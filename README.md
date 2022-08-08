@@ -14,7 +14,8 @@ Projeto com fins educativos para ensino/aprendizagem de introdução à programa
 
 ### Hora do Código - Artista
 
-Este módulo é baseado na personagem Artista da Hora do Código na plataforma Code.org.
+Este módulo é baseado no tutorial [Hora de Código com personagem Artista da
+plataforma Code.org](https://studio.code.org/s/artist/lessons/1/levels/1).
 
 1. [Quadrado](/03_HoraCodigo/01_quadrado.md)
 1. [Diamante](/03_HoraCodigo/02_diamante.md)
@@ -23,7 +24,10 @@ Este módulo é baseado na personagem Artista da Hora do Código na plataforma C
 1. [Flor de diamantes](/03_HoraCodigo/05_flor_diamante.md)
 1. [Flor com repetição](/03_HoraCodigo/06_flor_com_repeticao.md)
 1. [Hexágono de hexágonos](/03_HoraCodigo/07_hexagono_de_hexagonos.md)
+1. [Flor com função](/03_HoraCodigo/08_flor_com_funcao.md)
+1. [Formas](/03_HoraCodigo/09_formas.md)
+1. [Sua vez](/03_HoraCodigo/10_sua_vez.md)
 
-### Introdução Acelerada a Ciência da Computação
+### Introdução Acelerada à Ciência da Computação
 
 1. Exercicios 1 a 10 (exercicio001.py a exercicio010.py)
