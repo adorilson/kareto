@@ -50,3 +50,4 @@ e outras configurações da tela, posicionamento da tartatura, e assim por diant
 Nesse seção, veremos detalhes desses tópicos.
 
 1. [Movimentação e Posição](/04_indo_alem/01_movimentacao.md)
+1. [Desenho](/04_indo_alem/02_desenho.md)

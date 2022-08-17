@@ -117,3 +117,5 @@ da tartaruga.
 ## Referências
 
 [Módulo Turtle - Desenhando com a programação](https://medium.com/reflex%C3%A3o-computacional/m%C3%B3dulo-turtle-d8949db55008)
+
+[Próximo](02_desenho.md)
