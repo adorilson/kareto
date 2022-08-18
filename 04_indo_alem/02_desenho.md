@@ -60,4 +60,4 @@ um triângulo, um retângulo e uma estrela.
 
 [Grau (Geometria)](https://pt.wikipedia.org/wiki/Grau_(geometria))
 
-[Próximo](02_desenho.md)
+[Próximo](03_caneta.md)
