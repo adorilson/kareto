@@ -11,7 +11,7 @@ figura abaixo.
 
 É através desse sistema que iremos mover as nossas tartarugas. Observe os valores
 mínimos e máximos apresentados na imagem são ilustrativos. Potencialmente, tendem
-ao infinito, porém poderão na aparecer na tela.
+ao infinito, porém poderão não aparecer na tela.
 
 Todas as tartarugas que criamos (sim, é possível termos mais de uma tartaruga)
 estarão inicialmente localizadas na origem e estarão sempre direcionadas para
