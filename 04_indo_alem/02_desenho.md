@@ -14,19 +14,20 @@ sucessivas aos métodos ```forward```, para a tartaruga andar, e ```right```
 Experimente.
 
 ```python
-for _ in range(360):
-    turtle.forward(1)
-    turtle.left(1)
+>>> for _ in range(360):
+...     turtle.forward(1)
+...     turtle.left(1)
 ```
 
 Se por um lado fazer círculos é uma tarefa bastante comum, por outro você
 pode querer personalizar, como definir o tamanho do raio, se quer um círculo
 completo ou um semi-círculo, ou ainda a quantidade de pontos do círculo.
-Por isso, ```turtle```provê um método para desenhar circulos onde isso pode ser configurado.
+Por isso, ```turtle``` provê um método para desenhar círculos onde isso pode
+ser configurado.
 
 - ```circle(radius, extent=None, steps=None)```
 
-Para desenhar um círculo com raio de 100 pixels, basta fazer
+Para desenhar um círculo com raio de 100 pixels, basta fazer:
 ```python
 >>> turtle.circle(100)
 ```
@@ -34,7 +35,7 @@ Para desenhar um círculo com raio de 100 pixels, basta fazer
 Ou se quiser um semicirculo, basta indicar quantos graus a tartatura deve 
 percorrer informe o parâmetro ```extent``` com valor 180.
 
-Vamos desenhar ~~uma círculo~~ uma circuferência.
+Vamos desenhar ~~uma círculo~~ uma circunferência.
 
 ```python
 >>> turtle.circle(radius=100, extent=180)
@@ -53,7 +54,7 @@ o método ```circle```?
 Como seriam os códigos para desenhar essas figuras sem o uso desse método?
 
 Crie um novo arquivo Python e defina funções para desenhar uma reta, um quadrado, 
-um triângulo e um retângulo.
+um triângulo, um retângulo e uma estrela.
 
 ## Referências
 

@@ -10,8 +10,8 @@ figura abaixo.
 ![Sistemas de Coordenadas](01_sistema_coordenadas.png "Sistemas de Coordenadas")
 
 É através desse sistema que iremos mover as nossas tartarugas. Observe os valores
-mínimos e máximos apresentados na imagem são ilustrativos. Potencialmente, tendem
-ao infinito, porém poderão não aparecer na tela.
+mínimos e máximos apresentados na imagem. Ele são ilustrativos. Potencialmente,
+tendem ao infinito, porém poderão não aparecer na tela.
 
 Todas as tartarugas que criamos (sim, é possível termos mais de uma tartaruga)
 estarão inicialmente localizadas na origem e estarão sempre direcionadas para
@@ -27,7 +27,7 @@ e inicialize uma tartaruga.
 
 ## Métodos de movimentação
 
-Alguns momentos de movimentação já foram amplamente utilizados em exercícios 
+Alguns métodos de movimentação já foram amplamente utilizados em exercícios 
 anteriores (ou quase):
 
 - ```forward(distance)``` 
@@ -61,9 +61,9 @@ da imagem abaixo. Você é capaz de completa-lá?
 
 ![Meia cruz](02_meia_cruz.png "Meia cruz")
 
-Todos esses são relativos à posição atual da tartaruga, sendo a posição e direção
-finais um consequência disso e dos argumentos informados (distância ou ângulo de
-rotação).
+Todos esses métodos apresentados anteriormente são relativos à posição atual da
+tartaruga, sendo a posição e direção finais uma consequência disso e dos argumentos
+informados (distância ou ângulo de rotação).
  
 Outros métodos tem um caráter mais absoluto. Posição e direção finais serão
 independentes das valores iniciais, ao menos em partes, em alguns casos.
@@ -95,13 +95,16 @@ independentes das valores iniciais, ao menos em partes, em alguns casos.
 
 Você é capaz de levar a tartaruga de volta à posição e orientação iniciais (ponto x=0 e y=0 e direcionada para direita) usando os métodos ```goto()``` e ```setheading()```?
 
-Faça mais alguns movimentos e rotações com a tartaruga e tente descobrir o que faz o
-método ```home()```. 
+Faça mais alguns movimentos e rotações com a tartaruga e tente descobrir o que
+faz o método ```home()```. 
 
 - ```home()```
 ```python
 >>> turtle.home()
 ```
+
+Esses métodos serão úteis sempre que quisermos definir uma posição inicial
+para **começarmos** a desenhar uma figura.
 
 Se conseguimos definir posição e direção, então também podemos ler o **estado**
 da tartaruga.

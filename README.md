@@ -47,7 +47,7 @@ Os exercícios desenvolvidos até aqui focaram em movimentar a tartaruga,
 produzindo desenhos conforme ela vai caminhando. Porém, em um contexto de jogos,
 são necessários outros recursos, tais como interação com usuário, redimensionamento
 e outras configurações da tela, posicionamento da tartatura, e assim por diante.
-Nesse seção, veremos detalhes desses tópicos.
+Nessa seção, veremos detalhes desses tópicos.
 
 1. [Movimentação e Posição](/04_indo_alem/01_movimentacao.md)
 1. [Desenho](/04_indo_alem/02_desenho.md)
