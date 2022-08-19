@@ -52,3 +52,4 @@ Nessa seção, veremos detalhes desses tópicos.
 1. [Movimentação e Posição](/04_indo_alem/01_movimentacao.md)
 1. [Desenho](/04_indo_alem/02_desenho.md)
 1. [Caneta](/04_indo_alem/03_caneta.md)
+1. [Respondendo a eventos](/04_indo_alem/04_respondendo_eventos.md)

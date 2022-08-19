@@ -81,4 +81,4 @@ Observe como os atributos ```pensize``` e ```pencolor``` da última execução s
 diferentes da primeira. Além de ser possível notar a diferença no canvas ao mover
 a tartaruga.
 
-[Próximo](03_caneta.md)
+[Anterior](02_desenho.md) | [Próximo](04_respondendo_eventos.md)
