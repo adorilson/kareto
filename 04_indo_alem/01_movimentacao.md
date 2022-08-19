@@ -110,12 +110,42 @@ Se conseguimos definir posição e direção, então também podemos ler o **est
 da tartaruga.
 
 - ```xcor()```
-- ```ycor()```
-- ```position()```
-- ```heading()```
-- ```towards(x, y=None)```
-- ```distance(x, y=None)``` 
+```python
+>>> turtle.xcor()
+8.804831863606921e-13
+```
 
+- ```ycor()```
+```python
+>>> turtle.ycor()
+350.0000000000037
+```
+
+- ```position()```
+```python
+>>> turtle.position()
+(0.00,350.00)
+```
+
+- ```heading()```
+```python
+>>> turtle.heading()
+90.0
+```
+
+É possível ainda calcular distância e ângulos de outros pontos.
+
+- ```distance(x, y=None)```
+```python
+>>> turtle.distance(0, 0)
+350.0000000000037
+```
+
+- ```towards(x, y=None)```
+```python
+>>> turtle.towards(0, 0)
+270.0
+```
 
 ## Referências
 
