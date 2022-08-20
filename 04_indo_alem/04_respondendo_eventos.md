@@ -18,7 +18,7 @@ por meio dos métodos ```on```:
 
 - ```onclick(fun, btn=1, add=None)```
 - ```onscreenclick(fun, btn=1, add=None)```
-- ```onreleasefun, btn=1, add=None```
+- ```onrelease(fun, btn=1, add=None)```
 - ```ondrag(fun, btn=1, add=None)```
 - ```onkey(fun, key)```
 - ```onkeypress(fun, key=None)```
@@ -87,7 +87,7 @@ Novamente, lembre-se de não utilizar parênteses e argumentos. Essas funções 
 serão executadas em algum momento no futuro, são chamadas de **funções de 
 retorno**.
 
-Vamos agora responder a teclas pressionadas.
+Vamos agora responder às teclas pressionadas.
 
 Imagine agora que você queira movimentar a tartaruga através das teclas de setas
 (cima/baixo, direta/esquerda). Para isso, deverá escrever 4 funções de retorno,

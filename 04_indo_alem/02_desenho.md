@@ -21,7 +21,7 @@ Experimente.
 
 Se por um lado fazer círculos é uma tarefa bastante comum, por outro você
 pode querer personalizar, como definir o tamanho do raio, se quer um círculo
-completo ou um semi-círculo, ou ainda a quantidade de pontos do círculo.
+completo ou um semicírculo, ou ainda a quantidade de pontos do círculo.
 Por isso, ```turtle``` provê um método para desenhar círculos onde isso pode
 ser configurado.
 
@@ -33,9 +33,7 @@ Para desenhar um círculo com raio de 100 pixels, basta fazer:
 ```
 
 Ou se quiser um semicirculo, basta indicar quantos graus a tartatura deve 
-percorrer informe o parâmetro ```extent``` com valor 180.
-
-Vamos desenhar ~~uma círculo~~ uma circunferência.
+percorrer. Informe o parâmetro ```extent``` com valor 180.
 
 ```python
 >>> turtle.circle(radius=100, extent=180)
@@ -48,16 +46,18 @@ pode definir um valor para o parâmetro ```steps```, que por padrão é ```None`
 >>> turtle.circle(radius=100, steps=100)
 ```
 
-Explore esses parâmetros. Você consegue fazer um quadrado ou um triângulo com
-o método ```circle```?
+Explore esses parâmetros.
 
-Como seriam os códigos para desenhar essas figuras sem o uso desse método?
+**Desafio** Você consegue fazer um quadrado ou um triângulo com o método 
+```circle```?
 
-Crie um novo arquivo Python e defina funções para desenhar uma reta, um quadrado, 
-um triângulo, um retângulo e uma estrela.
+**Desafio** Como seriam os códigos para desenhar essas figuras sem o uso desse método?
+
+**Desafio** Crie um novo arquivo Python e defina funções para desenhar uma reta, 
+um quadrado, um triângulo, um retângulo e uma estrela.
 
 ## Referências
 
 [Grau (Geometria)](https://pt.wikipedia.org/wiki/Grau_(geometria))
 
-[Próximo](03_caneta.md)
+[Anterior](01_movimentacao.md) | [Próximo](03_caneta.md)
