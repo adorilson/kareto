@@ -50,16 +50,12 @@ Veja como fica:
 >>> from turtle import Turtle, onscreenclick, listen
 >>> turtle = Turtle()
 >>> onscreenclick(turtle.goto)
->>> listen()
 ```
 
 Perceba que você não deve colocar os parênteses no ```goto```, tão pouco os
 parâmetros. Isso será feito internamente. Quando a tela for clicada, os
 parâmetros receberão a posição em que a tela foi clicada e a função será 
 executada.
-
-Além disso, após a definição dos eventos que serão escutados, a escuta deve ser
-iniciada com a função ```listen()```.
 
 Vamos agora definir uma função própria. Essa função vai mandar a tarturuga ir
 para o ponto clicado e depois escrever na tela a sua nova posição (veja o novo
@@ -113,6 +109,9 @@ Agora precisamos associar essa funcao à tecla de seta para cima.
 >>> onkey(up, 'Up')
 >>> listen()
 ```
+
+Além disso, após a definição da tecla que será escutada, a escuta de teclas deve ser
+iniciada com a função ```listen(xdummy=None, ydummy=None)```.
 
 Da mesma forma, podemos criar uma função para movimentar a tartaruga para baixo.
 
