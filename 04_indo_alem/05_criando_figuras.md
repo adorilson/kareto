@@ -267,3 +267,5 @@ Quando *c* for pressionada, alteramos ```shape``` para ```cicle```.
 Complete pra todas as figuras.
 
 E pronto. Temos um editor que atende aos requisitos proposto no início da seção.
+
+[Anterior](04_respondendo_eventos.md) | [Próximo](05_criando_figuras.md)
