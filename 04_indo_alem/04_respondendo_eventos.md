@@ -137,4 +137,10 @@ manipular a coordenada **x** e que as teclas para direita e esquerda são
 ```Right``` e ```Left```, respectivamente, faça a tartaruga movimentar-se 
 nessa direção.
 
+**Desafio** Após finalizar o desafio anterior, feito no modo interativo,
+refaça o exercício em arquivo Python. Lembre-se de reorganizar as instruções
+de ```import``` e demais que eventualmente possam ter sido repetidos. Também 
+reflita sobre o ```shape``` da tartaruga e aplique um que melhor convier para 
+essa situação.
+
 [Anterior](03_caneta.md) | [Próximo](05_criando_figuras.md)
