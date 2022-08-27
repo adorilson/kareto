@@ -1,6 +1,6 @@
 # Caneta
 
-**Desafio** Utilizando as funções da sessão anterior, e com o auxílio dos 
+**Desafio** Utilizando as funções da seção anterior, e com o auxílio dos 
 métodos vistos anteriormente, desenhe várias figuras.
 
 O resultado deverá ser algo semelhante à imagem abaixo (ordem, posicionamento e 
