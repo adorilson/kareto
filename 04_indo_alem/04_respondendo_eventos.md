@@ -132,7 +132,7 @@ E depois associa-lá à tecla da seta.
 >>> listen()
 ```
 
-**Desafio** Sabendo que para movimentar a tartatura na horizontal você deve 
+**Desafio** Sabendo que para movimentar a tartaruga na horizontal você deve 
 manipular a coordenada **x** e que as teclas para direita e esquerda são 
 ```Right``` e ```Left```, respectivamente, faça a tartaruga movimentar-se 
 nessa direção.

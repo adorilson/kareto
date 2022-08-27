@@ -190,7 +190,7 @@ das funções de cada figura.
 Cada função das figuras, deverá agora:
 1. receber dois parâmetros, ```start``` e ```end```, que indicam o primeiro e o 
 segundo ponto em que a tela foi clicada
-1. fazer o deslocamento da tartatura para o ponto inicial
+1. fazer o deslocamento da tartaruga para o ponto inicial
 1. calcular a dimensão de interesse
 1. desenhar a figura conforme
 

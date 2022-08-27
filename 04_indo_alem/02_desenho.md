@@ -32,7 +32,7 @@ Para desenhar um círculo com raio de 100 pixels, basta fazer:
 >>> turtle.circle(100)
 ```
 
-Ou se quiser um semicirculo, basta indicar quantos graus a tartatura deve 
+Ou se quiser um semicirculo, basta indicar quantos graus a tartaruga deve 
 percorrer. Informe o parâmetro ```extent``` com valor 180.
 
 ```python
