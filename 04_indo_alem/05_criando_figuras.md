@@ -6,15 +6,17 @@ truques e criar uma espécie de editor de imagens.
 Os requisitos para esse "editor" são simples:
 
 ```
-Você deve ser capaz de clicar na tela em duas posições.
-A distância entre esses dois pontos será o parâmetro para o tamanho da figura.
-(raio se for um círculo, lado se for uma quadrado ou retângulo e assim por diante)
+1. O usuário deve ser capaz de clicar na tela em duas posições.
+    A distância entre esses dois pontos será o parâmetro para o tamanho da 
+    figura. (raio se for um círculo, lado se for uma quadrado ou retângulo e 
+    assim por diante)
+2. O usuário deve ser capaz de escolher qual figura deseja desenhar
 ```
 
 Embora um algoritmo, depois de pronto, seja comparada a uma receito de bolo,
-não existe um receita de bolo para a construção em si. A construção de 
+não existe uma receita de bolo para a construção em si. A construção de 
 algoritmo pode ser inicializada por diferentes formas e seguir diferentes 
-caminhos, inclusives por caminhos que nao pareçam levar ao destino, até que
+caminhos, inclusives por caminhos que não pareçam levar ao destino, até que
 ele esteja pronto.
 
 Um caminho comum é começarmos por aquilo que já temos pronto, ou o que 
@@ -23,6 +25,8 @@ até que ele esteja finalizado.
 
 Dos exercícios anteriores, já temos funções que desenham as figuras.
 Começaremos por elas.
+
+## Começando
 
 Considere a função para desenhar um quadrado:
 
@@ -37,12 +41,13 @@ Vamos associar essa função ao evento de clique na tela, o que é feito
 com a função ```onscreenclick(fun, btn=1, add=None)```:
 
 ```python
+# código omitido aqui
 from turtle import onscreenclick, mainloop
 onscreenclick(square)
 mainloop()
 ```
 
-A chamada à função ```mainloop()``` inicia o _loop_ de eventos. Ela é que faz
+A chamada à função ```mainloop()``` inicia o laço de eventos. É ela que faz
 com que a tela não se feche imediatamente. No lugar disso, ficará repetidamente 
 ouvindo os eventos, daí o nome _main loop_ (loop principal).
 
@@ -72,12 +77,13 @@ também o conteúdo, no caso ```fun(x, y)```.
 
 Lembre-se que estamos trabalhando com *eventos* e *funções de retorno*, daí a
 linha não ser ```square(x, y)```. Isso é porque neste momento, ```fun``` é a
-referência para ```square```.
+referência para ```square```. Durante a execução do programa, ela será referência
+para funções diversas.
 
 Uma vez identificado o erro, no caso uma chamada com argumentos incorretos,
 precisamos decidir como fazer a correção. Um caminho seria simplesmente 
 adicionar parâmetros à função (```def square(x, y)```), mesmo que internamente
-eles não seja utilizados. Tente isto.
+eles não seja utilizados. **Desafio** Tente isto.
 
 Porém, faremos uma função semelhante à ```goto_and_write``` criada em seções
 anteriores. Já à ```square```, posteriormente serão adicionados parâmetros
@@ -92,10 +98,12 @@ def goto_and_square(x, y):
     square()
 ```
 
-Lembre-se de mudar na chamada à ```onscreenclick(...)```.
+**Desafio** Lembre-se de mudar na chamada à ```onscreenclick(...)```.
 
 Se tudo estiver correto, agora quadrados são desenhados na tela a partir
 do clique do mouse. Porém, eles tem tamanho fixo.
+
+## Dando tamanho para as figuras
 
 Vamos começar o próximo passo adicionando um parâmetro ```width``` à função
 ```square```.
@@ -127,7 +135,7 @@ Se não:
 Aqui, uma decisão chave a ser tomada é como identificar se é o primeiro ou
 segundo clique e como armazenar a posição. Mais um vez, podemos fazer de 
 diversas formas, mas usaremos uma única variável, que chamaremos de ```start```. 
-Ela armazenará a posição do primeiro clique ou terá valor ```None``` caso ainda 
+Ela armazenará a posição do primeiro clique e terá valor ```None``` caso ainda 
 não tenha ocorrido o primeiro clique.
 
 Com isso em mente, criaremos a variável ```start``` com valor inicial ```None```
@@ -154,36 +162,40 @@ def goto_and_square(x, y):
 ```
 
 Esclarecimentos:
-1. a instrução ```global``` indica que a variável _start_ vem de fora da função,
+1. a instrução ```global``` indica que a variável ```start``` vem de fora da 
+função,
 que ela é do escopo global e não do escopo local da função
-1. a forma de verificar se uma variável/objecto é ```None``` é com o operador `
+1. a forma de verificar se uma variável/objeto é ```None``` é com o operador
 ```is```
 1. no bloco dentro do ```else``` cada passo do algoritmo está separado por uma
 linha em branco. É fácil perceber que alguns passos precisam de mais uma linha.
-Além disso, por questão de simplificação, o tamanho do lado do quadrado foi um
+Além disso, por questão de simplificação, o tamanho do lado do quadrado foi uma
 diferença simples entre as coordenadas **x** do primeiro e segundo cliques.
+
+## Evitando repetição de código
 
 Podemos seguir essa estratégia e implementar uma função dessa para cada figura
 que o nosso editor será capaz de criar, além de fazer as devidas adequações
 nas funções que efetivamente desenham as figuras.  
 
 Porém, ficaríamos com uma certa repetição de código nas funções ```goto_and_```.
-Além disso, iremos precisar precisamos de mecanismo que nos permita escolher 
+Além disso, iremos precisar de mecanismo que nos permita escolher 
 qual figura será desenhada.
 
-Agora que temos um par de função para cada figura, . Podemos fazer isso 
+Agora que temos um par de função para cada figura, podemos fazer isso 
 associando uma tecla do teclado à uma figura, e criando novas funções para
-fazer a troca da figura.
+fazer a troca da figura (acréscimo e uso de parâmetro).
 
 Então, faremos mudanças na função ```goto_and_square```, que será agora 
 genérica e não mais específica para quadrados, e em cada função que desenha
 as figuras. As mudanças em ```goto_and_square``` serão as seguintes:
 1. renomear para ```tap``` (já que nem sempre há deslocamento e desenho)
-1. no lugar de chamar ```square```, chamaremos ```shape```, que será referencia
+1. no lugar de executar ```square```, executaremos ```shape```, que será 
+referência
 para as funções de desenho. Ela será peça importante na troca de figuras
-1. A novo função ```shape``` receberá dois argumentos, que representam o ponto
+1. A "nova função" ```shape``` receberá dois argumentos, que representam o ponto
 inicial e o ponto final de desenho da figura
-1. Em consequencia dos itens anteriores, a definição das dimensões da figuras,
+1. Em consequência dos itens anteriores, a definição das dimensões da figuras,
 assim como a movimento para o ponto inicial será deslocado para dentro 
 das funções de cada figura.
 
@@ -191,7 +203,7 @@ Cada função das figuras, deverá agora:
 1. receber dois parâmetros, ```start``` e ```end```, que indicam o primeiro e o 
 segundo ponto em que a tela foi clicada
 1. fazer o deslocamento da tartaruga para o ponto inicial
-1. calcular a dimensão de interesse
+1. calcular a dimensão de interesse, a partir dos parâmetros
 1. desenhar a figura conforme
 
 Aplicando essas alterações, teremos o seguinte:
@@ -220,12 +232,19 @@ def square(start, end):
 
 ```
 
-Como renomeamos a função  ```goto_and_square``` para ```tap```, precisamos
-atualizar a chamada a ```onscreenclick(...)```.
+**Desafio** Como renomeamos a função  ```goto_and_square``` para ```tap```, 
+precisamos atualizar a chamada a ```onscreenclick(...)```. Faça isso.
 
-Se executar isso dessa forma, ocorrerá um erro em ```shape(start, end)```,
-tão pouco ainda somos capaz de alternar a figuras. Vamos fazer isso em duas
+## Trocando as figuras
+
+Mesmo após a conclusão do desafio, ainda não será possível a execução.
+Se executar isso dessa forma, ocorrerá um erro na chamada
+```shape(start, end)```,
+tão pouco ainda somos capazes de alternar entre as figuras. Vamos fazer isso em 
+duas
 etapas. Primeiro a definição de ```shape```, depois a alternância.
+
+### Definindo a função de retorno
 
 ```shape``` será uma função de retorno. Então vamos simplesmente atribuir
 a ela a função da figura que será executada em algum momento no futuro.
@@ -243,29 +262,36 @@ Agora que validamos esse mecanismo e verificamos que somos capaz de desenhar
 figuras distintas, precisamos implementar a alternância entre elas à livre
 escolha do usuário. Para tal, cada figura será associada a uma tecla. 
 
+### Alternando entre as figuras
+
 Inicialmente, deveremos criar funções que farão a alteração do conteúdo de
-```shape```. Depois, deveremos associar a execução de cadas função dessas 
-a tecla escolhida.
+```shape```. Depois, deveremos associar a execução de cada uma dessas funções
+à tecla escolhida, arbitrariamente por você, pessoa programadora.
 
 ```python
 def shape_square():
     shape = square
 
-def shape_cicle():
-    shape = cicle
+def shape_circle():
+    shape = circle
 
 from turtle import onkey, listen
 
 onkey(shape_square, 's')
-onkey(shape_cicle, 'c')
+onkey(shape_circle, 'c')
 listen()
 ```
 
 Quando *s* for pressionada, alteramos ```shape``` para ```square```.
-Quando *c* for pressionada, alteramos ```shape``` para ```cicle```.
+Quando *c* for pressionada, alteramos ```shape``` para ```circle```.
 
-Complete pra todas as figuras.
+**Desafio** Complete pra todas as figuras.
 
-E pronto. Temos um editor que atende aos requisitos proposto no início da seção.
+E pronto. Temos um editor que atende aos requisitos propostos no início da seção.
+
+## Referências
+
+[Callback](https://pt.wikipedia.org/wiki/Callback)
+[Laço de eventos](https://pt.wikipedia.org/wiki/La%C3%A7o_de_eventos)
 
 [Anterior](04_respondendo_eventos.md) | [Próximo](05_criando_figuras.md)
