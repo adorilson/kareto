@@ -292,6 +292,7 @@ E pronto. Temos um editor que atende aos requisitos propostos no início da seç
 ## Referências
 
 [Callback](https://pt.wikipedia.org/wiki/Callback)
+
 [Laço de eventos](https://pt.wikipedia.org/wiki/La%C3%A7o_de_eventos)
 
-[Anterior](04_respondendo_eventos.md) | [Próximo](05_criando_figuras.md)
+[Anterior](04_respondendo_eventos.md) | [Próximo](06_melhorando_o_editor_.md)
