@@ -1,27 +1,59 @@
 # Melhorando o código do editor
 
-Se você observar as funções que fazem a troca de ```shape```, perceberá que
-todas elas possuem apenas uma linha de código.
-
-Python fornece um recurso que pode ser utilizando nesse caso, que são as funções
-anônimas, definidas a partir da instrução ```lambda``` - por este motivo são 
-também chamadas de funções lambda. 
-
 O último trecho apresentado na seção anterior é o seguinte:
 
 ```python
 def shape_square():
+    global shape
     shape = square
 
 def shape_circle():
+    global shape
     shape = circle
 
-from turtle import onkey, listen
+from turtle import onkey, listen, mainloop
 
 onkey(shape_square, 's')
 onkey(shape_circle, 'c')
 listen()
+mainloop()
 ```
+
+Se você observar as funções que fazem a troca de ```shape```, perceberá que a única diferença é o valor atribuído a essa variável. Neste caso, podemos *refatorar* este código para termos apenas uma função (```change_shape```) que de fato faz a 
+atribuição da variável ```shape```. Para tal, ela deverá possuir um parâmetro e na 
+chamada da função é que faremos a distinção da figura. Assim:
+
+```python
+def change_shape(new_shape):
+    global shape
+    shape = new_shape
+
+def shape_square():
+    change_shape(square)
+
+def shape_circle():
+    change_shape(circle)
+
+from turtle import onkey, listen, mainloop
+
+onkey(shape_square, 's')
+onkey(shape_circle, 'c')
+listen()
+mainloop()
+```
+
+Com isso, caso tenhamos que fazer alguma alteração (por exemplo, renomear ```shape```
+para ```figure```) precisamos mexer em apenas uma função.  
+
+**Desafio** Aplique essa refatoração para as demais funções de troca de 
+```shape```.
+
+Olhando novamente para os novos códigos das funções que fazem a troca de ```shape```,
+perceberá que todas elas possum apenas uma linha de código.
+
+Python fornece um recurso que pode ser utilizando nesse caso, que são as funções
+anônimas, definidas a partir da instrução ```lambda``` - por este motivo são 
+também chamadas de funções lambda. 
 
 Com uso de expressões lambda, as funções criadas com ```def``` serão eliminadas
 e o código delas vai, juntamente com a instrução ```lambda```, para os locais
@@ -29,18 +61,25 @@ onde elas são referenciadas. O trecho de código então ficará:
 
 
 ```python
-from turtle import onkey, listen
+def change_shape(new_shape):
+    global shape
+    shape = new_shape
 
-onkey(lambda: shape = square, 's')
-onkey(lambda: shape = circle, 'c')
+# as funções que estavam aqui foram removidas
+
+from turtle import onkey, listen, mainloop
+
+onkey(lambda: change_shape(square), 's')
+onkey(lambda: change_shape(circle), 'c')
 listen()
+mainloop()
 ```
 
 Observe que as definições das funções não existem mais, e ```lambda``` foi
 usada na chamada à ```onkey```.
 
-**Desafio** Aplique essa refatoração para as demais funções de troca de 
-```shape```.
+**Desafio** Remova todas as funçoes de troca de ```shape```, utilizando ```lambda```
+no lugar.
 
 As funções lambda podem ser usadas sempre que objetos função forem necessários,
 por exemplo quando você passa uma função como argumento de outra função. 
@@ -59,9 +98,7 @@ e de ```turtle``` vão sendo estudados e aprendidos.
 
 Por outro lado, começar um jogo do zero, por mais simples que ele seja, pode ser 
 desafiador. Por este motivo, daremos continuidade ao nosso curso com o Free 
-Python Games, uma coleção de jogos com fins de diversão e educação. Estão 
-inclusas diversos jogos de arcade clássicos, que foram escritos em Python puro
-e módulo ```turtle```, projetados para experimentação e mudanças.
+Python Games, uma coleção de jogos com fins de diversão e educação. 
 
 ## Referências
 
@@ -69,4 +106,4 @@ e módulo ```turtle```, projetados para experimentação e mudanças.
 
 [Funções anônimas em Python](https://giovannireisnunes.wordpress.com/2018/08/03/funcoes-anonimas-em-python/)
 
-[Anterior](05_criando_figuras.md) | [Próximo](06_melhorando_o_editor_.md)
+[Anterior](05_criando_figuras.md) | [Próximo](06_melhorando_o_editor.md)
