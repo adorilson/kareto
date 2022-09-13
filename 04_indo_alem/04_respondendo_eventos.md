@@ -28,7 +28,8 @@ Esses métodos definem os eventos a serem **capturados**. Perceba que todos eles
 possuem um parâmetro obrigatório ```fun```. Este ```fun``` é de  ```function```.
 Ou seja, é uma função que será executada em **resposta** ao evento. Essa função
 pode ser definida por você, ou pode ser uma função já existente, desde que ela 
-possua a quantidade de parâmetros esperada.
+possua a quantidade de parâmetros esperada. Portanto, funções são também valores/
+objetos e podem ser passadas como argumentos ao se chamar outras funções. 
 
 Vejamos um exemplo.
 
