@@ -225,7 +225,7 @@ def square(start, end):
     turtle.goto(start[0], start[1])
     turtle.pendown()
 
-    width = width = start[0] - end[0]
+    width = start[0] - end[0]
     for _ in range(4):
         turtle.forward(width)
         turtle.right(90)
@@ -233,7 +233,7 @@ def square(start, end):
 ```
 
 **Desafio** Como renomeamos a função  ```goto_and_square``` para ```tap```, 
-precisamos atualizar a chamada a ```onscreenclick(...)```. Faça isso.
+precisamos atualizar a chamada à ```onscreenclick(...)```. Faça isso.
 
 ## Trocando as figuras
 
@@ -270,22 +270,25 @@ Inicialmente, deveremos criar funções que farão a alteração do conteúdo de
 
 ```python
 def shape_square():
+    global shape
     shape = square
 
 def shape_circle():
+    global shape
     shape = circle
 
-from turtle import onkey, listen
+from turtle import onkey, listen, mainloop
 
 onkey(shape_square, 's')
 onkey(shape_circle, 'c')
 listen()
+mainloop()
 ```
 
 Quando *s* for pressionada, alteramos ```shape``` para ```square```.
 Quando *c* for pressionada, alteramos ```shape``` para ```circle```.
 
-**Desafio** Complete pra todas as figuras.
+**Desafio** Complete para todas as figuras.
 
 E pronto. Temos um editor que atende aos requisitos propostos no início da seção.
 
@@ -295,4 +298,4 @@ E pronto. Temos um editor que atende aos requisitos propostos no início da seç
 
 [Laço de eventos](https://pt.wikipedia.org/wiki/La%C3%A7o_de_eventos)
 
-[Anterior](04_respondendo_eventos.md) | [Próximo](06_melhorando_o_editor_.md)
+[Anterior](04_respondendo_eventos.md) | [Próximo](06_melhorando_o_editor.md)
