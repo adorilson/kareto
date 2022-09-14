@@ -106,4 +106,4 @@ Python Games, uma coleção de jogos com fins de diversão e educação.
 
 [Funções anônimas em Python](https://giovannireisnunes.wordpress.com/2018/08/03/funcoes-anonimas-em-python/)
 
-[Anterior](05_criando_figuras.md) | [Próximo](06_melhorando_o_editor.md)
+[Anterior](05_criando_figuras.md) | [Próximo](/05_free_python_games/01_fpg_introducao.md)

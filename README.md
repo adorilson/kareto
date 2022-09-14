@@ -55,3 +55,10 @@ Nessa seção, veremos detalhes desses tópicos.
 1. [Respondendo a eventos](/04_indo_alem/04_respondendo_eventos.md)
 1. [Criando figuras](/04_indo_alem/05_criando_figuras.md)
 1. [Melhorando o código do editor](/04_indo_alem/06_melhorando_o_editor.md)
+
+## Free Python Games
+
+Nessa módulo estudaremos os jogos contidos em Free Python Games.
+
+1. [Introdução](/05_free_python_games/01_fpg_introducao.md)
+1. [Paint](/05_free_python_games/02_fpg_paint.md)
