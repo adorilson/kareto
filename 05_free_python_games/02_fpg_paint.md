@@ -9,6 +9,14 @@ funciona do ponto de vista do usuário e também terá a certeza que está de
 fato funcionando, e que os erros que surgirão ao longo das 
 mudanças foram introduzidos por você e não erros que já vieram com o programa.
 
+## Pequeno manual de uso
+
+Ao iniciar o `Paint` ele desenhará por padrão linhas. Clique em dois
+pontos da tela e uma linha será desenhada entre eles. Para alternar
+entre linha e quadrado, use as teclas `l` e `s`. Também é possível
+mudar as cores: `K` para preto, `W` para branco, `G` para verde, `B`
+para azul e `R` para vermelho.
+
 ## Anatomia do código-fonte
 
 ### Comentários com exercícios
