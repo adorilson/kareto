@@ -13,7 +13,8 @@ Embora seja possível ver e copiar o código dos jogos diretamente da documenta�
 não será possível executá-los sem antes instalar um novo pacote no seu computador
 (ou seja qual for o ambiente de execução). Isso ocorre porque o Free Python Games,
 além da coleção de jogos, também é um biblioteca escrita em cima do ```turtle```,
-contendo funcionalidades que facilitarão o desenvolvimento do jogos.
+contendo funcionalidades que facilitarão o desenvolvimento dos jogos, e serão
+detalhadas mais adiante.
 
 ## Início rápido
 
