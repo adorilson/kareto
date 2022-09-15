@@ -120,7 +120,7 @@ Na sequência, teremos as definições de diversas funções, que serão chamada
 ao longo da execução do programa. Algumas funções virão completas e funcionais,
 podendo haver algum exercício que precisará alterá-las, outras funções nada 
 farão. Contendo apenas a string de documentação, para que saibamos o que ele
-faz (ou deverá saber), e a palavra `pass` (indicando que ela não faz nada, como
+faz (ou deverá fazer), e a palavra `pass` (indicando que ela não faz nada, como
 quem diz "passe direto").
 
 ### Ponto de entrada
