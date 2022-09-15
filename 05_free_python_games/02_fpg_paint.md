@@ -3,7 +3,11 @@
 O primeiro jogo do Free Python Games a ser estudado será o Paint, que na
 realidade não é um jogo, mas um editor de figuras tal qual o desenvolvido
 nas seções anteriores. Com isso, a ambientação ao Free Python Games será
-facilitada.
+facilitada. Antes mesmo de começar a estudar o código-fonte e começar a
+alterá-lo é importante que você execute o programa. Assim entenderá como
+funciona do ponto de vista do usuário e também terá a certeza que está de
+fato funcionando, e que os erros que surgirão ao longo das 
+mudanças foram introduzidos por você e não erros que já vieram com o programa.
 
 ## Anatomia do código-fonte
 
