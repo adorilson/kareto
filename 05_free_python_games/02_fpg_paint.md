@@ -125,10 +125,58 @@ quem diz "passe direto").
 
 ### Ponto de entrada
 
-Por fim...
+Por fim, chegamos ao ponto de entrada do programa, que é onde de fato começará
+a interação com o usuário. No caso de  `Paint`, temos o seguinte:
+
+```python
+state = {'start': None, 'shape': line}
+setup(420, 420, 370, 0)
+onscreenclick(tap)
+listen()
+onkey(undo, 'u')
+onkey(lambda: color('black'), 'K')
+onkey(lambda: color('white'), 'W')
+onkey(lambda: color('green'), 'G')
+onkey(lambda: color('blue'), 'B')
+onkey(lambda: color('red'), 'R')
+onkey(lambda: store('shape', line), 'l')
+onkey(lambda: store('shape', square), 's')
+onkey(lambda: store('shape', circle), 'c')
+onkey(lambda: store('shape', rectangle), 'r')
+onkey(lambda: store('shape', triangle), 't')
+done()
+```
+
+A primeira linha contém definição da variável responsável por manter o estado 
+do programa. Enquanto no editor que criamos utilizamos duas variáveis, aqui 
+está sendo utilizado apenas uma, `state`. Mas é uma estrutura composta, 
+conhecida como dicionário, podendo armazenar diversos valores, que são 
+acessados por meio de chaves. No caso, as chaves são `start` e `shape`, e os
+valores iniciais  `None` e `line`, respectivamente.
+
+A linha seguinte contém a chamada a uma nova função, `setup`, que é utilizada
+para definir dimensões e posicionamento da tela do programa.
+
+A linha `onscreenclick(tap)` nos indica que quando a tela for clicada, será
+executada a função `tap`.
+
+Temos então a chamada à `listen`, que faz com que `turtle` fique escutando
+as teclas que serão pressionadas, e que são definidas nas chamadas à `onkey` que se seguem. Em `Paint`, além de escolher entre figuras, também é possível
+escolher entre cores.
+
+Por fim, a última linha chama a função `done()`, que é exatamente igual
+`mainloop()` que usamos no nosso editor.
+
+É importante observar que no Free Python Games foi utilizado uma abordagem mais
+de programação estruturada e menos de orientação a objetos. Por este motivo,
+não temos a criação de um objeto `turtle` (`turtle = turtle.Turtle()`), como 
+fizemos em nosso editor. No lugar disso, as funções são importadas e chamadas 
+diretamente do módulo.
+
+**Desafio** Resolva os exercícios proposta para `Paint`.
 
 ## Referências
-PEP-8
+[PEP-8 e imports em Python](https://medium.com/gbtech/pep-8-e-imports-em-python-78a6fbf53475)
 
 
 [Anterior](01_fpg_introducao.md) | [Próximo](02_fpg_paint.md)
