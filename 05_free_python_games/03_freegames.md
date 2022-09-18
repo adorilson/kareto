@@ -37,6 +37,8 @@ para cima.
 
 ## Funções auxiliares
 
+### Para calcular posições
+
 Considere a grade de um Jogo-da-Velha abaixo:
 
 ![Jogo-da-Velha](tictactoe.png "Jogo-da-Velha")
@@ -54,6 +56,9 @@ casa clicada estão em intervalos que são:
 - Casa esquerda: valores de -100 a -1
 - Casa do meio: valores de 0 a 99
 - Casa da direita: valores de 100 a 199
+
+Obviamente, o mesmo raciocinío e cálculo precisam ser feito para o deslocamento
+vertical.
 
 Para facilitar esses cálculos a biblioteca provê a função `floor`.
 
