@@ -102,6 +102,32 @@ Veja, e execute, alguns exemplos concretos:
 480.0
 ```
 
+### Para carregar imagens
+
+Turtle possui suporte para carregamento e exibição de imagens. Free Python
+Games utiliza esse recurso em alguns jogos, por exemplo no Memory. Para carregar
+a imagem é necessário ter o caminho completo do arquivo, daí a utilidade de uma
+função que você passa apenas o nome do arquivo, e função retorna o caminho completo,
+que será utilizado pelas funções de carregamento do arquivo para exibição.
+
+- freegames.path(filename)
+
+Retorna o caminho completo para `filename` na módulo `freegames`.
+
+As figuras podem ser utilizadas tanto para se colocar uma imagem de fundo,
+quanto definir o formato da tartatura, com a função `shape`, já utilizada
+anteriormente. Porém, para novos formatos, é preciso antes registrar este novo
+formato com `register_shape` (ou `addshape`), conforme apresentado a seguir.
+
+```python
+>>> car = freegames.path('car.gif')
+>>> car
+'/home/adorilson/.local/lib/python3.10/site-packages/freegames/car.gif'
+>>> import turtle
+>>> turtle.register_shape(car)
+>>> turtle.shape(car)
+```
+
 ## Vetores
 
 Em breve...
