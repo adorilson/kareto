@@ -130,8 +130,202 @@ formato com `register_shape` (ou `addshape`), conforme apresentado a seguir.
 
 ## Vetores
 
-Em breve...
+Se você observar o jogo Pacman e considerar que cada ator móvel do jogo (Pacman e os
+fantasmas) possuem sua localização `(x, y)` armazenadas em variáveis, deverá ser fácil 
+deduzir que essa variáveis estão constantemente sendo atualizadas.  
+
+![Sistema de coordenadas](https://grantjenks.com/docs/freegames/_static/pacman.gif
+"Sistemas de Coordenadas")
+
+Para tal, Free Python Games utiliza as operações do ente matemático chamado de vetor.
+
+Considere um ponto qualquer no sistema de coordenadas utilizadas por Turtle,
+por exemplo o ponto **A(2, 3)**, conforme imagem abaixo.
+
+![Sistema de coordenadas](https://s4.static.brasilescola.uol.com.br/img/2016/09/ponto-a-no-plano-cartesiano.jpg
+ "Sistemas de Coordenadas")
+
+Imagine um segmento de reta que vai da origem **(0, 0)** até o ponto **A**, este
+segmento de reta é o que chamamos de vetor. Na realidade, vetor é o cojunto
+formato por todos os segmentos orientados que possuem a mesma direção, o mesmo
+sentido e o mesmo comprimento, mas consideramos apenas um elemento desse conjunto
+por simplificação - veja as referências para o conceito matemático completo.
+
+Diversas operações são definidas para vetores, mas talvez a mais importante delas
+para o nosso contexto seja a operação de soma de vetores. A soma de dois vetores
+pode ser feita pela regra do paralelograma.
+
+![Regra do paralelograma](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Vector_Addition.svg/330px-Vector_Addition.svg.png
+ "Regra do paralelograma")
+
+Assim: a+b = ( ax + bx, ay + by )
+
+### Vetores de referências
+
+Considere o vetor **V** e os vetores **Vy** e **Vx** na figura abaixo. **V** é um
+vetor nosso qualquer no plano, enquanto que  **Vy** e **Vx** são vetores de referência, 
+com valores respectivos de **(0, 1)** e **(1, 0)**. Assim, se eu desejo que o meu vetor 
+**V** se desloque para cima irei somá-lo com **Vy**,  se desejo que se o deslocamento 
+seja para a direita, a soma é com **Vx**. De forma análoga, existem também os vetores para
+descolamento nas sentidos contrários. Tais vetores estão definidos em Free Python
+Games e são utilizados para a movimentação dos atores móveis dos jogos.
+
+![Vetores de referência para deslocamento](https://static.preparaenem.com/conteudo/images/componentes-da-velocidade.jpg
+"Vetores de referência para deslocamento")
+
+### Classe vector
+
+Free Python Games define a classe `freegames.vector(x, y)` para encapsular as
+operações de vetores.
+
+- Criação e representação do vetor
+
+```python
+>>> from freegames import vector
+>>> v = vector(3, 4)
+>>> v
+vector(3, 4)
+```
+
+- Atributos x e y
+```python
+>>> v = vector(1, 2)
+>>> v.x
+1
+>>> v.x = 3
+>>> v.x
+3
+>>> v.y
+2
+>>> v.y = 5
+>>> v.y
+5
+```
+
+- Comparação de igualdade
+```python
+>>> v = vector(1, 2)
+>>> w = vector(1, 2)
+>>> v == w
+True
+```
+
+- Comparação de desigualdade
+```python
+>>> v = vector(1, 2)
+>>> w = vector(3, 4)
+>>> v != w
+True
+```
+
+- Comprimento (distância até a origem)
+```python
+>>> v = vector(3, 4)
+>>> abs(v)
+5.0
+```
+
+- Adição de vetores (com outro vetor e com um número)
+```python
+>>> v = vector(1, 2)
+>>> w = vector(3, 4)
+>>> v + w
+vector(4, 6)
+>>> w + v
+vector(4, 6)
+>>> v + 1
+vector(2, 3)
+>> 2.0 + v
+vector(3.0, 4.0)
+```
+
+- Subtração (com outro vetor ou com um número)
+```
+>>> v = vector(1, 2)
+>>> w = vector(3, 4)
+>>> v - w
+vector(-2, -2)
+>>> v - 1
+vector(0, 1)
+```
+
+
+- Multiplicação (por outro vetor e por um número)
+```python
+>>> v = vector(1, 2)
+>>> w = vector(3, 4)
+>>> v * w
+vector(3, 8)
+>>> v * 2
+vector(2, 4)
+>>> 3.0 * v
+vector(3.0, 6.0)
+```
+
+- Divisão (por outro vetor e por um número)
+```python
+>>> v = vector(2, 4)
+>>> w = vector(4, 8)
+>>> v /= w
+>>> v
+vector(0.5, 0.5)
+>>> v /= 2
+>>> v
+vector(0.25, 0.25)
+```
+
+- Inversão 
+```python
+>>> v = vector(1, 2)
+>>> -v
+vector(-1, -2)
+```
+
+- Move um vetor (mudança interna no vetor)
+```python
+>>> v = vector(1, 2)
+>>> w = vector(3, 4)
+>>> v.move(w)
+>>> v
+vector(4, 6)
+>>> v.move(3)
+>>> v
+vector(7, 9)
+```
+
+- Cópia
+```python
+>>> v = vector(1, 2)
+>>> w = v.copy()
+>>> v is w
+False
+```
+
+- Rotação (sentido horário a partir de um ângulo, mudança interna no vetor)
+```
+>>> v = vector(1, 2)
+>>> v.rotate(90)
+>>> v == vector(-2, 1)
+True
+```
+
+- Escala (mudança interna no vetor)
+```python
+>>> v = vector(1, 2)
+>>> w = vector(3, 4)
+>>> v.scale(w)
+>>> v
+vector(3, 8)
+>>> v.scale(0.5)
+>>> v
+vector(1.5, 4.0)
+```
 
 ## Referências
+
+[Vetor (Matemática)](https://pt.wikipedia.org/wiki/Vetor_(matem%C3%A1tica))
+
+[Vetores no Plano e no Espaço. | 01. Álgebra Linear.](https://www.youtube.com/watch?v=S9zlJFg7pZY)
+
 
 [Anterior](02_fpg_paint.md) | [Próximo](03_freegames.md)
