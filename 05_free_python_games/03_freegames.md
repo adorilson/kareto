@@ -41,7 +41,7 @@ para cima.
 
 Considere a grade de um Jogo-da-Velha abaixo:
 
-![Jogo-da-Velha](tictactoe.png "Jogo-da-Velha")
+![Jogo-da-Velha](https://grantjenks.com/docs/freegames/_static/tictactoe.gif "Jogo-da-Velha")
 
 Perceba que é preciso identificar a área clicada para fazer a jogada
 (preencher com x ou bola), porém quando o evento de clique ocorre (registrado
