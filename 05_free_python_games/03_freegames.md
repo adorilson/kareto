@@ -301,7 +301,7 @@ vector(7, 9)
 False
 ```
 
-- Rotação (sentido horário a partir de um ângulo, mudança interna no vetor)
+- Rotação (sentido anti-horário a partir de um ângulo, mudança interna no vetor)
 ```
 >>> v = vector(1, 2)
 >>> v.rotate(90)
