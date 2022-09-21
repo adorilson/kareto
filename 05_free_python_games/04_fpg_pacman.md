@@ -1,7 +1,18 @@
 # Pacman, classic arcade game.
 
-Após analisar e fazer os exercícios propostos no código do Pacman, faça
-os seguintes exercícios mais:
+Analise o código do Pacman e resolva os exercícios propostos, cujas
+traduções livres são:
+
+1. Mude o tabuleiro
+1. Mude o número de fantasmas
+1. Mude onde o Pacman inicia
+1. Faça os fantasmas serem mais lentos/rápidos
+1. Faça os fantasmas serem mais inteligentes
+
+Todos os exercícios propostos são relativos ao funcionamento do jogo,
+perceptível para o usuário. Porém, também é possível melhorar a qualidade do código, que não será perceptível ao usuário, mas deixará o código com melhor
+manutenabilidade. Assim, faça mais alguns exercícios que podem atender a um ou
+outro desses aspectos.
 
 1. Mude as cores
 1. Os vetores de referências estão espalhados pelo código, caso seja preciso
