@@ -122,4 +122,4 @@ $ python3
 
 [pip (gerenciador de pacotes)](https://pt.wikipedia.org/wiki/Pip_(gerenciador_de_pacotes))
 
-[Anterior](04_indo_alem/06_melhorando_o_editor.md) | [Próximo](02_fpg_paint.md)
+[Anterior](/04_indo_alem/06_melhorando_o_editor.md) | [Próximo](02_fpg_paint.md)

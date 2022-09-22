@@ -9,6 +9,9 @@ funciona do ponto de vista do usuário e também terá a certeza que está de
 fato funcionando, e que os erros que surgirão ao longo das 
 mudanças foram introduzidos por você e não erros que já vieram com o programa.
 
+![Paint](https://grantjenks.com/docs/freegames/_static/paint.gif
+"Paint")
+
 ## Pequeno manual de uso
 
 Ao iniciar o `Paint` ele desenhará por padrão linhas. Clique em dois
@@ -181,7 +184,9 @@ não temos a criação de um objeto `turtle` (`turtle = turtle.Turtle()`), como
 fizemos em nosso editor. No lugar disso, as funções são importadas e chamadas 
 diretamente do módulo.
 
-**Desafio** Resolva os exercícios proposta para `Paint`.
+**Desafio** Resolva os exercícios propostos para `Paint`.
+
+
 
 ## Referências
 [PEP-8 e imports em Python](https://medium.com/gbtech/pep-8-e-imports-em-python-78a6fbf53475)

@@ -30,4 +30,4 @@ indicação de Winner!
 ![Pacman](https://grantjenks.com/docs/freegames/_static/pacman.gif
 "Pacman")
 
-[Anterior](03_freegames.md) | [Próximo](04_fpg_pacman.md)
+[Anterior](04_fpg_tictactoe.md) | [Próximo](05_fpg_pacman.md)
