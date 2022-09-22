@@ -65,3 +65,9 @@ Nessa módulo estudaremos os jogos contidos em Free Python Games.
 1. [A biblioteca freegames](/05_free_python_games/03_freegames.md)
 1. [Tic Tac Toe](/05_free_python_games/04_fpg_tictatoe.md)
 1. [Pacman](/05_free_python_games/05_fpg_pacman.md)
+
+## Programação orientada a objetos
+
+Neste módulo estudaremos o paradigma de programaçãp orientada a objetos
+
+1. [Introdução](/06_poo/01_poo_introducao.md)
