@@ -1,0 +1,129 @@
+Movimentos do Turtle
+    Desenho
+        dot()
+        stamp()
+        clearstamp()
+        clearstamps()
+        undo()
+        speed()
+    Configuração e Medidas
+        degrees()
+        radians()
+
+Controle da Caneta
+    Estado do Desenho
+        pendown() | pd() | down()
+        penup() | pu() | up()
+        pensize() | width()
+        pen()
+        isdown()
+    Controle da Cor
+        color()
+        pencolor()
+        fillcolor()
+    Preenchimento
+        filling()
+        begin_fill()
+        end_fill()
+    Mais sobre o Controle do Desenho
+        reset()
+        clear()
+        write()
+
+Estado da Tartaruga
+    Visibilidade
+        showturtle() | st()
+        hideturtle() | ht()
+        isvisible()
+    Aparência
+        shape()
+        resizemode()
+        shapesize() | turtlesize()
+        shearfactor()
+        settiltangle()
+        tiltangle()
+        tilt()
+        shapetransform()
+        get_shapepoly()
+
+Eventos Utilizados
+    onclick()
+    onrelease()
+    ondrag()
+Métodos Especiais da Tartaruga
+    begin_poly()
+    end_poly()
+    get_poly()
+    clone()
+    getturtle() | getpen()
+    getscreen()
+    setundobuffer()
+    undobufferentries()
+
+Métodos de TurtleScreen/Screen
+
+Controle da Janela
+    bgcolor()
+    bgpic()
+    clearscreen()
+    resetscreen()
+    screensize()
+    setworldcoordinates()
+Controle da Animação
+    delay()
+    tracer()
+    update()
+Usando os Eventos de Tela
+    listen()
+    onkey() | onkeyrelease()
+    onkeypress()
+    onclick() | onscreenclick()
+    ontimer()
+    mainloop() | done()
+Configurações e Métodos Especiais
+    mode()
+    colormode()
+    getcanvas()
+    getshapes()
+    register_shape() | addshape()
+    turtles()
+    window_height()
+    window_width()
+Métodos de Entrada
+    textinput()
+    numinput()
+Métodos Específicos para Tela
+    bye()
+    exitonclick()
+    setup()
+    title()
+
+## Argumentos
+
+Porém, antes de continuarmos é importante falarmos de uma recurso presente nas
+linguagens de programação: argumentos.
+
+Argumentos são valores passados para as funções ou métodos e que indicarão
+algum parâmetro para o funcionamento desses blocos. Por exemplo, um argumento
+para métodos que fazem a tartaruga andar, pode indicar a distância de deslocamento.
+Ou em um método que faz a tartaruga virar, um argumento pode indicar o ângulo de
+rotação.
+
+Portanto, a notação ```forward(distance)``` indica que o método ```forward```
+possui um parâmetro chamado ```distance``` que deve obrigatoriamente receber
+um valor quando o método for chamado. Já a notação ```goto(x, y=None)```
+indica que o método ```goto``` possui dois parâmetros, sendo um obrigatório
+(```x```) e outro opcional (```y```), que caso não seja informado receberá o
+valor ```None```, que pode ser entendendido como ```nada``` ou ```nenhum```. 
+
+Já no momento da chamada, a passagem dos argumentos pode ser por posicionamento
+ou nomeados, como nos trechos abaixo. 
+
+```python
+>>> turtle.forward(200)
+>>> turtle.forward(distance=200)
+>>> turtle.goto(20)
+>>> turtle.goto(20, 10)
+>>> turtle.goto(x=20, y=10)
+>>> turtle.goto(y=20) # ocorrerá um erro, pois o parâmetro x é obrigatório
+```
