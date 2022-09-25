@@ -302,7 +302,7 @@ False
 ```
 
 - Rotação (sentido anti-horário a partir de um ângulo, mudança interna no vetor)
-```
+```python
 >>> v = vector(1, 2)
 >>> v.rotate(90)
 >>> v == vector(-2, 1)
