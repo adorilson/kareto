@@ -71,3 +71,4 @@ Nessa módulo estudaremos os jogos contidos em Free Python Games.
 Neste módulo estudaremos o paradigma de programaçãp orientada a objetos
 
 1. [Introdução](/06_poo/01_poo_introducao.md)
+1. [Reconstruindo a classe vector](/06_poo/02_poo_vector.md)
