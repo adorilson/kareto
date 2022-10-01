@@ -25,7 +25,7 @@ class vector:
 Crie um novo arquivo com este código e salve com o nome `vectors.py`. No caso
 de Python, o nome do arquivo é arbitrário, não havendo nenhum relação sintática 
 definida pela linguagem. Escolhemos este nome para indicar que ele contém código
-relacionado a manipulação de vetores.
+relacionado à manipulação de vetores.
 
 Com isso, já podemos criar objetos dessa classe:
 
