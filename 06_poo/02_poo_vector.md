@@ -7,6 +7,17 @@ agora fazer uma reconstrução de uma versão simplificada dessa classe.
 A forma mais simples para definir uma classe é a seguinte:
 
 ```python
+class NomeDaClasse:
+    <instrucao-1>
+    .
+    .
+    .
+    <instrucao-N>
+```
+
+Portanto, para definir uma classe mínima `vector`, podemos fazer:
+
+```python
 class vector:
     pass
 ```
