@@ -145,3 +145,69 @@ através do parâmetro `self` dos métodos.
 >>> type(v)
 <class 'vectors.vector'>
 ```
+
+## Métodos especiais
+
+Com a implementação dos dois métodos especiais acima, talvez você esteja
+suspeitando que tais métodos são importantes. E, de fato, são. Em Python,
+esses métodos especiais são parte central do modelo de dados da linguagem.
+Embora possa parecer feio quando você os escreve nas classes, observe que
+eles foram executados não por você, mas pelo próprio interpretador, de forma
+transparente para o usuário do objeto. E essa é a finalidade de tais métodos:
+ser executados pelo Python. Isso torna a utilização de objetos
+limpa e concisa.
+
+## Adição de vetores
+
+Como vimos em seções anteriores, uma operação envolvendo vetores é a adição.
+O operador comum para adição é `+`, portanto é de se esperar que possamos 
+fazer  `v1 + v2`, e ter como resultado um 3º vetor que é o resultado da soma.
+Veja abaixo o que acontece quando você faz essa operação:
+
+```python
+>>> from vectors import vector
+>>> v1 = vector(3, 4)
+>>> v2 = vector(1, 3)
+>>> v1 + v2 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'vector' and 'vector'
+```
+
+Veja a última linha: `TypeError: unsupported operand type(s) for +: 'vector' and 
+'vector'`. Ou seja, não existe suporte para o operador `+` envolvendo dois objetos
+`vector`.
+
+Esse suporte é também adicionado com um método especial: `__add__`. Pela regra de 
+adição de vetores, basta que sejam somados os coordenadas `x` e `y` de cada vetor.
+
+```python
+...
+    def __add__(self, other):
+        x = self.x + other.x
+        y = self.y + other.y
+        return vector(x, y)
+```
+
+Com a inclusão desse método, será possível utilizar o operador `+` com dois
+vetores:
+
+```python
+>>> from vectors import vector
+>>> v1 = vector(3, 4)
+>>> v2 = vector(1, 3)
+>>> v1 + v2 
+(4, 7)
+```
+
+O resultado apresentado após a operação (`(4, 7)`) é justamente o retorno do
+método `__repr__` do vetor criado como resultado da operação, conforme definimos
+anteriormente. Assim, isso não é o objeto em si, é apenas sua representação
+textual. Naturalmente, o resultado da operação pode ser atribuída a uma nova 
+variável, e o tipo dela ser verificado:
+
+```python
+>>> v3 = v1 + v2 
+>>> type(v3)
+<class 'vectors.vector'>
+```
