@@ -211,3 +211,60 @@ variável, e o tipo dela ser verificado:
 >>> type(v3)
 <class 'vectors.vector'>
 ```
+
+## Movimento de vetores
+
+Outra operação possível com vetores, e extremamente útil quando o vetor 
+representa a posição de um elemento em um jogo, é a movimentação do vetor.
+
+A movimentação do vetor é bastante similar a operação de soma, no sentido de que 
+as coordenadas de dois vetores serão somadas, porém haverá uma mudança no **estado** do vetor, e não a criação de outro vetor. Assim, acrescente à
+classe o método abaixo:
+
+```python
+...
+    def move(self, other):
+        self.x = self.x + other.x
+        self.y = self.y + other.y
+```
+
+Assim, para mover um vetor, basta chamar o método `move` passando como parâmetro
+um outro vetor.
+
+```python
+>>> from vectors import vector
+>>> v1 = vector(3, 4)
+>>> v2 = vector(1, 3)
+>>> v1.move(v2) 
+>>> v1
+(4, 7)
+```
+
+Observe que não houve um retorno na execução do método `move`, porém as 
+coordenadas do vetor `v1` foram somadas às coordenadas do vetor `v2`.
+
+Em um contexto de jogos, poderemos ter vetores de referências que serão 
+utilizados quando quisermos mover algum elemento do jogo para esquerda, direita, 
+cima e baixo. 
+
+
+```python
+>>> from vectors import vector
+>>> direita = vector(1, 0)
+>>> esquerda = vector(-1, 0)
+>>> cima = vector(0, 1)
+>>> baixo = vector(0, -1)
+>>> v = vector(3, 1)
+>>> v.move(direita)
+>>> v
+(4, 1)
+>>> v.move(cima)
+>>> v
+(4, 2)
+>>> v.move(esquerda)
+>>> v
+(3, 2)
+>>> v.move(baixo)
+>>> v
+(3, 1)
+```
