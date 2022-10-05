@@ -86,4 +86,4 @@ que definam isso, sendo necessário agora explicitar as operações.
 [Programação estruturada](https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_estruturada)
 
 
-[Anterior](/05_free_python_games/05_fpg_pacman.md) | [Próximo](01_poo_introducao.md)
+[Anterior](/05_free_python_games/05_fpg_pacman.md) | [Próximo](02_poo_vector.md)
