@@ -6,7 +6,7 @@ nas seções anteriores. Com isso, a ambientação ao Free Python Games será
 facilitada. Antes mesmo de começar a estudar o código-fonte e começar a
 alterá-lo é importante que você execute o programa. Assim entenderá como
 funciona do ponto de vista do usuário e também terá a certeza que está de
-fato funcionando, e que os erros que surgirão ao longo das 
+fato funcionando, e que os erros que surgirão ao longo das
 mudanças foram introduzidos por você e não erros que já vieram com o programa.
 
 ![Paint](https://grantjenks.com/docs/freegames/_static/paint.gif
@@ -50,7 +50,7 @@ from freegames import vector
 ```
 
 As primeiras linhas executáveis são as importações de módulos e funções.
-Seja da biblioteca padrão, com `turtle` neste caso, seja do módulo 
+Seja da biblioteca padrão, com `turtle` neste caso, seja do módulo
 `freegames`. Como dito anteriormente, o Free Python Games também possui
 uma biblioteca em si, a qual será detalhado futuramente.
 
@@ -60,16 +60,16 @@ Observe que foi utilizado um `*`, no lugar de explicitar o que está sendo
 do módulo. Essa importação curinga é uma má prática e deve ser evitada, pois
 não fica claro quais os nomes estarão presentes no espaço de nomes, confundindo
 tanto leitores quanto ferramentas de automação. Inclusive, essa má prática é
-apontada pela PEP-8, um documento que descreve convenções para codificação 
+apontada pela PEP-8, um documento que descreve convenções para codificação
 Python.
 
-Aqui, um exercício adicional e que vai ajudar você a conhecer e 
+Aqui, um exercício adicional e que vai ajudar você a conhecer e
 descobrir novas funções de `turtle` é remover essa importação (apenas adicione
 um `#` no início da linha que a linha será convertida em um comentário), executar
 o jogo e ir atualizando a importações conforme os erros forem aparecendo. Veja o
 exemplo.
 
-1. Remover a importação 
+1. Remover a importação
 ```python
 # from turtle import *
 ```
@@ -89,7 +89,7 @@ precisa ir até a linha em que o erro ocorreu. Chegaremos lá depois.
 3. Adicionar o nome ausente na importação
 ```python
 from turtle import setup
-``` 
+```
 
 4. Repetir os passos 2 e 3 até que o programe rode com sucesso
 
@@ -97,7 +97,7 @@ from turtle import setup
 
 #### from freegames import vector
 
-Uma das classes definidas pelo módulo `freegames` é `vector`. Estudaremos em detalhes mais adiante. Mas, por hora, o que precisamos entender é que facilita o 
+Uma das classes definidas pelo módulo `freegames` é `vector`. Estudaremos em detalhes mais adiante. Mas, por hora, o que precisamos entender é que facilita o
 manuseio das coordenadas `x` e `y` dos pontos no sistema de coordenadas.
 
 No editor que criamos, utilizamos tuplas para identificar um ponto:
@@ -121,15 +121,15 @@ Veja como fica com `vector`:
 20
 ```
 
-Observe que para além do nome `ponto`, de fato é uma estrutura que possui os 
-atributos `x` e `y`, com uma semântica explícita. O que torna a leitura e 
+Observe que para além do nome `ponto`, de fato é uma estrutura que possui os
+atributos `x` e `y`, com uma semântica explícita. O que torna a leitura e
 escrita mais claras e significativas.
 
 ### Funções
 
 Na sequência, teremos as definições de diversas funções, que serão chamadas
 ao longo da execução do programa. Algumas funções virão completas e funcionais,
-podendo haver algum exercício que precisará alterá-las, outras funções nada 
+podendo haver algum exercício que precisará alterá-las, outras funções nada
 farão. Contendo apenas a string de documentação, para que saibamos o que ele
 faz (ou deverá fazer), e a palavra `pass` (indicando que ela não faz nada, como
 quem diz "passe direto").
@@ -158,10 +158,10 @@ onkey(lambda: store('shape', triangle), 't')
 done()
 ```
 
-A primeira linha contém definição da variável responsável por manter o estado 
-do programa. Enquanto no editor que criamos utilizamos duas variáveis, aqui 
-está sendo utilizado apenas uma, `state`. Mas é uma estrutura composta, 
-conhecida como dicionário, podendo armazenar diversos valores, que são 
+A primeira linha contém definição da variável responsável por manter o estado
+do programa. Enquanto no editor que criamos utilizamos duas variáveis, aqui
+está sendo utilizado apenas uma, `state`. Mas é uma estrutura composta,
+conhecida como dicionário, podendo armazenar diversos valores, que são
 acessados por meio de chaves. No caso, as chaves são `start` e `shape`, e os
 valores iniciais  `None` e `line`, respectivamente.
 
@@ -180,8 +180,8 @@ Por fim, a última linha chama a função `done()`, que é exatamente igual
 
 É importante observar que no Free Python Games foi utilizado uma abordagem mais
 de programação estruturada e menos de orientação a objetos. Por este motivo,
-não temos a criação de um objeto `turtle` (`turtle = turtle.Turtle()`), como 
-fizemos em nosso editor. No lugar disso, as funções são importadas e chamadas 
+não temos a criação de um objeto `turtle` (`turtle = turtle.Turtle()`), como
+fizemos em nosso editor. No lugar disso, as funções são importadas e chamadas
 diretamente do módulo.
 
 **Desafio** Resolva os exercícios propostos para `Paint`.
@@ -192,4 +192,4 @@ diretamente do módulo.
 [PEP-8 e imports em Python](https://medium.com/gbtech/pep-8-e-imports-em-python-78a6fbf53475)
 
 
-[Anterior](01_fpg_introducao.md) | [Próximo](02_fpg_paint.md)
+[Anterior](01_fpg_introducao.md) | [Próximo](03_freegames.md)
