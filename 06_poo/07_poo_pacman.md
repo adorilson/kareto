@@ -31,5 +31,19 @@ pode ser visto abaixo:
 O código está disponível junto com a tradução da documentação
 https://ifrn.github.io/free-python-games/pt_BR/
 
+## Exercícios
+
+Resolva os exercícios presentes no código do `Pacman`, cuja traduções seguem
+abaixo:
+
+1. Mova a variável/atributo `score` para a classe `Pacman`. Esse atributo deverá
+agora ser incrementado por um novo método no código de `Pacman`. Altere
+`draw_score` com as mudanças necessárias em  `GamePacman`.
+2. Crie uma novo atributo `speed` e faça as mudanças necessárias para que a
+velocidade do `Pacman` seja de acordo com este valor.
+3. Crie subclasses de `Ghost` em que cada uma delas irá gerar fantamas com
+velocidades de valores diferentes (Use o segundo exercício como exemplo).
+4. Crie uma superclasse para `Pacman` e `Ghost`.
+5. Crie diferentes tipos de comida.
 
 [Anterior](06_poo_snake.md) | [Próximo](07_poo_pacman.md)
