@@ -20,4 +20,16 @@ e desenho e atualização da tela. Essa classe conteria, principalmente mas não
 só isso, as ações feitas na função `move` da versão estruturada, mas distribuídas
 em diversos métodos.
 
+## Diagrama de classes
+
+Considerando o apresentado acima, e após algumas iterações de desenvolvimento, foi
+criada uma versão orientada a objetos do jogo `Pacman`, cujo diagrama de classes
+pode ser visto abaixo:
+
+![Diagrama de classes do Pacman](pacman_oo.png "Diagrama de classes do Pacman")
+
+O código está disponível junto com a tradução da documentação
+https://ifrn.github.io/free-python-games/pt_BR/
+
+
 [Anterior](06_poo_snake.md) | [Próximo](07_poo_pacman.md)
