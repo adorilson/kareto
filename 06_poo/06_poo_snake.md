@@ -195,6 +195,14 @@ https://ifrn.github.io/free-python-games/pt_BR/
 
 ## Exercícios
 
+Resolva os exercícios proposto no código do `Snake`. A tradução segue abaixo:
 
+1. Como você faria as classes `FastSnake` ou `SlowSnake`?
+1. Como você faria uma `SmartSnake`, que muda de direção quando colide com as
+bordas?
+1. Como seria criar novos tipos de comidas? Quando a cobra comê-las ela poderia
+crescer mais rápido ou diminuir?
+1. Como você criaria uma classe `Actor`, que seria superclasse para `Head` e
+`Food`?
 
 [Anterior](05_poo_jogos.md) | [Próximo](06_poo_pacman.md)
