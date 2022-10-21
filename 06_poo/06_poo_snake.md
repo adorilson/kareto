@@ -7,7 +7,7 @@ que faça mais sentido a utilização de classes e objetos. Quando apresentarmos
 a versao do jogo em OO, você perceberá inclusive que os exercícios propostos são
 diferentes da versão original.
 
-## Variáveis 
+## Variáveis
 
 No `Snake` foram definidas apenas 3 variáveis, conforme o trecho:
 
@@ -26,8 +26,8 @@ mais pertinentes do jogo estão espalhas no código.
 Neste caso, essas variáveis poderiam ser das seguintes classe:
 
 - food: `Food`. Além de encapsular sua posição, poderia ter um atributo de
-*energia*. A depender do nível de energia, a cobra poderia crescer mais ou 
-menos ou ainda termos uma classe `BadFood`, onde a cobrar poderia diminuir 
+*energia*. A depender do nível de energia, a cobra poderia crescer mais ou
+menos ou ainda termos uma classe `BadFood`, onde a cobrar poderia diminuir
 de tamanho.
 
 - snake: `Snake`. Além de encapsular sua posição poderia também encasular
@@ -40,12 +40,12 @@ a cobra se move. Porém, perceba que isso diz respeito à própria cobra,
 portanto deveria ser um atributo da classe `Snake`.
 
 Mesmo sem esses novos requisitos (energia e diferentes de comida, jogo com
-múltiplos jogadores), POO ainda poderia ter sido utilizado. Contudo, a 
+múltiplos jogadores), POO ainda poderia ter sido utilizado. Contudo, a
 necessidade e consequente benefício seriam menores.
 
 ## Funções
 
-O código de `Snake` possui 3 funções. Duas delas são bem simples e fazem uma 
+O código de `Snake` possui 3 funções. Duas delas são bem simples e fazem uma
 única coisa, enquanto uma outra é a função que contém o ciclo principal do jogo
 e dentro dele acontece muita coisa.
 
@@ -68,8 +68,8 @@ def inside(head):
 Observe que a função `change` é responsável por atualizar a variável `aim` que,
 como já tido, indica a direção para o qual a cobrinha está se movendo. Portanto,
 essa atualização é algo que deveria estar na classe `Snake`. Além disso, na
-perspectiva da cobra ela se movimenta em apenas duas direções: esquerda e 
-direita. Assim, poderíamos ter na classe dois métodos responsável por essa 
+perspectiva da cobra ela se movimenta em apenas duas direções: esquerda e
+direita. Assim, poderíamos ter na classe dois métodos responsável por essa
 mudança de direção, além claro de uma terceira responsável pelo movimento em si.
 
 Com isso, uma **interface** inicial para essa classe seria algo como:
@@ -78,21 +78,21 @@ Com isso, uma **interface** inicial para essa classe seria algo como:
 class Snake:
     def move():
         pass
-    
+
     def left():
         pass
-    
+
     def right():
         pass
 ```
 
-Em relação a `inside`, podemos ter abordagens diferentes. Perceba que são 
+Em relação a `inside`, podemos ter abordagens diferentes. Perceba que são
 necessários dois tipos de parâmetros para definir se a cobra está ou não
 dentro da área definida: as dimensões da área, que no código em questão estão
 fixos, e a posição da cabeça da cobra em si. Se você deixa fora da classe `Snake`
 poderá quebrar o encapsulamento, se você coloca dentro da classe, não faz sentido
-a cobra "saber" as dimensões da área de jogo. Uma forma de contornar essas 
-questões é a classe `Snake` possuir um método que receba como argumentos as 
+a cobra "saber" as dimensões da área de jogo. Uma forma de contornar essas
+questões é a classe `Snake` possuir um método que receba como argumentos as
 dimensões da área. A interface da classe pode ser atualizado com o seguinte
 método:
 
@@ -168,8 +168,8 @@ ontimer(move, 100)
 ```
 
 Perceba que mover, comer, crescer (ou diminuir), morrer,
-mudar direção, etc. são ações da cobra, assim todas essas 
-ações deveriam estar encapsuladas em `Snake`.  
+mudar direção, etc. são ações da cobra, assim todas essas
+ações deveriam estar encapsuladas em `Snake`.
 
 Além disso, uma outra classe `SnakeGame` poderia surgir.
 Essa classe seria **composta**  por pelo menos uma comida
@@ -179,11 +179,10 @@ classes e por usar `turtle` para desenhar o jogos.
 ## Diagrama de classes
 
 É comum utilizarmos representações gráficas de um sistema.
-Uma das representações possíveis é através de diagramas de 
-classes. Esse diagrama fornece uma representação estrutural de 
-como as classes se relacionam.
+Uma das representações possíveis é através de diagramas de classes. Esse diagrama
+fornece uma representação estrutural de como as classes se relacionam.
 
-Consideram o discutido assim, e após algumas iterações de 
+Consideram o discutido assim, e após algumas iterações de
 desenvolvimento, portanto não está 100% fiel ao que colocamos,
 foi criado uma versão orientada a objetos do jogo `Snake`,
 cujo diagrama de classes pode ser visto abaixo:
@@ -192,7 +191,7 @@ cujo diagrama de classes pode ser visto abaixo:
 
 
 O código está disponível junto com a tradução da documentação
-https://ifrn.github.io/free-python-games/pt_BR/ 
+https://ifrn.github.io/free-python-games/pt_BR/
 
 ## Exercícios
 
