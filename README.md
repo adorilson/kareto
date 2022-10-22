@@ -30,7 +30,7 @@ plataforma Code.org](https://studio.code.org/s/artist/lessons/1/levels/1).
 
 ### Introdução Acelerada à Ciência da Computação
 
-1. [Exercício 1](exercicio001.py) 
+1. [Exercício 1](exercicio001.py)
 1. [Exercício 2](exercicio002.py)
 1. [Exercício 3](exercicio003.py)
 1. [Exercício 4](exercicio004.py)
@@ -68,11 +68,12 @@ Nessa módulo estudaremos os jogos contidos em Free Python Games.
 
 ## Programação orientada a objetos
 
-Neste módulo estudaremos o paradigma de programaçãp orientada a objetos
+Neste módulo estudaremos o paradigma de programação orientada a objetos.
 
 1. [Introdução](/06_poo/01_poo_introducao.md)
 1. [Reconstruindo a classe vector](/06_poo/02_poo_vector.md)
 1. [Encapsulamento](/06_poo/03_poo_encapsulamento.md)
 1. [Reconstruindo a classe vector - Parte 2](/06_poo/04_poo_vector2.md)
 1. [Jogos em OO](/06_poo/05_poo_jogos.md)
-1. [Snake](/06_poo/06_poo_snake.md)
+1. [Snake OO](/06_poo/06_poo_snake.md)
+1. [Pacman OO](/06_poo/07_poo_pacman.md)
