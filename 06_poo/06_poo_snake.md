@@ -205,4 +205,4 @@ crescer mais rápido ou diminuir?
 1. Como você criaria uma classe `Actor`, que seria superclasse para `Head` e
 `Food`?
 
-[Anterior](05_poo_jogos.md) | [Próximo](06_poo_pacman.md)
+[Anterior](05_poo_jogos.md) | [Próximo](07_poo_pacman.md)
