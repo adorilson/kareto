@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle_hello-little-turtles">
+  <title>Olá, tartaruguinhas!</title>
+  <video xml:id="vid_turtleintro" youtube="Yxyx6KpKRzY" width="auto"/>
+  <p>Existem muitos <em>módulos</em> em Python que fornecem recursos muito poderosos, os quais poderemos usar
+      em nossos próprios programas. Alguns desses podem enviar email ou baixar páginas web. Outros permite-nos
+      realizar cálculos matemáticos complexos. Neste capítulo, introduziremos um módulo que permite-nos criar
+      um objeto chamado <term>turtle</term>, o qual  poderá ser usado para desenhar figuras, tal qual o Artista
+      do Code.org.
+  </p>
+  <!--turtles and get them-->
+  <!--turn left, etc.  Your turtle's tail is also endowed with the ability to leave-->
+  <!--to draw shapes and patterns.-->
+  <p>Gráficos da tartaruga, como é conhecido, é baseado em uma metáfora muito simples.
+      Imagine que você tem uma tartaruga que entende inglês. Você pode dizer para a sua
+      tartaruga executar comandos simples, como andar para frente (<c>forward</c>) ou
+      virar para a direita (<c>right</c>).
+      Conforme a tartatura se move, se o seu rabo estiver virado para baixo tocando o chão,
+      ela desenha uma linha (deixando um rastro). Se você mandar a tartaruga
+      levantar o rabo ela ainda poderá se mover, mas não deixará o rastro. Como você vai ver,
+      é possível criar desenhos impressionantes usando este simples mecanismo. 
+  </p>
+  <note>
+    <p>As tartarugas são divertidas mas a real intenção desse capítulo é fazer a transição de uma
+      linguagem de programação baseada em blocos (utilizada no Code.org) para um linguagem de programação
+      baseada em texto: Python.
+    </p>
+  </note>
+</section>

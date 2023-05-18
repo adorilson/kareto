@@ -1,0 +1,497 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle_our-first-turtle-program">
+  <title>Quadrado</title>
+  <p>Primeiro, vamos tentar fazer um quadrado simples usando os métodos
+    <c>turtle.right(90)</c>(ou <c>turtle.left(90)</c>) e <c>turtle.forward(100)</c>.
+  </p>
+
+  <sidebyside>
+    <p>
+      <term>Figura a ser desenhada - arquivo modificado</term>
+      <image source="PythonTurtle/Figures/square.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.right(90)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(90)</c>
+          </cell>
+          <cell>
+            <c>leo.forward(100)</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_1" interactive="activecode" language="python">
+    <input>
+      import turtle                 # permite usar o módulo turtle
+      leo = turtle.Turtle()         # cria uma tartaruga chamada leo 
+      leo.forward(100)              # diz para leo ir para frente por 100 unidades
+      leo.left(90)                  # a tartaruga deve virar 90 graus
+      leo.forward(100)              # complete com os próximos passos até completar o quadrado
+    </input>
+  </program>
+  <p>Aqui temos uma série de coisas que você precisa entender sobre esse programa.</p>
+  <p>A primeira linha diz para Python carregar o <term>módulo</term> chamado <c>turtle</c>.
+    Esse módulo traz para um novo tipo que poderemos usar: o tipo <c>Turtle</c>.
+    A notação com ponto <c>turtle.Turtle</c> significa <em><q>O tipo
+    Turtle está definido no módulo turtle</q></em>. (Lembre-se que Python é sensível a 
+    maiúsculas e minúsculas, então o nome do módulo, <c>turtle</c>, com a letra
+    <title_reference>t</title_reference> minúscula, é diferente do tipo
+    <c>Turtle</c> devido a letra <title_reference>T</title_reference> maiúscula.)
+  </p>
+  <p>Na linha 2, nós criamos uma tartaruga (no lado direito do sinal de =).
+    A variável <c>leo</c> é definida para referenciar essa tartaruga. Essas duas
+    primeiras linhas preparam o terreno para que estejamos prontos para desenhar.
+  </p>
+  <p>Nas linhas 3-5, nós mandamos o <term>objeto</term> <c>leo</c> fazer alguns movimentos.
+      Fizemos isso <term>invocando</term> ou ativando <term>métodos</term> de <c>leo</c>
+      &#x2014; esses e todas as outras instruções de <c>leo</c> são instruções que todas
+      as tartarugas sabem responder.
+      Aqui o ponto indica que o método invocado pertence e referencia o objeto <c>leo</c>.
+  </p>
+  <p>Em cada linha, temos comentários após #. Esses comentários são ignorados pelo Python,
+    mas são úteis para nós, seremos humanos.
+  </p>
+  <note>
+    <title>Complete o quadrado &#x2026;</title>
+    <p>Modifique o programa adicionando os comandos necessários para <em>leo</em>
+      completar o quadrado.
+    </p>
+  </note>
+  <p>
+    <term>Checando seu entendimento</term>
+  </p>
+  <exercise label="test_question3_1_0">
+    <statement>
+      <p>Para qual direção a tartaruga aponta quando é criada?</p>
+    </statement>
+    <choices>
+      <choice>
+        <statement>
+          <p>Norte</p>
+        </statement>
+        <feedback>
+          Alguns sistemas iniciam com a tartaruga direcionada para o Norte, mas não é o caso deste.
+        </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>Sul</p>
+        </statement>
+        <feedback>
+          Não, olhe para o primeiro exemplo com a tartaruga. Para qual direção ela se move?
+        </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>Leste</p>
+        </statement>
+        <feedback>
+          Sim, a tartaruga inicia direcionada para o leste.
+        </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>Oeste</p>
+        </statement>
+        <feedback>
+          Não, olhe para o primeiro exemplo com a tartaruga. Para qual direção ela se move?
+        </feedback>
+      </choice>
+    </choices>
+  </exercise>
+  <p>
+    <term>Programas embaralhados</term>
+  </p>
+  <exercise label="rsid_3_1" indent="show" language="python">
+    <statement>
+      <p>O programa abaixo usa uma tartaruga para desenhar uma letra L maiúscula
+        como mostrada na figura.
+      </p>
+      <image source="PythonTurtle/Figures/TurtleL4.png" width="75%"/>
+      <p>Mas as linhas estão embaralhadas. O programa deve fazer todas as configurações
+        necessárias: importar o módulo <c>turtle</c> e criar a tartaruga. Lembre-se que
+        a tartaruga inicia direcionada para o oeste quando é criada. A tartaruga deve
+        virar sua face para o sul e desenhar uma linha de 150 pixels e então virar para o
+        oeste e desenha uma linha de 73 pixels. Nós adicionamos uma bússola à figura para
+        indicar as direções norte (N), sul (S), leste (E) e oeste (W).   
+      </p>
+      
+      <p>Arraste os blocos de instruções da coluna da esquerda para o a coluna
+        da direita e coloque-os na ordem correta. Então clique em <em>Check</em>
+        para ver se você está certo. Você será informado se alguma das linhas estiver
+        na ordem errada.
+      </p>
+    
+    </statement>
+    <blocks>
+      <block order="2">
+        <cline>import turtle</cline>
+        <cline>ella = turtle.Turtle()</cline>
+      </block>
+      <block order="3">
+        <cline>ella.right(90)</cline>
+        <cline>ella.forward(150)</cline>
+      </block>
+      <block order="1">
+        <cline>ella.left(90)</cline>
+        <cline>ella.forward(75)</cline>
+      </block>
+    </blocks>
+  </exercise>
+
+<!--
+  <exercise label="rsid_3_2" indent="show" language="python">
+     <statement>
+      <p>The following program uses a turtle to draw a checkmark as shown to the left:</p>
+      <image source="PythonTurtle/Figures/TurtleCheckmark4.png" width="75%"/>
+      <p>But the lines are mixed up.  The program should do all necessary set-up: import the turtle module, get the window to draw on, and create the turtle.  The turtle should turn to face southeast, draw a line that is 75 pixels long, then turn to face northeast, and draw a line that is 150 pixels long.  We have added a compass to the picture to indicate the directions north, south, west, and east.  Northeast is between north and east. Southeast is between south and east.</p>
+      <p>Drag the blocks of statements from the left column to the right column and put them in the right order.  Then click on <em>Check Me</em> to see if you are right. You will be told if any of the lines are in the wrong order.</p>
+    </statement>
+    <blocks>
+      <block order="1">
+        <cline>import turtle</cline>
+      </block>
+      <block order="5">
+        <cline>window = turtle.Screen()</cline>
+      </block>
+      <block order="4">
+        <cline>maria = turtle.Turtle()</cline>
+      </block>
+      <block order="2">
+        <cline>maria.right(45)</cline>
+        <cline>maria.forward(75)</cline>
+      </block>
+      <block order="3">
+        <cline>maria.left(90)</cline>
+        <cline>maria.forward(150)</cline>
+      </block>
+    </blocks>
+  </exercise>
+  <exercise label="rsid_3_3" indent="show" language="python">
+    <statement>
+      <p>The following program uses a turtle to draw a single line to the west as shown to the left,</p>
+      <image source="PythonTurtle/Figures/TurtleLineToWest.png" width="75%"/>
+      <p>But the program lines are mixed up.  The program should do all necessary set-up: import the turtle module, get the window to draw on, and create the turtle.  The turtle should then turn to face west and draw a line that is 75 pixels long.</p>
+      <p>Drag the blocks of statements from the left column to the right column and put them in the right order.  Then click on <em>Check Me</em> to see if you are right. You will be told if any of the lines are in the wrong order.</p>
+    </statement>
+    <blocks>
+      <block order="1">
+        <cline>import turtle</cline>
+        <cline>window = turtle.Screen()</cline>
+        <cline>jamal = turtle.Turtle()</cline>
+        <cline>jamal.left(180)</cline>
+        <cline>jamal.forward(75)</cline>
+      </block>
+    </blocks>
+  </exercise>
+  <p>An object can have various methods &#x2014; things it can do &#x2014; and it can also
+            have <term>attributes</term> &#x2014; (sometimes called <em>properties</em>).  For example, each
+            turtle has a <em>color</em> attribute.  The method invocation  <title_reference>alex.color(<q>red</q>)</title_reference>
+            will make alex red and the line that it draws will be red too.</p>
+  <p>The color of the turtle, the width of its pen(tail), the position of the turtle
+            within the window, which way it is facing, and so on are all part of its
+            current <term>state</term>.   Similarly, the window object has a background color which is part of its state.</p>
+  <p>Quite a number of attributes and methods exist that allow us to modify the turtle and
+            window objects.  In the example below, we show just show a couple and have only commented those
+            lines that are different from the previous example.  Note also that we have decided to call our turtle object <em>tess</em>.
+        </p>
+  <program xml:id="ch03_2" interactive="activecode" language="python">
+    <input>
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("lightgreen")        # set the window background color
+
+tess = turtle.Turtle()
+tess.color("blue")              # make tess blue
+tess.pensize(3)                 # set the width of her pen
+
+tess.forward(50)
+tess.left(120)
+tess.forward(50)
+
+wn.exitonclick()                # wait for a user click on the canvas
+            </input>
+  </program>
+  <p>The last line plays a very important role. The wn variable refers to the window shown
+            above. When we invoke its <c>exitonclick</c> method, the program pauses execution and waits for the user to click the mouse somewhere in the window.
+            When this click event occurs, the response is to close the turtle window and
+            exit (stop execution of) the Python program.</p>
+  <p>Each time we run this program, a new drawing window pops up, and will remain on the
+            screen until we click on it.</p>
+  <note>
+    <title>Extend this program &#x2026;</title>
+    <p>
+      <ol marker="1">
+        <li>
+          <p>Modify this program so that before it creates the window, it prompts
+                        the user to enter the desired background color. It should store the
+                        user's responses in a variable, and modify the color of the window
+                        according to the user's wishes.
+                        (Hint: you can find a list of permitted color names at
+                        <url href="https://www.w3schools.com/colors/colors_names.asp" visual="https://www.w3schools.com/colors/colors_names.asp">https://www.w3schools.com/colors/colors_names.asp</url>.  It includes some quite
+                        unusual ones, like <q>PeachPuff</q>  and <q>HotPink</q>.)</p>
+        </li>
+        <li>
+          <p>Do similar changes to allow the user, at runtime, to set tess' color.</p>
+        </li>
+        <li>
+          <p>Do the same for the width of tess' pen.  <em>Hint:</em> your dialog with the
+                        user will return a string, but tess' <c>pensize</c> method
+                        expects its argument to be an <c>int</c>.  That means you need to convert
+                        the string to an int before you pass it to <c>pensize</c>.
+                    </p>
+        </li>
+      </ol>
+    </p>
+  </note>
+  <p>
+    <term>Check your understanding</term>
+  </p>
+  <exercise label="test_question3_1_1">
+    <statement>
+      <p>Consider the following code:</p>
+      <program language="python">
+        <input>
+import turtle
+wn = turtle.Screen()
+alex = turtle.Turtle()
+alex.forward(150)
+alex.left(90)
+alex.forward(75)
+</input>
+      </program>
+      <p>What does the line <q>import turtle</q> do?</p>
+    </statement>
+    <choices>
+      <choice>
+        <statement>
+          <p>It creates a new turtle object that can be used for drawing.</p>
+        </statement>
+        <feedback>
+                    The line "alex = turtle.Turtle()" is what actually creates the turtle object.
+                    </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>It defines the module turtle which will allow you to create a Turtle object and draw with it.</p>
+        </statement>
+        <feedback>
+                    This line imports the module called turtle, which has all the built in functions for drawing on the screen with the Turtle object.
+                    </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>It makes the turtle draw half of a rectangle on the screen.</p>
+        </statement>
+        <feedback>
+                    This functionality is performed with the lines: "alex.forward(150)", "lex.left(90)", and "alex.forward(75)"
+                    </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>Nothing, it is unnecessary.</p>
+        </statement>
+        <feedback>
+                    If we leave it out, Python will give an error saying that it does not know about the name "turtle" when it reaches the line "wn = turtle.Screen()"
+                    </feedback>
+      </choice>
+    </choices>
+  </exercise>
+  <exercise label="test_question3_1_2">
+    <statement>
+      <p>Why do we type <c>turtle.Turtle()</c> to get a new Turtle object?</p>
+    </statement>
+    <choices>
+      <choice>
+        <statement>
+          <p>This is simply for clarity.  It would also work to just type "Turtle()" instead of "turtle.Turtle()".</p>
+        </statement>
+        <feedback>
+                    We must specify the name of the module where Python can find the Turtle object.
+                    </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>The period (.) is what tells Python that we want to invoke a new object.</p>
+        </statement>
+        <feedback>
+                    The period separates the module name from the object name.  The parentheses at the end are what tell Python to invoke a new object.
+                    </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>The first "turtle" (before the period) tells Python that we are referring to the turtle module, which is where the object "Turtle" is found.</p>
+        </statement>
+        <feedback>
+                    Yes, the Turtle type is defined in the module turtle.  Remember that Python is case sensitive and Turtle is different from turtle.
+                    </feedback>
+      </choice>
+    </choices>
+  </exercise>
+  <exercise label="test_question3_1_3">
+    <statement>
+      <p>True or False: A Turtle object can have any name that follows the naming rules from Chapter 2.</p>
+    </statement>
+    <choices>
+      <choice correct="yes">
+        <statement>
+          <p>True</p>
+        </statement>
+        <feedback>
+                    In this chapter you saw one named alex and one named tess, but any legal variable name is allowed.
+                    </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>False</p>
+        </statement>
+        <feedback>
+                    A variable, including one referring to a Turtle object, can have whatever name you choose as long as it follows the naming conventions from Chapter 2.
+                    </feedback>
+      </choice>
+    </choices>
+  </exercise>
+  <exercise label="test_question3_1_4">
+    <statement>
+      <p>Which of the following code would produce the following image?</p>
+      <image source="_static/turtleTest1.png" width="50%" alt="long line to north with shorter line to west on top"/>
+    </statement>
+    <choices>
+      <choice>
+        <statement>
+          <p>
+            <img src="../_static/test1Alt1.png" alt="right turn of 90 degrees before drawing, draw a line 150 pixels long, turn left 90, and draw a line 75 pixels long"/>
+          </p>
+        </statement>
+        <feedback>
+                    This code would turn the turtle to the south before drawing
+                    </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>
+            <img src="../_static/test1Alt2.png" alt="left turn of 180 degrees before drawing,  draw a line 150 pixels long, turn left 90, and draw a line 75 pixels long"/>
+          </p>
+        </statement>
+        <feedback>
+                    This code would turn the turtle to the west before drawing
+                    </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>
+            <img src="../_static/test1Alt3.png" alt="left turn of 270 degrees before drawing,  draw a line 150 pixels long, turn left 90, and draw a line 75 pixels long"/>
+          </p>
+        </statement>
+        <feedback>
+                    This code would turn the turtle to the south before drawing
+                    </feedback>
+      </choice>
+      <choice>
+        <statement>
+          <p>
+            <img src="../_static/test1Alt4v2.png" alt="right turn of 270 degrees before drawing, draw a line 150 pixels long, turn right 90, and draw a line 75 pixels long"/>
+          </p>
+        </statement>
+        <feedback>
+                    This code is almost correct, but the short end would be facing east instead of west.
+                    </feedback>
+      </choice>
+      <choice correct="yes">
+        <statement>
+          <p>
+            <img src="../_static/test1correct.png" alt="left turn of 90 degrees before drawing,  draw a line 150 pixels long, turn left 90, and draw a line 75 pixels long"/>
+          </p>
+        </statement>
+        <feedback>
+                    Yes, the turtle starts facing east, so to turn it north you can turn left 90 or right 270 degrees.
+                    </feedback>
+      </choice>
+    </choices>
+  </exercise>
+  <p>
+    <term>Mixed up programs</term>
+  </p>
+  <exercise label="rsid_3_4" indent="show" language="python">
+    <statement>
+      <p>The following program uses a turtle to draw a capital L in white on a blue background as shown to the left,</p>
+      <image source="PythonTurtle/Figures/BlueTurtleL.png" width="75%"/>
+      <p>But the lines are mixed up.  The program should do all necessary set-up and create the turtle and set the pen size to 10.  The turtle should then turn to face south, draw a line that is 150 pixels long, turn to face east, and draw a line that is 75 pixels long.   Finally, set the window to close when the user clicks in it.</p>
+      <p>Drag the blocks of statements from the left column to the right column and put them in the right order.  Then click on <em>Check Me</em> to see if you are right. You will be told if any of the lines are in the wrong order.</p>
+    </statement>
+    <blocks>
+      <block order="1">
+        <cline>import turtle</cline>
+        <cline>wn = turtle.Screen()</cline>
+      </block>
+      <block order="4">
+        <cline>wn.bgcolor("blue")</cline>
+        <cline>jamal = turtle.Turtle()</cline>
+      </block>
+      <block order="2">
+        <cline>jamal.color("white")</cline>
+        <cline>jamal.pensize(10)</cline>
+      </block>
+      <block order="5">
+        <cline>jamal.right(90)</cline>
+        <cline>jamal.forward(150)</cline>
+      </block>
+      <block order="3">
+        <cline>jamal.left(90)</cline>
+        <cline>jamal.forward(75)</cline>
+        <cline>wn.exitonclick()</cline>
+      </block>
+    </blocks>
+  </exercise>
+  <exercise label="rsid_3_5" indent="show" language="python">
+    <statement>
+      <p>The following program uses a turtle to draw a capital T in white on a green background as shown to the left,</p>
+      <image source="PythonTurtle/Figures/TurtleT.png" width="75%"/>
+      <p>But the lines are mixed up.  The program should do all necessary set-up, create the turtle, and set the pen size to 10.  After that the turtle should turn to face north, draw a line that is 150 pixels long, turn to face west, and draw a line that is 50 pixels long.  Next, the turtle should turn 180 degrees and draw a line that is 100 pixels long.  Finally, set the window to close when the user clicks in it.</p>
+      <p>Drag the blocks of statements from the left column to the right column and put them in the right order.  Then click on <em>Check Me</em> to see if you are right. You will be told if any of the lines are in the wrong order.</p>
+    </statement>
+    <blocks>
+      <block order="3">
+        <cline>import turtle</cline>
+        <cline>wn = turtle.Screen()</cline>
+        <cline>wn.bgcolor("green")</cline>
+        <cline>jamal = turtle.Turtle()</cline>
+        <cline>jamal.color("white")</cline>
+        <cline>jamal.pensize(10)</cline>
+      </block>
+      <block order="1">
+        <cline>jamal.left(90)</cline>
+        <cline>jamal.forward(150)</cline>
+      </block>
+      <block order="4">
+        <cline>jamal.left(90)</cline>
+        <cline>jamal.forward(50)</cline>
+      </block>
+      <block order="5">
+        <cline>jamal.right(180)</cline>
+        <cline>jamal.forward(100)</cline>
+      </block>
+      <block order="2">
+        <cline>wn.exitonclick()</cline>
+      </block>
+    </blocks>
+  </exercise>
+-->
+</section>

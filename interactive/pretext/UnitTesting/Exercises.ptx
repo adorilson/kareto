@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<exercises xml:id="unit-testing_exercises">
+  <title>Exercises</title>
+  <p>
+    <ol marker="1">
+      <li>
+        <exercise label="ac_ut_reverse">
+          <statement>
+            <p>A function named <c>reverse</c> takes a string argument, reverses it, and returns the result:</p>
+            <pre>def reverse(astring):
+    """Returns the reverse of `astring`"""</pre>
+            <p>Complete the assert statements in the ActiveCode editor below to create a unit test for <c>reverse</c>.
+                            Your asserts should check that <c>reverse</c> works properly for the following test cases (<q>Input</q>
+                            refers to the value passed as a parameter, and <q>Expected Output</q> is the result returned from
+                            <c>reverse</c>):</p>
+            <pre>             Input    Expected Output
+             -------- ---------------
+Test Case 1: 'abc'    'cba'
+Test Case 2: 'b'      'b'
+Test Case 3: ''       ''</pre>
+          </statement>
+          <program interactive="activecode" language="python" xml:id="ac_ut_reverse_editor">
+            <input>
+def test_reverse():
+    # Complete the assert statements below
+
+    assert ________________
+    assert ________________
+    assert ________________
+====
+
+from unittest.gui import TestCaseGui
+
+testABC = False
+testB = False
+testEmpty = False
+
+def reverse(astring):
+    """Returns the reverse of `astring`"""
+    global testABC, testB, testEmpty
+
+    if astring == 'abc':
+        testABC = True
+    elif astring == 'b':
+        testB = True
+    elif astring == '':
+        testEmpty = True
+
+    l = list(astring)
+    l.reverse()
+    return ''.join(l)
+
+
+class myTests(TestCaseGui):
+
+    def testOne(self):
+        test_reverse()
+        code = self.getEditorText().replace(' ','').replace('"', '').replace("'", '')
+        self.assertTrue(testABC and '==cba' in code, "Assert tested 'abc'")
+        self.assertTrue(testB and '==b' in code, "Assert tested 'b'")
+        self.assertTrue(testEmpty and '==\n' in code, "Assert tested ''")
+
+myTests().main()
+        </input>
+          </program>
+          <hint>
+            <p>If you're not sure how to get started with this one, review <xref ref="unit-testing_writing-unit-tests"/>.</p>
+          </hint>
+          <solution>
+                    
+                        <pre>assert reverse('abc') == 'cba'
+assert reverse('b') == 'b'
+assert reverse('') == ''</pre>
+                    </solution>
+        </exercise>
+      </li>
+      <li>
+        <exercise label="ac_ut_testable">
+          <statement>
+            <p>A function named <c>stripletters</c> takes a string argument, removes all letters from it, and
+                            displays the result (see below). However, this function is not testable.</p>
+            <p>Modify the function so that it can be tested with the assert statements that follow.</p>
+          </statement>
+          <program interactive="activecode" language="python" xml:id="ac_ut_testable_editor">
+            <input>
+
+def stripletters(msg):
+    result = ''
+    for ch in msg:
+        if not ch.isalpha():
+            result += ch
+
+    print(result)
+
+assert stripletters('ab12c') == '12'
+assert stripletters('12') == '12'
+
+====
+
+from unittest.gui import TestCaseGui
+
+class myTests(TestCaseGui):
+
+    def testOne(self):
+        self.assertEqual(stripletters('ab12c'), '12', "stripletters('ab12c') == '12'")
+        self.assertEqual(stripletters('12'), '12', "stripletters('12') == '12'")
+
+myTests().main()
+        </input>
+          </program>
+          <hint>
+            <p>Review <xref ref="unit-testing_designing-testable-functions"/>.</p>
+          </hint>
+          <solution>
+                    
+                        <pre>def stripletters(msg):
+    result = ''
+    for ch in msg:
+        if not ch.isalpha():
+            result += ch
+
+    return result</pre>
+                    </solution>
+        </exercise>
+      </li>
+    </ol>
+  </p>
+</exercises>

@@ -70,6 +70,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+sphinx-enki-info.txt
+sphinx_settings.json
 
 # PyBuilder
 target/
@@ -127,3 +129,22 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Pretext stuffs
+build_info
+published
+.idea
+.idea/*
+
+# for builds on Mac:
+**/.DS_Store
+
+.vscode
+*~
+*.bak
+*.orig
+\#*\#
+beta
+output
+pdf
+*.out
