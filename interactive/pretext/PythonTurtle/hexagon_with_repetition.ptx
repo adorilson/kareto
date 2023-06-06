@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle_hexagon_with_repetition">
+  <title>Hexágono com repetição</title>
+  <p>
+    Agora você pode brincar com um novo bloco, o  
+  </p>
+
+  <program language="python">
+      <input>
+        for _ in range(???):
+            &lt;instrucoes aqui&gt;
+      </input>
+    </program>
+
+  <p>
+    Ele repetirá um conjunto de instruções. O número de repetições deve ser
+    colocada no lugar dos <c>???</c>. O que acontecerá se você fizer seis
+    iterações das duas últimas instruções do código abaixo?
+  </p>
+
+  <p>Não esqueça da identação. Normalmente usamos 4 espaços.</p>
+
+<sidebyside>
+    <p>
+      <term>Figura a ser desenhada</term>
+      <image source="PythonTurtle/Figures/03_hexagono.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+          <cell>
+            <c>for _ in range(???):</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_5_hexagon_with_repetition" interactive="activecode" language="python">
+    <input>
+      import turtle
+
+      leo = turtle.Turtle()
+
+      leo.forward(100)
+      leo.right(60)
+    </input>
+  </program>
+</section>
