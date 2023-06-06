@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle_hexagon">
+  <title>Hexágono</title>
+  <p>
+    Você pode desenhar este hexágono com lados de 100 pixels e ângulos de 60
+    graus?.
+  </p>
+
+<sidebyside>
+    <p>
+      <term>Figura a ser desenhada</term>
+      <image source="PythonTurtle/Figures/03_hexagono.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_4_hexagon" interactive="activecode" language="python">
+    <input>
+    
+    </input>
+  </program>
+</section>
