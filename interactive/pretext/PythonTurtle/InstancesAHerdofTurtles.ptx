@@ -1,46 +1,52 @@
 <?xml version="1.0"?>
 <section xml:id="python-turtle_instances-a-herd-of-turtles">
-  <title>Instances &#x2014; A Herd of Turtles</title>
-  <p>Just like we can have many different integers in a program, we can have many
-            turtles.  Each of them is an independent object and we call each one an <term>instance</term> of the Turtle type (class).  Each instance has its own
-            attributes and methods &#x2014; so alex might draw with a thin black pen and be at
-            some position, while tess might be going in her own direction with a fat pink
-            pen.  So here is what happens when alex completes a square and tess
-            completes her triangle:</p>
+  <title>Diamante</title>
+  <p>No exercício anterior, os números utilizados em <c>turtle.right(90)</c> e
+    <c>turtle.forward(100)</c> são chamados de argumentos. Eles indicam o ângulo de
+    rotação em graus, no caso de <c>turtle.right(90)</c>, e a distância em que irá
+    percorrer em pixels, no caso de <c>turtle.forward(100)</c>.
+  </p>
+
+  <p>
+    Sabendo disso, desenhe um diamante com ângulos de 120 e 60 graus, e com lados
+    de 150 pixels de comprimento. 
+  </p>
+
+<sidebyside>
+    <p>
+      <term>Figura a ser desenhada</term>
+      <image source="PythonTurtle/Figures/02_diamante.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
   <program xml:id="ch03_3" interactive="activecode" language="python">
     <input>
-import turtle
-wn = turtle.Screen()             # Set up the window and its attributes
-wn.bgcolor("lightgreen")
-
-
-tess = turtle.Turtle()           # create tess and set some attributes
-tess.color("hotpink")
-tess.pensize(5)
-
-alex = turtle.Turtle()           # create alex
-
-tess.forward(80)                 # Let tess draw an equilateral triangle
-tess.left(120)
-tess.forward(80)
-tess.left(120)
-tess.forward(80)
-tess.left(120)                   # complete the triangle
-
-tess.right(180)                  # turn tess around
-tess.forward(80)                 # move her away from the origin
-
-alex.forward(50)                 # make alex draw a square
-alex.left(90)
-alex.forward(50)
-alex.left(90)
-alex.forward(50)
-alex.left(90)
-alex.forward(50)
-alex.left(90)
-
-wn.exitonclick()
-        </input>
+    
+    </input>
   </program>
   <p>Here are some <em>How to think like a computer scientist</em> observations:</p>
   <p>
