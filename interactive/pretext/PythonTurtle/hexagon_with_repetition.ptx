@@ -56,12 +56,13 @@
 
   <program xml:id="ch03_5_hexagon_with_repetition" interactive="activecode" language="python">
     <input>
-      import turtle
+    import turtle
 
-      leo = turtle.Turtle()
+    leo = turtle.Turtle()
 
-      leo.forward(100)
-      leo.right(60)
+
+    leo.forward(100)
+    leo.right(60)
     </input>
   </program>
 </section>
