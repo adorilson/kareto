@@ -2,8 +2,9 @@
 <section xml:id="python-turtle_diamonds_flower">
   <title>Flor de diamantes</title>
   <p>
-    Quantas vezes você precisa iterar o diamante do exercício 02 para desenhar
-    a flor?  
+    Quantas vezes você precisa iterar o diamante do
+    <url href="python-turtle_diamond.html">exercício 02</url>
+    para desenhar a flor?  
   </p>
 
   <p>Não esqueça da identação. Normalmente usamos 4 espaços.</p>

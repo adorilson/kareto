@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<section xml:id="python-turtle_instances-a-herd-of-turtles">
+<section xml:id="python-turtle_diamond">
   <title>Diamante</title>
   <p>No exercício anterior, os números utilizados em <c>turtle.right(90)</c> e
     <c>turtle.forward(100)</c> são chamados de argumentos. Eles indicam o ângulo de
