@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle_diamonds_flower">
+  <title>Flor de diamantes</title>
+  <p>
+    Quantas vezes você precisa iterar o diamante do exercício 02 para desenhar
+    a flor?  
+  </p>
+
+  <p>Não esqueça da identação. Normalmente usamos 4 espaços.</p>
+
+<sidebyside>
+    <p>
+      <term>Figura a ser desenhada</term>
+      <image source="PythonTurtle/Figures/05_flor_diamante.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+          <cell>
+            <c>for _ in range(???):</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_6_diamonds_flower" interactive="activecode" language="python">
+    <input>
+      import turtle
+
+      leo = turtle.Turtle()
+
+      leo.forward(60)
+      leo.left(30)
+      leo.forward(60)
+      leo.left(150)
+      leo.forward(60)
+      leo.left(30)
+      leo.forward(60)
+    </input>
+  </program>
+</section>
