@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle-diamonds-flower-with-repetition">
+  <title>Flor de diamantes com repetição</title>
+  <p>
+    Observe abaixo como simplificamos o código do diamante, transformando-o em
+    um laço com a instrução <c>for _ in range(???)</c>. Compare com o que você
+    fez no <url href="python-turtle_diamond.html">exercício 02</url>. Você pode
+    fazer 12 iterações (uma para cada pétala da flor) de toda a sequência para
+    desenhar a flor. Dica: você terá que virar 30 graus depois de iterar seu
+    diamante para não continuar desenhando o mesmo diamante todas as vezes.
+  </p>
+
+  <p>Não esqueça da identação. Normalmente usamos 4 espaços.</p>
+
+<sidebyside>
+    <p>
+      <term>Figura a ser desenhada</term>
+      <image source="PythonTurtle/Figures/05_flor_diamante.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+          <cell>
+            <c>for _ in range(???):</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_7_diamonds_flower_with_repetition" interactive="activecode" language="python">
+    <input>
+    import turtle
+
+    leo = turtle.Turtle()
+
+    for _ in range(2):
+        leo.forward(60)
+        leo.left(30)
+        leo.forward(60)
+        leo.left(150)
+    </input>
+  </program>
+</section>
