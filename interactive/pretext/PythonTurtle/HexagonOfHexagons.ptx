@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle-hexagon-of-hexagons">
+  <title>Hexágono de hexágonos</title>
+  <p>
+    Faça 6 iterações no código abaixo do hexágono para criar um hexágono maior.
+    Quantos graus você terá que virar de cada vez? Dica: divida o número de
+    graus de um círculo pelo número de iterações que fizer.
+  </p>
+
+  <p>Não esqueça da identação. Normalmente usamos 4 espaços.</p>
+
+<sidebyside>
+    <p>
+      <term>Figura a ser desenhada</term>
+      <image source="PythonTurtle/Figures/07_hexagono_de_hexagonos.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+          <cell>
+            <c>for _ in range(???):</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_8_hexagon_of_hexagons" interactive="activecode" language="python">
+    <input>
+    import turtle
+
+    leo = turtle.Turtle()
+
+    for _ in range(6):
+        leo.forward(50)
+        leo.right(60)
+    </input>
+  </program>
+</section>

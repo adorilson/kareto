@@ -8,6 +8,7 @@
 4<xi:include href="./hexagon_with_repetition.ptx"/>
 4<xi:include href="./diamonds_flower.ptx"/>
 4<xi:include href="./DiamondsFlowerWithRepetition.ptx"/>
+4<xi:include href="./HexagonOfHexagons.ptx"/>
 4<xi:include href="./TheforLoop.ptx"/>
 4<xi:include href="./FlowofExecutionoftheforLoop.ptx"/>
 4<xi:include href="./IterationSimplifiesourTurtleProgram.ptx"/>
