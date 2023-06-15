@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle-flower">
+  <title>Flor com função</title>
+
+  <p>
+    Uma função é mais uma ferramenta de programação para que você não tenha que
+    repetir as mesmas ações. E são definidas com a instrução <c>def</c>. Com
+    elas, podemos criar novos blocos.
+  </p>
+
+  <p>
+    A função <c>desenha uma flor</c>, definida abaixo a partir da linha 15, pode
+    ser usada sempre que você quiser desenhar uma flor. No código abaixo, são
+    desenhadas duas flores. Você deverá adicionar o código necessário para desenhar
+    uma terceira.
+  </p>
+
+  <p>
+    Observe ainda que existem alguns códigos adicionais, para configuração do
+    estado inicial do ambiente. Como a execução do código leverá um tempo maior,
+    foi necessário aumentar o tempo limite de execução (linha 2). E como será
+    necessário um espaço de desenho também maior, foi necessário aumentar a área
+    de desenho (linha 7). As linhas que iniciam com <c>#</c> são comentários.
+    Comentários são ignorados pelo interpretador do Python, mas úteis para nós,
+    humanos, sabermos o que e principalmente porque os trechos de código fazem.  
+  </p>
+
+  <p>
+    Entre cada flor, também é necessário reposicionar a tartaruga na posição inicial
+    de cada desenho.
+  </p>
+
+<sidebyside>
+    <p>
+      <term>Figura a ser desenhada</term>
+      <image source="PythonTurtle/Figures/08_flor_com_funcao.png" width="75%"/>
+    </p>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+          <cell>
+            <c>for _ in range(???):</c> 
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.penup()</c>
+          </cell>
+          <cell>
+            <c>leo.pendown()</c> 
+          </cell>
+          <cell>
+            <c>desenhe_uma_flor()</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_9_flower" interactive="activecode" language="python">
+    <input>
+    # Configuração do estado inicial do ambiente
+    import sys
+    sys.setExecutionLimit(100*1000)
+
+    import turtle
+    screen = turtle.Screen()
+    screen.setup(width=800)
+
+    leo = turtle.Turtle()
+    leo.penup()
+    leo.setx(-250)
+    leo.pendown()
+
+    # Definindo a função
+    def desenhe_uma_flor():
+        for _ in range(6):
+            for _ in range(8):
+                leo.forward(20)
+                leo.right(30)
+            leo.right(60)
+
+    # Chamando a função (apenas na chamada que a função é executada)
+    desenhe_uma_flor()
+
+    # Reposicionando a tartaruga
+    leo.penup()
+    leo.forward(200)
+    leo.pendown()
+
+    # Chamando a função novamente e desenhando outra flor
+    desenhe_uma_flor()
+
+    # Escreva o código necessário para desenhar a terceira flor a partir daqui
+    # Não esqueça de reposicionar a tartaruga
+    </input>  
+  </program>
+
+</section>
