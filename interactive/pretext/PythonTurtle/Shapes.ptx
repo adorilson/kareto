@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle-shapes">
+  <title>Formas</title>
+
+  <p>
+    Temos agora uma função chamada <c>desenhe_forma()</c>, que programamos para
+    desenhar hexágonos. Execute o código para ver o que ele faz e, em seguida,
+    tente usá-lo com a função para ver o que acontece. Você consegue fazer com
+    que ela desenhe um padrão de quadrados, triângulos ou octógonos? Ou melhor,
+    crie novas funções para essas figuras.
+  </p>
+
+  <p>
+    Também criamos uma nova função <c>pule(???)</c> para facilitar a ação de pular,
+    incluindo pular para trás. Basta indicar um número negativo.
+  </p>
+
+  <p>
+    Em um primeiro momento, apenas crie as novas funções com os lados das figuras
+    iguais aos do hexágono. Posteriormente, altere essas dimensões e os saltos
+    executados no código principal. Observe as mudanças nos padrões desenhados. 
+  </p>
+
+  <p>
+    Nota: também precisamos definir uma configuração inicial para o ambiente
+    de desenho. Aumentamos o tempo de execução (<c>sys.setExecutionLimit(200*1000)</c>)
+    e as dimensões (<c>screen.setup(width=700, height=500)</c>).  
+  </p>
+
+<sidebyside>  
+    <p>
+      <term>Caixa de ferramentas</term>
+      <tabular>
+        <row>
+          <cell>
+            <c>import turtle</c>
+          </cell>
+          <cell>
+            <c>leo = turtle.Turtle()</c>
+          </cell>
+          <cell>
+            <c>leo.forward(???)</c>
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.left(???)</c>
+          </cell>
+          <cell>
+            <c>leo.right(???)</c> 
+          </cell>
+          <cell>
+            <c>for _ in range(???):</c> 
+          </cell>
+        </row>
+        <row>
+          <cell>
+            <c>leo.penup()</c>
+          </cell>
+          <cell>
+            <c>leo.pendown()</c> 
+          </cell>
+          <cell>
+            <c>desenhe_forma()</c> 
+          </cell>
+          <cell>
+            <c>pule(???)</c> 
+          </cell>
+        </row>
+      </tabular>
+    </p>
+  </sidebyside>
+
+  <program xml:id="ch03_9_shapes" interactive="activecode" language="python">
+    <input>
+    # Configuração do estado inicial do ambiente
+    import sys
+    sys.setExecutionLimit(200*1000)
+
+    import turtle
+    screen = turtle.Screen()
+    screen.setup(width=700, height=500)
+
+    leo = turtle.Turtle()
+    leo.penup()
+    leo.setx(-250)
+    leo.sety(-150)
+    leo.pendown()
+
+    # definindo as funções
+    def desenhe_forma():
+        for _ in range(6):
+            leo.forward(25)
+            leo.right(60)
+
+    def pule(pixels):
+        leo.penup()
+        leo.forward(pixels)
+        leo.pendown()
+
+
+    # Aqui é o código principal
+    for _ in range(6):
+        for _ in range(2):
+            for _ in range(4):
+                desenhe_forma()
+                pule(75)
+            pule(-25)
+            leo.right(60)
+            pule(25)
+            leo.right(120)
+        pule(-25)
+        leo.left(60)
+        pule(50)
+        leo.right(60)
+
+    </input>  
+  </program>
+
+</section>
