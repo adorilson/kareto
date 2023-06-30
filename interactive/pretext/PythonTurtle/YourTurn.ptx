@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<section xml:id="python-turtle-your-turn">
+  <title>Sua vez</title>
+
+  <p>
+    Agora vá em frente e faça a imagem que mais gostar! Ou, que tal adicionar
+    algumas cores?
+  </p>
+
+  <p>
+    Além de utilizar os métodos estudados e as funções já criadas, você pode
+    desejar descobrir novas métodos para a tartatura. Para tanto, consulte a
+    <url href="https://docs.python.org/pt-br/3/library/turtle.html">documentação
+    oficial do módulo Turtle</url>.
+  </p>
+
+  <program xml:id="ch03_11_your_turn" interactive="activecode" language="python">
+    <input>
+    
+    </input>  
+  </program>
+
+</section>
