@@ -12,6 +12,7 @@
         -->
         
         <xi:include href="./PythonTurtle/toctree.ptx"/>
+        <xi:include href="./BeyondWalkAndDraw/toctree.ptx"/>
         
         <!--
         <xi:include href="./PythonModules/toctree.ptx"/>

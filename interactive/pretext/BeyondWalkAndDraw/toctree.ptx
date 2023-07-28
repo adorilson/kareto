@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
+<title>Indo além de andar e pintar</title>
+
+<introduction>
+    <p>
+        Os exercícios desenvolvidos até aqui focaram em movimentar a tartaruga,
+        produzindo desenhos conforme ela vai caminhando. Porém, em um contexto
+        de jogos, são necessários outros recursos, tais como interação com usuário,
+        redimensionamento e outras configurações da tela, posicionamento da tartaruga,
+        e assim por diante. Neste capítulo, veremos detalhes desses tópicos.
+    </p>
+</introduction>
+
+<xi:include href="./intro-BeyondWalkAndDraw.ptx"/>
+<xi:include href="./CoordinateSystem.ptx"/>
+<xi:include href="./Moving.ptx"/>
+<xi:include href="./Position.ptx"/>
+</chapter>

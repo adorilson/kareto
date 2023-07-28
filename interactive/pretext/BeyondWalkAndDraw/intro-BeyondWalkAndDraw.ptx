@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<section xml:id="beyond-walk-and-draw_introduction">
+  <title>Introdução</title>
+  
+
+  <p>
+    Além disso, é hora de conhecermos e usarmos outros ambientes de execução de
+    Python. Você deverá ter o interpretador instalado no seu computador, ou usar
+    um ambiente web com suporte mais completo para a biblioteca Turtle, como o Repl.
+  </p>
+
+  <p>
+    Em construção...
+  </p>
+</section>

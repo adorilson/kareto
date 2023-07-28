@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<section xml:id="beyond-walk-and-draw_coordinate_system">
+  <title>Sistema de coordenadas</title>
+    
+  <p>
+    Antes de colocarmos nossas tartarugas para desenharem, precisamos entender
+    como elas estão localizadas na tela de desenho, comumente chamada de canvas.
+  </p>
+  
+  <p>
+    Existe um sistema de coordenadas, com posições x e y, em que sua origem
+    (ponto onde x=0 e y=0) está localizada no centro do canvas, como apresentado
+    na figura abaixo.
+  </p>
+  
+  <image source="BeyondWalkAndDraw/Figures/01_sistema_coordenadas.png" width="75%"/>
+
+  <p>
+    É através desse sistema que iremos mover as nossas tartarugas. Observe os
+    valores mínimos e máximos apresentados na imagem. Ele são ilustrativos.
+    Potencialmente, tendem ao infinito, porém poderão não aparecer na tela.
+  </p>
+  
+  <p>
+    Todas as tartarugas que criamos (sim, é possível termos mais de uma tartaruga)
+    estarão inicialmente localizadas na origem e estarão sempre direcionadas para
+    a direita.
+  </p>
+
+  <p>
+    Para executar os exemplos a seguir, abra o interpretador Python no modo interativo
+    e inicialize uma tartaruga.
+  </p>
+
+  <pre language="python">
+    Python 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    &gt;&gt;&gt; import turtle
+    &gt;&gt;&gt; bia = turtle.Turtle()
+    &gt;&gt;&gt;
+  </pre>
+
+  <p>
+    Os &gt;&gt;&gt; são chamados de prompt Python. O interpretador usa esse
+    prompt para indicar que está pronto para receber instruções. Quando pressionamos
+    a tecla <c>enter</c> o interpretador avalia e executa o comando digitado. 
+  </p>
+  
+  <p>
+    Trabalhar diretamente no interpretador é conveniente para testar pequenos
+    trechos de código, pois recebemos um retorno imediato. Pense nisso como papel
+    de rascunho usado para ajudar você a resolver problemas.
+  </p>
+
+</section>
