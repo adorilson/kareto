@@ -5,7 +5,7 @@ Projeto com fins educativos para ensino/aprendizagem de introdução à programa
 
 ### Introdução
 
-1. #TODO - trazer para cá o conteúdo dos slides
+1. #TODO - trazer para cá o conteúdo dos [slides](https://docs.google.com/presentation/d/159ddnhtcc9xhQD0JnHMBZoGn2Qcodp9T2yy7h8p2Bmo/edit?usp=sharing)
 
 ### Configuração de Ambiente
 
