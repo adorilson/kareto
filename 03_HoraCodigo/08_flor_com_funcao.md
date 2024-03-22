@@ -10,15 +10,15 @@ esse desenho.
 ```python
 import turtle
 
-turtle = turtle.Turtle()
+esguicho = turtle.Turtle()
 
 # definindo a função
 def desenhe_uma_flor():
     for _ in range(6):
         for _ in range(8):
-            turtle.forward(20)
-            turtle.right(30)
-        turtle.right(60)
+            esguicho.forward(20)
+            esguicho.right(30)
+        esguicho.right(60)
 
 
 # chamando a função (apenas na chamada que a função é executada)
@@ -37,21 +37,20 @@ flores são separadas por 150 pixels.
 
 ```import turtle```
 
-```turtle = turtle.Turtle()```
+```esguicho = turtle.Turtle()```
 
-```turtle.forward(???)```
+```esguicho.forward(???)```
 
-```turtle.left(???)```
+```esguicho.left(???)```
 
-```turtle.right(???)```
+```esguicho.right(???)```
 
-```turtle.penup()```
+```esguicho.penup()```
 
-```turtle.pendown()```
+```esguicho.pendown()```
 
 ```for _ in range(???):```
 
 ```desenhe_uma_flor()```
 
 [Anterior](07_hexagono_de_hexagonos.md) | [Próximo](09_formas.md)
-

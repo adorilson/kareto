@@ -15,12 +15,12 @@ de 150 pixels de comprimento.
 
 ```import turtle```
 
-```turtle = turtle.Turtle()```
+```esguicho = turtle.Turtle()```
 
-```turtle.forward(???)```
+```esguicho.forward(???)```
 
-```turtle.left(???)```
+```esguicho.left(???)```
 
-```turtle.right(???)```
+```esguicho.right(???)```
 
 [Anterior](01_quadrado.md) | [Próximo](03_hexagono.md)

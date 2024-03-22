@@ -12,18 +12,18 @@ incluindo pular para trás. Basta indicar um número negativo.
 ```python
 import turtle
 
-turtle = turtle.Turtle()
+esguicho = turtle.Turtle()
 
 # definindo as funções
 def desenhe_forma():
     for _ in range(6):
-        turtle.forward(25)
-        turtle.right(60)
+        esguicho.forward(25)
+        esguicho.right(60)
 
 def pule(pixels):
-    turtle.penup()
-    turtle.forward(pixels)
-    turtle.pendown()
+    esguicho.penup()
+    esguicho.forward(pixels)
+    esguicho.pendown()
 
 
 # Aqui é o código principal
@@ -33,13 +33,13 @@ for _ in range(6):
             desenhe_forma()
             pule(75)
         pule(-25)
-        turtle.right(60)
+        esguicho.right(60)
         pule(25)
-        turtle.right(120)
+        esguicho.right(120)
     pule(-25)
-    turtle.left(60)
+    esguicho.left(60)
     pule(50)
-    turtle.right(60)
+    esguicho.right(60)
 
 ```
 
@@ -51,17 +51,17 @@ executados no código principal. Observe as mudanças nos padrões desenhados.
 
 ```import turtle```
 
-```turtle = turtle.Turtle()```
+```esguicho = turtle.Turtle()```
 
-```turtle.forward(???)```
+```esguicho.forward(???)```
 
-```turtle.left(???)```
+```esguicho.left(???)```
 
-```turtle.right(???)```
+```esguicho.right(???)```
 
-```turtle.penup()```
+```esguicho.penup()```
 
-```turtle.pendown()```
+```esguicho.pendown()```
 
 ```for _ in range(???):```
 

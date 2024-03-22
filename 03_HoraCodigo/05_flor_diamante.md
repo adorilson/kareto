@@ -6,15 +6,15 @@ para desenhar a flor?
 ```python
 import turtle
 
-turtle = turtle.Turtle()
+esguicho = turtle.Turtle()
 
-turtle.forward(60)
-turtle.left(30)
-turtle.forward(60)
-turtle.left(150)
-turtle.forward(60)
-turtle.left(30)
-turtle.forward(60)
+esguicho.forward(60)
+esguicho.left(30)
+esguicho.forward(60)
+esguicho.left(150)
+esguicho.forward(60)
+esguicho.left(30)
+esguicho.forward(60)
 ```
 
 Não esqueça da identação.
@@ -26,13 +26,13 @@ Não esqueça da identação.
 
 ```import turtle```
 
-```turtle = turtle.Turtle()```
+```esguicho = turtle.Turtle()```
 
-```turtle.forward(???)```
+```esguicho.forward(???)```
 
-```turtle.left(???)```
+```esguicho.left(???)```
 
-```turtle.right(???)```
+```esguicho.right(???)```
 
 ```for _ in range(???):```
 

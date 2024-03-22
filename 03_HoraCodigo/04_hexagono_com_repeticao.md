@@ -14,10 +14,10 @@ das duas últimas instruções do código abaixo?
 ```python
 import turtle
 
-turtle = turtle.Turtle()
+esguicho = turtle.Turtle()
 
-turtle.forward(100)
-turtle.right(60)
+esguicho.forward(100)
+esguicho.right(60)
 ```
 
 Não esqueça da identação.
@@ -29,13 +29,13 @@ Não esqueça da identação.
 
 ```import turtle```
 
-```turtle = turtle.Turtle()```
+```esguicho = turtle.Turtle()```
 
-```turtle.forward(???)```
+```esguicho.forward(???)```
 
-```turtle.left(???)```
+```esguicho.left(???)```
 
-```turtle.right(???)```
+```esguicho.right(???)```
 
 ```for _ in range(???):```
 

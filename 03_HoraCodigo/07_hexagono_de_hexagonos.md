@@ -7,11 +7,11 @@ de um círculo pelo número de iterações que fizer.
 ```python
 import turtle
 
-turtle = turtle.Turtle()
+esguicho = turtle.Turtle()
 
 for _ in range(6):
-    turtle.forward(50)
-    turtle.right(60)
+    esguicho.forward(50)
+    esguicho.right(60)
 ```
 
 Não esqueça da identação.
@@ -23,16 +23,14 @@ Não esqueça da identação.
 
 ```import turtle```
 
-```turtle = turtle.Turtle()```
+```esguicho = turtle.Turtle()```
 
-```turtle.forward(???)```
+```esguicho.forward(???)```
 
-```turtle.left(???)```
+```esguicho.left(???)```
 
-```turtle.right(???)```
+```esguicho.right(???)```
 
 ```for _ in range(???):```
 
 [Anterior](06_flor_com_repeticao.md) | [Próximo](08_flor_com_funcao.md)
-
-

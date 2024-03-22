@@ -13,12 +13,12 @@ Cada lado deve medir 100 pixels.
 
 ```import turtle```
 
-```turtle = turtle.Turtle()```
+```esguicho = turtle.Turtle()```
 
-```turtle.forward(100)```
+```esguicho.forward(100)```
 
-```turtle.left(90)```
+```esguicho.left(90)```
 
-```turtle.right(90)```
+```esguicho.right(90)```
 
 [Próximo](02_diamante.md)
