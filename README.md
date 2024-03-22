@@ -28,7 +28,10 @@ plataforma Code.org](https://studio.code.org/s/artist/lessons/1/levels/1).
 1. [Formas](/03_HoraCodigo/09_formas.md)
 1. [Sua vez](/03_HoraCodigo/10_sua_vez.md)
 
-### Introdução Acelerada à Ciência da Computação
+#### Exercícios
+
+Abra os arquivos abaixo, copie o código para o seu editor e resolva os
+exercícios propostos.
 
 1. [Exercício 1](exercicio001.py)
 1. [Exercício 2](exercicio002.py)
