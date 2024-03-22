@@ -7,9 +7,9 @@ Exercicios:
 
 import turtle
 
-turtle = turtle.Turtle()
+raphael = turtle.Turtle()
 
-for c in range(360):
-    turtle.color('red')
-    turtle.forward(1)
-    turtle.right(1)
+for _ in range(360):
+    raphael.color('red')
+    raphael.forward(1)
+    raphael.right(1)

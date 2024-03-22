@@ -8,13 +8,12 @@ Exercícios
 
 import turtle
 
-turtle = turtle.Turtle()
-turtle.color('red')
-turtle.forward(100)
-turtle.left(90)
-turtle.forward(100)
-turtle.left(90)
-turtle.forward(100)
-turtle.left(90)
-turtle.forward(100)
-
+touche = turtle.Turtle()
+touche.color('red')
+touche.forward(100)
+touche.left(90)
+touche.forward(100)
+touche.left(90)
+touche.forward(100)
+touche.left(90)
+touche.forward(100)

@@ -9,19 +9,18 @@ coisa que as atuais
 
 import turtle
 
-turtle = turtle.Turtle()
-turtle.shape('turtle')
+crush = turtle.Turtle()
+crush.shape('turtle')
 
-turtle.forward(100)
-turtle.forward(100)
-turtle.left(90)
-turtle.forward(100)
-turtle.forward(100)
-turtle.left(90)
-turtle.forward(100)
-turtle.forward(100)
-turtle.left(90)
-turtle.forward(100)
-turtle.forward(100)
-turtle.left(90)
-
+crush.forward(100)
+crush.forward(100)
+crush.left(90)
+crush.forward(100)
+crush.forward(100)
+crush.left(90)
+crush.forward(100)
+crush.forward(100)
+crush.left(90)
+crush.forward(100)
+crush.forward(100)
+crush.left(90)

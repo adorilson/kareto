@@ -12,12 +12,11 @@ Veja os nomes de cores válidos em: https://pt.wikipedia.org/wiki/Lista_de_cores
 import turtle
 import random
 
-turtle = turtle.Turtle()
-colors = ['red', 'purple', 'blue']
+kame = turtle.Turtle()
+cores = ['red', 'purple', 'blue']
 
 for _ in [1, 2, 3]:
-    color = random.choice(colors)
-    turtle.color(color)
-    turtle.forward(100)
-    turtle.right(120)
-
+    cor = random.choice(cores)
+    kame.color(cor)
+    kame.forward(100)
+    kame.right(120)

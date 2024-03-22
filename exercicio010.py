@@ -9,21 +9,20 @@ Exercícios
 
 import turtle
 
-turtle = turtle.Turtle()
+touché = turtle.Turtle()
 
 for _ in range(4):
-    turtle.forward(100)
-    turtle.right(90)
+    touché.forward(100)
+    touché.right(90)
 
 for _ in range(4):
-   turtle.left(90)
-   turtle.forward(100)
+   touché.left(90)
+   touché.forward(100)
 
 for _ in range(4):
-   turtle.forward(100)
-   turtle.left(90)
+   touché.forward(100)
+   touché.left(90)
 
 for _ in range(4):
-   turtle.right(90)
-   turtle.forward(100)
-
+   touché.right(90)
+   touché.forward(100)

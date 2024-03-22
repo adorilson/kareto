@@ -7,18 +7,17 @@ Exercicios:
 
 import turtle
 
-turtle = turtle.Turtle()
-turtle.color('green')
+michelangelo = turtle.Turtle()
+michelangelo.color('green')
 
 for _ in range(4):
-    turtle.left(90)
-    turtle.backward(100)
+    michelangelo.left(90)
+    michelangelo.backward(100)
 
-turtle.backward(50)
-turtle.backward(100)
-turtle.right(90)
+michelangelo.backward(50)
+michelangelo.backward(100)
+michelangelo.right(90)
 
 for _ in range(3):
-  turtle.forward(100)
-  turtle.left(90)
-
+  michelangelo.forward(100)
+  michelangelo.left(90)

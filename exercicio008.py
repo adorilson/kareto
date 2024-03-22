@@ -9,13 +9,12 @@ Exercicios
 import turtle
 import random
 
-turtle = turtle.Turtle()
+leonardo = turtle.Turtle()
 
-colors = ['purple', 'blue', 'yellow', 'green', 'pink']
+cores = ['purple', 'blue', 'yellow', 'green', 'pink']
 for _ in range (8):
-    color = random.choice(colors)
-    turtle.color(color)
-    turtle.forward(100)
-    turtle.backward(100)
-    turtle.right(45)
-
+    cor = random.choice(cores)
+    leonardo.color(cor)
+    leonardo.forward(100)
+    leonardo.backward(100)
+    leonardo.right(45)

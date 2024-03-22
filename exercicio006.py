@@ -6,13 +6,13 @@ Exercicios
 
 import turtle
 
-turtle = turtle.Turtle()
-turtle.color('green')
+donatello = turtle.Turtle()
+donatello.color('green')
 
 for _ in [1, 2, 3]:
-    turtle.forward(100)
-    turtle.right(120)
+    donatello.forward(100)
+    donatello.right(120)
 
 for _ in [1, 2, 3, 4]:
-  turtle.left(90)
-  turtle.forward(100)
+  donatello.left(90)
+  donatello.forward(100)

@@ -9,11 +9,10 @@ Exercícios
 
 import turtle
 
-turtle = turtle.Turtle()
-turtle.pensize(5)
+oogway = turtle.Turtle()
+oogway.pensize(5)
 
 for color in ['blue', 'black', 'red', 'pink']:
-    turtle.color(color)
-    turtle.forward(100)
-    turtle.right(90)
-
+    oogway.color(color)
+    oogway.forward(100)
+    oogway.right(90)
