@@ -44,6 +44,14 @@ exercícios propostos.
 1. [Exercício 9](exercicio009.py)
 1. [Exercício 10](exercicio010.py)
 
+### Hora do Código - Festa Dançante
+
+Este módulo é baseado no tutorial [Hora de Código Festa Dançante da
+plataforma Code.org](https://studio.code.org/s/dance/lessons/1/levels/1).
+
+1. [Novas roupas e tamanhos](/03_HoraCodigo/festa_dancante/01_novas_roupas.md)
+
+
 ### Indo além de andar e pintar
 
 Os exercícios desenvolvidos até aqui focaram em movimentar a tartaruga,
