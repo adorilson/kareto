@@ -51,6 +51,7 @@ plataforma Code.org](https://studio.code.org/s/dance/lessons/1/levels/1).
 
 1. [Novas roupas e tamanhos](/03_HoraCodigo/festa_dancante/01_novas_roupas.md)
 1. [Uma tartaruga escritora e contadora de tempo](/03_HoraCodigo/festa_dancante/02_escritora.md)
+1. [Uma tartaruga dançarina](/03_HoraCodigo/festa_dancante/03_dancarina.md)
 
 
 ### Indo além de andar e pintar

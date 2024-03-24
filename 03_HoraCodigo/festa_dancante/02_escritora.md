@@ -84,4 +84,4 @@ Você poderá usar o trecho de código acima nos exercícios que faremos daqui p
 frente, pois iremos trabalhar com ações que ocorrerão após uma passagem de
 tempo. Pode ser útil para você acompanhar essa passagem.
 
-[Anterior](01_novas_roupas.md) [Próximo](03_????.md)
+[Anterior](01_novas_roupas.md) [Próximo](03_dancarina.md)
