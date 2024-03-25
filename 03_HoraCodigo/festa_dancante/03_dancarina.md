@@ -81,4 +81,4 @@ Sua tarefa será fazer com que a tartaruga comece esse movimento lateral após
 
 ```turtle.ontimer(???, ???)```
 
-[Anterior](02_escritora.md) [Próxima](04_???.md)
+[Anterior](02_escritora.md) [Próxima](04_palco_que_brilha.md)
