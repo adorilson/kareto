@@ -31,4 +31,4 @@ Dica: o palco deve mudar sempre que a tartaruga dança.
 ```turtle.ontimer(???, ???)```
 
 
-[Anterior](03_dancarina.md) [Próxima](05_???.md)
+[Anterior](03_dancarina.md) [Próxima](05_dancando_pelo_palco.md)
