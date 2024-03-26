@@ -8,11 +8,11 @@ uma lista de opções e depois atribui esta cor ao palco.
 ```python 
 def muda_palco():
     import random
-    
+
     cores = ["lightyellow", "lightblue", "lightcyan",  "lightgray",
              "lightcoral",  "lightpink", "lightsalmon", "lightgreen"]
     cor = random.choice(cores)
-    
+
     palco = turtle.Screen()
     palco.bgcolor(cor)
 ```
@@ -27,6 +27,8 @@ Dica: o palco deve mudar sempre que a tartaruga dança.
 ## Banco de instruções
 
 ```muda_palco```
+
+```turtle.ontimer(???, ???)```
 
 
 [Anterior](03_dancarina.md) [Próxima](05_???.md)
