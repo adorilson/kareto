@@ -1,4 +1,4 @@
-# Tartaruga Artista
+# Kareto
 Projeto com fins educativos para ensino/aprendizagem de introdução à programação
 
 ## ROADMAP
