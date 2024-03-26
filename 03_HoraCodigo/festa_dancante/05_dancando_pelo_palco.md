@@ -40,4 +40,4 @@ ver os rastros da tartaruga.
 ```turtle.ontimer(???, ???)```
 
 
-[Anterior](04_palco_que_brilha.md) [Próxima](06_???.md)
+[Anterior](04_palco_que_brilha.md) [Próxima](06_mais_dancarinas.md)
