@@ -57,6 +57,7 @@ plataforma Code.org](https://studio.code.org/s/dance/lessons/1/levels/1).
 1. [Mais dançarinas](/03_HoraCodigo/festa_dancante/06_mais_dancarinas.md)
 1. [Propriedades: tamanho](/03_HoraCodigo/festa_dancante/07_propriedades_tamanho.md)
 1. [Propriedades: cor](/03_HoraCodigo/festa_dancante/08_propriedades_cor.md)
+1. [Frente e fundo](/03_HoraCodigo/festa_dancante/09_frente_fundo.md)
 
 
 
