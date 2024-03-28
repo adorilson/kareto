@@ -55,6 +55,8 @@ plataforma Code.org](https://studio.code.org/s/dance/lessons/1/levels/1).
 1. [Palco que brilha](/03_HoraCodigo/festa_dancante/04_palco_que_brilha.md)
 1. [Dançando pelo palco](/03_HoraCodigo/festa_dancante/05_dancando_pelo_palco.md)
 1. [Mais dançarinas](/03_HoraCodigo/festa_dancante/06_mais_dancarinas.md)
+1. [Propriedades: tamanho](/03_HoraCodigo/festa_dancante/07_propriedades_tamanho.md)
+
 
 
 

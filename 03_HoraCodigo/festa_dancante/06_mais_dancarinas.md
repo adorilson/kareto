@@ -32,4 +32,4 @@ de que isso deve ser feito nas funções `mexe_direita()` e `mexe_esquerda()`.
 
 ```apoio.setx(???)```
 
-[Anterior](05_dancando_pelo_palco.md) [Próxima](07_???.md)
+[Anterior](05_dancando_pelo_palco.md) [Próxima](07_propriedades_tamanho.md)
