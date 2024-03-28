@@ -25,4 +25,4 @@ Também não esqueça de animar a nova dançarina.
 
 ```apoio.setx(???)```
 
-[Anterior](06_mais_dancarinas.md) [Próxima](08_???.md)
+[Anterior](06_mais_dancarinas.md) [Próxima](08_propriedades_cor.md)
