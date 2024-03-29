@@ -47,4 +47,4 @@ que deverá ser em 6 segundos.
 
 ```turtle.ontimer(???, ???)```
 
-[Anterior](08_propriedades_cor.md) [Próxima](10_???.md)
+[Anterior](08_propriedades_cor.md) [Próxima](10_mais_eventos.md)
