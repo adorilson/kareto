@@ -1,9 +1,13 @@
 # Diamante
 
-No exercício anterior, os números utilizados em ```turtle.right(90)``` e
-```turtle.forward(100)``` são chamados de argumentos. E indicam o ângulo de
-rotação em graus, no caso de ```turtle.right(90)```, e a distância em que irá
-percorrer em pixels, no caso de ```turtle.forward(100)```.
+No exercício anterior, os números utilizados em ```turtle.right(90)```, ```turtle.left(90)``` e
+```turtle.forward(100)``` são chamados de **argumentos**. 
+
+Em ```turtle.right(90)``` o número **90** indica o ângulo de rotação em graus, bem como em ```turtle.left(90)```.
+![Argumento de turtle.left](02_kareto_right_left_argumento.png)
+
+Já em ```turtle.forward(100)``` o número **100** indica a distância em que irá percorrer em pixels. 
+![Argumento de turtle.forward](02_kareto_forward_argumento.png)
 
 Sabendo disso, desenhe um diamante com ângulos de 120 e 60 graus, e com lados
 de 150 pixels de comprimento.
