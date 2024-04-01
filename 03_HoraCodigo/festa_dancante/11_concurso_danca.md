@@ -81,4 +81,4 @@ durante a execução do código, basta substituir isso pelo nome da função.
 ```turtle.ontimer(???, ???)```
 
 
-[Anterior](10_mais_eventos.md) [Próxima](12_???.md)
+[Anterior](10_mais_eventos.md) | [Próxima](12_grupo_dancarinas.md)

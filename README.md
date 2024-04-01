@@ -60,7 +60,7 @@ plataforma Code.org](https://studio.code.org/s/dance/lessons/1/levels/1).
 1. [Frente e fundo](/03_HoraCodigo/festa_dancante/09_frente_fundo.md)
 1. [Mais eventos](/03_HoraCodigo/festa_dancante/10_mais_eventos.md)
 1. [Concurso de dança](/03_HoraCodigo/festa_dancante/11_concurso_danca.md)
-
+1. [Grupo de dançarinas](/03_HoraCodigo/festa_dancante/12_grupo_dancarinas.md)
 
 
 ### Indo além de andar e pintar
