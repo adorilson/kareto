@@ -73,4 +73,4 @@ Não esqueça da indentação.
 
 `turtle.ontimer(???, ???)`
 
-[Anterior](11_concurso_danca.md) | [Próxima](12_???.md)
+[Anterior](11_concurso_danca.md) | [Próxima](13_entre_no_ritmo.md)
