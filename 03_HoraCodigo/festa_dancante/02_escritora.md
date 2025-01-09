@@ -84,4 +84,8 @@ Você poderá usar o trecho de código acima nos exercícios que faremos daqui p
 frente, pois iremos trabalhar com ações que ocorrerão após uma passagem de
 tempo. Pode ser útil para você acompanhar essa passagem.
 
+## Resultado esperado
+![Tartaruga escritora e contadora de tempo](02_escritora.gif "Uma tartaruga que escreve e conta o tempo")
+
+
 [Anterior](01_novas_roupas.md) [Próximo](03_dancarina.md)
