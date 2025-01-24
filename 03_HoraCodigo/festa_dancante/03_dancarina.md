@@ -52,7 +52,7 @@ def move_esquerda():
 
 turtle.ontimer(mexe_esquerda, 4000)
 
-turtle.done()
+turtle.mainloop()
 ```
 
 As responsáveis pelo balanço são as funções `mexe_direita` e `mexe_esquerda`.

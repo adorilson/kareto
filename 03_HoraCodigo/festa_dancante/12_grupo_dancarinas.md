@@ -46,7 +46,7 @@ cria_dancarinas()
 
 turtle.ontimer(mexe_esquerda, 0)
 
-turtle.done()
+turtle.mainloop()
 ```
 
 Faça as dançarinas daremos passos para cima (`turtle.forward(???)`),

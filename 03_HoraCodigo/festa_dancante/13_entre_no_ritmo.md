@@ -50,7 +50,7 @@ principal.color('blue')
 
 turtle.ontimer(mexe_esquerda, 0)
 
-turtle.done()
+turtle.mainloop()
 ```
 
 ## Palco atual

@@ -55,7 +55,7 @@ turtle.onkey(lambda: None, 'Right')
 turtle.onkey(lambda: None, 'Up')
 
 turtle.listen()
-turtle.done()
+turtle.mainloop()
 
 ```
 

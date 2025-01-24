@@ -30,7 +30,7 @@ def atualiza_tempo():
 # Registra que a função atualiza_tempo será chamada após 1000 milissegundos
 turtle.ontimer(atualiza_tempo, 1000)
 
-turtle.done()
+turtle.mainloop()
 ```
 
 O código já possui alguns comentários e está dividido em três blocos principais.
