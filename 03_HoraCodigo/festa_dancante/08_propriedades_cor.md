@@ -25,6 +25,5 @@ Veja os nomes de cores válidos em: https://pt.wikipedia.org/wiki/Lista_de_cores
 
 ```apoio.setx(???)```
 
-```apoio.setx(???)```
 
 [Anterior](07_propriedades_tamanho.md) [Próxima](09_frente_fundo.md)

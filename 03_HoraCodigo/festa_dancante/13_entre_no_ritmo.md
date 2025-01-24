@@ -5,7 +5,7 @@ abaixo que já cria um palco com uma dançarina principal e algumas dançarina d
 apoio.
 
 Além de utilizar os métodos estudados e as funções já criadas,
-você pode desejar descobrir novas métodos para a tartarura.
+você pode desejar descobrir novos métodos para as tartaruras dançarinas.
 Para tanto, consulte a [documentação oficial do módulo Turtle](https://docs.python.org/pt-br/3/library/turtle.html).
 
 ```python
@@ -55,5 +55,6 @@ turtle.mainloop()
 
 ## Palco atual
 ![Entre no ritmo](13_entre_no_ritmo.gif "Entre no ritmo")
+
 
 [Anterior](12_grupo_dancarinas.md)

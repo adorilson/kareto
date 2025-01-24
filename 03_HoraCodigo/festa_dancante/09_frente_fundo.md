@@ -1,4 +1,4 @@
-# Frente e fundo
+# Frente e tras
 
 Agora sabemos como alterar as propriedades de um(a) dançarino(a). Nós também
 podemos fazer com que as mesmas propriedades respondam automaticamente a
@@ -15,15 +15,15 @@ Quando executada, ela aumenta o tamanho das duas dançarinas de apoio e depois
 engatilha a função `para_tras` para ser executada em 2 segundos (2000
 milissegundos).
 
-Você deverá implementar a funções `para_frente`, conforme acima, e depois a
+Você deverá implementar a função `para_frente`, conforme acima, e depois a
 função `para_tras`, que deverá reduzir o tamanho das dançarinas para `3` e
-engatilhar a função `para_frente` para ser executa também em 2 segundos.
+engatilhar a função `para_frente` para ser executada também em 2 segundos.
 Atende para os nomes das dançarinas no seu código.
 
 Dessa forma, o tamanho das dançarinas serão alternadas a cada 2 segundos,
 dando o efeito de irem para frente e para trás no palco.
 
-Não esquece que será necessário dar o ponta-pé inicialmente a esse processo,
+Não esquece que será necessário dar o ponta-pé inicial a esse processo,
 que deverá ser em 6 segundos.
 
 ## Resultado esperado
@@ -46,5 +46,6 @@ que deverá ser em 6 segundos.
 ```para_tras()```
 
 ```turtle.ontimer(???, ???)```
+
 
 [Anterior](08_propriedades_cor.md) [Próxima](10_mais_eventos.md)

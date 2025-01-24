@@ -2,7 +2,7 @@
 
 Ás vezes, queremos que todas as dançarinas presentes no palco executem um passo
 sincronizado. Além disso, muitas vezes nem sempre sabemos os nomes das dançarinas,
-apenas queremos dizer algo como "todas vocês, dêem um passo pra direita".
+apenas queremos dizer algo como "todas vocês, deem um passo pra direita".
 
 Veja no código abaixo a função `cria_dancarinas()`. Inicialmente, criamos
 a variável `posicoes` que conterá 4 pares de coordenadas `(x, y)`. Depois,
@@ -19,11 +19,11 @@ import turtle
 
 ## Configuração das dançarinas ##
 def cria_dancarinas():
-    posicoes = (-200, 200), (-200, -200), (200, 200), (200, -200)
-    for posicao in posicoes:
+    posições = (-200, 200), (-200, -200), (200, 200), (200, -200)
+    for posição in posições:
         t = turtle.Turtle()
         t.penup()
-        t.goto(posicao)
+        t.goto(posição)
         t.shape('turtle')
         t.shapesize(5)
         t.setheading(90)
@@ -72,5 +72,6 @@ Não esqueça da indentação.
 `t.setheading(???)`
 
 `turtle.ontimer(???, ???)`
+
 
 [Anterior](11_concurso_danca.md) | [Próxima](13_entre_no_ritmo.md)

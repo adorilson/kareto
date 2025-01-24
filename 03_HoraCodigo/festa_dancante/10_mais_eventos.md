@@ -16,7 +16,7 @@ def passo_cima():
     apoio_dois.forward(30)
 ```
 
-E também indicar que essa função será executado quando a seta para cima (`Up`)
+E também indicar que essa função será executado quando a seta para cima (`'Up'`)
 for pressionada, conforme abaixo:
 
 ```python
@@ -24,14 +24,14 @@ turtle.onkey(passo_cima, 'Up')
 ```
 
 Além disso, deverá ativar a escuta (`listen`) de eventos do `turtle`. Ao final
-do seu código (antes do `turtle.done()`), acrescente o seguinte bloco:
+do seu código (antes do `turtle.mainloop()`), acrescente o seguinte bloco:
 
 ```python
 turtle.listen()
 ```
 
 Depois, acrescente outras ações em respostas as demais setas de direção:
-baixo (`Down`), esquerda (`Left`) e direita (`Right`). Observe que deve
+baixo (`'Down'`), esquerda (`'Left'`) e direita (`'Right'`). Observe que deve
 estar entre aspas e seguir exatamente a caixa (letras minúsculas ou maiúsculas).
 
 Você pode mudar o passo de dança, alterar as propriedades de um(a) dançarino(a)
