@@ -14,7 +14,7 @@ são de 90 graus.
 ## Explicação sobre o código inicial
 
 A instrução `import turtle` informa ao Python que carregue o módulo `turtle`
-para que o possamos utilizar. No Python, *módulos* são coleções de funções e
+para que possamos usá-lo. No Python, *módulos* são coleções de funções e
 classes que ajudam a organizar e reutilizar código. No caso do módulo `turtle`,
 é onde estão definidas a classe `Turtle` e a função `mainloop`, por exemplo.
 Já `import` é uma palavra reservada, ou seja, um comando próprio da linguagem
