@@ -61,4 +61,4 @@ turtle.mainloop()
 ```
 
 
-[Próximo](03_L_invertido.md)
+[Anterior](README.md) | [Próximo](03_L_invertido.md)
