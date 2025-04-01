@@ -1,7 +1,11 @@
 # Apresentando a tartaruga artista
 
-Oi, eu sou uma artista, você pode escrever código para me fazer desenhar quase
-qualquer coisa.
+<div style="display: flex; align-items: center;">
+    <img src="02_artista.png" alt="Sou uma artista"
+            style="width:100px; margin-right:10px;">
+    <p>Oi, eu sou uma artista, você pode escrever código para me fazer
+        desenhar quase qualquer coisa.</p>
+</div>
 
 Brinque com os blocos na caixa de ferramentas para ver o que eles fazem!
 
