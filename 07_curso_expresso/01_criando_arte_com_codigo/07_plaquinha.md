@@ -1,9 +1,8 @@
-# Retângulo
+# Plaquinha
 
-Desenhe um retângulo em que os lados longos tenham 200 pixels e os lados
-curtos tenham 100 pixels cada.
+Desenhe uma plaquinha quadrada com 200 pixels de lado. 
 
-![Retângulo](06_retangulo.gif "Retângulo")
+![Plaquinha](07_plaquinha.gif "Plaquinha")
 
 
 ## Caixa de ferramentas
@@ -16,9 +15,9 @@ curtos tenham 100 pixels cada.
 
 ```artista.forward(100)```
 
-```artista.left(90)```
+```artista.left(45)```
 
-```artista.right(90)```
+```artista.right(45)```
 
 ```turtle.mainloop()```
 
@@ -46,4 +45,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](05a_codigo_desvendado.md) | [Próximo](07_plaquinha.md)
+[Anterior](06_retangulo.md) | [Próximo](07_plaquinha.md)
