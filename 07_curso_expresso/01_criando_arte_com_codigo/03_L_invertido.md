@@ -43,4 +43,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](02_sou_um_artista.md) | [Próximo](04_quadrado.md)
+[Anterior](02_sou_um_artista.md) | [Próximo](03a_codigo_desvendado.md)
