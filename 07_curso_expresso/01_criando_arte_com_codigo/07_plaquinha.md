@@ -45,4 +45,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](06_retangulo.md) | [Próximo](07_plaquinha.md)
+[Anterior](06_retangulo.md) | [Próximo](07a_codigo_desvendado.md)
