@@ -26,4 +26,4 @@ pixels?
 Não tem código inicial.
 
 
-[Anterior](08_desafio.md) | [Próximo](09_triangulo.md)
+[Anterior](08_desafio.md) | [Próximo](10_previsao.md)
