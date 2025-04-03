@@ -44,4 +44,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](07a_codigo_desvendado.md) | [Próximo](08_desafio.md)
+[Anterior](07a_codigo_desvendado.md) | [Próximo](09_triangulo.md)
