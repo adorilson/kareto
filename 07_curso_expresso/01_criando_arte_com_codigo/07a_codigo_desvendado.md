@@ -59,4 +59,4 @@ pode receber argumentos. Isso permite escrever código mais reutilizável,
 personalizável e poderoso! 
 
 
-[Anterior](07_plaquinha.md) | [Próximo](07_plaquinha.md)
+[Anterior](07_plaquinha.md) | [Próximo](08_desafio.md)
