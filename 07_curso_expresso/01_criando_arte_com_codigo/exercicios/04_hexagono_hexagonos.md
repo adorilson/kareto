@@ -31,4 +31,4 @@ Dica: divida o número de graus de um círculo pelo número de hexágonos.
 Código-resposta do exercício do hexágono.
 
 
-[Anterior](03_flor_diamante.md) | [Próximo](04_hexagono_hexagonos.md)
+[Anterior](03_flor_diamante.md) | [Próximo](05_mais_uma_flor.md)
