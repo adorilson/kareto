@@ -26,4 +26,4 @@ A partir do diamante, consegue fazer uma flor com 12 pétalas?
 Código-resposta para o exercício do diamante.
 
 
-[Anterior](02_hexagono.md) | [Próximo](03_flor_diamante.md)
+[Anterior](02_hexagono.md) | [Próximo](04_hexagono_hexagonos.md)
