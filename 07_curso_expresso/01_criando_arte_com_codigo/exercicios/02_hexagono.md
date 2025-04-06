@@ -40,4 +40,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](01_diamante.md) | [Próximo](02_hexagono.md)
+[Anterior](01_diamante.md) | [Próximo](03_flor_diamante.md)
