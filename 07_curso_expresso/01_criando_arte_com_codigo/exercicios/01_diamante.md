@@ -36,4 +36,5 @@ turtle.mainloop()
 
 ```
 
-| [Próximo](01_diamante.md)
+
+[Próximo](02_hexagono.md)
