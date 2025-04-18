@@ -15,12 +15,17 @@ crush.shape('turtle')
 crush.forward(100)
 crush.forward(100)
 crush.left(90)
+
 crush.forward(100)
 crush.forward(100)
 crush.left(90)
+
 crush.forward(100)
 crush.forward(100)
 crush.left(90)
+
 crush.forward(100)
 crush.forward(100)
 crush.left(90)
+
+turtle.mainloop()

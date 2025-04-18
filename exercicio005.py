@@ -19,3 +19,5 @@ for _ in [1, 2, 3]:
 for _ in [1, 2, 3, 4]:
   bowser.forward(100)
   bowser.right(90)
+
+turtle.mainloop()
