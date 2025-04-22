@@ -33,4 +33,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](README.md) | [Próximo](README.md)
+[Anterior](README.md) | [Próximo](03_eventos.md)
