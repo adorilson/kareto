@@ -65,4 +65,4 @@ receber.
 
 Que comece o show.
 
-[Próximo](02_sou_um_artista.md)
+[Próximo](02_cria_dançarino.md)
