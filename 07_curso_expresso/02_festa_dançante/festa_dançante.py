@@ -13,7 +13,7 @@ class Contadora(turtle.Turtle):
         super().__init__()
         self.hideturtle()
         self.penup()
-        self.goto(-200, 150)
+        self.goto(-200, 200)
         self.tempo = 0
         self.tipo = 'Contadora'
         self.atualiza_tempo()
@@ -32,9 +32,9 @@ class Dançarino(turtle.Turtle):
         self.setx(locais[local])
         self.shape('turtle')
         self.shapesize(3)
-        self.showturtle()
         self.posicao_base = 90
         self.setheading(self.posicao_base)
+        self.showturtle()
         self.mexe_direita()
         self.tipo = tipo
 
@@ -109,7 +109,10 @@ def defina(tipo, propriedade, valor):
         m(valor)
 
 
-turtle.setup(420, 420)
+turtle.setup(500, 500)
 turtle.listen()
 
 Contadora()
+
+if __name__=='__main__':
+    turtle.mainloop()
