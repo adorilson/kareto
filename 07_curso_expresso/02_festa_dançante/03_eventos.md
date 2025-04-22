@@ -48,7 +48,7 @@ não restrito a `festa_dançante`.
   - `move`: inicia movimentos para um posição aleatória do palco
   - `rodopia`: inicia giros de 360º
 
-Você pode conectar qualquer tecla a qualquer um desses movimentos usando onkey.
+Você pode conectar qualquer tecla a qualquer um desses movimentos usando `turtle.onkey`.
 Aqui vão mais exemplos:
 
 ```python
