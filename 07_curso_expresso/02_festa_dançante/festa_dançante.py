@@ -43,6 +43,7 @@ class Dançarino(turtle.Turtle):
         self.proximo_balanço = 'mexe_direita'
         self.balança()
 
+        self.rodopiando = False
     def _balança(self, lado):
          if self.balançando:
             metodo = getattr(self, lado)
@@ -66,10 +67,16 @@ class Dançarino(turtle.Turtle):
     def anda_direita(self):
         self.setx(self.xcor()+10)
 
+    def _rodopia(self):
+        if self.rodopiando:
+            for _ in range(4):
+                self.left(90)
+
+            turtle.ontimer(self._rodopia, 4000)
+
     def rodopia(self):
-        for _ in range(4):
-            self.left(90)
-        turtle.ontimer(self.rodopia, 4000)
+        self.rodopiando = not self.rodopiando
+        self._rodopia()
 
     def move(self):
         x = random.randint(-150, 150)
@@ -80,6 +87,7 @@ class Dançarino(turtle.Turtle):
 
     def para_tudo(self):
         self.balançando = False
+        self.rodopiando = False
 
 def cria_dançarino(tipo, local):
     dançarino = Dançarino(tipo, local)
