@@ -46,6 +46,12 @@ class Dançarino(turtle.Turtle):
         self.rodopiando = False
         self.movendo = False
 
+    def muda_cor(self):
+        r = random.randint(1, 255)
+        g = random.randint(1, 255)
+        b = random.randint(1, 255)
+        self.color(r, g, b)
+
     def _balança(self, lado):
          if self.balançando:
             metodo = getattr(self, lado)
@@ -141,6 +147,7 @@ def defina(tipo, propriedade, valor):
         m(valor)
 
 
+turtle.colormode(255)
 turtle.setup(500, 500)
 turtle.listen()
 
@@ -151,6 +158,7 @@ if __name__=='__main__':
 
     turtle.onkey(d.rodopia, 'r')
     turtle.onkey(d.balança, 'b')
+    turtle.onkey(d.muda_cor, 'c')
     turtle.onkey(d.move, 'm')
     turtle.onkey(d.para_tudo, 'p')
 
