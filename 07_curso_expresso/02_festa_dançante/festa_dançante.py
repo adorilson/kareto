@@ -26,7 +26,9 @@ class Contadora(turtle.Turtle):
 
 
 class Dançarino(turtle.Turtle):
-    def __init__(self, tipo, local='Centro'):
+    metodos_balanço = {'mexe_direita': 'mexe_esquerda',
+                    'mexe_esquerda': 'mexe_direita'}
+
         turtle.Turtle.__init__(self, visible=False)
         self.penup()
         self.setx(locais[local])
@@ -35,16 +37,28 @@ class Dançarino(turtle.Turtle):
         self.posicao_base = 90
         self.setheading(self.posicao_base)
         self.showturtle()
-        self.mexe_direita()
         self.tipo = tipo
+
+        self.balançando = False
+        self.proximo_balanço = 'mexe_direita'
+        self.balança()
+
+    def _balança(self, lado):
+         if self.balançando:
+            metodo = getattr(self, lado)
+            metodo()
+            turtle.ontimer(lambda: self._balança(self.proximo_balanço), 1000)
+            self.proximo_balanço = self.metodos_balanço[self.proximo_balanço]
+
+    def balança(self):
+        self.balançando = not self.balançando
+        self._balança(self.proximo_balanço)
 
     def mexe_direita(self):
         self.setheading(self.posicao_base + 5)
-        turtle.ontimer(self.mexe_esquerda, 1000)
 
     def mexe_esquerda(self):
         self.setheading(self.posicao_base - 5)
-        turtle.ontimer(self.mexe_direita, 1000)
 
     def anda_esquerda(self):
         self.setx(self.xcor()-10)
@@ -64,6 +78,8 @@ class Dançarino(turtle.Turtle):
 
         turtle.ontimer(self.move, 3000)
 
+    def para_tudo(self):
+        self.balançando = False
 
 def cria_dançarino(tipo, local):
     dançarino = Dançarino(tipo, local)

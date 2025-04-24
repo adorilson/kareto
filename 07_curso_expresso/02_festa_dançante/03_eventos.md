@@ -45,7 +45,7 @@ não restrito a `festa_dançante`.
 - Os **nomes dos métodos** vêm prontos no módulo `festa_dançante`, como:
   - `anda_direita`: move na horizontal para a direita
   - `anda_esquerda`: move na horizontal para a esquerda
-  - `move`: inicia movimentos para um posição aleatória do palco
+  - `balança`: liga/desliga o balançar da dançarina
   - `rodopia`: inicia giros de 360º
 
 Você pode conectar qualquer tecla a qualquer um desses movimentos usando `turtle.onkey`.
