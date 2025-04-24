@@ -46,6 +46,18 @@ class Dançarino(turtle.Turtle):
         self.rodopiando = False
         self.movendo = False
 
+    def aleatório(self):
+        ações = (self.mexe_direita, self.mexe_esquerda,
+                 self.anda_direita, self.anda_esquerda,
+                 self.faz_rodopio, self.rodopia,
+                 self.balança,
+                 self.move, self._move,
+                 self.para_tudo,
+                 self.muda_cor,
+        )
+        ação = random.choice(ações)
+        ação()
+
     def muda_cor(self):
         r = random.randint(1, 255)
         g = random.randint(1, 255)
@@ -158,6 +170,7 @@ Contadora()
 if __name__=='__main__':
     d = Dançarino()
 
+    turtle.onkey(d.aleatório, 'a')
     turtle.onkey(d.rodopia, 'r')
     turtle.onkey(d.balança, 'b')
     turtle.onkey(d.muda_cor, 'c')
