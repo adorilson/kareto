@@ -104,4 +104,4 @@ dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')
 turtle.mainloop()
 ```
 
-[Anterior](02_cria_dançarino.md) | [Próximo](README.md)
+[Anterior](02_cria_dançarino.md) | [Próximo](04_dois_dançarinos.md)
