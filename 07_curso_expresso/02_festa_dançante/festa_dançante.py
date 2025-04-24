@@ -29,6 +29,7 @@ class Dançarino(turtle.Turtle):
     metodos_balanço = {'mexe_direita': 'mexe_esquerda',
                     'mexe_esquerda': 'mexe_direita'}
 
+    def __init__(self, tipo='Principal', local='Centro'):
         turtle.Turtle.__init__(self, visible=False)
         self.penup()
         self.setx(locais[local])
