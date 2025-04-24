@@ -44,6 +44,8 @@ class Dançarino(turtle.Turtle):
         self.balança()
 
         self.rodopiando = False
+        self.movendo = False
+
     def _balança(self, lado):
          if self.balançando:
             metodo = getattr(self, lado)
@@ -78,16 +80,22 @@ class Dançarino(turtle.Turtle):
         self.rodopiando = not self.rodopiando
         self._rodopia()
 
-    def move(self):
-        x = random.randint(-150, 150)
-        y = random.randint(-150, 150)
-        self.goto(x, y)
+    def _move(self):
+        if self.movendo:
+            x = random.randint(-150, 150)
+            y = random.randint(-150, 150)
+            self.goto(x, y)
 
-        turtle.ontimer(self.move, 3000)
+            turtle.ontimer(self._move, 3000)
+
+    def move(self):
+        self.movendo = not self.movendo
+        self._move()
 
     def para_tudo(self):
         self.balançando = False
         self.rodopiando = False
+        self.movendo = False
 
 def cria_dançarino(tipo, local):
     dançarino = Dançarino(tipo, local)
@@ -143,6 +151,7 @@ if __name__=='__main__':
 
     turtle.onkey(d.rodopia, 'r')
     turtle.onkey(d.balança, 'b')
+    turtle.onkey(d.move, 'm')
     turtle.onkey(d.para_tudo, 'p')
 
     turtle.listen()

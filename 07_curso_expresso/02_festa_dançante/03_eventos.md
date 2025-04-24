@@ -46,6 +46,7 @@ não restrito a `festa_dançante`.
   - `anda_direita`: move na horizontal para a direita
   - `anda_esquerda`: move na horizontal para a esquerda
   - `balança`: liga/desliga o balançar da dançarina
+  - `move`: liga/desliga a movimentação para posições aleatórias do palco
   - `rodopia`: inicia giros de 360º
 
 Você pode conectar qualquer tecla a qualquer um desses movimentos usando `turtle.onkey`.
