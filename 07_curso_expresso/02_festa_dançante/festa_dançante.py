@@ -75,11 +75,13 @@ class Dançarino(turtle.Turtle):
     def anda_direita(self):
         self.setx(self.xcor()+10)
 
+    def faz_rodopio(self):
+        for _ in range(4):
+            self.left(90)
+
     def _rodopia(self):
         if self.rodopiando:
-            for _ in range(4):
-                self.left(90)
-
+            self.faz_rodopio()
             turtle.ontimer(self._rodopia, 4000)
 
     def rodopia(self):
