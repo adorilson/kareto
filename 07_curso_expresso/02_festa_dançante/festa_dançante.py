@@ -139,4 +139,11 @@ turtle.listen()
 Contadora()
 
 if __name__=='__main__':
+    d = Dançarino()
+
+    turtle.onkey(d.rodopia, 'r')
+    turtle.onkey(d.balança, 'b')
+    turtle.onkey(d.para_tudo, 'p')
+
+    turtle.listen()
     turtle.mainloop()
