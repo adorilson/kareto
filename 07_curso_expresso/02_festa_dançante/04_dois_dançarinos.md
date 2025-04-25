@@ -79,4 +79,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](03_eventos.md) | [Próximo](04_dois_dançarinos.md)
+[Anterior](03_eventos.md) | [Próximo](05_compassos.md)
