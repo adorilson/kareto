@@ -71,4 +71,4 @@ turtle.ontimer(None, 4000)
 turtle.mainloop()
 ```
 
-[Anterior](04_dois_dançarinos.md) | [Próximo](05_compassos.md)
+[Anterior](04_dois_dançarinos.md) | [Próximo](06_vamos_curtir.md)
