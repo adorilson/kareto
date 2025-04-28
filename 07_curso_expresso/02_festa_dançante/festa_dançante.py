@@ -157,8 +157,12 @@ def a_cada_compasso(fun, compasso=3):
 
 
 def defina(tipo, propriedade, valor):
-    for t in turtle.turtles():
-        m = getattr(t, propriedade)
+    dançarinos = tuple(filter(lambda t: t.tipo==tipo, turtle.turtles()))
+    if not dançarinos:
+        raise turtle.TurtleGraphicsError(f'Tipo de dançarino inexistente.: {tipo}')
+
+    for d in dançarinos:
+        m = getattr(d, propriedade)
         m(valor)
 
 
