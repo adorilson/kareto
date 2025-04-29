@@ -1,3 +1,4 @@
+from functools import partial
 import turtle
 import random
 
@@ -138,7 +139,7 @@ def cria_dançarinos_apoio(quantidade, tipo, local):
     turtle.tracer(1)
 
 
-def muda_palco(repete=0):
+def muda_palco():
     import random
 
     cores = ["lightyellow", "lightblue", "lightcyan",  "lightgray",
@@ -148,12 +149,15 @@ def muda_palco(repete=0):
     palco = turtle.Screen()
     palco.bgcolor(cor)
 
-    if repete:
-        turtle.ontimer(lambda: muda_palco(repete),  1000*repete)
 
+def a_cada_compasso(func, compasso=3, *args, **kwargs):
+    func_com_args = partial(func, *args, **kwargs)
 
-def a_cada_compasso(fun, compasso=3):
-    turtle.ontimer(lambda: fun(compasso), 1000*compasso)
+    def repetidor():
+        func_com_args()
+        turtle.ontimer(repetidor, 1000 * compasso)
+
+    turtle.ontimer(repetidor, 1000 * compasso)
 
 
 def defina(tipo, propriedade, valor):
@@ -181,6 +185,8 @@ if __name__=='__main__':
     turtle.onkey(d.muda_cor, 'c')
     turtle.onkey(d.move, 'm')
     turtle.onkey(d.para_tudo, 'p')
+    a_cada_compasso(muda_palco, 2)
+    a_cada_compasso(cria_dançarino, 3, 'Apoio', 'Centro')
 
     turtle.listen()
     turtle.mainloop()
