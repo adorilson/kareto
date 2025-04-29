@@ -176,8 +176,30 @@ turtle.listen()
 
 Contadora()
 
+
+def escolhe_uma_dançarina(tipo='Principal'):
+    dançarinos = filter(lambda t: isinstance(t, Dançarino), turtle.turtles())
+    t = random.choice(tuple(dançarinos))
+    return t
+
+
+def move_uma():
+    t = escolhe_uma_dançarina()
+    # um comportamento muito estranho que não tá inicializando
+    # a dançarina corretamente, então ela fica sem um monte
+    # de atributos definidos no __init__
+    # colocando isso para rodar tempo suficiente, vai aparecer
+    # esse situação
+    print('Foi escolhida', t)
+    if hasattr(t, 'movendo'):
+        t.move()
+    else:
+        print(f'Não tem movendo: {t}', dir(t))
+
+
 if __name__=='__main__':
-    d = Dançarino()
+    d = cria_dançarino('Principal', 'Centro')
+    cria_dançarinos_apoio(10, 'Apoio', 'Circulo')
 
     turtle.onkey(d.aleatório, 'a')
     turtle.onkey(d.rodopia, 'r')
@@ -185,8 +207,14 @@ if __name__=='__main__':
     turtle.onkey(d.muda_cor, 'c')
     turtle.onkey(d.move, 'm')
     turtle.onkey(d.para_tudo, 'p')
+
+    turtle.ontimer(lambda: defina('Apoio', 'fillcolor', 'red'), 3000)
+    turtle.ontimer(lambda: defina('Apoio', 'pencolor', 'blue'), 3000)
+
     a_cada_compasso(muda_palco, 2)
     a_cada_compasso(cria_dançarino, 3, 'Apoio', 'Centro')
+
+    a_cada_compasso(move_uma, 1)
 
     turtle.listen()
     turtle.mainloop()
