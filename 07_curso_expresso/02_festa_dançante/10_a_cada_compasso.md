@@ -92,4 +92,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](08_propriedades.md) | [Próximo](09_mais_propriedades.md)
+[Anterior](09_mais_propriedades.md) | [Próximo](11_festa_dançante.md)
