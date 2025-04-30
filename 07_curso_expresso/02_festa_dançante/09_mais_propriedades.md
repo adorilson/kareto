@@ -149,4 +149,4 @@ turtle.mainloop()
 ```
 
 
-[Anterior](08_propriedades.md) | [Próximo](09_mais_propriedades.md)
+[Anterior](08_propriedades.md) | [Próximo](10_a_cada_compasso.md)
