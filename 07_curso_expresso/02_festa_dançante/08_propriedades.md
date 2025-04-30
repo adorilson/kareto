@@ -27,37 +27,37 @@ Para fazer isso, você vai usar um **bloco de definição**: um jeito de dizer a
 Depois de colocar dançarinos no palco com os blocos `cria_dançarino` ou `cria_dançarino_apoio`, você poderá utilizar o novo bloco de definição:
 
 ```python
-festa_dançante.defina('Principal', 'color', 'red'))
+festa_dançante.defina("Principal", "color", "red"))
 ```
-- o primeiro argumento (`'Principal'`) é **tipo** do dançarino que você usou
+- o primeiro argumento (`"Principal"`) é o **tipo** do dançarino que você usou
 na criação. Este valor vai depender do valor que você usou na criação dos
 dançarinos.
-- o segundo (`'color'`) é a **propriedade** que você quer definir. O valor
+- o segundo (`"color"`) é a **propriedade** que você quer definir. O valor
 deste argumento é predefinido no módulo `turtle`, veremos mais valores depois.
 - e o terceiro é o **novo valor** da propriedade. Os valores aqui dependem
-do propriedade sendo definida. Por exemplo, se for `'color'` será o nome
-de uma cor em inglês, já para `shapesize`, que define o tamanho do dançarino,
+do propriedade sendo definida. Por exemplo, se for `"color"` será o nome
+de uma cor em inglês, já para `"shapesize"`, que define o tamanho do dançarino,
 será um número maior que zero.
 
 Veremos outras propriedades possíveis no próximo passo.
 
-Agora, defina `'color'` do seu dançarino principal e do apoio para cores
-diferentes. Atente que isso deverá ser feita duas instruções.
+Agora, defina `"color"` do seu dançarino principal e do apoio para cores
+diferentes. Atente que isso deverá ser feita em duas instruções.
 
 ![Propriedades](08_propriedades.gif "Propriedades")
 
 
 ## Caixa de ferramentas
 
-`dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')`
+`dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`
 
-`festa_dançante.cria_dançarinos_apoio(10, 'Apoio', 'Circulo')`
+`festa_dançante.cria_dançarinos_apoio(10, "Apoio", "Circulo")`
 
 `festa_dançante.muda_palco()`
 
-`festa_dançante.defina('Principal', 'color', 'red')`
+`festa_dançante.defina("Principal", "color", "red")`
 
-`festa_dançante.defina('Apoio', 'color', 'blue')`
+`festa_dançante.defina("Apoio", "color", "blue")`
 
 
 ## Código inicial
@@ -70,9 +70,9 @@ import festa_dançante
 
 festa_dançante.muda_palco()
 
-festa_dançante.cria_dançarino('Principal', 'Centro')
+festa_dançante.cria_dançarino("Principal", "Centro")
 
-festa_dançante.cria_dançarinos_apoio(10, 'Apoio', 'Circulo')
+festa_dançante.cria_dançarinos_apoio(10, "Apoio", "Circulo")
 
 turtle.mainloop()
 

@@ -7,12 +7,12 @@ inteiro** para dançar junto!
 Use o novo bloco mágico:
 
 ```python
-festa_dançante.cria_dançarinos_apoio(10, 'Apoio', 'Circulo')
+festa_dançante.cria_dançarinos_apoio(10, "Apoio", "Circulo")
 ```
 
 - O primeiro argumento (`10`) indica **quantos dançarinos** você quer criar.
-- O segundo (`'Apoio'`) é o **nome do grupo**.
-- o terceiro (`'Circulo'`) é a **formação inicial** dos dançarinos.
+- O segundo (`"Apoio"`) é o **nome do grupo**.
+- o terceiro (`"Circulo"`) é a **formação inicial** dos dançarinos.
 
 Assim, de uma vez só, você solta um grupo inteiro na pista — prontos para
 seguir seu dançarino principal ou arrasar em coreografias próprias!
@@ -39,9 +39,9 @@ Agora com dançarinos de apoio e cenários que mudam de cor, sua festa vai ser u
 
 ## Caixa de ferramentas
 
-`dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')`
+`dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`
 
-`festa_dançante.cria_dançarinos_apoio(10, 'Apoio', 'Circulo')`
+`festa_dançante.cria_dançarinos_apoio(10, "Apoio", "Circulo")`
 
 `festa_dançante.muda_palco()`
 

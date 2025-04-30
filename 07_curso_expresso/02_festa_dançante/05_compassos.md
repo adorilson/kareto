@@ -8,7 +8,9 @@ Mas e se a dança começasse sozinha, seguindo o ritmo da música?
 
 Na música, os dançarinos costumam contar os **tempos** para saber quando
 entrar em cena. A maioria das músicas populares segue um padrão chamado
-**compasso**, que normalmente tem quatro tempos. Você já deve ter ouvido alguém contando: “um, dois, três, quatro…” antes de começar a dança. Isso é um compasso!
+**compasso**, que normalmente tem quatro tempos. Você já deve ter ouvido
+alguém contando: “um, dois, três, quatro…” antes de começar a dança. Isso
+é um compasso!
 
 Na nossa festa dançante, 1 compasso equivale a 1 segundo.
 
@@ -22,7 +24,7 @@ turtle.ontimer(dançarino.ação, milissegundos)
 Essa função permite que você diga ao seu dançarino para esperar um tempo específico antes de iniciar um movimento. É como se ele estivesse ouvindo a batida, se preparando — e aí, no tempo certo… BAM! Começa a coreografia.
 
 Observe que o tempo deve ser passado em milisegundos, portanto se você quer que o 
-dançarino faça um rodopio até 4 segundos, deve fazer:
+dançarino faça um rodopio **após** 4 segundos, deve fazer:
 
 ```python
 turtle.ontimer(dançarino.faz_rodopio, 4000)
@@ -40,9 +42,9 @@ Fique atento ao contador de compassos na tela e pense:
 
 `dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')`
 
-`dançarino.anda_direita(???, ???)`
+`dançarino.anda_direita()`
 
-`dançarino.anda_esquerda(???, ???)`
+`dançarino.anda_esquerda()`
 
 `dançarino.aleatório()`
 
@@ -64,7 +66,7 @@ import turtle
 
 import festa_dançante
 
-dançarino = festa_dançante.cria_dançarino('turtle', 'Centro')
+dançarino = festa_dançante.cria_dançarino("Principal", "Centro")
 
 turtle.ontimer(None, 4000)
 

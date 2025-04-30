@@ -2,11 +2,11 @@ import turtle
 
 import festa_dançante
 
-d = festa_dançante.cria_dançarino('turtle', 'Centro')
+d = festa_dançante.cria_dançarino("Principal", "Centro")
 
-festa_dançante.cria_dançarinos_apoio(10, 'turtle', 'Circulo')
+festa_dançante.cria_dançarinos_apoio(10, "Apoio", "Circulo")
 
-# Essa linha está comentada para não dar erro de sintaxe
+# Essa linha abaixo está comentada para não dar erro de sintaxe
 #festa_dançante.a_cada_compasso(???, ???)
 
 # Comece removendo o # do inicio dela e depois alterando os ???

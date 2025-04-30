@@ -3,7 +3,7 @@ import turtle
 
 import festa_dançante
 
-dançarino = festa_dançante.cria_dançarino('turtle', 'Centro')
+dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')
 
 turtle.ontimer(dançarino.faz_rodopio, 4000)
 

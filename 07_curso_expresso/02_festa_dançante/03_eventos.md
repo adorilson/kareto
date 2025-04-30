@@ -59,10 +59,13 @@ turtle.onkey(dançarino.anda_esquerda, "Left")
 turtle.onkey(dançarino.anda_direita, "space")
 ```
 
-🔠 Quando a tecla for uma letra, como "a", "b", ou "z", você pode escrevê-la
+🔠 Quando a tecla for uma letra, como `"a"`, `"b"`, ou `"z"`, você pode escrevê-la
 diretamente como string.
 
-⚠️ Algumas teclas, como as setas ("Up", "Down", "Left", "Right") ou a barra de espaço ("space"), têm nomes especiais que você precisa escrever do jeito certo. O nome é sempre uma string sensível a maiúsculas e minúsculas — ou seja, "Up" é diferente de "up".
+⚠️ Algumas teclas, como as setas (`"Up"`, `"Down"`, `"Left"`, `"Right"`) ou a
+barra de espaço (`"space"`), têm nomes especiais que você precisa escrever do
+jeito certo. O nome é sempre uma string sensível a maiúsculas e minúsculas —
+ou seja, `"Up"` é diferente de `"up"`.
 
 Abaixo, temos um palco com uma dançarina que dá passo de lado conforme as
 teclas para direita e esquerda são pressionadas.
@@ -75,11 +78,11 @@ teclas para direita e esquerda são pressionadas.
 
 `import festa_dançante`
 
-`dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')`
+`dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`
 
-`dançarino.anda_direita(???, ???)`
+`dançarino.anda_direita()`
 
-`dançarino.anda_esquerda(???, ???)`
+`dançarino.anda_esquerda()`
 
 `dançarino.balança()`
 
@@ -97,7 +100,7 @@ teclas para direita e esquerda são pressionadas.
 import turtle
 import festa_dançante
 
-dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')
+dançarino = festa_dançante.cria_dançarino("Principal", "Centro")
 
 
 

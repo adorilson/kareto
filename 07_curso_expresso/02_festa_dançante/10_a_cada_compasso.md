@@ -17,11 +17,11 @@ coisas.
 
 Foi por isso que `festa_dançante` ganhou um novo bloco especial:
 
-```
-festa_dançante.a_cada_compasso(???, ???)
+```python
+festa_dançante.a_cada_compasso(muda_palco, 3)
 ```
 
-Essa linha vai chamar a função pisca_luz a cada 3 segundos — simples assim!
+Essa linha vai chamar a função `muda_palco`` a cada 3 compassos — simples assim!
 
 O melhor de tudo é que não precisa alterar a função original, nem usar 
 comandos avançados. O `festa_dançante` faz esse trabalho nos bastidores.
@@ -43,11 +43,11 @@ Neste exemplo, estamos mudando o palco a cada 3 compassos.
 
 ## Caixa de ferramentas
 
-`festa_dançante.muda_palco()`
-
 `festa_dançante.a_cada_compasso(???, ???)`
 
 `festa_dançante.defina(???, ???, ???)`
+
+`festa_dançante.muda_palco()`
 
 `dançarino.setposition(???)`
 
@@ -72,20 +72,20 @@ Neste exemplo, estamos mudando o palco a cada 3 compassos.
 ## Código inicial
 
 ```python
-# a partir do anterior
 import turtle
 
 import festa_dançante
 
-festa_dançante.muda_palco()
+d = festa_dançante.cria_dançarino("Principal", "Centro")
 
-festa_dançante.cria_dançarino('Principal', 'Centro')
+festa_dançante.cria_dançarinos_apoio(10, "Apoio", "Circulo")
 
-festa_dançante.cria_dançarinos_apoio(10, 'Apoio', 'Circulo')
+# Essa linha abaixo está comentada para não dar erro de sintaxe
+#festa_dançante.a_cada_compasso(???, ???)
 
-festa_dançante.defina('Principal', 'color', 'red')
-
-festa_dançante.defina('Apoio', 'color', 'blue')
+# Comece removendo o # do inicio dela e depois alterando os ???
+# pelos valores dos argumentos. Então acrescente outras chamadas
+# a a_cada_compasso para alterar outras propriedades das dançarinas 
 
 turtle.mainloop()
 

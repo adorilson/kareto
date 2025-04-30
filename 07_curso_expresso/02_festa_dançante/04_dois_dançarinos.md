@@ -13,7 +13,7 @@ totalmente imprevisível!
 Quando você abrir o código inicial, verá uma linha assim:
 
 ```python
-turtle.onkey(None, 'Down')
+turtle.onkey(None, "Down")
 ```
 
 Essa linha traz uma palavra-reservada do Python: `None`.
@@ -22,7 +22,7 @@ Em Python, `None` representa a **ausência de valor**. É como dizer:
 "não tem nada aqui... ainda".
 
 Neste exemplo, usamos `None` para dizer que **nenhuma ação está associada à
-tecla 'Down'**. Se não colocássemos nada ali, o Python daria um erro de
+tecla `"Down"`**. Se não colocássemos nada ali, o Python daria um erro de
 sintaxe. `None` funciona como um marcador de "sem ação definida".
 
 Você também verá o `None` em outras situações — por exemplo, quando uma função
@@ -46,11 +46,11 @@ para te entregar"
 
 `import festa_dançante`
 
-`dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')`
+`dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`
 
-`dançarino.anda_direita(???, ???)`
+`dançarino.anda_direita()`
 
-`dançarino.anda_esquerda(???, ???)`
+`dançarino.anda_esquerda()`
 
 `dançarino.aleatório()`
 
@@ -69,11 +69,11 @@ para te entregar"
 import turtle
 import festa_dançante
 
-dançarino_um = festa_dançante.cria_dançarino('Um', 'Direita')
-dançarino_dois = festa_dançante.cria_dançarino('Dois', 'Esquerda') 
+dançarino_um = festa_dançante.cria_dançarino("Um", "Direita")
+dançarino_dois = festa_dançante.cria_dançarino("Dois", "Esquerda") 
 
-turtle.onkey(dançarino_um.aleatório, 'Up') 
-turtle.onkey(None, 'Down')
+turtle.onkey(dançarino_um.aleatório, "Up") 
+turtle.onkey(None, "Down")
 
 turtle.mainloop()
 ```

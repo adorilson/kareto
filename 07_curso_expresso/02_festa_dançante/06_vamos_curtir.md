@@ -11,13 +11,13 @@ outro passo. Por exemplo, usar o novo método `dançarino.muda_cor`.
 
 ## Caixa de ferramentas
 
-`import festa_dançante`
+`import turtle, festa_dançante`
 
-`dançarino = festa_dançante.cria_dançarino('Principal', 'Centro')`
+`dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`
 
-`dançarino.anda_direita(???, ???)`
+`dançarino.anda_direita()`
 
-`dançarino.anda_esquerda(???, ???)`
+`dançarino.anda_esquerda()`
 
 `dançarino.aleatório()`
 
@@ -42,12 +42,9 @@ import turtle
 
 import festa_dançante
 
-dançarino = festa_dançante.cria_dançarino('turtle', 'Centro')
+dançarino = festa_dançante.cria_dançarino("Principal", "Centro")
 
-turtle.ontimer(dançarino.rodopia, 4000)
-
-
-turtle.mainloop()
+turtle.ontimer(dançarino.faz_rodopio, 4000)
 
 ```
 
