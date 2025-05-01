@@ -3,9 +3,9 @@ import turtle
 import random
 
 
-locais = {'Direita': 150,
-          'Esquerda': -150,
-          'Centro': 0,
+locais = {"Direita": 150,
+          "Esquerda": -150,
+          "Centro": 0,
           }
 
 
@@ -16,37 +16,38 @@ class Contadora(turtle.Turtle):
         self.penup()
         self.goto(-200, 200)
         self.tempo = 0
-        self.tipo = 'Contadora'
+        self.tipo = "Contadora"
         self.atualiza_tempo()
 
     def atualiza_tempo(self):
         self.clear()
-        self.write(f'Compasso: {self.tempo}', font=('Arial', 20, 'bold'))
+        self.write(f"Compasso: {self.tempo}", font=("Arial", 20, "bold"))
         self.tempo = self.tempo + 1
         turtle.ontimer(self.atualiza_tempo, 1000)
 
 
 class Dançarino(turtle.Turtle):
-    metodos_balanço = {'mexe_direita': 'mexe_esquerda',
-                    'mexe_esquerda': 'mexe_direita'}
+    metodos_balanço = {"mexe_direita": "mexe_esquerda",
+                    "mexe_esquerda": "mexe_direita"}
 
-    def __init__(self, tipo='Principal', local='Centro'):
+    def __init__(self, tipo="Principal", local="Centro"):
         turtle.Turtle.__init__(self, visible=False)
         self.penup()
         self.setx(locais[local])
-        self.shape('turtle')
+        self.shape("turtle")
         self.shapesize(3)
+
+        self.tipo = tipo
         self.posicao_base = 90
         self.setheading(self.posicao_base)
-        self.showturtle()
-        self.tipo = tipo
 
         self.balançando = False
-        self.proximo_balanço = 'mexe_direita'
-        self.balança()
-
+        self.proximo_balanço = "mexe_direita"
         self.rodopiando = False
         self.movendo = False
+
+        self.showturtle()
+        self.balança()
 
     def aleatório(self):
         ações = (self.mexe_direita, self.mexe_esquerda,
@@ -130,7 +131,7 @@ def cria_dançarinos_apoio(quantidade, tipo, local):
     for q in range(quantidade):
         apoio = Dançarino(tipo)
         apoio.penup()
-        apoio.shape('turtle')
+        apoio.shape("turtle")
         apoio.shapesize(2)
         apoio.setheading(posicao_base*(q+1))
         apoio.forward(150)
@@ -163,7 +164,7 @@ def a_cada_compasso(func, compasso=3, *args, **kwargs):
 def defina(tipo, propriedade, valor):
     dançarinos = tuple(filter(lambda t: t.tipo==tipo, turtle.turtles()))
     if not dançarinos:
-        raise turtle.TurtleGraphicsError(f'Tipo de dançarino inexistente.: {tipo}')
+        raise turtle.TurtleGraphicsError(f"Tipo de dançarino inexistente.: {tipo}")
 
     for d in dançarinos:
         m = getattr(d, propriedade)
@@ -177,7 +178,7 @@ turtle.listen()
 Contadora()
 
 
-def escolhe_uma_dançarina(tipo='Principal'):
+def escolhe_uma_dançarina(tipo="Principal"):
     dançarinos = filter(lambda t: isinstance(t, Dançarino), turtle.turtles())
     t = random.choice(tuple(dançarinos))
     return t
@@ -190,29 +191,29 @@ def move_uma():
     # de atributos definidos no __init__
     # colocando isso para rodar tempo suficiente, vai aparecer
     # esse situação
-    print('Foi escolhida', t)
-    if hasattr(t, 'movendo'):
+    print("Foi escolhida", t)
+    if hasattr(t, "movendo"):
         t.move()
     else:
-        print(f'Não tem movendo: {t}', dir(t))
+        print(f"Não tem movendo: {t}", dir(t))
 
 
-if __name__=='__main__':
-    d = cria_dançarino('Principal', 'Centro')
-    cria_dançarinos_apoio(10, 'Apoio', 'Circulo')
+if __name__=="__main__":
+    d = cria_dançarino("Principal", "Centro")
+    cria_dançarinos_apoio(10, "Apoio", "Circulo")
 
-    turtle.onkey(d.aleatório, 'a')
-    turtle.onkey(d.rodopia, 'r')
-    turtle.onkey(d.balança, 'b')
-    turtle.onkey(d.muda_cor, 'c')
-    turtle.onkey(d.move, 'm')
-    turtle.onkey(d.para_tudo, 'p')
+    turtle.onkey(d.aleatório, "a")
+    turtle.onkey(d.rodopia, "r")
+    turtle.onkey(d.balança, "b")
+    turtle.onkey(d.muda_cor, "c")
+    turtle.onkey(d.move, "m")
+    turtle.onkey(d.para_tudo, "p")
 
-    turtle.ontimer(lambda: defina('Apoio', 'fillcolor', 'red'), 3000)
-    turtle.ontimer(lambda: defina('Apoio', 'pencolor', 'blue'), 3000)
+    turtle.ontimer(lambda: defina("Apoio", "fillcolor", "red"), 3000)
+    turtle.ontimer(lambda: defina("Apoio", "pencolor", "blue"), 3000)
 
     a_cada_compasso(muda_palco, 2)
-    a_cada_compasso(cria_dançarino, 3, 'Apoio', 'Centro')
+    a_cada_compasso(cria_dançarino, 3, "Apoio", "Centro")
 
     a_cada_compasso(move_uma, 1)
 
