@@ -32,6 +32,9 @@ ou reações automáticas da sua coreografia.
 
 Dá para imaginar várias ideias legais a partir disso, né?
 
+
+## Sua vez de praticar
+
 Ao colocar os outros novos blocos na sua caixa de ferramentas dentro do
 bloco de repetição, você pode alterar repetidamente as propriedades dos
 dançarinos ao longo do tempo. Seja criativo e divirta-se!

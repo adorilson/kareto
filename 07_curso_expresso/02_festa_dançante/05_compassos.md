@@ -36,6 +36,12 @@ Fique atento ao contador de compassos na tela e pense:
 ![Compassos](05_compassos.gif "Compassos")
 
 
+## Sua vez de praticar
+
+O código inicial já contém a chamada ao `turtle.ontimer`, mas a tartaruga não
+faz o rodopio no momento esperado. Faça isso acontecer.
+
+
 ## Caixa de ferramentas
 
 `import festa_dançante`

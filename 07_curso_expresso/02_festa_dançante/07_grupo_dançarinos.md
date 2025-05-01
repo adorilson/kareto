@@ -37,6 +37,11 @@ Agora com dançarinos de apoio e cenários que mudam de cor, sua festa vai ser u
 ![Grupo de dançarinos](07_grupo_dançarinos.gif "Grupo de dançarinos")
 
 
+## Sua vez de praticar
+
+Adicione um dançarino principal e 10 dançarinos de apoio ao seu palco.
+
+
 ## Caixa de ferramentas
 
 `dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`

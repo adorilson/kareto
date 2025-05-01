@@ -14,8 +14,10 @@ de tempo. Observe que a dançarina balança a cada 1 compasso (que equivale a 1 
 
 ![Dançarina](02_cria_dançarina.gif "Dançarina")
 
-O palco do código inicial não tem a dançarina. Você deverá
-adicioná-la.
+
+## Sua vez de praticar
+
+O palco do código inicial não tem a dançarina. Você deverá adicioná-la.
 
 
 ## Caixa de ferramentas

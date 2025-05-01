@@ -72,6 +72,13 @@ teclas para direita e esquerda são pressionadas.
 
 ![Dançarina](03_eventos.gif "Dançarina")
 
+
+## Sua vez de praticar
+
+A dançarina do palco do código inicial balança, mas não responde às teclas
+de direita e esquerda. Você deverá fazer isso.
+
+
 ## Caixa de ferramentas
 
 `import turtle`

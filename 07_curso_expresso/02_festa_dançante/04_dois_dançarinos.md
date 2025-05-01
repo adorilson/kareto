@@ -1,6 +1,11 @@
 # Dois dançarinos!
 
-É hora de uma dança! Programe cada dançarino para se mover quando você
+É hora de uma dança!
+
+
+## Sua vez de praticar
+
+Programe cada dançarino para se mover quando você
 pressionar teclas diferentes. Escolha seu movimento favorito para cada
 dançarino ou até mesmo `aleatório()` (um novo método) para fazer algo
 totalmente imprevisível!
