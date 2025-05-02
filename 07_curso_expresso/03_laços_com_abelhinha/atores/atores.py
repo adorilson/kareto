@@ -1,13 +1,24 @@
+import os
 import turtle
 import time
 import random
 
-ABELHA_LESTE = "abelha_leste.gif"
-ABELHA_NORTE = "abelha_norte.gif"
-ABELHA_OESTE = "abelha_oeste.gif"
-ABELHA_SUL = "abelha_sul.gif"
 
-GIRASSOL = "girassol.gif"
+
+def caminho(nome_arquivo):
+    """Retornar o caminho completo para `nome_arquivo`."""
+    caminho = os.path.realpath(__file__)
+    diretorio = os.path.dirname(caminho)
+    caminho_completo = os.path.join(diretorio, nome_arquivo)
+    return caminho_completo
+
+
+ABELHA_LESTE = caminho("abelha_leste.gif")
+ABELHA_NORTE = caminho("abelha_norte.gif")
+ABELHA_OESTE = caminho("abelha_oeste.gif")
+ABELHA_SUL = caminho("abelha_sul.gif")
+
+GIRASSOL = caminho("girassol.gif")
 
 turtle.register_shape(ABELHA_LESTE)
 turtle.register_shape(ABELHA_OESTE)
