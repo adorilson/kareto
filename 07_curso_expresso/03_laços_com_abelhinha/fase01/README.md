@@ -47,4 +47,4 @@ turtle.mainloop()
 
 ```
 
-[Anterior](../README.md) | [Próximo](fase01/README.md)
+[Anterior](../README.md) | [Próximo](../fase02/README.md)
