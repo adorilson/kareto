@@ -1,0 +1,4 @@
+import turtle
+
+
+turtle.mainloop()

@@ -96,7 +96,3 @@ abelha = configurar_abelha()
 
 laço_principal()
 time.sleep(0.3)
-
-
-if __name__ == "__main__":
-    turtle.mainloop()
