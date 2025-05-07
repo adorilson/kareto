@@ -20,20 +20,19 @@ O que você acha que vai acontecer quando você executar o código abaixo?
 1) Bee moverá apenas 3 espaços
 
 
-## Sua vez de praticar
+## 🐝 Sua vez de praticar
 
 Use o código inicial para enviar sua resposta.
 
 
-## Caixa de ferramentas
-
+## 🧰 Caixa de ferramentas
 
 `resposta = "Escreva sua resposta aqui"`
 
 `print(resposta)`
 
 
-## Código inicial
+## 💻 Código inicial
 
 ```python
 resposta = "Escreva sua resposta aqui"

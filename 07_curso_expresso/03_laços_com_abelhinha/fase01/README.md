@@ -6,7 +6,7 @@ comando não recebe argumentos e a abelhinha avança exatamente um quadradinho
 no seu mundo a cada vez que que ela recebe essa mensagem.
 
 
-## Sua vez de praticar
+## 🐝 Sua vez de praticar
 
 Faça a abelhinha avançar por todas as flores. Aqui, não é preciso
 comando específico para a coleta do néctar. Basta a abelha chegar até a flor
@@ -16,7 +16,7 @@ para o néctar ser colhido e a flor desaparecer.
 ![Coletando néctar](cenario_01.png "Coletando néctar")
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `import turtle`
 
@@ -29,7 +29,7 @@ para o néctar ser colhido e a flor desaparecer.
 `turtle.mainloop()`
 
 
-## Código inicial
+## 💻 Código inicial
 
 ```python
 import turtle
@@ -46,5 +46,6 @@ bee = Abelha()
 turtle.mainloop()
 
 ```
+
 
 [Anterior](../README.md) | [Próximo](../fase02/README.md)

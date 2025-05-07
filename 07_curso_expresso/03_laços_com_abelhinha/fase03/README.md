@@ -59,7 +59,7 @@ está rodando.
 
 Mais adiante veremos outras formas de usar esses mesmo elementos.
 
-## Sua vez de praticar
+## 🐝 Sua vez de praticar
 
 O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinha avançar por todas os girassóis — mas desta vez usando a instrução
 `for n in range(5):`
@@ -68,7 +68,7 @@ O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinh
 ![Coletando néctar](cenario_01.png "Coletando néctar")
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 ### Mundo (turtle)
 
@@ -89,7 +89,7 @@ O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinh
 - `for n in range(???):`
 
 
-## Código inicial
+## 💻 Código inicial
 
 ```python
 # a partir da solução do aluno para a fase 1
