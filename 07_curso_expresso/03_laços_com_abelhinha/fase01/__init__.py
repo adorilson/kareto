@@ -2,7 +2,7 @@ import random
 import turtle
 import time
 
-from atores import atores
+import atores
 
 LINHAS = 8
 COLUNAS = 8

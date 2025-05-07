@@ -78,9 +78,9 @@ O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinh
 
 ### Abelhinha
 
-- `import fase01`
+- `from fase01 import Abelha`
 
-- `bee = fase01.Abelha()`
+- `bee = Abelha()`
 
 - `bee.avance()`
 
