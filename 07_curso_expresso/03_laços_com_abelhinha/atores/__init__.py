@@ -3,6 +3,7 @@ import turtle
 import time
 import random
 
+from enum import IntEnum
 
 
 def caminho(nome_arquivo):
@@ -41,24 +42,64 @@ def xy(celula, centralizar=False):
     return ((celula % 8) * 50 - 200 + centralizar*25), (200 - (celula // 8) * 50 - centralizar*25)
 
 
+class DIRECAO(IntEnum):
+    LESTE = 0
+    NORTE = 90
+    OESTE = 180
+    SUL = 270
+
+
 class Abelha(turtle.Turtle):
     def __init__(self):
         super().__init__(visible=False)
         self.apareça = super().showturtle
         self.esconda = super().hideturtle
         self.penup()
-        self.shape(ABELHA_LESTE)
+        self.shape(ABELHA_LESTE)    # TODO: reduzir essas duas instruções para
+        self.setheading(DIRECAO.LESTE) # apenas uma, possivelmente a mudança de
+                                        # shape encapsulada no setheading,
+                                        # como já funciona em Turtle
 
     def atualize(self):
         x, y = xy(self.posicao, centralizar=True)
         self.goto(x, y)
         turtle.update()
 
+    def avance_leste(self):
+        self.posicao = self.posicao + 1
+
+    def avance_sul(self):
+        self.posicao = self.posicao + 8
+
     def avance(self):
         time.sleep(0.5)
-        self.posicao += 1
+
+        match self.heading():
+            case DIRECAO.LESTE:
+                self.avance_leste()
+            case DIRECAO.SUL:
+                self.avance_sul()
+            case _:
+                raise turtle.TurtleGraphicsError(f"Direção não implementada: {self.heading()=}.")
+
         self.atualize()
+
         time.sleep(0.5)
+
+    def vire_sul(self):
+        self.setheading(DIRECAO.SUL)
+        self.shape(ABELHA_SUL)
+
+    def direita(self):
+        time.sleep(0.3)
+
+        match self.heading():
+            case DIRECAO.LESTE:
+                self.vire_sul()
+            case _:
+                raise turtle.TurtleGraphicsError(f"Direção não implementada: {self.heading()=}.")
+
+        self.atualize()
 
 
 class Girassol(turtle.Turtle):
