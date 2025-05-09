@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "kareto"
+version = "0.1.0"
+description = "Projeto com fins educativos para ensino/aprendizagem de introdução à programação"
+authors = ["Adorilson Bezerra <adorilson.bezerra@escolar.ifrn.edu.br>"]
+license = "GPLv3"
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.8"
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+taskipy = "^1.14.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+line-length = 79
+
+
+[tool.ruff.lint]
+preview = true
+select = ["I", "F", "E", "W", "PL", "PT"]
+ignore = ["PLC2401"]
+
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore `PLC0415` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
+"tests/test_exercicioXXX.py" = ["PLC0415", "F401"]
+
+
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "-p no:warnings"
+
+
+[tool.taskipy.tasks]
+lint = "ruff check"
+pre_format = "ruff check --fix"
+format = "ruff format"
+#pre_test = "task lint"
+test = "pytest -s -x --cov=. -vv"
+#post_test = "coverage html"
