@@ -1,14 +1,15 @@
-import turtle
-import time
-
-from atores import *
-
 import builtins
+import time
+import turtle
+
+from atores import Abelha, Girassol, configurar_janela
+
 
 def print(arg):
     """Função que encapsula um time.sleep"""
     builtins.print(arg)
     time.sleep(0.2)
+
 
 configurar_janela()
 bee = Abelha()
@@ -43,4 +44,3 @@ bee.direita()
 
 turtle.update()
 turtle.mainloop()
-

@@ -1,6 +1,6 @@
 import random
-import turtle
 import time
+import turtle
 
 import atores
 

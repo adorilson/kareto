@@ -9,7 +9,7 @@ Exercícios
 import turtle
 
 touche = turtle.Turtle()
-touche.color('red')
+touche.color("red")
 
 touche.forward(100)
 touche.left(90)

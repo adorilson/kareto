@@ -1,8 +1,6 @@
 import os
-import turtle
 import time
-import random
-
+import turtle
 from enum import IntEnum
 
 
@@ -27,6 +25,7 @@ turtle.register_shape(ABELHA_NORTE)
 turtle.register_shape(ABELHA_SUL)
 turtle.register_shape(GIRASSOL)
 
+
 def configurar_janela():
     tela = turtle.Screen()
     tela.setup(420, 420)
@@ -38,8 +37,11 @@ def configurar_janela():
 
 
 def xy(celula, centralizar=False):
-    """Converte um número de célula para coordenadas (x, y), com origem no canto superior esquerdo."""
-    return ((celula % 8) * 50 - 200 + centralizar*25), (200 - (celula // 8) * 50 - centralizar*25)
+    """Converte um número de célula para coordenadas (x, y),
+    com origem no canto superior esquerdo."""
+    return ((celula % 8) * 50 - 200 + centralizar * 25), (
+        200 - (celula // 8) * 50 - centralizar * 25
+    )
 
 
 class DIRECAO(IntEnum):
@@ -55,10 +57,12 @@ class Abelha(turtle.Turtle):
         self.apareça = super().showturtle
         self.esconda = super().hideturtle
         self.penup()
-        self.shape(ABELHA_LESTE)    # TODO: reduzir essas duas instruções para
-        self.setheading(DIRECAO.LESTE) # apenas uma, possivelmente a mudança de
-                                        # shape encapsulada no setheading,
-                                        # como já funciona em Turtle
+        self.shape(ABELHA_LESTE)  # TODO: reduzir essas duas instruções para
+        self.setheading(
+            DIRECAO.LESTE
+        )  # apenas uma, possivelmente a mudança de
+        # shape encapsulada no setheading,
+        # como já funciona em Turtle
 
     def atualize(self):
         x, y = xy(self.posicao, centralizar=True)
@@ -80,7 +84,9 @@ class Abelha(turtle.Turtle):
             case DIRECAO.SUL:
                 self.avance_sul()
             case _:
-                raise turtle.TurtleGraphicsError(f"Direção não implementada: {self.heading()=}.")
+                raise turtle.TurtleGraphicsError(
+                    f"Direção não implementada: {self.heading()=}."
+                )
 
         self.atualize()
 
@@ -97,7 +103,9 @@ class Abelha(turtle.Turtle):
             case DIRECAO.LESTE:
                 self.vire_sul()
             case _:
-                raise turtle.TurtleGraphicsError(f"Direção não implementada: {self.heading()=}.")
+                raise turtle.TurtleGraphicsError(
+                    f"Direção não implementada: {self.heading()=}."
+                )
 
         self.atualize()
 
@@ -114,4 +122,3 @@ class Girassol(turtle.Turtle):
         x, y = xy(self.posicao, centralizar=True)
         self.goto(x, y)
         turtle.update()
-

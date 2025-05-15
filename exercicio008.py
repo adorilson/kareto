@@ -6,13 +6,13 @@ Exercicios
 3) Aumente a quantidade de linhas
 """
 
-import turtle
 import random
+import turtle
 
 leonardo = turtle.Turtle()
 
-cores = ['purple', 'blue', 'yellow', 'green', 'pink']
-for _ in range (8):
+cores = ["purple", "blue", "yellow", "green", "pink"]
+for _ in range(8):
     cor = random.choice(cores)
     leonardo.color(cor)
     leonardo.forward(100)

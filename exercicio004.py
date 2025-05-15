@@ -8,11 +8,11 @@ Veja os nomes de cores válidos em: https://www.w3schools.com/colors/colors_name
 4) Mude a largura da linha
 """
 
-import turtle
 import random
+import turtle
 
 kame = turtle.Turtle()
-cores = 'red', 'purple', 'blue'
+cores = "red", "purple", "blue"
 
 for _ in [1, 2, 3]:
     cor = random.choice(cores)

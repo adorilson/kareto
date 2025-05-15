@@ -12,7 +12,7 @@ import turtle
 oogway = turtle.Turtle()
 oogway.pensize(5)
 
-for color in ['blue', 'black', 'red', 'pink']:
+for color in ["blue", "black", "red", "pink"]:
     oogway.color(color)
     oogway.forward(100)
     oogway.right(90)

@@ -25,22 +25,30 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 79
+target-version = "py312"
 
 
 [tool.ruff.lint]
 preview = true
 select = ["I", "F", "E", "W", "PL", "PT"]
-ignore = ["PLC2401"]
-
-
-[tool.ruff.format]
-preview = true
-quote-style = "double"
+ignore = ["PLC2401", "PLC2403", "PLR6104", "E303", "E265", "E266", "PLC0415", "E262"]
 
 
 [tool.ruff.lint.per-file-ignores]
 # Ignore `PLC0415` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
 "tests/test_exercicioXXX.py" = ["PLC0415", "F401"]
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+# Esses arquivos estão excluidos até que seja possível definir regras a serem ignoradas
+# para a formatação, da mesma forma que fazemos com o lint. Outra opção é colocarmos
+# esses arquivos sob um nome com algum padrão, assim evitamos pular todo o diretório
+exclude = ["03_HoraCodigo/*",
+           "07_curso_expresso/01_criando_arte_com_codigo/*",
+           "07_curso_expresso/02_festa_dançante/*",
+        ]
+
 
 
 
@@ -50,8 +58,8 @@ addopts = "-p no:warnings"
 
 
 [tool.taskipy.tasks]
-lint = "ruff check"
-pre_format = "ruff check --fix"
+#lint = "ruff check"
+#pre_format = "ruff check --fix"
 format = "ruff format"
 #pre_test = "task lint"
 test = "pytest -s -x --cov=. -vv"

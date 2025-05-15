@@ -8,7 +8,7 @@ Exercicios:
 import turtle
 
 michelangelo = turtle.Turtle()
-michelangelo.color('green')
+michelangelo.color("green")
 
 for _ in range(4):
     michelangelo.left(90)
@@ -19,5 +19,5 @@ michelangelo.backward(100)
 michelangelo.right(90)
 
 for _ in range(3):
-  michelangelo.forward(100)
-  michelangelo.left(90)
+    michelangelo.forward(100)
+    michelangelo.left(90)

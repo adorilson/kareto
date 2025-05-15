@@ -1,9 +1,10 @@
 import turtle
+
 from fase01 import Abelha
 
 bee = Abelha()
 
-## Seu código a partir aqui
+# Seu código a partir aqui
 
 bee.avance()
 bee.avance()

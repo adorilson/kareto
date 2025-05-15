@@ -10,6 +10,6 @@ import turtle
 raphael = turtle.Turtle()
 
 for _ in range(360):
-    raphael.color('red')
+    raphael.color("red")
     raphael.forward(1)
     raphael.right(1)

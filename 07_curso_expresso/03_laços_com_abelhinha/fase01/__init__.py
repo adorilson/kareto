@@ -1,6 +1,6 @@
 import random
-import turtle
 import time
+import turtle
 
 import atores
 
@@ -66,7 +66,7 @@ def adicionar_girassois():
 
     girassol2 = atores.Girassol()
     girassol2.posicao = 37
-    
+
     girassol3 = atores.Girassol()
     girassol3.posicao = 38
 

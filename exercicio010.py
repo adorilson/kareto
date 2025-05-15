@@ -16,13 +16,13 @@ for _ in range(4):
     touché.right(90)
 
 for _ in range(4):
-   touché.left(90)
-   touché.forward(100)
+    touché.left(90)
+    touché.forward(100)
 
 for _ in range(4):
-   touché.forward(100)
-   touché.left(90)
+    touché.forward(100)
+    touché.left(90)
 
 for _ in range(4):
-   touché.right(90)
-   touché.forward(100)
+    touché.right(90)
+    touché.forward(100)

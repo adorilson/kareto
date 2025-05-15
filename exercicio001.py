@@ -10,7 +10,7 @@ coisa que as atuais
 import turtle
 
 crush = turtle.Turtle()
-crush.shape('turtle')
+crush.shape("turtle")
 
 crush.forward(100)
 crush.forward(100)
