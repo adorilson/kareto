@@ -65,4 +65,41 @@ receber.
 
 Que comece o show.
 
+
+## 💃 Sua vez de praticar
+
+1) Crie uma pasta onde você colocará todos seus exercícios.
+1) Faça o download do módulo festa_dançante [clicando aqui](https://raw.githubusercontent.com/adorilson/kareto/refs/heads/main/07_curso_expresso/02_festa_dan%C3%A7ante/festa_dan%C3%A7ante.py) e salve nessa pasta com
+o nome `festa_dançante.py`.
+1) Copie o código inicial deste exercício, crie um novo arquivo no VS Code
+e cole o código inicial nele.
+1) Salve este arquivo na pasta criada.
+1) Execute o arquivo e veja o seu palco com um contador de compassos.
+
+![Palco da festa dançante](README.gif "Palco da festa dançante")
+
+## 🧰 Caixa de ferramentas
+
+`import turtle`
+
+`import festa_dançante`
+
+`turtle.mainloop()`
+
+
+## 💻 Código inicial
+
+```python
+import turtle
+
+import festa_dançante
+
+# Seus códigos ficarão principalmente a partir daqui
+
+
+
+turtle.mainloop()
+```
+
+
 [Próximo](02_cria_dançarino.md)
