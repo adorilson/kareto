@@ -1,12 +1,11 @@
-# Eventos: dançando no ritmo!
+# 🕹️ Hora de interagir: eventos
 
-Quando estamos numa festa de verdade, os passos de dança mudam conforme a música toca ou quando alguém faz um movimento novo na pista, certo? No mundo da programação, quem comanda esses momentos mágicos são os **eventos**.
+Quando estamos numa festa de verdade, os passos de dança mudam conforme a
+música toca ou quando alguém faz um movimento novo na pista, certo? No
+mundo da programação, quem comanda esses momentos mágicos são os **eventos**.
 
-## 🕺 O que são eventos?
-
-Eventos são como sinais que o computador pode escutar e reagir imediatamente.
-Eles dizem:
-“Ei, algo aconteceu! Hora de agir!”
+Eventos são ações que acontecem — como apertar uma tecla, mover o mouse ou o
+tempo passando — e seu programa pode **responder a esses eventos!**
 
 Alguns exemplos comuns de eventos:
 
@@ -14,6 +13,22 @@ Alguns exemplos comuns de eventos:
 - Uma tecla foi pressionada no teclado
 - O tempo passou
 - Um toque aconteceu na tela
+
+Eventos são como sinais que o computador pode escutar e reagir imediatamente.
+Eles dizem:
+“Ei, algo aconteceu! Hora de agir!”
+
+Com isso, sua ~~tartaruga~~ dançarina poderá:
+
+- Dançar quando uma tecla for pressionada.
+- Fazer uma pose a cada intervalo de tempo.
+- Reagir ao comando de iniciar ou parar a festa.
+
+Essa é uma introdução ao que chamamos de **programação orientada a eventos**.
+Ao invés de seguir uma sequência fixa de comandos, o seu programa agora ficará
+atento ao que está acontecendo, pronto para agir de acordo com os sinais que
+receber.
+
 
 ## 💡 Como usamos isso na nossa festa dançante?
 

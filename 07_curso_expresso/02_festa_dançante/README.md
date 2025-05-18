@@ -46,23 +46,6 @@ e responder a eventos de maneira mais simples e divertida. Ele expande e
 personaliza as funcionalidades do `turtle`, permitindo que você se concentre
 no que realmente importa agora: colocar sua tartaruga para dançar! 💃🐢
 
-## 🕹️ Hora de Interagir!
-
-O novo conceito que vamos explorar agora é o de **eventos**.
-Eventos são ações que acontecem — como apertar uma tecla, mover o mouse ou o
-tempo passando — e seu programa pode **responder a esses eventos!**
-
-Com isso, sua tartaruga poderá:
-
-- Dançar quando uma tecla for pressionada.
-- Fazer uma pose a cada intervalo de tempo.
-- Reagir ao comando de iniciar ou parar a festa.
-
-Essa é uma introdução ao que chamamos de **programação orientada a eventos**.
-Ao invés de seguir uma sequência fixa de comandos, o seu programa agora ficará
-atento ao que está acontecendo, pronto para agir de acordo com os sinais que
-receber.
-
 Que comece o show.
 
 
