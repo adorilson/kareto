@@ -89,7 +89,8 @@ festa_dançante.defina("Principal", "shapesize", 10)
 
 Assim você altera todos os dançarinos com o papel "Principal" de uma vez só! 🎶✨
 
-## Sua vez de praticar
+
+## 💃 Sua vez de praticar
 
 Crie um palco com duas dançarinas principais e 10 dançarinas de apoio.
 Depois, altere pelo menos duas propriedades de cada dançarina principal e das
@@ -99,7 +100,7 @@ dançarinas de apoio.
 ![Mais propriedades](09_mais_propriedades.gif "Mais propriedades")
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`
 
@@ -127,7 +128,8 @@ dançarinas de apoio.
 
 `dançarino.shapesize(???)`
 
-## Código inicial
+
+## 💻 Código inicial
 
 ```python
 # a partir do anterior

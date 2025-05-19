@@ -1,9 +1,9 @@
-# Dois dançarinos!
+# 👯‍♂️ Dois dançarinos!
 
 É hora de uma dança!
 
 
-## Sua vez de praticar
+## 💃 Sua vez de praticar
 
 Programe cada dançarino para se mover quando você
 pressionar teclas diferentes. Escolha seu movimento favorito para cada
@@ -13,7 +13,7 @@ totalmente imprevisível!
 ![Dois dançarinos](04_dois_dançarinos.gif "Dois dançarinos")
 
 
-## O nada também é importante
+### O nada também é importante
 
 Quando você abrir o código inicial, verá uma linha assim:
 
@@ -46,8 +46,7 @@ None
 Ou seja: o Python está dizendo "Missão cumprida, mas não tenho nenhum valor
 para te entregar"
 
-
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `import festa_dançante`
 
@@ -67,8 +66,7 @@ para te entregar"
 
 `turtle.onkey(???, ???)`
 
-
-## Código inicial
+## 💻 Código inicial
 
 ```python
 import turtle

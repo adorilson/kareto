@@ -33,7 +33,7 @@ ou reações automáticas da sua coreografia.
 Dá para imaginar várias ideias legais a partir disso, né?
 
 
-## Sua vez de praticar
+## 💃 Sua vez de praticar
 
 Ao colocar os outros novos blocos na sua caixa de ferramentas dentro do
 bloco de repetição, você pode alterar repetidamente as propriedades dos
@@ -44,7 +44,7 @@ Neste exemplo, estamos mudando o palco a cada 3 compassos.
 ![A cada compasso](10_a_cada_compasso.gif "A cada compasso")
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `festa_dançante.a_cada_compasso(???, ???)`
 
@@ -72,7 +72,8 @@ Neste exemplo, estamos mudando o palco a cada 3 compassos.
 
 `dançarino.shapesize(???)`
 
-## Código inicial
+
+## 💻 Código inicial
 
 ```python
 import turtle

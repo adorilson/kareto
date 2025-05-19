@@ -61,6 +61,7 @@ e cole o código inicial nele.
 
 ![Palco da festa dançante](README.gif "Palco da festa dançante")
 
+
 ## 🧰 Caixa de ferramentas
 
 `import turtle`

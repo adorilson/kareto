@@ -1,4 +1,4 @@
-# Colocando uma dançarina no palco
+# 🕺🏻 Colocando uma dançarina no palco
 
 O primeiro bloco do módulo `festa_dançante` que iremos utilizar é o
 `cria_dançarino(???, ???)`.
@@ -15,12 +15,12 @@ de tempo. Observe que a dançarina balança a cada 1 compasso (que equivale a 1 
 ![Dançarina](02_cria_dançarina.gif "Dançarina")
 
 
-## Sua vez de praticar
+## 💃 Sua vez de praticar
 
 O palco do código inicial não tem a dançarina. Você deverá adicioná-la.
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 ```import turtle```
 
@@ -31,7 +31,7 @@ O palco do código inicial não tem a dançarina. Você deverá adicioná-la.
 ```turtle.mainloop()```
 
 
-## Código inicial
+## 💻 Código inicial
 
 Copie e cole no seu editor, salve o arquivo e execute antes de fazer qualquer
 alteração.

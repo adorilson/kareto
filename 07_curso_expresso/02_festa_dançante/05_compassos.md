@@ -1,4 +1,4 @@
-# Hora do show!
+# 🪩 Hora do show!
 
 Até agora, vimos como controlar os dançarinos com as **teclas do teclado**.
 Mas e se a dança começasse sozinha, seguindo o ritmo da música?
@@ -36,13 +36,13 @@ Fique atento ao contador de compassos na tela e pense:
 ![Compassos](05_compassos.gif "Compassos")
 
 
-## Sua vez de praticar
+## 💃 Sua vez de praticar
 
 O código inicial já contém a chamada ao `turtle.ontimer`, mas a tartaruga não
 faz o rodopio no momento esperado. Faça isso acontecer.
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `import festa_dançante`
 
@@ -65,7 +65,8 @@ faz o rodopio no momento esperado. Faça isso acontecer.
 `turtle.ontimer(???, ???)`
 
 
-## Código inicial
+## 💻 Código inicial
+
 
 ```python
 import turtle

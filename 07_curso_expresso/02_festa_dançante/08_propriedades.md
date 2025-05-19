@@ -42,7 +42,7 @@ será um número maior que zero.
 Veremos outras propriedades possíveis no próximo passo.
 
 
-## Sua vez de praticar
+## 💃 Sua vez de praticar
 
 Agora, defina `"color"` do seu dançarino principal e do apoio para cores
 diferentes. Atente que isso deverá ser feita em duas instruções.
@@ -50,7 +50,7 @@ diferentes. Atente que isso deverá ser feita em duas instruções.
 ![Propriedades](08_propriedades.gif "Propriedades")
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `dançarino = festa_dançante.cria_dançarino("Principal", "Centro")`
 
@@ -63,7 +63,7 @@ diferentes. Atente que isso deverá ser feita em duas instruções.
 `festa_dançante.defina("Apoio", "color", "blue")`
 
 
-## Código inicial
+## 💻 Código inicial
 
 ```python
 # a partir do anterior

@@ -88,13 +88,13 @@ teclas para direita e esquerda são pressionadas.
 ![Dançarina](03_eventos.gif "Dançarina")
 
 
-## Sua vez de praticar
+## 💃 Sua vez de praticar
 
 A dançarina do palco do código inicial balança, mas não responde às teclas
 de direita e esquerda. Você deverá fazer isso.
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `import turtle`
 
@@ -116,7 +116,8 @@ de direita e esquerda. Você deverá fazer isso.
 
 `turtle.mainloop()`
 
-## Código inicial
+
+## 💻 Código inicial
 
 ```python
 import turtle

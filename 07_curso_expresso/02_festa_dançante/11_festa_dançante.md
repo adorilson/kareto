@@ -138,7 +138,8 @@ pressionada. Exemplos de teclas: `"Right"`, `"Left"`, `"a"`, `"space"`, `"A"`.
 - `festa_dançante.a_cada_compasso(função, compasso)` - executa `função` a cada
 `compasso` compassos.
 
-# Código inicial
+
+## 💻 Código inicial
 
 ```python
 

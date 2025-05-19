@@ -1,4 +1,8 @@
-# Vamos curtir
+# 🎼 Vamos curtir
+
+Mais controle de tempo.
+
+## 💃 Sua vez de praticar
 
 Agora, adicione um bloco `turtle.ontimer` e faça seu dançarino(a) iniciar/fazer
 um novo movimento após 6 compassos.
@@ -9,7 +13,7 @@ outro passo. Por exemplo, usar o novo método `dançarino.muda_cor`.
 ![Curtindo](06_vamos_curtir.gif "Curtindo")
 
 
-## Caixa de ferramentas
+## 🧰 Caixa de ferramentas
 
 `import turtle, festa_dançante`
 
@@ -34,7 +38,7 @@ outro passo. Por exemplo, usar o novo método `dançarino.muda_cor`.
 `turtle.ontimer(???, ???)`
 
 
-## Código inicial
+## 💻 Código inicial
 
 ```python
 # a partir do anterior
