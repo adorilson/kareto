@@ -75,6 +75,9 @@ class Abelha(turtle.Turtle):
     def avance_sul(self):
         self.posicao = self.posicao + 8
 
+    def avance_oeste(self):
+        self.posicao = self.posicao - 1
+
     def avance(self):
         time.sleep(0.5)
 
@@ -83,6 +86,8 @@ class Abelha(turtle.Turtle):
                 self.avance_leste()
             case DIRECAO.SUL:
                 self.avance_sul()
+            case DIRECAO.OESTE:
+                self.avance_oeste()
             case _:
                 raise turtle.TurtleGraphicsError(
                     f"Direção não implementada: {self.heading()=}."
