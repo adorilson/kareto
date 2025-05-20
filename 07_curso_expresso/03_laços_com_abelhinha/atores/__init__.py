@@ -96,6 +96,10 @@ class Abelha(turtle.Turtle):
         self.setheading(DIRECAO.SUL)
         self.shape(ABELHA_SUL)
 
+    def vire_oeste(self):
+        self.setheading(DIRECAO.OESTE)
+        self.shape(ABELHA_OESTE)
+
     def direita(self):
         time.sleep(0.3)
 
