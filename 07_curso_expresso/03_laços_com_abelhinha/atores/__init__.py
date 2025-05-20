@@ -57,6 +57,7 @@ class Abelha(turtle.Turtle):
         self.apareça = super().showturtle
         self.esconda = super().hideturtle
         self.penup()
+        self.posicao = 0
         self.shape(ABELHA_LESTE)  # TODO: reduzir essas duas instruções para
         self.setheading(
             DIRECAO.LESTE

@@ -1,4 +1,8 @@
-from atores import Abelha, DIRECAO, ABELHA_OESTE
+
+
+def test_abelha_propriedades_publicas():
+    bee = Abelha()
+    assert bee.posicao == 0
 
 
 def test_abelha_vire_oeste():
