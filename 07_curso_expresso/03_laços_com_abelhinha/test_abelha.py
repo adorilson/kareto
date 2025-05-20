@@ -33,3 +33,9 @@ def test_abelha_avance():
     bee.vire_oeste()
     bee.avance()
     assert bee.posicao == 9
+
+    bee.vire_norte()
+    bee.avance()
+    assert bee.posicao == 1
+
+
