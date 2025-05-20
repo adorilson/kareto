@@ -125,6 +125,12 @@ class Abelha(turtle.Turtle):
         match self.heading():
             case DIRECAO.LESTE:
                 self.vire_sul()
+            case DIRECAO.OESTE:
+                self.vire_norte()
+            case DIRECAO.NORTE:
+                self.vire_leste()
+            case DIRECAO.SUL:
+                self.vire_oeste()
             case _:
                 raise turtle.TurtleGraphicsError(
                     f"Direção não implementada: {self.heading()=}."

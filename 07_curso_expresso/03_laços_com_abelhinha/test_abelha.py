@@ -1,4 +1,4 @@
-from atores import Abelha, DIRECAO, ABELHA_LESTE, ABELHA_OESTE, ABELHA_NORTE
+from atores import Abelha, DIRECAO, ABELHA_LESTE, ABELHA_OESTE, ABELHA_NORTE, ABELHA_SUL
 
 
 def test_abelha_propriedades_publicas():
@@ -39,3 +39,22 @@ def test_abelha_avance():
     assert bee.posicao == 1
 
 
+def test_abelha_direita():
+    bee = Abelha()
+    bee.vire_oeste()
+
+    bee.direita()
+    assert bee.heading() == DIRECAO.NORTE
+    assert bee.shape() == ABELHA_NORTE
+
+    bee.direita()
+    assert bee.heading() == DIRECAO.LESTE
+    assert bee.shape() == ABELHA_LESTE
+
+    bee.direita()
+    assert bee.heading() == DIRECAO.SUL
+    assert bee.shape() == ABELHA_SUL
+
+    bee.direita()
+    assert bee.heading() == DIRECAO.OESTE
+    assert bee.shape() == ABELHA_OESTE
