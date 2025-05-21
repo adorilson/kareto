@@ -2,17 +2,17 @@ import turtle
 
 from fase04 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 # Seu código a partir aqui
 
 for n in range(4):
-    bee.avance()
+    maia.avance()
 
-bee.direita()
+maia.direita()
 
 for n in range(5):
-    bee.avance()
+    maia.avance()
 
 # Fim do seu código aqui
 

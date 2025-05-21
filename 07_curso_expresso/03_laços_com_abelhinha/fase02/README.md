@@ -14,10 +14,10 @@ O que você acha que vai acontecer quando você executar o código abaixo?
     ol { list-style-type: upper-alpha; }
 </style>
 
-1) Bee não irá se mover
-1) Bee irá se mover apenas um espaço
-1) Bee irá se mover 5 vezes e pegará nectar de todas os girassóis
-1) Bee moverá apenas 3 espaços
+1) Maia não irá se mover
+1) Maia irá se mover apenas um espaço
+1) Maia irá se mover 5 vezes e pegará nectar de todas os girassóis
+1) Maia moverá apenas 3 espaços
 
 
 ## 🐝 Sua vez de praticar

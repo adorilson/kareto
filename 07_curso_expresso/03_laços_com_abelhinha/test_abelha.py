@@ -4,58 +4,58 @@ from atores import Abelha, DIRECAO, ABELHA_LESTE, ABELHA_OESTE, ABELHA_NORTE, AB
 
 
 @pytest.fixture
-def bee():
+def maia():
     return Abelha()
 
-def test_abelha_propriedades_publicas(bee):
-    assert bee.posicao == 0
+def test_abelha_propriedades_publicas(maia):
+    assert maia.posicao == 0
 
 
-def test_abelha_vire_oeste(bee):
-    bee.vire_oeste()
-    assert bee.heading() == DIRECAO.OESTE
-    assert bee.shape() == ABELHA_OESTE
+def test_abelha_vire_oeste(maia):
+    maia.vire_oeste()
+    assert maia.heading() == DIRECAO.OESTE
+    assert maia.shape() == ABELHA_OESTE
 
 
-def test_abelha_vire_norte(bee):
-    bee.vire_norte()
-    assert bee.heading() == DIRECAO.NORTE
-    assert bee.shape() == ABELHA_NORTE
+def test_abelha_vire_norte(maia):
+    maia.vire_norte()
+    assert maia.heading() == DIRECAO.NORTE
+    assert maia.shape() == ABELHA_NORTE
 
 
-def test_abelha_vire_leste(bee):
-    bee.vire_leste()
-    assert bee.heading() == DIRECAO.LESTE
-    assert bee.shape() == ABELHA_LESTE
+def test_abelha_vire_leste(maia):
+    maia.vire_leste()
+    assert maia.heading() == DIRECAO.LESTE
+    assert maia.shape() == ABELHA_LESTE
 
 
-def test_abelha_avance(bee):
-    bee.posicao = 10
+def test_abelha_avance(maia):
+    maia.posicao = 10
 
-    bee.vire_oeste()
-    bee.avance()
-    assert bee.posicao == 9
+    maia.vire_oeste()
+    maia.avance()
+    assert maia.posicao == 9
 
-    bee.vire_norte()
-    bee.avance()
-    assert bee.posicao == 1
+    maia.vire_norte()
+    maia.avance()
+    assert maia.posicao == 1
 
 
-def test_abelha_direita(bee):
-    bee.vire_oeste()
+def test_abelha_direita(maia):
+    maia.vire_oeste()
 
-    bee.direita()
-    assert bee.heading() == DIRECAO.NORTE
-    assert bee.shape() == ABELHA_NORTE
+    maia.direita()
+    assert maia.heading() == DIRECAO.NORTE
+    assert maia.shape() == ABELHA_NORTE
 
-    bee.direita()
-    assert bee.heading() == DIRECAO.LESTE
-    assert bee.shape() == ABELHA_LESTE
+    maia.direita()
+    assert maia.heading() == DIRECAO.LESTE
+    assert maia.shape() == ABELHA_LESTE
 
-    bee.direita()
-    assert bee.heading() == DIRECAO.SUL
-    assert bee.shape() == ABELHA_SUL
+    maia.direita()
+    assert maia.heading() == DIRECAO.SUL
+    assert maia.shape() == ABELHA_SUL
 
-    bee.direita()
-    assert bee.heading() == DIRECAO.OESTE
-    assert bee.shape() == ABELHA_OESTE
+    maia.direita()
+    assert maia.heading() == DIRECAO.OESTE
+    assert maia.shape() == ABELHA_OESTE

@@ -1,6 +1,6 @@
 # Coletando néctar
 
-Por enquanto, **Bee** tem apenas um comando: `avance()`, que faz com que ela
+Por enquanto, **Maia** tem apenas um comando: `avance()`, que faz com que ela
 avance para frente. Diferente do comando `forward()` da tartaruga, este
 comando não recebe argumentos e a abelhinha avança exatamente um quadradinho
 no seu mundo a cada vez que que ela recebe essa mensagem.
@@ -22,9 +22,9 @@ para o néctar ser colhido e a flor desaparecer.
 
 `import fase01`
 
-`bee = fase01.Abelha()`
+`maia = fase01.Abelha()`
 
-`bee.avance()`
+`maia.avance()`
 
 `turtle.mainloop()`
 
@@ -35,7 +35,7 @@ para o néctar ser colhido e a flor desaparecer.
 import turtle
 from fase01.fase01 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 ## Seu código a partir aqui
 

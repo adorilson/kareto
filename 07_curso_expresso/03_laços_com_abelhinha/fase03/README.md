@@ -1,4 +1,4 @@
-# Laços de repetição com Bee
+# Laços de repetição com Maia
 
 
 Na fase anterior, você teve um primeiro contato com um novo bloco da linguagem
@@ -7,7 +7,7 @@ Python:
 ![Laço de repetição for](for.png "Laço de repetição for")
 
 Neste caso, o Python está sendo instruído a repetir **5 vezes** a instrução
-`bee.avance()`.
+`maia.avance()`.
 
 Note que os **pontos** entre as palavras no exemplo **não devem ser 
 digitados**. Eles estão apenas substituindo os espaços para você perceba que
@@ -18,7 +18,7 @@ de erro parecida com esta:
 
 ```python
   File "fase02.py", line 7
-    bee.avance()
+    maia.avance()
     ^
 IndentationError: expected an indented block after 'for' statement on line 6
 ```
@@ -80,9 +80,9 @@ O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinh
 
 - `from fase01 import Abelha`
 
-- `bee = Abelha()`
+- `maia = Abelha()`
 
-- `bee.avance()`
+- `maia.avance()`
 
 ### Repetição (Python)
 
@@ -96,15 +96,15 @@ O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinh
 import turtle
 from fase01 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 ## Seu código a partir aqui
 
-bee.avance()
-bee.avance()
-bee.avance()
-bee.avance()
-bee.avance()
+maia.avance()
+maia.avance()
+maia.avance()
+maia.avance()
+maia.avance()
 
 # Fim do seu código aqui
 

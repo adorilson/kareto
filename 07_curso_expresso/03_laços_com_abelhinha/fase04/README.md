@@ -1,12 +1,12 @@
 # Virando à direita
 
-**Bee** tem agora um novo método: `direita()`, que faz com que ela vire à
+**Maia** tem agora um novo método: `direita()`, que faz com que ela vire à
 direita. Diferente do comando `right()` da tartaruga, este não recebe
 argumentos. A rotação é sempre de `90` graus.
 
 ## 🐝 Sua vez de praticar
 
-Com este novo método, e dois laços de repetição, ajude **Bee** a colher todo o
+Com este novo método, e dois laços de repetição, ajude **Maia** a colher todo o
 néctar do jardim usando o menor número possível de instruções.
 
 
@@ -25,11 +25,11 @@ néctar do jardim usando o menor número possível de instruções.
 
 - `from fase04 import Abelha`
 
-- `bee = Abelha()`
+- `maia = Abelha()`
 
-- `bee.avance()`
+- `maia.avance()`
 
-- `bee.direita()`
+- `maia.direita()`
 
 ### Repetição (Python)
 
@@ -42,7 +42,7 @@ néctar do jardim usando o menor número possível de instruções.
 import turtle
 from fase04 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 ## Seu código a partir aqui
 

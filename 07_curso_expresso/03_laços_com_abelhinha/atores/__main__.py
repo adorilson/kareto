@@ -12,10 +12,10 @@ def print(arg):
 
 
 configurar_janela()
-bee = Abelha()
-bee.posicao = 0
-bee.atualize()
-bee.apareça()
+maia = Abelha()
+maia.posicao = 0
+maia.atualize()
+maia.apareça()
 
 
 for posicao in (7, 56, 63):
@@ -24,22 +24,22 @@ for posicao in (7, 56, 63):
     flor.atualize()
     flor.apareça()
 
-print("Temos a Bee e 3 girassois nos cantos")
+print("Temos a Maia e 3 girassois nos cantos")
 
-print("Bee vai andar 3 vezes para o leste")
+print("Maia vai andar 3 vezes para o leste")
 for n in range(3):
-    bee.avance()
+    maia.avance()
 
-print("Bee vai virar a direita")
-bee.direita()
+print("Maia vai virar a direita")
+maia.direita()
 
-print("Bee vai andar 2 vezes para o sul")
+print("Maia vai andar 2 vezes para o sul")
 for n in range(2):
-    bee.avance()
+    maia.avance()
 
 
 print("E agora uma exceção porque a direção não está implementada")
-bee.direita()
+maia.direita()
 
 
 turtle.update()

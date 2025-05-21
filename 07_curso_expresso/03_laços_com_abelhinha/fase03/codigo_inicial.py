@@ -3,15 +3,15 @@ import turtle
 
 from fase01 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 # Seu código a partir aqui
 
-bee.avance()
-bee.avance()
-bee.avance()
-bee.avance()
-bee.avance()
+maia.avance()
+maia.avance()
+maia.avance()
+maia.avance()
+maia.avance()
 
 # Fim do seu código aqui
 

@@ -2,7 +2,7 @@ import turtle
 
 from fase01 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 # Seu código a partir aqui
 

@@ -4,9 +4,9 @@ import turtle
 
 from fase01 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 for _ in range(5):
-    bee.avance()
+    maia.avance()
 
 turtle.mainloop()

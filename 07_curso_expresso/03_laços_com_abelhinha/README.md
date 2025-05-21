@@ -1,9 +1,9 @@
-# Bee, a abelhinha
+# Maia, a abelhinha
 
 <div style="display: flex; align-items: center;">
-    <img src="atores/abelha_leste.gif" alt="Sou a Bee"
+    <img src="atores/abelha_leste.gif" alt="Sou a Maia"
             style="width:50px; margin-right:10px;">
-    <p>Neste mundo, ajudaremos <strong>Bee</strong>, a abelhinha, a coletar
+    <p>Neste mundo, ajudaremos <strong>Maia</strong>, a abelhinha, a coletar
         néctar e a fazer mel.
     </p>
 </div>

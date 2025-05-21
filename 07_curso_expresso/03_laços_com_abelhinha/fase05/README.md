@@ -25,11 +25,11 @@ Fique atento à indentação.
 
 - `from fase05 import Abelha`
 
-- `bee = Abelha()`
+- `maia = Abelha()`
 
-- `bee.avance()`
+- `maia.avance()`
 
-- `bee.direita()`
+- `maia.direita()`
 
 ### Repetição (Python)
 
@@ -42,13 +42,13 @@ Fique atento à indentação.
 import turtle
 from fase05 import Abelha
 
-bee = Abelha()
+maia = Abelha()
 
 
-bee.avance()
-bee.avance()
-bee.avance()
-bee.direita()
+maia.avance()
+maia.avance()
+maia.avance()
+maia.direita()
 
 
 turtle.mainloop()
