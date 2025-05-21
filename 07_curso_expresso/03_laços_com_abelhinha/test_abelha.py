@@ -59,3 +59,21 @@ def test_abelha_direita(maia):
     maia.direita()
     assert maia.heading() == DIRECAO.OESTE
     assert maia.shape() == ABELHA_OESTE
+
+
+def test_abelha_vire_para(maia):
+    maia.vire_para(DIRECAO.SUL)
+    assert maia.heading() == DIRECAO.SUL
+    assert maia.shape() == ABELHA_SUL
+
+    maia.vire_para(DIRECAO.OESTE)
+    assert maia.heading() == DIRECAO.OESTE
+    assert maia.shape() == ABELHA_OESTE
+
+    maia.vire_para(DIRECAO.NORTE)
+    assert maia.heading() == DIRECAO.NORTE
+    assert maia.shape() == ABELHA_NORTE
+
+    maia.vire_para(DIRECAO.LESTE)
+    assert maia.heading() == DIRECAO.LESTE
+    assert maia.shape() == ABELHA_LESTE

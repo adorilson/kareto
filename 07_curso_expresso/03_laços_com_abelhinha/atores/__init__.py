@@ -119,6 +119,21 @@ class Abelha(turtle.Turtle):
         self.setheading(DIRECAO.LESTE)
         self.shape(ABELHA_LESTE)
 
+    def vire_para(self, direção):
+        match direção:
+            case DIRECAO.SUL:
+                self.vire_sul()
+            case DIRECAO.OESTE:
+                self.vire_oeste()
+            case DIRECAO.NORTE:
+                self.vire_norte()
+            case DIRECAO.LESTE:
+                self.vire_leste()
+            case _:
+                raise turtle.TurtleGraphicsError(
+                    f"Direção não implementada: {direção=}."
+                )
+
     def direita(self):
         time.sleep(0.3)
 
