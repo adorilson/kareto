@@ -153,6 +153,25 @@ class Abelha(turtle.Turtle):
 
         self.atualize()
 
+    def esquerda(self):
+        time.sleep(0.3)
+
+        match self.heading():
+            case DIRECAO.LESTE:
+                self.vire_norte()
+            case DIRECAO.OESTE:
+                self.vire_sul()
+            case DIRECAO.NORTE:
+                self.vire_oeste()
+            case DIRECAO.SUL:
+                self.vire_leste()
+            case _:
+                raise turtle.TurtleGraphicsError(
+                    f"Direção não implementada: {self.heading()=}."
+                )
+
+        self.atualize()
+
 
 class Girassol(turtle.Turtle):
     def __init__(self):
