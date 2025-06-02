@@ -70,6 +70,61 @@ meu_projeto/
 
 Agora avance você para a fase 1 para começar a praticar.
 
+## 🐝 Sua vez de praticar
+
+
+1. Crie uma pasta onde você colocará todos seus exercícios.
+1. Faça o download do pacote kareto.
+1. Descompacte o pacote na mesma pasta criada anteriormente.
+1. Abra essa pasta no VS Code.
+1. Copie o código inicial deste exercício.
+1. Crie um novo arquivo no VS Code e cole o código inicial nele.
+1. Salve este arquivo na pasta criada.
+1. Execute o arquivo e veja a abelhinha Maia em um campo de girassóis.
+
+Se tudo deu certo, você verá um campo semelhante a este:
+
+![Maia e um campo de girassóis](fase00/cenario_00.png "Maia e um campo de girassóis")
+
+### Sua estrutura de pastas e arquivos deverá ser semelhante a essa:
+```
+sua_pasta_principal/
+├── kareto/
+│    ├── atores/
+│    ├── fase00/
+│    ├── fase01/
+│    └── fase**/
+├──solucao_fase00.py
+├──solucao_fase01.py
+└──solucao_fase**.py
+```
+
+A pasta do pacote `kareto` e todos seus subpacotes e módulos deverão ter
+exatamente esses nomes, já os arquivos com os seus exercicios
+(`solucao_fase**.py`) poderão ter outros nomes, mas fica essa sugestão de
+organização.
+
+
+## 🧰 Caixa de ferramentas
+
+`import turtle`
+
+`from kareto import fase00`
+
+`turtle.mainloop()`
+
+
+## 💻 Código inicial
+
+```python
+import turtle
+
+from kareto import fase00
+
+
+turtle.mainloop()
+
+```
 
 [Próximo](fase01/README.md)
 
