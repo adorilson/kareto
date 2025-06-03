@@ -8,7 +8,7 @@ no seu mundo a cada vez que que ela recebe essa mensagem.
 
 ## 🐝 Sua vez de praticar
 
-Faça a abelhinha avançar por todas as flores. Aqui, não é preciso
+Faça a abelhinha avançar por todas as girassóis. Aqui, não é preciso
 comando específico para a coleta do néctar. Basta a abelha chegar até a flor
 para o néctar ser colhido e a flor desaparecer.
 
@@ -33,7 +33,7 @@ para o néctar ser colhido e a flor desaparecer.
 
 ```python
 import turtle
-from fase01.fase01 import Abelha
+from fase01 import Abelha
 
 maia = Abelha()
 
@@ -41,7 +41,7 @@ maia = Abelha()
 
 
 
-# Fim do seu código aqui
+## Fim do seu código aqui
 
 turtle.mainloop()
 

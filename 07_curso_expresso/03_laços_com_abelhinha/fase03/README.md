@@ -40,7 +40,7 @@ SyntaxError: expected ':'
 ```
 
 Aqui, o Python está dizendo que esperava dois pontos (`:`) no final da linha
-6, e marca o local exato com o acento circunflexo (`^`).
+`6`, e marca o local exato com o acento circunflexo (`^`).
 
 Agora é sua vez de brincar com esse novo bloco de repetição, que tem a seguinte estrutura (sintaxe):
 
@@ -51,17 +51,18 @@ for n in range(???):
 As instruções colocadas no lugar de `<instruções aqui>` serão repetidas o 
 número de vezes indicado no lugar de `???`:
 
-- **`for`** e **`in`** são **palavras reservadas** da linguagem — você não
-pode usá-las como identificados.
+- **`for`** e **`in`** são **palavras reservadas** da linguagem: você não
+pode usá-las como identificadores.
 - **`n`** é uma **variável temporária**, que só existe enquanto o laço `for` 
 está rodando.
-- **`range`** é uma **função embutida** da linguagem
+- **`range`** é uma **função embutida** da linguagem.
 
-Mais adiante veremos outras formas de usar esses mesmo elementos.
+Mais adiante veremos outras formas de usar esses elementos.
 
 ## 🐝 Sua vez de praticar
 
-O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinha avançar por todas os girassóis — mas desta vez usando a instrução
+O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinha
+avançar por todas os girassóis — mas desta vez usando a instrução
 `for n in range(5):`
 
 
@@ -76,7 +77,7 @@ O código-inicial desta fase resgate o que você fez na fase 1. Faça a abelhinh
 
 - `turtle.mainloop()`
 
-### Abelhinha
+### Kareto
 
 - `from fase01 import Abelha`
 

@@ -74,7 +74,7 @@ Agora avance você para a fase 1 para começar a praticar.
 
 
 1. Crie uma pasta onde você colocará todos seus exercícios.
-1. Faça o download do pacote kareto.
+1. Faça o download do pacote kareto [clicando aqui](https://github.com/adorilson/kareto/releases/download/v0.1/kareto.zip).
 1. Descompacte o pacote na mesma pasta criada anteriormente.
 1. Abra essa pasta no VS Code.
 1. Copie o código inicial deste exercício.
