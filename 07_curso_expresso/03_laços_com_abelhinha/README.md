@@ -17,29 +17,30 @@ Anteriormente, vimos o conceito de **módulos**, que servem para organizar
 elementos de código e reutilizá-los em outros programas. Mas e se tivermos
 muitos módulos? Como eles são organizados?
 
-Os módulos são organizados em **pacotes**. Se módulos são arquivos Python,
+Os módulos são organizados em **pacotes**. Enquanto módulos são arquivos Python,
 pacotes são **pastas** (diretórios) que contêm esses módulos, além de outros
 arquivos úteis, como imagens, sons ou dados.
 
 Um pacote pode conter **outros pacotes** dentro dele. Chamamos isso de
 **subpacotes**.
 
-Por exemplo:
+Por exemplo, considere a seguinte estrutura de diretórios e arquivos:
 
 ```
 meu_projeto/
 ├── atores/
 │   ├── atores.py
 │   └── mundo.py
-└── fase01/
-    └── fase01.py
+├── fase01/
+│   └── fase01.py
+└── principal.py
 ```
 
 Neste exemplo:
 
 - `atores` e `fase01` são pacotes. Diretórios dentro deles seriam subpacotes.
-- `atores.py`, `mundo.py` e `fase01.py` são módulos
-- Podemos importar assim:
+- `atores.py`, `mundo.py` e `fase01.py` são módulos.
+- Em `principal.py`, podemos importar assim:
 
 ```python
 from fase01.fase01 import Abelha
@@ -49,8 +50,8 @@ from atores import atores
 **Por que usar pacotes?**
 
 - Para **organizar melhor** seu código.
-- Para **evitar nomes repetidos** entre módulos.
-- Para **separar responsabilidades** em partes reutilizáveis 
+- Para **evitar conflitos com nomes repetidos** entre módulos.
+- Para **separar responsabilidades** em partes reutilizáveis.
 
 As suas soluções para os desafios deste mundo deverão se colocados no diretório
 raiz do pacote, dessa forma (os nomes são ilustrativos):
