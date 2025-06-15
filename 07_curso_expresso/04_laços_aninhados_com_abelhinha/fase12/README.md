@@ -4,7 +4,8 @@ Com a nova instrução `maia.obtenha_nectar()` ajude Maia a coletar todo o néct
 
 ## 🐝 Sua vez de praticar
 
-Tente resolver esse desafio com no máximo 5 instruções.
+Tente resolver esse desafio com no máximo 5 instruções. Contando apenas aqueles
+depois de `maia = Abelha()` e antes de `turtle.mainloop`.
 
 ![Mais blocos dentro do laço](cenario_12.png "Mais blocos dentro do laço")
 
