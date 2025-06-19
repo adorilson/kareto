@@ -227,6 +227,7 @@ class Girassol(turtle.Turtle):
         turtle.update()
 
     def extract_nectar(self):
+        time.sleep(0.3)
         if self.nectar>0:
             self.nectar = self.nectar - 1
         else:
