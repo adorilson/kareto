@@ -194,7 +194,7 @@ class Escritora(turtle.Turtle):
         self.font = font=('Arial', 10, 'bold')
 
     def escreva(self, obj):
-        self.write(obj, font=self.font)
+        self.write(obj, font=self.font, align="center")
 
 
 class GirassolError(Exception):
