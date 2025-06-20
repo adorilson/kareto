@@ -8,6 +8,8 @@ Colete todo o néctar de cada flor e produza mel na colmeia.
 
 Use laços aninhamos e no máximo 8 blocos.
 
+![Agora temos uma colméias para fazer mel](cenario_16.png "Agora temos uma colméias para fazer mel")
+
 ## 🧰 Caixa de ferramentas
 
 ### Mundo (turtle)
