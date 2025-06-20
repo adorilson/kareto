@@ -61,6 +61,16 @@ def adicionar_girassois(posições):
     return girassóis
 
 
+def adicionar_colméias(posições):
+    colméias = []
+    for posição, nectar in posições:
+        colméia = atores.Colméia(posição=posição, nectar=nectar)
+        colméia.atualize()
+        colméia.apareça()
+        colméias.append(colméia)
+    return colméias
+
+
 def configurar_abelha(posição_inicial, direção_inicial):
     abelha = atores.Abelha()
     abelha.posição = posição_inicial
@@ -86,8 +96,12 @@ posicoes_girassois = [(20, nectar),
                       (36+16, nectar),
                     ]
 
+nectar = 4
+posicoes_colmeias = [(60, nectar)]
+
 # É necessário que a abelha seja criada depois das flores, para ficar por cima
 girassois = adicionar_girassois(posicoes_girassois)
+colmeias = adicionar_colméias(posicoes_colmeias)
 abelha = configurar_abelha(posicao_inicial_abelha, direcao_inicial_abelha)
 
 laço_principal()
