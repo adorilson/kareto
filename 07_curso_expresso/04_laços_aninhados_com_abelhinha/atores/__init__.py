@@ -18,12 +18,15 @@ ABELHA_OESTE = caminho("abelha_oeste.gif")
 ABELHA_SUL = caminho("abelha_sul.gif")
 
 GIRASSOL = caminho("girassol.gif")
+COLMEIA = caminho("colmeia.gif")
+
 
 turtle.register_shape(ABELHA_LESTE)
 turtle.register_shape(ABELHA_OESTE)
 turtle.register_shape(ABELHA_NORTE)
 turtle.register_shape(ABELHA_SUL)
 turtle.register_shape(GIRASSOL)
+turtle.register_shape(COLMEIA)
 
 
 def configurar_janela():
@@ -54,6 +57,12 @@ class DIRECAO(IntEnum):
 def girassol_em(posição):
     for a in turtle.turtles():
         if  isinstance(a, Girassol) and a.posição == posição:
+            return a
+
+
+def colméia_em(posição):
+    for a in turtle.turtles():
+        if  isinstance(a, Colméia) and a.posição == posição:
             return a
 
 
@@ -184,6 +193,10 @@ class Abelha(turtle.Turtle):
         girassol.extract_nectar()
         turtle.update()
 
+    def faça_mel(self):
+        colméia = colméia_em(self.posição)
+        colméia.faça_mel()
+        turtle.update()
 
 
 class Escritora(turtle.Turtle):
@@ -198,6 +211,10 @@ class Escritora(turtle.Turtle):
 
 
 class GirassolError(Exception):
+    ...
+
+
+class ColméiaError(turtle.TurtleGraphicsError):
     ...
 
 
@@ -232,4 +249,38 @@ class Girassol(turtle.Turtle):
             self.nectar = self.nectar - 1
         else:
             raise GirassolError("Não há mais nectar para ser colhido.")
+        self.atualize()
+
+
+class Colméia(turtle.Turtle):
+    def __init__(self, posição, nectar=0):
+        super().__init__(visible=False)
+        self.apareça = super().showturtle
+        self.esconda = super().hideturtle
+        self.penup()
+        self.shape(COLMEIA)
+        self.nectar = nectar
+        self.escritora = Escritora()
+        self.posição = posição
+
+    def __str__(self):
+        return f"Colméia(posição={self.posição}, nectar={self.nectar})"
+
+    def atualize(self):
+        x, y = xy(self.posição, centralizar=True)
+        self.goto(x, y)
+
+        escritora = self.escritora
+        escritora.clear()
+        escritora.goto(x+15, y-25)
+        escritora.escreva(self.nectar)
+
+        turtle.update()
+
+    def faça_mel(self):
+        time.sleep(0.3)
+        if self.nectar>0:
+            self.nectar = self.nectar - 1
+        else:
+            raise ColméiaError("Não há mais nectar para fazer mel.")
         self.atualize()
