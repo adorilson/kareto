@@ -1,14 +1,13 @@
-# Colete néctar e produza mel
+# Jardim cheio de colméias
 
-Maia tem agora um novo bloco: `faça_mel()`
+Faça todo o mel possível.
 
 ## 🐝 Sua vez de praticar
 
-Colete todo o néctar de cada flor e produza mel na colmeia.
+Faça todo o mel possível usando apenas uma instrução `maia.faça_mel()` e no
+máximo 5 instruções no total.
 
-Use laços aninhamos e no máximo 8 blocos.
-
-![Agora temos uma colméias para fazer mel](cenario_16.png "Agora temos uma colméias para fazer mel")
+![Agora temos colméias para fazer mel](cenario_17.png "Agora temos colméias para fazer mel")
 
 ## 🧰 Caixa de ferramentas
 
@@ -20,7 +19,7 @@ Use laços aninhamos e no máximo 8 blocos.
 
 ### Abelhinha
 
-- `from fase16 import Abelha`
+- `from fase17 import Abelha`
 
 - `maia = Abelha()`
 
@@ -43,7 +42,7 @@ Use laços aninhamos e no máximo 8 blocos.
 
 ```python
 import turtle
-from fase16 import Abelha
+from fase17 import Abelha
 
 maia = Abelha()
 
@@ -57,4 +56,4 @@ turtle.mainloop()
 
 ```
 
-[Anterior](../fase15/README.md) | [Próximo](../fase17/README.md)
+[Anterior](../fase16/README.md) | [Próximo](../fase17/README.md)
