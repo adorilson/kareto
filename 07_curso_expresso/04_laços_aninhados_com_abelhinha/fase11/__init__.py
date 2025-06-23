@@ -83,9 +83,7 @@ desenhar_mundo()
 
 qtd = random.randint(1, 10)
 posicoes_girassois = random.choices(range(1, LINHAS*COLUNAS), k=qtd)
-print(f'{posicoes_girassois=}')
 posicao_inicial_abelha = random.randint(1, LINHAS*COLUNAS)
-print(f'{posicao_inicial_abelha=}')
 direcao_inicial_abelha = random.choice(tuple(atores.DIRECAO))
 
 # É necessário que a abelha seja criada depois das flores, para ficar por cima
