@@ -1,4 +1,4 @@
-# Jardim cheio de colméias
+# Jardim cheio de colmeias
 
 Faça todo o mel possível.
 
@@ -7,7 +7,7 @@ Faça todo o mel possível.
 Faça todo o mel possível usando apenas uma instrução `maia.faça_mel()` e no
 máximo 5 instruções no total.
 
-![Agora temos colméias para fazer mel](cenario_17.png "Agora temos colméias para fazer mel")
+![Agora temos colmeias para fazer mel](cenario_17.png "Agora temos colmeias para fazer mel")
 
 ## 🧰 Caixa de ferramentas
 
@@ -46,7 +46,7 @@ from fase17 import Abelha
 
 maia = Abelha()
 
-## Seu código a partir daqui
+# Seu código a partir daqui
 
 
 

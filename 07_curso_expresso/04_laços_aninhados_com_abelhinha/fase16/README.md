@@ -1,14 +1,14 @@
 # Colete néctar e produza mel
 
-Maia tem agora um novo bloco: `faça_mel()`
+Maia tem agora um novo bloco: `faça_mel()`.
 
 ## 🐝 Sua vez de praticar
 
 Colete todo o néctar de cada flor e produza mel na colmeia.
 
-Use laços aninhamos e no máximo 8 blocos.
+Use laços aninhados e no máximo 8 blocos.
 
-![Agora temos uma colméias para fazer mel](cenario_16.png "Agora temos uma colméias para fazer mel")
+![Agora temos colmeias para fazer mel](cenario_16.png "Agora temos colmeias para fazer mel")
 
 ## 🧰 Caixa de ferramentas
 
@@ -47,7 +47,7 @@ from fase16 import Abelha
 
 maia = Abelha()
 
-## Seu código a partir daqui
+# Seu código a partir daqui
 
 
 

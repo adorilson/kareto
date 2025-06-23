@@ -1,6 +1,7 @@
 # Laços aninhados
 
-Copie e execute o código inicial desta exercício.
+Copiando e executando o código inicial deste exercício.
+
 Observe que Maia pega todo o néctar do jardim, mas para isso
 foram escritos `3` laços `for n in range(???)` exatamente iguais,
 e com as mesmas instruções (`maia.avance` e `maia.direita()`) antes

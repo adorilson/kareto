@@ -1,4 +1,4 @@
-# Coletando néctar
+# Coletando néctar ativamente
 
 Com a nova instrução `maia.obtenha_nectar()` ajude Maia a coletar todo o néctar do jardim.
 
