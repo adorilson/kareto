@@ -199,6 +199,12 @@ class Abelha(turtle.Turtle):
         colméia.faça_mel()
         turtle.update()
 
+    def na_colmeia(self):
+        return colméia_em(self.posição) is not None
+
+    def no_girassol(self):
+        return girassol_em(self.posição) is not None
+
 
 class Escritora(turtle.Turtle):
     def __init__(self):
