@@ -4,12 +4,7 @@ No Python, além do bloco `if`, você pode usar o bloco `else` para executar um 
 
 Por exemplo:
 
-```python
-if maia.no_girassol():
-    maia.obtenha_nectar()
-else:
-    maia.faça_mel()
-```
+![Condicional if/else](if_else.png "Condicional if/else")
 
 Isso é útil quando você precisa tomar decisões diferentes dependendo do que Maia encontra pelo caminho!
 
