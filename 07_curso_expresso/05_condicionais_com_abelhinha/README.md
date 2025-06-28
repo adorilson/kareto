@@ -17,7 +17,7 @@ Você pode usar condicionais em muitas maneiras diferentes como essa:
 ![Condicional](kareto/fase19/if_colmeia.png "Condicional")
 
 
-## 🐝 Sua vez de praticar TODO atualizar isso
+## 🐝 Sua vez de praticar
 
 1. Crie uma pasta onde você colocará todos seus exercícios (ou use a anterior).
 1. Faça o download do pacote kareto atualizado [clicando aqui](https://github.com/adorilson/kareto/releases/download/v0.3/kareto.zip).
@@ -26,8 +26,8 @@ Você pode usar condicionais em muitas maneiras diferentes como essa:
 1. Copie o código inicial deste exercício.
 1. Crie um novo arquivo no VS Code e cole o código inicial nele.
 1. Salve este arquivo na pasta criada.
-1. Execute o arquivo e veja que agora os girassóis possum um número indicando
-a quanto de néctar que pode ser colhido.
+1. Execute o arquivo e veja que agora há nuvens, que podem
+encobrir um girassol, uma colmeia ou nada. 
 
 Se tudo deu certo, você verá um jardim semelhante a este:
 
