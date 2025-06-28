@@ -1,15 +1,14 @@
-# Mais nuvens!
+# Girassóis em linha!
 
-As nuvens podem ou não esconder algo.
+Agora, a abelha deve coletar néctar de girassóis posicionados em sequência.
 
 ## 🐝 Sua vez de praticar
 
-Verifique abaixo de cada nuvem e observe se ela está escondendo um girassol
-antes de colher o néctar. Se existir um girassol abaixo da nuvem, Maia vai precisar colher néctar uma vez. 
+Programe a abelha para andar para frente e colher o néctar dos girassóis que encontrar pelo caminho. Uso no máximo 5 blocos!
 
-![Maia e nuvens](cenario_20.png "Maia e nuvens")
+Dica: use condicional dentro de laço de repetição e cuidado com a indentação.
 
-Você não sabe se haverá embaixo da nuvem até que o código seja executado.
+![Maia e girassóis](cenario_21.png "Maia e girassóis")
 
 ## 🧰 Caixa de ferramentas
 
@@ -21,7 +20,7 @@ Você não sabe se haverá embaixo da nuvem até que o código seja executado.
 
 ### Abelhinha
 
-- `from kareto.fase20 import Abelha`
+- `from kareto.fase21 import Abelha`
 
 - `maia = Abelha()`
 
@@ -55,7 +54,7 @@ Você não sabe se haverá embaixo da nuvem até que o código seja executado.
 ```python
 import turtle
 
-from kareto.fase20 import Abelha
+from kareto.fase21 import Abelha
 
 maia = Abelha()
 
@@ -70,5 +69,5 @@ turtle.mainloop
 
 ```
 
-[Anterior](../../README.md) | [Próximo](../fase21/README.md)
 
+[Anterior](../fase20/README.md) | [Próximo](../fase22/README.md)
