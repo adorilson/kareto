@@ -9,7 +9,7 @@ Por exemplo:
 Isso é útil quando você precisa tomar decisões diferentes dependendo do que Maia encontra pelo caminho!
 
 Observe que o `else` deve estar alinhado com o `if`, além de não ser possível
-usar um `else` sem um `if`, por isso o `if/else` é contado como apenas um bloco.
+usar um `else` sem um `if`, por isso o `if/else` é contado como apenas um bloco. Um bloco `else` nunca está sozinho.
 
 
 ## 🐝 Sua vez de praticar
