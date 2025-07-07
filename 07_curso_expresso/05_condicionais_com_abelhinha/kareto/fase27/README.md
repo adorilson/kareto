@@ -1,4 +1,4 @@
-# Jardim de Néctar e Mel
+# Jardim repleto de néctar e mel
 
 Neste desafio, todas as posições do jardim possuem um girassol ou uma colmeia.
 
