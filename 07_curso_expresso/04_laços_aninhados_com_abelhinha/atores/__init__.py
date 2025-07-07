@@ -20,6 +20,8 @@ ABELHA_SUL = caminho("abelha_sul.gif")
 GIRASSOL = caminho("girassol.gif")
 COLMEIA = caminho("colmeia.gif")
 
+SPEED = 1
+
 
 turtle.register_shape(ABELHA_LESTE)
 turtle.register_shape(ABELHA_OESTE)
@@ -99,7 +101,7 @@ class Abelha(turtle.Turtle):
         self.posição = self.posição - 8
 
     def avance(self):
-        time.sleep(0.5)
+        time.sleep(0.5/SPEED)
 
         match self.heading():
             case DIRECAO.LESTE:
@@ -117,7 +119,7 @@ class Abelha(turtle.Turtle):
 
         self.atualize()
 
-        time.sleep(0.5)
+        time.sleep(0.5/SPEED)
 
     def vire_sul(self):
         self.setheading(DIRECAO.SUL)
@@ -151,7 +153,7 @@ class Abelha(turtle.Turtle):
                 )
 
     def direita(self):
-        time.sleep(0.3)
+        time.sleep(0.3/SPEED)
 
         match self.heading():
             case DIRECAO.LESTE:
@@ -170,7 +172,7 @@ class Abelha(turtle.Turtle):
         self.atualize()
 
     def esquerda(self):
-        time.sleep(0.3)
+        time.sleep(0.3/SPEED)
 
         match self.heading():
             case DIRECAO.LESTE:
@@ -244,7 +246,7 @@ class Girassol(turtle.Turtle):
         turtle.update()
 
     def extract_nectar(self):
-        time.sleep(0.3)
+        time.sleep(0.3/SPEED)
         if self.nectar>0:
             self.nectar = self.nectar - 1
         else:
@@ -278,7 +280,7 @@ class Colméia(turtle.Turtle):
         turtle.update()
 
     def faça_mel(self):
-        time.sleep(0.3)
+        time.sleep(0.3/SPEED)
         if self.nectar>0:
             self.nectar = self.nectar - 1
         else:
