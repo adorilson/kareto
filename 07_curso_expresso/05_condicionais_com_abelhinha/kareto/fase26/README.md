@@ -65,4 +65,4 @@ maia = Abelha()
 turtle.mainloop()
 ```
 
-[Anterior](../fase25/README.md)
+[Anterior](../fase25/README.md) | [Próximo](../fase27/README.md)
