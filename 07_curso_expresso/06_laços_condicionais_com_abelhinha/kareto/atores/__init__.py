@@ -335,3 +335,24 @@ def tem_mel_na_colmeia():
             else:
                 return False
     return False
+
+
+def tem_caminho(caminho_posicoes):
+    """Retorna True se há caminho (posição numérica) à frente da abelha, False caso contrário."""
+    for a in turtle.turtles():
+        if isinstance(a, Abelha):
+            pos = a.posição
+            direcao = a.heading()
+            if direcao == DIRECAO.LESTE:
+                proxima = pos + 1
+            elif direcao == DIRECAO.OESTE:
+                proxima = pos - 1
+            elif direcao == DIRECAO.NORTE:
+                proxima = pos - 8
+            elif direcao == DIRECAO.SUL:
+                proxima = pos + 8
+            else:
+                return False
+            return proxima in caminho_posicoes
+    return False
+
