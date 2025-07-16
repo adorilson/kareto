@@ -225,6 +225,10 @@ class ColméiaError(turtle.TurtleGraphicsError):
     ...
 
 
+class AbelhaError(turtle.TurtleGraphicsError):
+    ...
+
+
 class Girassol(turtle.Turtle):
     def __init__(self, posição, nectar=0):
         super().__init__(visible=False)
