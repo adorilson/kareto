@@ -1,4 +1,4 @@
-# Caminho das colmeias
+# Caminho das colmeias em L
 
 Nesta fase, a abelha deve transformar todo o néctar de uma sequência de 6 colmeias em mel, alternando entre avançar e descer. Os 5 primeiros colmeias têm quantidades fixas de néctar, o último tem quantidade aleatória.
 
@@ -62,4 +62,4 @@ maia = Abelha()
 turtle.mainloop()
 ```
 
-[Anterior](../fase31/README.md)
+[Anterior](../fase31/README.md) | [Próximo](../fase33/README.md)
