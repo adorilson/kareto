@@ -102,6 +102,24 @@ class Abelha(turtle.Turtle):
     def avance(self):
         time.sleep(0.5)
 
+        # Verifica se há caminho à frente antes de avançar
+        caminho_posicoes = getattr(self, 'caminho_posicoes', None)
+        if caminho_posicoes is not None:
+            direcao = self.heading()
+            pos = self.posição
+            if direcao == DIRECAO.LESTE:
+                proxima = pos + 1
+            elif direcao == DIRECAO.OESTE:
+                proxima = pos - 1
+            elif direcao == DIRECAO.NORTE:
+                proxima = pos - 8
+            elif direcao == DIRECAO.SUL:
+                proxima = pos + 8
+            else:
+                raise AbelhaError(f"Direção não implementada: {self.heading()=}")
+            if proxima not in caminho_posicoes:
+                raise AbelhaError("Não há caminho à frente da abelha!")
+
         match self.heading():
             case DIRECAO.LESTE:
                 self.avance_leste()
@@ -117,7 +135,6 @@ class Abelha(turtle.Turtle):
                 )
 
         self.atualize()
-
         time.sleep(0.5)
 
     def vire_sul(self):

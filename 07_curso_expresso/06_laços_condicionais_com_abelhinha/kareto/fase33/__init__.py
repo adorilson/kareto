@@ -65,4 +65,5 @@ for pos, nectar in colmeias:
     colmeia.apareça()
 
 abelha = configurar_abelha()
+abelha.caminho_posicoes = [48, 49, 50, 51, 52, 53, 54, 55, 47, 39, 31, 23, 15, 14, 13, 12, 11, 10, 9, 17, 25]
 turtle.update()
