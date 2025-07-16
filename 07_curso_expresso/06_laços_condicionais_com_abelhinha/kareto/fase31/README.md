@@ -53,4 +53,4 @@ maia.avance()
 turtle.mainloop()
 ```
 
-[Anterior](../fase30/README.md)
+[Anterior](../fase30/README.md) | [Próximo](../fase32/README.md)
