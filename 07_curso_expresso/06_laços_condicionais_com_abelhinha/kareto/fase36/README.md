@@ -42,4 +42,4 @@ print(resposta)
 
 ```
 
-[Anterior](../fase35/README.md)
+[Anterior](../fase35/README.md) | [Próximo](../fase37/README.md)
