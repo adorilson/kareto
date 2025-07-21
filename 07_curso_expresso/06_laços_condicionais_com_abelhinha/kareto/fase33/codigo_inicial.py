@@ -1,5 +1,5 @@
 import turtle
-from kareto.fase33 import Abelha, tem_mel_na_colmeia
+from kareto.fase33 import Abelha, tem_nectar_na_colmeia
 
 maia = Abelha()
 

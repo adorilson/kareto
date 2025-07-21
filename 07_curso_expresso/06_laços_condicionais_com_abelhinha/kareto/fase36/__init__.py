@@ -95,5 +95,5 @@ def tem_nectar_no_girassol():
     return tng()
 
 def tem_nectar_na_colmeia():
-    from ..atores import tem_mel_na_colmeia as tnc
+    from ..atores import tem_nectar_na_colmeia as tnc
     return tnc()

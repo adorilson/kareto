@@ -23,7 +23,7 @@ mas use no máximo 6 blocos.
 
 ### Abelhinha
 
-- `from kareto.fase34 import Abelha, tem_mel_na_colmeia, tem_caminho`
+- `from kareto.fase34 import Abelha, tem_nectar_na_colmeia, tem_caminho`
 
 - `maia = Abelha()`
 
@@ -35,7 +35,7 @@ mas use no máximo 6 blocos.
 
 - `maia.faça_mel()`
 
-- `tem_mel_na_colmeia()`
+- `tem_nectar_na_colmeia()`
 
 - `tem_caminho()`
 
@@ -43,7 +43,7 @@ mas use no máximo 6 blocos.
 
 - `for n in range(???):`
 
-- `while tem_mel_na_colmeia():`
+- `while tem_nectar_na_colmeia():`
 
 - `while tem_caminho():`
 
@@ -52,7 +52,7 @@ mas use no máximo 6 blocos.
 
 ```python
 import turtle
-from kareto.fase34 import Abelha, tem_mel_na_colmeia, tem_caminho
+from kareto.fase34 import Abelha, tem_nectar_na_colmeia, tem_caminho
 
 maia = Abelha()
 

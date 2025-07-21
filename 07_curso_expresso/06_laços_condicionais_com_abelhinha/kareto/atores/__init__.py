@@ -345,7 +345,7 @@ def tem_nectar_no_girassol():
     return False
 
 
-def tem_mel_na_colmeia():
+def tem_nectar_na_colmeia():
     """Retorna True se a colmeia na posição da abelha tiver néctar para fazer mel, False caso contrário."""
     for a in turtle.turtles():
         if isinstance(a, Abelha):

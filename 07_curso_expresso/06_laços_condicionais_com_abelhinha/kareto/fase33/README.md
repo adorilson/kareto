@@ -22,7 +22,7 @@ indica a quantidade máxima que você deve usar daquele bloco.
 - `turtle.mainloop()`
 
 ### Kareto
-- `from kareto.fase33 import Abelha, tem_caminho`
+- `from kareto.fase33 import Abelha, tem_caminho, tem_mel_na_colmeia`
 
 - `maia = Abelha()`
 
@@ -48,7 +48,7 @@ indica a quantidade máxima que você deve usar daquele bloco.
 
 ```python
 import turtle
-from kareto.fase33 import Abelha, tem_caminho
+from kareto.fase33 import Abelha, tem_caminho, tem_mel_na_colmeia
 
 maia = Abelha()
 

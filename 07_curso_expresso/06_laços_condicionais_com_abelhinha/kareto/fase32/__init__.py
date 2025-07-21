@@ -2,7 +2,7 @@ import random
 import turtle
 import sys
 from .. import atores
-from ..atores import Abelha, tem_mel_na_colmeia
+from ..atores import Abelha, tem_nectar_na_colmeia
 
 LINHAS = 8
 COLUNAS = 8
