@@ -4,7 +4,7 @@ Nesta fase, há uma abelha e cinco girassóis logo à frente dela, mas a quantid
 
 ## 🐝 Sua vez de praticar
 
-Colha todo o néctar do girassol!
+Colha todo o néctar dos girassóis!
 
 ![Abelha e girassol](cenario_31.png "Abelha e girassol")
 
