@@ -24,7 +24,7 @@ quantidade é sempre diferente e sem relação.
 
 ### Kareto
 
-- `from kareto.fase32 import Abelha, tem_mel_na_colmeia`
+- `from kareto.fase32 import Abelha, tem_nectar_na_colmeia`
 
 - `maia = Abelha()`
 
@@ -42,14 +42,14 @@ quantidade é sempre diferente e sem relação.
 ### Repetição (Python)
 - `for n in range(???):`
 
-- `while tem_mel_na_colmeia:`
+- `while tem_nectar_na_colmeia:`
 
 
 ## 💻 Código inicial
 
 ```python
 import turtle
-from kareto.fase32 import Abelha, tem_mel_na_colmeia
+from kareto.fase32 import Abelha, tem_nectar_na_colmeia
 
 maia = Abelha()
 
