@@ -79,6 +79,12 @@ class Artista(Ator):
     def __init__(self):
         super().__init__(visible=True)
 
+    def pule_para_frente(self, x):
+        """Faz o artista pular para a frente x pixels."""
+        pendown = self.isdown()
+        self.penup()
+        self.goto(self.xcor() + x, self.ycor())
+        self.pen(pendown=pendown)
 
 
 class Abelha(turtle.Turtle):
