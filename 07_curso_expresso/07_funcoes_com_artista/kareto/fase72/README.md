@@ -91,4 +91,4 @@ desenhe_estrela()
 turtle.mainloop()
 ```
 
-[Anterior](../fase71/README.md) | [Próximo](../fase72/README.md)
+[Anterior](../fase71/README.md) | [Próximo](../fase73/README.md)
