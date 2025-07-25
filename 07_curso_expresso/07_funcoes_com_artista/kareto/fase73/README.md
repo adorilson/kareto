@@ -47,7 +47,7 @@ As possibilidades para resolver esse desafio são muitas.
 - `artista.pendown()`
 
 ### Kareto
-- `from kareto.fase72 import Artista`
+- `from kareto.fase73 import Artista`
 
 - `artista = Artista()`
 
@@ -80,4 +80,4 @@ artista = Artista()
 turtle.mainloop()
 ```
 
-[Anterior](../fase72/README.md) | [Próximo](../fase72/README.md)
+[Anterior](../fase72/README.md) | [Próximo](../fase74/README.md)
