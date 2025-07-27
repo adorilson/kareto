@@ -1,18 +1,14 @@
-# Duas filas de quadrados
+# Uma grade de quadrados
 
-Vamos evoluir o exercício anterior para desenhar duas filas de quadrados.
+Agora use tudo o que você aprendeu para fazer uma grade de quadrados.
 
 ## 🐝 Sua vez de praticar
 
-A partir do exercício anterior, adicione mais uma função que cria esta pilha
-de quadrados.
+Reproduza esse padrão de forma modular. Ou seja, divida o trabalho em funções menores.
+Faça a importação de `Artista` do módulo `kareto.fase76`.
 
-O padrão deverá ser criado com a chamada apenas dessa nova função.
+![Uma grade de quadrados](cenario_76.png "Uma grade de quadrados")
 
-![Duas linhas de quadrados](cenario_75.png "Duas linhas de quadrados")
-
-O código inicial recupera o que você fez no última exercício, então você deverá mudar a importação para que seja
-carregada a `fase75` no lugar da `fase74`.
 
 ## 🧰 Caixa de ferramentas
 
@@ -40,25 +36,17 @@ carregada a `fase75` no lugar da `fase74`.
 - `artista.pendown()`
 
 ### Kareto
-- `from kareto.fase75 import Artista`
+- `from kareto.fase76 import Artista`
 
 - `artista = Artista()`
 
-- `artista.pule_para_frente(???)` 
+- `artista.pule_para_frente(???)`
 
 ### Python
-- `def desenha_quadrado():`
-
-- `def desenha_uma_linha_de_quadrados():`
 
 - `def ...():`
 
-- `desenha_quadrado()`
-
-- `desenha_uma_linha_de_quadrados()`
-
 - `for _ in range(???):`
-
 
 - `pass`
 
@@ -72,4 +60,4 @@ carregada a `fase75` no lugar da `fase74`.
 
 ```
 
-[Anterior](../fase74/README.md) | [Próximo](../fase76/README.md)
+[Anterior](../fase75/README.md) | [Próximo](../fase76/README.md)
