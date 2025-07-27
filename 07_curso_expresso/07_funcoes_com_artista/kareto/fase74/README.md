@@ -96,4 +96,4 @@ desenha_uma_linha_de_quadrados()
 turtle.mainloop()
 ```
 
-[Anterior](../fase73/README.md) | [Próximo](../fase74/README.md)
+[Anterior](../fase73/README.md) | [Próximo](../fase75/README.md)
