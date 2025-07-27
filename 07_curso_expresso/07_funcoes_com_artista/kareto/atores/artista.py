@@ -83,7 +83,7 @@ class Artista(Ator):
         """Faz o artista pular para a frente x pixels."""
         pendown = self.isdown()
         self.penup()
-        self.goto(self.xcor() + x, self.ycor())
+        self.forward(x)
         self.pen(pendown=pendown)
 
 
