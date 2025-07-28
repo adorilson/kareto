@@ -4,11 +4,9 @@ Use o que você aprendeu para fazer o que quiser!
 
 ## 🐝 Sua vez de praticar
 
-Você pode fazer algo como esse cata-vento?
+Quer uma inspiração? Você pode fazer algo como esse cata-vento?
 
 ![Cata vento](cenario_78.png "Cata vento")
-
-Faça a importação de `Artista` do módulo `kareto.fase78`.
 
 O código inicial já contém funções que podem lhe ajudar nessa e em outras artes.
 

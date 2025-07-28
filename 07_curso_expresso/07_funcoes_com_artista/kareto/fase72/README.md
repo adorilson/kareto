@@ -9,8 +9,8 @@ def nome_da_função():
 ```
 
 Você pode colocar na função o nome que quiser, desde que não seja uma palavra
-reservada do Python, e obedeça as regras de identificados (por exemplo, não
-pode começar com um número).
+reservada do Python, e obedeça as regras de nomes válidos para identificadoress
+(por exemplo, não pode começar com um número).
 
 `<instruções>` você vai substituir pelas ações que a função deve executar,
 podendo aninhar quaisquer comandos Python. 

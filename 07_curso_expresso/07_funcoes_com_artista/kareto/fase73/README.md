@@ -1,11 +1,11 @@
 # Uma casa com muitas janelas
 
-Desenhar todas as 5 janelas de uma casa individualmente seria uma dor!
+Desenhar todas as 5 janelas de uma casa individualmente seria bastante trabalhoso!
 Mas com uma função isso fica muito mais fácil.
 
 ## 🐝 Sua vez de praticar
 
-Faça artista desenhar as 5 janelas da casa.
+Faça a artista desenhar as 5 janelas da casa.
 Você deverá implementar a função e depois suas chamadas,
 não esqueça de posicionar a artista nas posições corretas.
 
@@ -54,7 +54,7 @@ As possibilidades para resolver esse desafio são muitas.
 - `artista.pule_para_frente(???)` 
 
 ### Python
-- `def desenhe_estrela():`
+- `def desenhe_janela():`
 
 - `for _ in range(???):`
 
