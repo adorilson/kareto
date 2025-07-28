@@ -14,34 +14,6 @@ Na verdade, você já usou diversas funções, de diversas origens, como:
 6. e mais recentemente as funções 
 `tem_nectar_no_girassol`,`tem_nectar_na_colmeia` e `tem_caminho` do pacote `kareto`
 
-<!-- 
-Este é um bloco de laço condicional:
-
-![Laço condicional com girassol](kareto/fase30/while_girassol.png "Laço condicional com girassol")
-
-O código dentro de um bloco laço condicional (delimitado pela indentação)
-é executado apenas se uma **condição** é **verdadeira** (como na instrução condicional),
-mas depois de executado,
-a condição é novamente avaliada e então o bloco dentro do laço condicional pode
-novamente ser executado. Isso é repetido até que a condição seja **falsa**.
-
-Em desafios com laços condicionais, podemos querer verificar uma condição,
-como "**enquanto** há néctar no girassol" e então colher néctar.
-
-Ou podemos verificar se há néctar na colmeia e então fazer mel:
-
-![Laço condicional com colmeia](kareto/fase30/while_colmeia.png "Laço condicional com Colmeia")
-
-Laços condicionais são úteis quando a quantidade de repetição
-não é conhecida (como ocorre nos laços `for`).
-Porém, é necessário que haja uma condição de parada e que o bloco de código
-interno ao laço altere essa condição.
-Caso contrário, você entrará em uma repetição infinita.
-
-Observe que as duas novas funções nos trechos acima
-(`tem_nectar_no_girassol` e `tem_nectar_na_colmeia`) são funções globais,
-importadas diretamente dos módulos, não associadas a objetos específicos.
--->
 
 ## 🐝 Sua vez de praticar
 
