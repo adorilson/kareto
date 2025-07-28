@@ -1,6 +1,7 @@
 import os
 import time
 import turtle
+import random
 from enum import IntEnum
 
 
@@ -28,6 +29,9 @@ turtle.register_shape(ABELHA_SUL)
 turtle.register_shape(GIRASSOL)
 turtle.register_shape(COLMEIA)
 turtle.register_shape(NUVEM)
+
+turtle.colormode(255)
+
 
 
 def configurar_janela(titulo="Kareto"):
@@ -86,6 +90,11 @@ class Artista(Ator):
         self.forward(x)
         self.pen(pendown=pendown)
 
+    def mude_cor(self):
+        r = random.randint(1, 255)
+        g = random.randint(1, 255)
+        b = random.randint(1, 255)
+        self.color(r, g, b)
 
 class Abelha(turtle.Turtle):
     def __init__(self):
