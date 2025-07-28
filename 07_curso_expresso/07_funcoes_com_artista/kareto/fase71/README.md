@@ -29,6 +29,8 @@ Naturalmente, é também necessário criar o objeto `artista` antes da chamada.
 
 ## 🐝 Sua vez de praticar
 
+Antes, atualize o seu pacote `kareto` baixando a nova versão [clicando aqui](https://github.com/adorilson/kareto/releases/download/v0.5/kareto.zip). 
+
 O código inicial tem a função quadrado e uma chamada que cria uma lente desses óculos.
 Você deverá usar a mesma função para criar a outra lente e completar os óculos.
 
