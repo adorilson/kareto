@@ -1,14 +1,20 @@
 """
 Snake, jogo clássico de arcade.
 
-Desafios:
+Este jogo está parcialmente implementado.
+Seu objetivo é compreender o funcionamento do código
+e completar ou melhorar os trechos indicados com TODO,
+para que fique funcionalmente semelhante ao jogo
+presente no pacote freegames.
+
+Depois, você deverá resolver os desafios propostos abaixo:
 
 1. Como tornar a cobra mais rápida ou mais lenta?
 2. Como fazer a cobra atravessar as bordas da tela?
 3. Como fazer a comida se mover?
 4. Alterar o jogo para que a cobra responda a cliques do mouse.
 5. Exibir a pontuação na tela para o jogador, conforme a cobra come
-as comidas
+as comidas.
 
 Leia o código com atenção antes de começar.
 """
@@ -24,11 +30,7 @@ from freegames import square, vector
 # -------------------------
 
 comida = vector(0, 0)
-
-cobra = [
-    vector(10, 0),
-]
-
+cobra = [vector(10, 0)]
 direcao = vector(0, -10)
 
 
@@ -56,7 +58,7 @@ def mover():
     cabeca = cobra[-1].copy()
     cabeca.move(direcao)
 
-    #TODO: 
+    # TODO: 
     # Extraia `cabeca in cobra` para uma função
     if not dentro_limites(cabeca) or cabeca in cobra:
         square(cabeca.x, cabeca.y, 9, 'red')
@@ -87,8 +89,6 @@ def mover():
 
     update()
 
-    # TODO:
-    # Ajuste o tempo para controlar a velocidade do jogo
     ontimer(mover, 100)
 
 
@@ -107,4 +107,4 @@ onkey(lambda: mudar_direcao(0, 10), 'Up')
 onkey(lambda: mudar_direcao(0, -10), 'Down')
 
 mover()
-done()
+mainloop()

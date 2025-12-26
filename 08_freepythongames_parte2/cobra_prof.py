@@ -1,7 +1,13 @@
 """
 Snake, jogo clássico de arcade.
 
-Exercícios
+Este jogo está parcialmente implementado.
+Seu objetivo é compreender o funcionamento do código
+e completar ou melhorar os trechos indicados com TODO,
+para que fique funcionalmente semelhante ao jogo
+presente no pacote freegames.
+
+Depois, você deverá resolver os desafios propostos abaixo:
 
 1. Como tornar a cobra mais rápida ou mais lenta?
 2. Como fazer a cobra atravessar as bordas da tela?
@@ -9,6 +15,8 @@ Exercícios
 4. Alterar o jogo para que a cobra responda a cliques do mouse.
 5. Exibir a pontuação na tela para o jogador, conforme a cobra come
 as comidas.
+
+Leia o código com atenção antes de começar.
 """
 
 from random import randrange
@@ -137,4 +145,4 @@ onkey(lambda: mudar_direcao(0, -10), 'Down')
 # Chamada inicial de mover
 mover()
 
-done()
+mainloop()
