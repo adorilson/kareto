@@ -4,16 +4,19 @@ Campo Minado
 Este jogo está parcialmente implementado.
 Seu objetivo é compreender o funcionamento do código
 e completar ou melhorar os trechos indicados com TODO,
-além dos desafios.
+para que fique funcionalmente semelhante ao jogo
+presente no pacote freegames.
 
-Desafios principais:
+Depois, você deverá resolver os desafios propostos abaixo:
 
 1. O que faz a chamada da função seed(0)?
 2. Como alterar a quantidade de bombas no tabuleiro?
 3. Como alterar o tamanho do tabuleiro?
 4. Como exibir a imagem de uma bomba no lugar do X?
 5. Como evitar sobreposição de bombas?
-6. Como permitir que o jogador configure o número de bombas? 
+6. Como permitir que o jogador configure o número de bombas?
+
+Leia o código com atenção antes de começar.
 """
 
 from random import randrange, seed
@@ -127,14 +130,11 @@ def clique(x, y):
     x = floor(x, 50)
     y = floor(y, 50)
 
-    # Ajusta as coordenadas do clique para a grade
-    x = floor(x, 50)
-    y = floor(y, 50)
-
     # Se o jogador clicou em uma bomba, o jogo termina
     if bombas[x, y]:
-        # TODO deve chamar a função que inica o fim do jogo,
-        # revelando onde estão todas a bombas
+        # TODO:
+        # Deve chamar a função que revela todas as bombas,
+        # indicando o fim do jogo.
         return
 
     # Lista de células que ainda precisam ser processadas
@@ -170,4 +170,4 @@ inicializar()
 desenhar_tabuleiro()
 
 onscreenclick(clique)
-done()
+mainloop()
