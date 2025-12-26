@@ -6,6 +6,7 @@ adaptados e detalhados para uso em sala de aula.
 
 - [Cobra](cobra.md)
 - [Campo minado](campo_minado.md)
+- [Simon Diz](simon_diz.md)
 
 Como essas versões não estão tão funcionais como as versões do FPG e,
 por outro lado, será necessário a instalação do pacote `freegames`
