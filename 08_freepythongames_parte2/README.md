@@ -8,6 +8,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Campo minado](campo_minado.md)
 - [Simon Diz](simon_diz.md)
 - [Pong](pong.md)
+- [Paint](paint.md)
 
 Como essas versões não estão tão funcionais como as versões do FPG e,
 por outro lado, será necessário a instalação do pacote `freegames`
