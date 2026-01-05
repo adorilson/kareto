@@ -10,6 +10,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Pong](pong.md)
 - [Paint](paint.md)
 - [Jogo da Velha](velha.md)
+- [Spinner](spinner.md)
 
 Como essas versões não estão tão funcionais como as versões do FPG e,
 por outro lado, será necessário a instalação do pacote `freegames`
