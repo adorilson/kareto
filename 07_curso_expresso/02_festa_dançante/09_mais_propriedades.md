@@ -8,7 +8,7 @@ Na seção anterior, vimos que as **propriedades** de um dançarino controlam:
 - E até sua cor!
 
 Agora, vamos mergulhar um pouquinho mais fundo:
-**Quais são os nomes reais dessas propriedades? E quais valores você pode usar?**
+- **Quais são os nomes reais dessas propriedades? E quais valores você pode usar?**
 
 
 ## 🎯 Movimento e posição

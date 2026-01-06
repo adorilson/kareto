@@ -98,7 +98,7 @@ def goto_and_square(x, y):
     square()
 ```
 
-**Desafio** Lembre-se de mudar na chamada à ```onscreenclick(...)```.
+- **Desafio** Lembre-se de mudar na chamada à ```onscreenclick(...)```.
 
 Se tudo estiver correto, agora quadrados são desenhados na tela a partir
 do clique do mouse. Porém, eles tem tamanho fixo.
@@ -139,7 +139,7 @@ Ela armazenará a posição do primeiro clique e terá valor ```None``` caso ain
 não tenha ocorrido o primeiro clique.
 
 Com isso em mente, criaremos a variável ```start``` com valor inicial ```None```
-**fora** da função ```goto_and_square(x, y)``` e dentro dela faremos a
+- **fora** da função ```goto_and_square(x, y)``` e dentro dela faremos a
 implementação do algoritmo acima.
 
 ```python
@@ -232,7 +232,7 @@ def square(start, end):
 
 ```
 
-**Desafio** Como renomeamos a função  ```goto_and_square``` para ```tap```, 
+- **Desafio** Como renomeamos a função  ```goto_and_square``` para ```tap```, 
 precisamos atualizar a chamada à ```onscreenclick(...)```. Faça isso.
 
 ## Trocando as figuras
@@ -288,7 +288,7 @@ mainloop()
 Quando *s* for pressionada, alteramos ```shape``` para ```square```.
 Quando *c* for pressionada, alteramos ```shape``` para ```circle```.
 
-**Desafio** Complete para todas as figuras.
+- **Desafio** Complete para todas as figuras.
 
 E pronto. Temos um editor que atende aos requisitos propostos no início da seção.
 

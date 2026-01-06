@@ -165,7 +165,7 @@ Assim: a+b = ( ax + bx, ay + by )
 Considere o vetor **V** e os vetores **Vy** e **Vx** na figura abaixo. **V** é um
 vetor nosso qualquer no plano, enquanto que  **Vy** e **Vx** são vetores de referência, 
 com valores respectivos de **(0, 1)** e **(1, 0)**. Assim, se eu desejo que o meu vetor 
-**V** se desloque para cima irei somá-lo com **Vy**,  se desejo que se o deslocamento 
+- **V** se desloque para cima irei somá-lo com **Vy**,  se desejo que se o deslocamento 
 seja para a direita, a soma é com **Vx**. De forma análoga, existem também os vetores para
 descolamento nas sentidos contrários. Tais vetores estão definidos em Free Python
 Games e são utilizados para a movimentação dos atores móveis dos jogos.

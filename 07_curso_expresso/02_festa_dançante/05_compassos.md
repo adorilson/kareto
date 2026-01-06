@@ -4,11 +4,11 @@ Até agora, vimos como controlar os dançarinos com as **teclas do teclado**.
 Mas e se a dança começasse sozinha, seguindo o ritmo da música?
 
 É isso que vamos explorar agora: eventos que são ativados com base na
-**passagem do tempo**.
+- **passagem do tempo**.
 
 Na música, os dançarinos costumam contar os **tempos** para saber quando
 entrar em cena. A maioria das músicas populares segue um padrão chamado
-**compasso**, que normalmente tem quatro tempos. Você já deve ter ouvido
+- **compasso**, que normalmente tem quatro tempos. Você já deve ter ouvido
 alguém contando: “um, dois, três, quatro…” antes de começar a dança. Isso
 é um compasso!
 

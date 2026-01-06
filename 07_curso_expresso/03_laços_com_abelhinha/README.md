@@ -22,7 +22,7 @@ pacotes são **pastas** (diretórios) que contêm esses módulos, além de outro
 arquivos úteis, como imagens, sons ou dados.
 
 Um pacote pode conter **outros pacotes** dentro dele. Chamamos isso de
-**subpacotes**.
+- **subpacotes**.
 
 Por exemplo, considere a seguinte estrutura de diretórios e arquivos:
 
@@ -47,7 +47,7 @@ from fase01.fase01 import Abelha
 from atores import atores
 ```
 
-**Por que usar pacotes?**
+- **Por que usar pacotes?**
 
 - Para **organizar melhor** seu código.
 - Para **evitar conflitos com nomes repetidos** entre módulos.

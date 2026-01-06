@@ -61,7 +61,7 @@ como da imagem abaixo.
 
 ![Meia cruz](02_meia_cruz.png "Meia cruz")
 
-**Desafio** Você é capaz de completa-lá?
+- **Desafio** Você é capaz de completa-lá?
 
 Todos esses métodos apresentados anteriormente são relativos à posição atual da
 tartaruga, sendo a posição e direção finais uma consequência disso e dos argumentos
@@ -95,9 +95,9 @@ independentes das valores iniciais, ao menos em partes, em alguns casos.
 >>> turtle.forward(100)
 ```
 
-**Desafio** Você é capaz de levar a tartaruga de volta à posição e orientação iniciais (ponto x=0 e y=0 e direcionada para direita) usando os métodos ```goto()``` e ```setheading()```?
+- **Desafio** Você é capaz de levar a tartaruga de volta à posição e orientação iniciais (ponto x=0 e y=0 e direcionada para direita) usando os métodos ```goto()``` e ```setheading()```?
 
-**Desafio** Faça mais alguns movimentos e rotações com a tartaruga e tente descobrir o que
+- **Desafio** Faça mais alguns movimentos e rotações com a tartaruga e tente descobrir o que
 faz o método ```home()```. 
 
 - ```home()```

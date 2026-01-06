@@ -32,7 +32,7 @@ sintaxe. `None` funciona como um marcador de "sem ação definida".
 
 Você também verá o `None` em outras situações — por exemplo, quando uma função
 ou método **não retorna nada**. Muitos comandos do `turtle`, como `forward`,
-**fazem algo**, mas **não entregam um valor de volta**. Veja só no
+- **fazem algo**, mas **não entregam um valor de volta**. Veja só no
 interpretador interativo:
 
 ```python

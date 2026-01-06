@@ -11,7 +11,7 @@ parece que o dançarino está se mexendo de verdade. É assim que qualquer
 animação acontece — seja em games, filmes ou... na sua pista de dança! 🎥🎮
 
 Mas não é só nos movimentos que você pode mandar! Você também pode mudar as
-**propriedades** dos seus dançarinos para deixá-los ainda mais estilosos.
+- **propriedades** dos seus dançarinos para deixá-los ainda mais estilosos.
 
 As **propriedades** controlam coisas como:
 

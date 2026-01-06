@@ -2,7 +2,7 @@
 
 Um dos pilares da programação orientada a objetos é o encapsulamento.
 
-**Encapsulamento** refere-se ao empacotamento de dados com os métodos que irão
+- **Encapsulamento** refere-se ao empacotamento de dados com os métodos que irão
 manipular esses dados. Também é usada para esconder valores ou estados das 
 estruturas de dados em um objeto, prevenindo acesso direto a eles, de forma
 a esconder detalhes de implementação ou violar invariâncias de estados mantidas

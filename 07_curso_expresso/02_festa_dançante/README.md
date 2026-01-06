@@ -8,7 +8,7 @@ movimentos totalmente automáticos — uma vez iniciado o desenho, a tartaruga
 seguia seu caminho sem interferência.
 
 Mas e se a gente pudesse **interagir** com ela? E se a tartaruga pudesse
-**responder a teclas pressionadas** ou ao **passar do tempo**? Agora chegou o
+- **responder a teclas pressionadas** ou ao **passar do tempo**? Agora chegou o
 momento de dar mais vida (e ritmo!) à sua tartaruga.
 
 ## 🧠 Programar é criar

@@ -48,12 +48,12 @@ pode definir um valor para o parâmetro ```steps```, que por padrão é ```None`
 
 Explore esses parâmetros.
 
-**Desafio** Você consegue fazer um quadrado ou um triângulo com o método 
+- **Desafio** Você consegue fazer um quadrado ou um triângulo com o método 
 ```circle```?
 
-**Desafio** Como seriam os códigos para desenhar essas figuras sem o uso desse método?
+- **Desafio** Como seriam os códigos para desenhar essas figuras sem o uso desse método?
 
-**Desafio** Crie um novo arquivo Python e defina funções para desenhar uma reta, 
+- **Desafio** Crie um novo arquivo Python e defina funções para desenhar uma reta, 
 um quadrado, um triângulo, um retângulo e uma estrela.
 
 ## Referências

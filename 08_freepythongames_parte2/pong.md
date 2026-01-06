@@ -12,7 +12,7 @@ Diferentemente do Simon Diz (memória sequencial) e do Campo Minado (análise
 discreta e espacial), o Pong introduz o aluno a um modelo de mundo em tempo
 contínuo, no qual o estado do sistema evolui frame a frame.
 
-**Competência centrais**
+- **Competência centrais**
 
 Do ponto de vista pedagógico, Pong permite avaliar:
 1. Noção de estado global do jogo
@@ -20,7 +20,7 @@ Do ponto de vista pedagógico, Pong permite avaliar:
 1. Coordenação entre entrada do usuário, movimento automático e regras físicas simples
 1. Pensamento algorítmico aplicado a sistemas dinâmicos
 
-**Tópicos de aprendizagem explorados**
+- **Tópicos de aprendizagem explorados**
 1. Variáveis que representam posição e velocidade
 1. Atualização incremental (x = x + dx, y = y + dy)
 1. Condicionais encadeadas
@@ -38,51 +38,51 @@ jogos em tempo real e, posteriormente, simulações mais complexas.
 
 ### TODO 1 - Desenhar a segunda raquete
 
-**Conceitos:** chamada de funções e parâmetros
-**Racional:** força o aluno a identificar um padrão funcional existente e reproduzi-lo
-**Avalia:** leitura e compreesão de código, reconhecimento de padrões
+- **Conceitos:** chamada de funções e parâmetros
+- **Racional:** força o aluno a identificar um padrão funcional existente e reproduzi-lo
+- **Avalia:** leitura e compreesão de código, reconhecimento de padrões
 
 ### Exercício 1 — Alterar cores do jogo
 
-**Conceitos:** parâmetros gráficos, estado visual
-**Racional:** pequenas mudanças visuais ajudam a localizar funções gráficas
-**Avalia:** leitura e modificação de código existente
+- **Conceitos:** parâmetros gráficos, estado visual
+- **Racional:** pequenas mudanças visuais ajudam a localizar funções gráficas
+- **Avalia:** leitura e modificação de código existente
 
 ### Exercício 2 — Frame rate
 
-**Conceitos:** tempo, ontimer, execução assíncrona
-**Racional:** explicita que não há laço infinito, mas sim agendamento temporal
-**Avalia:** compreensão de fluxo controlado por eventos
+- **Conceitos:** tempo, ontimer, execução assíncrona
+- **Racional:** explicita que não há laço infinito, mas sim agendamento temporal
+- **Avalia:** compreensão de fluxo controlado por eventos
 
 ### Exercício 3 — Velocidade da bola
 
-**Conceitos:** vetores, magnitude, aleatoriedade
-**Racional:** conecta matemática simples ao comportamento do jogo
-**Avalia:** manipulação de dados numéricos
+- **Conceitos:** vetores, magnitude, aleatoriedade
+- **Racional:** conecta matemática simples ao comportamento do jogo
+- **Avalia:** manipulação de dados numéricos
 
 ### Exercício 4 — Tamanho das raquetes
 
-**Conceitos:** parâmetros, colisão geométrica
-**Racional:** mostra dependência entre visual e lógica
-**Avalia:** coerência entre representação e regra do jogo
+- **Conceitos:** parâmetros, colisão geométrica
+- **Racional:** mostra dependência entre visual e lógica
+- **Avalia:** coerência entre representação e regra do jogo
 
 ### Exercício 5 — Rebote nas paredes
 
-**Conceitos:** condicionais, física simplificada
-**Racional:** promove experimentação e raciocínio causal
-**Avalia:** entendimento de controle de fluxo
+- **Conceitos:** condicionais, física simplificada
+- **Racional:** promove experimentação e raciocínio causal
+- **Avalia:** entendimento de controle de fluxo
 
-**Exercício 6** — Jogador computador
+- **Exercício 6** — Jogador computador
 
-**Conceitos:** automação, lógica condicional
-**Racional:** introduz comportamento artificial simples
-**Avalia:** decomposição de problema
+- **Conceitos:** automação, lógica condicional
+- **Racional:** introduz comportamento artificial simples
+- **Avalia:** decomposição de problema
 
 ### Exercício 7 — Segunda bola
 
-**Conceitos:** listas, múltiplos estados, generalização
-**Racional:** força o aluno a sair do código “hardcoded”
-**Avalia:** abstração e escalabilidade
+- **Conceitos:** listas, múltiplos estados, generalização
+- **Racional:** força o aluno a sair do código “hardcoded”
+- **Avalia:** abstração e escalabilidade
 
 ## Classificação por nível de dificuldade
 🟢 Nível básico

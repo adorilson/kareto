@@ -45,7 +45,7 @@ mainloop()
 Com isso, caso tenhamos que fazer alguma alteração (por exemplo, renomear ```shape```
 para ```figure```) precisamos mexer em apenas uma função.  
 
-**Desafio** Aplique essa refatoração para as demais funções de troca de 
+- **Desafio** Aplique essa refatoração para as demais funções de troca de 
 ```shape```.
 
 Olhando novamente para os novos códigos das funções que fazem a troca de ```shape```,
@@ -78,7 +78,7 @@ mainloop()
 Observe que as definições das funções não existem mais, e ```lambda``` foi
 usada na chamada à ```onkey```.
 
-**Desafio** Remova todas as funçoes de troca de ```shape```, utilizando ```lambda```
+- **Desafio** Remova todas as funçoes de troca de ```shape```, utilizando ```lambda```
 no lugar.
 
 As funções lambda podem ser usadas sempre que objetos função forem necessários,

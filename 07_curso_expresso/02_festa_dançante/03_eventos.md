@@ -41,7 +41,7 @@ turtle.onkey(dançarino.anda_direita, "Right")
 ```
 
 Essa linha tem um superpoder:
-***"Quando alguém apertar a tecla de seta para a direita, execute o método
+- ***"Quando alguém apertar a tecla de seta para a direita, execute o método
 ```anda_direita``` do meu dançarino."***
 
 Repare em três detalhes importantes:

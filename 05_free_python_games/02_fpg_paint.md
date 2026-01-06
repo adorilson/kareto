@@ -93,7 +93,7 @@ from turtle import setup
 
 4. Repetir os passos 2 e 3 até que o programe rode com sucesso
 
-**Desafio** Execute este algoritmo para todas os nomes importados de `turtle`
+- **Desafio** Execute este algoritmo para todas os nomes importados de `turtle`
 
 #### from freegames import vector
 
@@ -184,7 +184,7 @@ não temos a criação de um objeto `turtle` (`turtle = turtle.Turtle()`), como
 fizemos em nosso editor. No lugar disso, as funções são importadas e chamadas
 diretamente do módulo.
 
-**Desafio** Resolva os exercícios propostos para `Paint`.
+- **Desafio** Resolva os exercícios propostos para `Paint`.
 
 
 

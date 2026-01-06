@@ -1,6 +1,6 @@
 # Virando à direita
 
-**Maia** tem agora um novo método: `direita()`, que faz com que ela vire à
+- **Maia** tem agora um novo método: `direita()`, que faz com que ela vire à
 direita. Diferente do comando `right()` da tartaruga, este não recebe
 argumentos. A rotação é sempre de `90` graus.
 

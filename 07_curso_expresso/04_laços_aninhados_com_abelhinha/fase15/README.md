@@ -6,7 +6,7 @@ Faça o melhor que você pode!
 
 ## 🐝 Sua vez de praticar
 
-**Desafio**: Descubra como pegar todo o nectar utilizando apenas os blocos disponíveis.
+- **Desafio**: Descubra como pegar todo o nectar utilizando apenas os blocos disponíveis.
 
 ![Mais blocos dentro do laço](cenario_15.png "Mais blocos dentro do laço")
 

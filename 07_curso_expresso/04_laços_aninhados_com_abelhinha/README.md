@@ -5,7 +5,7 @@ Nas seções anteriores, você conheceu os **laços de repetição**, usando o b
 dentro dele, desde que estejam corretamente **indentados**.
 O que ainda não exploramos é que esses blocos internos podem ser **outros
 laços de repetição**. Quando um laço está dentro de outro, dizemos que temos
-**laços aninhados**. Este é o tópico principal deste novo mundo.
+- **laços aninhados**. Este é o tópico principal deste novo mundo.
 
 
 ## 🐝 Sua vez de praticar
