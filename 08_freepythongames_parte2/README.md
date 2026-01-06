@@ -12,6 +12,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Jogo da Velha](velha.md)
 - [Spinner](spinner.md)
 - [Pacman](pacman.md)
+- [Tron](tron.md)
 
 Como essas versões não estão tão funcionais como as versões do FPG e,
 por outro lado, será necessário a instalação do pacote `freegames`
