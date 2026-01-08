@@ -13,6 +13,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Spinner](spinner.md)
 - [Pacman](pacman.md)
 - [Tron](tron.md)
+- [Flappy](tron.md)
 
 Como essas versões não estão tão funcionais como as versões do FPG e,
 por outro lado, será necessário a instalação do pacote `freegames`
@@ -22,7 +23,7 @@ alterações.
 
 Algumas dessas alterações terão por propósito deixar o jogo tal qual está
 no FPG. Os alunos deverão começar por essas, que estarão marcado por TODO
-no código. Outras alterações são para  evoluir sob diversos aspectos ou 
+no código. Outras alterações são para evoluir o jogo sob diversos aspectos ou 
 expandir o entendimento dos estudantes, que estarão na forma de exercícios
 no topo dos arquivos.
 
