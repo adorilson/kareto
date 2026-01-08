@@ -4,6 +4,19 @@ Os jogos a seguir são versões dos jogos presentes no
 [Free Python Games](https://grantjenks.com/docs/freegames/)(FPG).
 adaptados e detalhados para uso em sala de aula.
 
+- [Campo minado](campo_minado.md)
+- [Cobra](cobra.md)
+- [Flappy](tron.md)
+- [Jogo da Velha](velha.md)
+- [Pacman](pacman.md)
+- [Paint](paint.md)
+- [Pong](pong.md)
+- [Simon Diz](simon_diz.md)
+- [Spinner](spinner.md)
+- [Tron](tron.md)
+
+
+<!-- Ordem de criação
 - [Cobra](cobra.md)
 - [Campo minado](campo_minado.md)
 - [Simon Diz](simon_diz.md)
@@ -14,6 +27,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Pacman](pacman.md)
 - [Tron](tron.md)
 - [Flappy](tron.md)
+-->
 
 Como essas versões não estão tão funcionais como as versões do FPG e,
 por outro lado, será necessário a instalação do pacote `freegames`
