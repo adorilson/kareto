@@ -8,6 +8,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Cobra](cobra.md)
 - [Flappy](tron.md)
 - [Jogo da Velha](velha.md)
+- [Memória](memoria.md)
 - [Pacman](pacman.md)
 - [Paint](paint.md)
 - [Pong](pong.md)
@@ -27,6 +28,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Pacman](pacman.md)
 - [Tron](tron.md)
 - [Flappy](tron.md)
+- [Memoria](memoria.md)
 -->
 
 Como essas versões não estão tão funcionais como as versões do FPG e,
