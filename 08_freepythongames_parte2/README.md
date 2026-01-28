@@ -8,6 +8,7 @@ adaptados e detalhados para uso em sala de aula.
 - [Cobra](cobra.md)
 - [Flappy](tron.md)
 - [Jogo da Velha](velha.md)
+- [Labirinto](labirinto.md)
 - [Memória](memoria.md)
 - [Pacman](pacman.md)
 - [Paint](paint.md)
