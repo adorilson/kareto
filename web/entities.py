@@ -56,6 +56,9 @@ class Ator:
         self.x = x
         self.y = y
 
+    @property
+    def posicao(self):
+        return self.x, self.y
 
     def __str__(self):
         return super().__str__() + f" at ({self.x}, {self.y}) facing {self.direcao}"
