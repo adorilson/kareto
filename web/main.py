@@ -1,7 +1,7 @@
 from browser import document, window, timer
 from world import World
 from renderer import Renderer
-from entities import Abelha
+from entities import Abelha, Girassol
 
 
 command_queue = []
@@ -21,9 +21,15 @@ def create_world():
     renderer.reset()
     # isso será algo pra vir na configuração da fase
     bee = Abelha(world, renderer, command_queue, x=1, y=4)
+    g1 = Girassol(world, renderer, command_queue, x=3, y=4)
+    g2 = Girassol(world, renderer, command_queue, x=5, y=4)
+    g3 = Girassol(world, renderer, command_queue, x=6, y=4)
+
     return bee
 
+
 bee = create_world()
+
 
 # ----------------------------
 # Executor da fila

@@ -1,6 +1,7 @@
 import random
 from enum import IntEnum
 
+
 class Direcao(IntEnum):
     LESTE = 0
     NORTE = 90
@@ -31,6 +32,7 @@ class Ator:
         self.y = y if x is not None else random.randint(0, world.height - 1)
 
         self.setheading(direcao)
+
 
     def shape(self, name=None):
         if name is None:
@@ -73,9 +75,12 @@ class Abelha(Ator):
 
     def __init__(self, world, renderer, command_queue, x=None, y=None, direcao=Direcao.LESTE):
         super().__init__(world, command_queue, x, y, direcao)
-        self.renderer = renderer
         self.shape(self.IMAGENS[direcao])
+        self.z_index = 3
+
+        self.renderer = renderer
         self.renderer.register_actor(self)
+        
 
     def goto(self, x, y):
         self.queue.append(lambda: self._goto(x, y))
@@ -191,4 +196,13 @@ class Abelha(Ator):
 
 
 class Girassol(Ator):
-    pass
+    GIRASSOL = "girassol.gif"
+
+    def __init__(self, world, renderer, command_queue, x=None, y=None, direcao=Direcao.LESTE):
+        super().__init__(world, command_queue, x, y, direcao)
+
+        self.shape(self.GIRASSOL)
+        self.z_index = 1
+
+        self.renderer = renderer
+        self.renderer.register_actor(self)
