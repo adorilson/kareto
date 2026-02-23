@@ -209,3 +209,6 @@ class Girassol(Ator):
 
         self.renderer = renderer
         self.renderer.register_actor(self)
+
+    def esconda(self):
+        self.renderer.remove_actor(self)

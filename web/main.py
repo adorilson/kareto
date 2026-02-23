@@ -21,9 +21,10 @@ def create_world():
     renderer.reset()
     # isso será algo pra vir na configuração da fase
     bee = Abelha(world, renderer, command_queue, x=1, y=4)
-    g1 = Girassol(world, renderer, command_queue, x=3, y=4)
-    g2 = Girassol(world, renderer, command_queue, x=5, y=4)
-    g3 = Girassol(world, renderer, command_queue, x=6, y=4)
+    world.girassois = []
+    world.girassois.append(Girassol(world, renderer, command_queue, x=3, y=4))
+    world.girassois.append(Girassol(world, renderer, command_queue, x=5, y=4))
+    world.girassois.append(Girassol(world, renderer, command_queue, x=6, y=4))
 
     return bee
 
@@ -34,6 +35,12 @@ bee = create_world()
 # ----------------------------
 # Executor da fila
 # ----------------------------
+
+def verifica_girassol():
+    for girassol in world.girassois:
+        if girassol.posicao == bee.posicao:
+            girassol.esconda()
+            girassol.ativa = False
 
 def process_queue():
     global is_running
@@ -46,6 +53,8 @@ def process_queue():
 
     command = command_queue.pop(0)
     command()
+
+    timer.set_timeout(verifica_girassol, 300)
 
     # agenda próximo passo
     timer.set_timeout(process_queue, 500)

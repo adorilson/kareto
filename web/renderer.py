@@ -43,3 +43,9 @@ class Renderer:
         el.style.zIndex = actor.z_index
 
         print(actor, actor.shape())
+
+    def remove_actor(self, actor):
+        print(f"Removendo ator: {actor}")
+        el = self.actor_elements[actor]
+        el.remove()
+        del self.actor_elements[actor]
