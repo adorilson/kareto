@@ -1,0 +1,76 @@
+:root {
+  --tile-size: 50px;
+  --board-size: 8;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#layout {
+  display: flex;
+  height: 100vh;
+}
+
+#left-panel {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 1px solid #ddd;
+}
+
+#editor {
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+#run-btn {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#right-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game {
+  position: relative;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), var(--tile-size));
+  grid-template-rows: repeat(var(--board-size), var(--tile-size));
+}
+
+.tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#actors {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.actor {
+  position: absolute;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  transition: transform 0.2s ease;
+}
