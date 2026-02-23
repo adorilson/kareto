@@ -59,7 +59,8 @@ editor = window.CodeMirror.fromTextArea(
     {
         "lineNumbers": True,
         "mode": "python",
-        "theme": "default"
+        "theme": "default",
+        "indentUnit": 4,
     }
 )
 
