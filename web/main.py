@@ -1,7 +1,26 @@
+import sys
+import traceback
+
 from browser import document, window, timer
+
 from world import World
 from renderer import Renderer
 from entities import Abelha, Girassol
+
+
+# Redirecionamento de prints e exceções para a interface web
+def _write(*args):
+    document["kareto-print-output"].html += "".join(args)
+
+
+def __write(*args):
+    document["kareto-print-output"].html += '<span class="error">' + "".join(args) + "</span>"
+
+
+# Talvez isso deve ser ativado apenas quando código do editor estiver em execução, para evitar confusão com mensagens de debug do próprio sistema
+# ver também como o módulo logging pode ser integrado a isso
+sys.stdout.write = _write
+sys.stderr.write = __write
 
 
 command_queue = []
@@ -52,7 +71,15 @@ def process_queue():
     is_running = True
 
     command = command_queue.pop(0)
-    command()
+    try:
+        command()
+    except Exception as e:
+        # Limpa a fila para evitar comportamentos estranhos após erro
+        # Isso precisa ser feito aqui pois assíncrono
+        command_queue.clear() 
+        is_running = False
+        window.alert(f"Erro: {str(e)}")
+        raise e # levanta novamente para ser tratada no bloco de execução do código do usuário
 
     timer.set_timeout(verifica_girassol, 300)
 
@@ -96,15 +123,20 @@ for _ in range(4):
 def run_code(event):
     global is_running
 
-    if is_running:
-        return  # impede execução simultânea
+    if is_running: # impede execução simultânea
+        window.alert("O código já está em execução. Por favor, aguarde.")
+        return  
 
     code = editor.getValue()
 
     try:
         exec(code)
-        process_queue()
     except Exception as e:
-        window.alert(f"Erro: {e}")
+        window.alert(f"Erro ao analisar o código: {str(traceback.format_exc())}")
+        traceback.print_exc()
+        return
+
+    process_queue()
+
 
 document["run-btn"].bind("click", run_code)
