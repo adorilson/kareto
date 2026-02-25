@@ -1,7 +1,7 @@
 import sys
 import traceback
 
-from browser import document, window, timer
+from browser import document, window, timer, bind
 
 from world import World
 from renderer import Renderer
@@ -120,6 +120,7 @@ for _ in range(4):
 # Execução do código
 # ----------------------------
 
+@bind(document["run-btn"], "click")
 def run_code(event):
     global is_running
 
@@ -137,6 +138,3 @@ def run_code(event):
         return
 
     process_queue()
-
-
-document["run-btn"].bind("click", run_code)
