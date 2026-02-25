@@ -133,7 +133,7 @@ def run_code(event):
     try:
         exec(code)
     except Exception as e:
-        window.alert(f"Erro ao analisar o código: {str(traceback.format_exc())}")
+        window.alert(f"Erro ao analisar o código: \n\n{traceback.format_exc()}")
         traceback.print_exc()
         return
 
