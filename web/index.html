@@ -3,10 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Kareto Web</title>
-  <link rel="stylesheet" href="style.css">
-
-  <link rel="stylesheet"
-        href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
   <!-- CodeMirror 5 -->
   <link rel="stylesheet"
@@ -17,30 +13,42 @@
   <!-- Brython -->
   <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body onload="brython()">
 
   <div id="layout">
     
-    <div id="left-panel">
+    <div id="editor-panel">
       <textarea id="editor"></textarea>
       <button id="run-btn">Executar</button>
     </div>
 
-    <div id="right-panel">
+    <div id="game-panel">
       <div id="game">
         <div id="board"></div>
         <div id="actors"></div>
       </div>
     </div>
+    
+    <div id="console-panel">
+      <div id="console" class="codearea" contenteditable ></div>
+    </div>
     <pre id="kareto-print-output">output here...</pre>
   </div>
 
+
   <script type="text/python" src="main.py"> </script>
   <script type="text/python">
+      # Importanto tudo do main para ser repassado para o console interativo através do globals()
+      from main import *
 
-  </script>
+      # Start an interactive interpreter in textarea with id "console"
+      Interpreter("console", globals=globals())
+ </script>
 </body>
 </html>
 

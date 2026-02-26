@@ -6,21 +6,47 @@
 body {
   margin: 0;
   font-family: sans-serif;
-}
-
-#layout {
-  display: flex;
   height: 100vh;
 }
 
-#left-panel {
-  width: 40%;
+#layout {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 1fr 200px;
+  grid-template-areas:
+    "editor game"
+    "console console";
+  height: 100vh;
+}
+
+#editor-panel {
+  grid-area: editor;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 15px;
   box-sizing: border-box;
   border-right: 1px solid #ddd;
 }
+
+
+#game-panel {
+  grid-area: game;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#console-panel {
+  grid-area: console;
+  border-top: 1px solid #ddd;
+  background: #111;
+  color: #0f0;
+  font-family: monospace;
+  padding: 10px;
+  overflow-y: auto;
+}
+
 
 #editor {
   flex: 1;
@@ -34,12 +60,6 @@ body {
   cursor: pointer;
 }
 
-#right-panel {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 #game {
   position: relative;

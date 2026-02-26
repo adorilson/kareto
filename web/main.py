@@ -1,6 +1,7 @@
 import sys
 import traceback
 
+import interpreter
 from browser import document, window, timer, bind
 
 from world import World
@@ -15,12 +16,6 @@ def _write(*args):
 
 def __write(*args):
     document["kareto-print-output"].html += '<span class="error">' + "".join(args) + "</span>"
-
-
-# Talvez isso deve ser ativado apenas quando código do editor estiver em execução, para evitar confusão com mensagens de debug do próprio sistema
-# ver também como o módulo logging pode ser integrado a isso
-sys.stdout.write = _write
-sys.stderr.write = __write
 
 
 command_queue = []
@@ -61,7 +56,7 @@ def verifica_girassol():
             girassol.esconda()
             girassol.ativa = False
 
-def process_queue():
+def process_queue(repl=None):
     global is_running
 
     if not command_queue:
@@ -71,6 +66,15 @@ def process_queue():
     is_running = True
 
     command = command_queue.pop(0)
+    # Talvez isso deve ser ativado apenas quando código do editor estiver em execução, para evitar confusão com mensagens de debug do próprio sistema
+    # ver também como o módulo logging pode ser integrado a isso
+    # TODO print não está funcionando corretamente
+    if repl is not None:
+        sys.stdout = sys.stderr = interpreter.Output(repl)
+    else:
+        sys.stdout.write = _write
+        sys.stderr.write = __write
+
     try:
         command()
     except Exception as e:
@@ -78,13 +82,19 @@ def process_queue():
         # Isso precisa ser feito aqui pois assíncrono
         command_queue.clear() 
         is_running = False
+        if repl is not None: #TODO melhorar isso, talvez criando um método específico para lidar com erros no repl
+            repl.insert_cr()
+            repl.insert_prompt()
+            repl.cursor_to_end()
+        else:
+            window.alert('nao tem repl')
         window.alert(f"Erro: {str(e)}")
         raise e # levanta novamente para ser tratada no bloco de execução do código do usuário
 
     timer.set_timeout(verifica_girassol, 300)
 
     # agenda próximo passo
-    timer.set_timeout(process_queue, 500)
+    timer.set_timeout(lambda: process_queue(repl), 500)
 
 # ----------------------------
 # CodeMirror 5 Setup
@@ -138,3 +148,22 @@ def run_code(event):
         return
 
     process_queue()
+
+
+class Interpreter(interpreter.Interpreter):
+    def keypress(self, event):
+        super().keypress(event)
+        try:
+            # Processa a fila de comandos após cada entrada do usuário
+            process_queue(repl=self)
+        except Exception as e:
+            window.alert(f"Erro durante a execução do repl: \n\n{traceback.format_exc()}")
+            traceback.print_exc()
+            self.insert_cr()
+            self.insert_prompt()
+            self.cursor_to_end()
+
+
+    def focus(elf, *args):
+        pass
+
