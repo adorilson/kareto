@@ -75,7 +75,6 @@ body {
   width: var(--tile-size);
   height: var(--tile-size);
   border: 1px solid #ccc;
-  box-sizing: border-box;
 }
 
 #actors {
