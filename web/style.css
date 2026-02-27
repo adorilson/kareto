@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  height: 100vh;
+  height: 100%;
 }
 
 #layout {
@@ -15,25 +15,28 @@ body {
   grid-template-rows: 1fr 200px;
   grid-template-areas:
     "editor game"
-    "console console";
-  height: 100vh;
+    "console output";
+  height: 100%;
 }
 
 #editor-panel {
   grid-area: editor;
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  box-sizing: border-box;
-  border-right: 1px solid #ddd;
+  border: 1px solid #ddd;
+  margin: 5px;
 }
 
+.CodeMirror {
+  height: 100%;
+}
 
 #game-panel {
   grid-area: game;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5px;
 }
 
 
@@ -43,9 +46,47 @@ body {
   background: #111;
   color: #0f0;
   font-family: monospace;
-  padding: 10px;
+  margin: 5px;
+}
+
+
+.codearea {
+  height: 100%;
+  width: 100%;
+  background-color: black;
   overflow-y: auto;
 }
+
+
+#output-panel {
+  grid-area: output;
+  border-top: 1px solid #ddd;
+  background: #f4f4f4;
+  font-family: monospace;
+  margin: 5px;
+}
+
+
+#output-content {
+  overflow-y: auto;
+  height: 100%;
+  color:#111;
+  background: #f4f4f4;
+}
+
+.outputarea {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.error{
+  color: red;
+  margin: 0px;
+  display: inline;
+	white-space: pre-wrap;
+}
+
 
 .panel-header {
   padding: 6px 5px;
@@ -55,19 +96,19 @@ body {
   color: #fff;
 }
 
-
 #editor {
   flex: 1;
   border: 1px solid #ccc;
 }
 
 #run-btn {
-  margin-top: 10px;
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
 }
 
+
+/* Estilos do jogo */
 
 #game {
   position: relative;
@@ -77,6 +118,7 @@ body {
   display: grid;
   grid-template-columns: repeat(var(--board-size), var(--tile-size));
   grid-template-rows: repeat(var(--board-size), var(--tile-size));
+  background-color: rgba(130, 164, 74, 0.526);
 }
 
 .tile {

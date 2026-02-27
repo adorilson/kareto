@@ -10,12 +10,16 @@ from entities import Abelha, Girassol
 
 
 # Redirecionamento de prints e exceções para a interface web
+def escape_tags(text):
+    return text.replace("<", "&lt;").replace(">", "&gt;")
+
+
 def _write(*args):
-    document["kareto-print-output"].html += "".join(args)
+    document["output-content"].html += escape_tags("".join(args))
 
 
 def __write(*args):
-    document["kareto-print-output"].html += '<span class="error">' + "".join(args) + "</span>"
+    document["output-content"].html += '<pre class="error">' + escape_tags("".join(args)) + "</pre> <br/><br/>"
 
 
 command_queue = []
