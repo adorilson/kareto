@@ -42,10 +42,7 @@ class Renderer:
         el.style.transform = f"translate({x_px}px, {y_px}px)"
         el.style.zIndex = actor.z_index
 
-        print(actor, actor.shape())
-
     def remove_actor(self, actor):
-        print(f"Removendo ator: {actor}")
         el = self.actor_elements[actor]
         el.remove()
         del self.actor_elements[actor]
