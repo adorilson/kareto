@@ -47,6 +47,14 @@ body {
   overflow-y: auto;
 }
 
+.panel-header {
+  padding: 6px 5px;
+  font-weight: bold;
+  font-size: 14px;
+  background: #0aa351;
+  color: #fff;
+}
+
 
 #editor {
   flex: 1;
