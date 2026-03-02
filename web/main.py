@@ -42,9 +42,6 @@ def create_world(confs):
     # isso será algo pra vir na configuração da fase
 
     world.girassois = []
-    world.girassois.append(Girassol(world, renderer, command_queue, x=3, y=4))
-    world.girassois.append(Girassol(world, renderer, command_queue, x=5, y=4))
-    world.girassois.append(Girassol(world, renderer, command_queue, x=6, y=4))
 
     if 'cag' in confs:
         cag_value = confs['cag'][0]
@@ -59,6 +56,10 @@ def create_world(confs):
         x, y, direcao = int(bee_coords[0]), int(bee_coords[1]), int(bee_coords[2])
         bee = Abelha(world, renderer, command_queue, x=x, y=y, direcao=direcao)
 
+    if 'gs' in confs:
+        for i, gs in enumerate(confs['gs']):
+            x, y = gs.split(',')
+            world.girassois.append(Girassol(world, renderer, command_queue, x=int(x), y=int(y)))
 
     return bee
 
