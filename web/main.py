@@ -40,7 +40,7 @@ def create_world(confs):
     is_running = False
     renderer.reset()
     # isso será algo pra vir na configuração da fase
-    bee = Abelha(world, renderer, command_queue, x=1, y=4)
+
     world.girassois = []
     world.girassois.append(Girassol(world, renderer, command_queue, x=3, y=4))
     world.girassois.append(Girassol(world, renderer, command_queue, x=5, y=4))
@@ -53,6 +53,13 @@ def create_world(confs):
         except ValueError, TypeError:
             pass
         coleta_automatica_de_girassol = bool(cag_value)
+
+    if 'bee' in confs:
+        bee_coords = confs['bee'][0].split(',')
+        x, y, direcao = int(bee_coords[0]), int(bee_coords[1]), int(bee_coords[2])
+        bee = Abelha(world, renderer, command_queue, x=x, y=y, direcao=direcao)
+
+
     return bee
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
