@@ -1,5 +1,6 @@
 import sys
 import traceback
+from urllib.parse import parse_qs
 
 import interpreter
 from browser import document, window, timer, bind
@@ -24,6 +25,7 @@ def __write(*args):
 
 command_queue = []
 is_running = False
+coleta_automatica_de_girassol = False
 
 # ----------------------------
 # Setup do mundo
@@ -32,8 +34,8 @@ is_running = False
 world = World(8, 8)
 renderer = Renderer(world)
 
-def create_world():
-    global command_queue, is_running
+def create_world(confs):
+    global command_queue, is_running, coleta_automatica_de_girassol
     command_queue = []
     is_running = False
     renderer.reset()
@@ -44,10 +46,17 @@ def create_world():
     world.girassois.append(Girassol(world, renderer, command_queue, x=5, y=4))
     world.girassois.append(Girassol(world, renderer, command_queue, x=6, y=4))
 
+    if 'cag' in confs:
+        cag_value = confs['cag'][0]
+        try:
+            cag_value = int(cag_value)
+        except ValueError, TypeError:
+            pass
+        coleta_automatica_de_girassol = bool(cag_value)
     return bee
 
-
-bee = create_world()
+confs = parse_qs(document.location.search[1:])  # Ignora o '?'
+bee = create_world(confs)
 
 
 # ----------------------------
@@ -95,7 +104,8 @@ def process_queue(repl=None):
         window.alert(f"Erro: {str(e)}")
         raise e # levanta novamente para ser tratada no bloco de execução do código do usuário
 
-    timer.set_timeout(verifica_girassol, 300)
+    if coleta_automatica_de_girassol:
+        timer.set_timeout(verifica_girassol, 300)
 
     # agenda próximo passo
     timer.set_timeout(lambda: process_queue(repl), 500)
