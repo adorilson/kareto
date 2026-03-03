@@ -1,3 +1,4 @@
+import ast
 import sys
 import traceback
 from urllib.parse import parse_qs
@@ -64,6 +65,9 @@ def create_world(confs):
     return bee
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
+if not confs:
+    confs = document.getElementById("confs").textContent.strip() 
+    confs = ast.literal_eval(confs)
 bee = create_world(confs)
 
 
