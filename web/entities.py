@@ -197,6 +197,13 @@ class Abelha(Ator):
     def avance_norte(self):
         self.y = self.y - 1
 
+    def obtenha_nectar(self):
+        self.queue.append(self._obtenha_nectar)
+
+    def _obtenha_nectar(self):  
+        girassol = self.world.girassol_em(self.posicao)
+        girassol.extract_nectar()
+
 
 class Girassol(Ator):
     GIRASSOL = "girassol.gif"
@@ -212,3 +219,10 @@ class Girassol(Ator):
 
     def esconda(self):
         self.renderer.remove_actor(self)
+
+    def extract_nectar(self):
+        self.esconda()
+
+
+class GirassolError(Exception):
+    pass
