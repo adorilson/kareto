@@ -24,6 +24,8 @@ class Ator:
     def __init__(self, world, command_queue, x=None, y=None, direcao=Direcao.LESTE):
         super().__init__(visible=False)
         self._shape = ''
+        self._value = ''
+
         self.world = world
         
         self.queue = command_queue
@@ -33,6 +35,9 @@ class Ator:
 
         self.setheading(direcao)
 
+    @property
+    def value(self):
+        return self._value
 
     def shape(self, name=None):
         if name is None:
@@ -208,11 +213,12 @@ class Abelha(Ator):
 class Girassol(Ator):
     GIRASSOL = "girassol.gif"
 
-    def __init__(self, world, renderer, command_queue, x=None, y=None, direcao=Direcao.LESTE):
-        super().__init__(world, command_queue, x, y, direcao)
+    def __init__(self, world, renderer, command_queue, x=None, y=None, nectares=None):
+        super().__init__(world, command_queue, x, y)
 
         self.shape(self.GIRASSOL)
         self.z_index = 1
+        self.nectares = nectares
 
         self.renderer = renderer
         self.renderer.register_actor(self)
@@ -223,6 +229,12 @@ class Girassol(Ator):
     def extract_nectar(self):
         self.esconda()
 
+    @property
+    def value(self):
+        if self.nectares is not None:
+            return self.nectares
+        else:
+            return '' # TODO isso de retornar tipos diferentes não é legal.
 
 class GirassolError(Exception):
     pass

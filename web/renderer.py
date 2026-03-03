@@ -38,7 +38,7 @@ class Renderer:
         el = self.actor_elements[actor]
         x_px = actor.x * TILE_SIZE
         y_px = actor.y * TILE_SIZE
-        el.innerHTML = f'<img src="img/{actor.shape()}" style="width: {TILE_SIZE}px; height: {TILE_SIZE}px;"/>'
+        el.innerHTML = f'<img src="img/{actor.shape()}" style="width: 80%; height: 80%;"/> <div class="actor-value">{actor.value}</div>'
         el.style.transform = f"translate({x_px}px, {y_px}px)"
         el.style.zIndex = actor.z_index
 

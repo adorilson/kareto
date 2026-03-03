@@ -143,3 +143,14 @@ body {
   font-size: 28px;
   transition: transform 0.2s ease;
 }
+
+.actor-value{
+    font-size: 15px;
+    position: absolute;
+    top: 60px; /*--tile-size - font-size*/
+    left: 0px;
+    font-weight: bold;
+    color: white;
+    text-align: right;
+    width: 95%;
+}

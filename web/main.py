@@ -59,8 +59,14 @@ def create_world(confs):
 
     if 'gs' in confs:
         for i, gs in enumerate(confs['gs']):
-            x, y = gs.split(',')
-            world.girassois.append(Girassol(world, renderer, command_queue, x=int(x), y=int(y)))
+            conf_gs = gs.split(',')
+            x, y = conf_gs[0], conf_gs[1]
+            try:
+                nectares = conf_gs[2]
+            except:
+                nectares = None
+            gs = Girassol(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
+            world.girassois.append(gs)
 
     return bee
 
