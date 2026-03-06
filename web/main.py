@@ -16,12 +16,17 @@ def escape_tags(text):
     return text.replace("<", "&lt;").replace(">", "&gt;")
 
 
-def _write(*args):
-    document["output-content"].html += escape_tags("".join(args))
+class StdOutput:
+    def write(self, *args):
+        if args != ('\n',):
+            args = (args[0] + '\n') 
+
+        document["output-content"].html += '<pre class="editor-output">' + escape_tags("".join(args)) + "</pre>"
 
 
-def __write(*args):
-    document["output-content"].html += '<pre class="error">' + escape_tags("".join(args)) + "</pre> <br/><br/>"
+class ErrorOutput:
+    def write(self, *args):
+        document["output-content"].html += '<pre class="error">' + escape_tags("".join(args)) + "</pre>"
 
 
 command_queue = []
@@ -97,30 +102,25 @@ def process_queue(repl=None):
     is_running = True
 
     command = command_queue.pop(0)
-    # Talvez isso deve ser ativado apenas quando código do editor estiver em execução, para evitar confusão com mensagens de debug do próprio sistema
-    # ver também como o módulo logging pode ser integrado a isso
-    # TODO print não está funcionando corretamente
-    if repl is not None:
-        sys.stdout = sys.stderr = interpreter.Output(repl)
-    else:
-        sys.stdout.write = _write
-        sys.stderr.write = __write
 
     try:
         command()
     except Exception as e:
+        window.alert(f"Erro lógico: {str(e)}")
         # Limpa a fila para evitar comportamentos estranhos após erro
         # Isso precisa ser feito aqui pois assíncrono
         command_queue.clear() 
         is_running = False
         if repl is not None: #TODO melhorar isso, talvez criando um método específico para lidar com erros no repl
+            window.console.log('TEM repl. inserindo coisas no repl após exceção')
+            traceback.print_exc()
             repl.insert_cr()
             repl.insert_prompt()
             repl.cursor_to_end()
         else:
-            window.alert('nao tem repl')
-        window.alert(f"Erro: {str(e)}")
-        raise e # levanta novamente para ser tratada no bloco de execução do código do usuário
+            window.console.log('nao tem repl. imprimindo traceback no painel de saída')
+            traceback.print_exc()
+            return
 
     if coleta_automatica_de_girassol:
         timer.set_timeout(verifica_girassol, 300)
@@ -158,6 +158,11 @@ for _ in range(4):
 """
 )
 
+
+def limpa_output():
+    document["output-content"].html = ""
+
+
 # ----------------------------
 # Execução do código
 # ----------------------------
@@ -172,13 +177,17 @@ def run_code(event):
 
     code = editor.getValue()
 
+    sys.stdout = StdOutput()
     try:
+        limpa_output()
         exec(code)
-    except Exception as e:
-        window.alert(f"Erro ao analisar o código: \n\n{traceback.format_exc()}")
+    except SyntaxError as e:
+        window.alert(f"Erro de sintaxe. Veja detalhes na área de Saída.")
+        sys.stderr = ErrorOutput()
         traceback.print_exc()
         return
 
+    sys.stderr = ErrorOutput()
     process_queue()
 
 
@@ -194,6 +203,9 @@ class Interpreter(interpreter.Interpreter):
             self.insert_cr()
             self.insert_prompt()
             self.cursor_to_end()
+
+    def focus(self, *args):
+        sys.stdout = sys.stderr =  interpreter.Output(self)
 
 
 Interpreter("console", globals=globals())
