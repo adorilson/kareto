@@ -196,6 +196,5 @@ class Interpreter(interpreter.Interpreter):
             self.cursor_to_end()
 
 
-    def focus(elf, *args):
-        pass
+Interpreter("console", globals=globals())
 
