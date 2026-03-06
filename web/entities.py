@@ -202,10 +202,10 @@ class Abelha(Ator):
     def avance_norte(self):
         self.y = self.y - 1
 
-    def obtenha_nectar(self):
-        self.queue.append(self._obtenha_nectar)
+    def extraia_nectar(self):
+        self.queue.append(self._extraia_nectar)
 
-    def _obtenha_nectar(self):  
+    def _extraia_nectar(self):  
         girassol = self.world.girassol_em(self.posicao)
         girassol.extract_nectar()
 
