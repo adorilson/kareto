@@ -15,7 +15,7 @@ body {
   grid-template-rows: 1fr 200px;
   grid-template-areas:
     "editor game"
-    "console output";
+    "output console";
   height: 100%;
 }
 
