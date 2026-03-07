@@ -79,8 +79,12 @@ confs = parse_qs(document.location.search[1:])  # Ignora o '?'
 if not confs:
     confs = document.getElementById("confs").textContent.strip() 
     confs = ast.literal_eval(confs)
-bee = create_world(confs)
 
+try:
+    bee = create_world(confs)
+except Exception as e:
+    sys.stderr = ErrorOutput()
+    traceback.print_exc()
 
 # ----------------------------
 # Executor da fila
