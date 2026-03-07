@@ -113,10 +113,7 @@ def process_queue(repl=None):
         is_running = False
         if repl is not None: #TODO melhorar isso, talvez criando um método específico para lidar com erros no repl
             window.console.log('TEM repl. inserindo coisas no repl após exceção')
-            traceback.print_exc()
-            repl.insert_cr()
-            repl.insert_prompt()
-            repl.cursor_to_end()
+            repl.trata_excecao()
         else:
             window.console.log('nao tem repl. imprimindo traceback no painel de saída')
             traceback.print_exc()
@@ -198,11 +195,14 @@ class Interpreter(interpreter.Interpreter):
             # Processa a fila de comandos após cada entrada do usuário
             process_queue(repl=self)
         except Exception as e:
-            window.alert(f"Erro durante a execução do repl: \n\n{traceback.format_exc()}")
-            traceback.print_exc()
-            self.insert_cr()
-            self.insert_prompt()
-            self.cursor_to_end()
+            self.trata_excecao(e)
+
+    def trata_excecao(self):
+        self.insert_cr()
+        traceback.print_exc()
+        self.insert_cr()
+        self.insert_prompt()
+        self.cursor_to_end()
 
     def focus(self, *args):
         sys.stdout = sys.stderr =  interpreter.Output(self)
