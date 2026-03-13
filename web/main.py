@@ -159,6 +159,7 @@ for _ in range(4):
 """
 )
 
+window.editor = editor
 
 def limpa_output():
     document["output-content"].html = ""
