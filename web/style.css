@@ -44,7 +44,7 @@ body {
   grid-area: console;
   border-top: 1px solid #ddd;
   background: #111;
-  color: #0f0;
+  color: #fff;
   font-family: monospace;
   margin: 5px;
 }
