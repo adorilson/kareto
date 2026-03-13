@@ -1,0 +1,70 @@
+"""
+Testa se a página está sendo carregada corretamente, ou seja, se os componentes estáticos e dinâmicos estão presentes e visíveis na página.
+
+Não testa interações do usuário, como clicar em botões ou digitar no console.
+"""
+
+
+from playwright.sync_api import sync_playwright
+
+
+def test_componentes_estaticos():
+    """Testa se os componentes estáticos estão presentes na página."""
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)  # Set headless=True if you don’t want browser UI
+        page = browser.new_page()
+        page.goto("http://localhost:8000")
+
+        assert "Kareto Web" in page.title()
+
+        assert page.locator("#editor-panel").is_visible()
+        assert page.locator("#game-panel").is_visible()
+        assert page.locator("#console-panel").is_visible()
+        assert page.locator("#output-panel").is_visible()
+
+        assert page.locator("#confs").is_visible() is False
+
+
+def test_componentes_dinamicos():
+    """Testa se os componentes carregados dinamicamente, seja via JavaScript, seja via Brython, estão visíveis na página."""
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000")
+
+        assert page.locator(".CodeMirror").is_visible()
+
+        assert page.locator("#board > div:nth-child(1)").is_visible()
+        assert page.locator("#board > div:nth-child(64)").is_visible()
+
+        assert page.locator("#console > pre:nth-child(1)").is_visible()
+        assert "Brython 3.14" in page.locator("#console > pre:nth-child(1)").inner_text()
+
+
+def test_criacao_mundo_via_query_string():
+    def assert_ator(tile_selector, x, y, z_index, img_src):
+        tile = page.locator(tile_selector)
+        assert tile.is_visible()
+        assert tile.get_attribute("style") == f"transform: translate({x*75}px, {y*75}px); z-index: {z_index};"
+        assert tile.locator("img").get_attribute("src") == img_src
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?bee=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4")
+
+        assert_ator('#actors > div:nth-child(1)', x=1, y=4, z_index=3, img_src="img/abelha_leste.gif")
+        assert_ator('#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
+        assert_ator('#actors > div:nth-child(3)', x=5, y=4, z_index=1, img_src="img/girassol.gif")
+        assert_ator('#actors > div:nth-child(4)', x=6, y=4, z_index=1, img_src="img/girassol.gif")
+
+
+def test_configuracao_abelha_invalida():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?bee=1,7&cag=1")
+
+        # Verificar se a mensagem de erro foi exibida
+        assert "Traceback" in page.locator("#output-content").inner_text().strip()
+        assert "IndexError" in page.locator("#output-content").inner_text().strip()
