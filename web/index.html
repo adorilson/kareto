@@ -6,51 +6,155 @@
 
   <link rel="icon" href="favicon.ico">
 
-  <!-- CodeMirror 5 -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
 
   <!-- Brython -->
   <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
 
 
-  <link rel="stylesheet" href="style.css" type="text/css" />
+  <!-- CodeMirror 5 -->
+  <link rel="stylesheet" href="./codemirror-5.48.4/doc/docs.css">
+  <link rel="stylesheet" href="./codemirror-5.48.4/addon/hint/show-hint.css">
+  <link rel="stylesheet" href="./codemirror-5.48.4/lib/codemirror.css">
+
+  <link rel="stylesheet" type="text/css" href="./css/kareto.css" />
+
+  <!-- Bootstrap -->
+  <!-- TODO inverter isso com os CSS' locais, para que Bootstrap não sobrescreva
+   os estilos definidos localmente -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<style>
+  .hidden{
+    display: none;
+  }
+
+  .not-hidden{
+    display:block;
+  }
+
+  pre {
+    display: block;
+    padding: 0px;
+    margin: 0 2px 0px;
+    font-size: 14px;
+    line-height: 1;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: white;
+    background-color: #000;
+    border: 0px solid #ccc;
+    border-radius: 0px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  #console pre{
+    background-color: #000;
+    font-family: monospace;
+  }
+
+  #turtle-canvas{
+    width: 550px;
+    height: 550px;
+    margin-left:0px;
+    border: 0px solid #000;
+  }
+
+  #turtle-div {
+    width: 500px;
+    height: 550px;
+    top: 35px;
+    left: 250px;
+    position: absolute;
+    border: 1px solid gray;
+  }
+
+  .CodeMirror {
+    width:100%;
+    height: 100%;
+    border: 1px solid #ddd;
+  }
+
+  .CodeMirror-scroll {
+    max-height: pxpx;
+  }
+
+  #output-content {
+    background-color: black;
+    color: yellow;
+    font-weight: bolder;
+    min-height: 50px;
+    height: auto;
+    max-height: 200px;
+  }
+
+  </style>
+
 </head>
 
 <body>
 
+
   <div id="layout">
-    
     <div id="editor-panel">
-      <div class="panel-header">
-        <span>Editor de código</span>
+      <div class="panel-header" style="display:flex">
+        <span style="flex-basis:50%">Editor de código</span>
+        <div>
+          <button id="reset-btn" class="btn btn-xs btn-danger">
+            <span class="glyphicon glyphicon-repeat"></span>
+            Restaurar código inicial
+          </button>
+          <button id="run-btn" class="btn btn-xs btn-default">
+            <span class="glyphicon glyphicon-play-circle"></span>
+            Executar
+          </button>
+          <button id="replay-scene" class="btn btn-xs btn-enabled" style="display:none">Repetir</button>
+          <!--<button class="btn btn-xs" onclick="copyToClipBoard()">Copy</button>-->
+        </div>
       </div>
+
       <textarea id="editor"></textarea>
-      <button id="run-btn">Executar</button>
+      <textarea id="editoraux" style="display:none"></textarea>
+      <!--<button id="run-btn">Executar</button>-->
     </div>
 
     <div id="game-panel">
-      <div id="game">
-        <div id="board"></div>
-        <div id="actors"></div>
-      </div>
-    </div>
-    
-    <div id="console-panel">
-        <div class="panel-header">
-          <span>Console interativo</span>
+      <div class="panel-header" style="display:flex;">
+        <span>Area de execução</span>
+        <div>
+          <button id="clear" class="btn btn-xs btn-danger" style="position: relative; left: 350px;">
+            <span class="glyphicon glyphicon-repeat"></span> Recomeçar
+          </button>
         </div>
-      <div id="console" class="codearea" contenteditable ></div>
+      </div>
+        <div id="game">
+          <div id="board"></div>
+          <div id="actors"></div>
+        </div>
     </div>
 
     <div id="output-panel">
-      <div class="panel-header" class="outputarea">
-        <span>Saídas</span>
+      <div class="panel-header">
+        <span>Saidas</span>
       </div>
-      <div id="output-content" ></div>
+      <div id="output-content" class="outputarea"></div>
+      <span id="status-info"></span>
+      <!--<div id="output-content" ></div>-->
+    </div>
+
+    <div id="console-panel">
+      <div class="panel-header">
+        <span>Console interativo</span>
+      </div>
+      <div id="console" class="codearea" contenteditable></div>
     </div>
 
   </div>
@@ -63,6 +167,14 @@
   </data>
 
   <script type="text/python" src="main.py"></script>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/single-page-admin/bootstrap.js"></script>
+
+  <script type="text/javascript" src="./codemirror-5.48.4/lib/codemirror.js"></script>
+  <script type="text/javascript" src="./codemirror-5.48.4/mode/clike/clike.js"></script>
+  <script type="text/javascript" src="./codemirror-5.48.4/mode/python/python.js"></script>
+  <script type="text/javascript" src="./codemirror-5.48.4/addon/selection/active-line.js"></script>
 </body>
 </html>
 

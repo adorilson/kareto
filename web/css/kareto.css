@@ -1,18 +1,20 @@
 :root {
-  --tile-size: 75px;
+  --tile-size: 65px; /* se alterar isso, mudar também em renderer.py*/
   --board-size: 8;
 }
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
   height: 100%;
 }
+
 
 #layout {
   display: grid;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 1fr 200px;
+  grid-template-rows: 1fr 250px;
   grid-template-areas:
     "editor game"
     "output console";
@@ -20,6 +22,7 @@ body {
 }
 
 #editor-panel {
+  font-family: monospace;
   grid-area: editor;
   display: flex;
   flex-direction: column;
@@ -28,22 +31,24 @@ body {
 }
 
 .CodeMirror {
-  height: 100%;
+  height: 550px;
 }
 
 #game-panel {
   grid-area: game;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ddd;
   margin: 5px;
+  height: 600px;
+  position: relative;
 }
 
 
 #console-panel {
   grid-area: console;
   border-top: 1px solid #ddd;
-  background: #111;
+  background: #000;
   color: #fff;
   font-family: monospace;
   margin: 5px;
@@ -51,7 +56,7 @@ body {
 
 
 .codearea {
-  height: 100%;
+  height: 80%;
   width: 100%;
   background-color: black;
   overflow-y: auto;
@@ -61,7 +66,7 @@ body {
 #output-panel {
   grid-area: output;
   border-top: 1px solid #ddd;
-  background: #f4f4f4;
+  background: #000;
   font-family: monospace;
   margin: 5px;
 }
@@ -75,9 +80,16 @@ body {
 }
 
 .outputarea {
-  height: 100%;
+  height: 80%;
   width: 100%;
   overflow-y: auto;
+}
+
+.output{
+  color: white;
+  margin: 0px;
+  display: inline;
+	white-space: pre-wrap;
 }
 
 .error{
@@ -102,9 +114,10 @@ body {
 }
 
 #run-btn {
-  padding: 10px;
-  font-size: 16px;
+  /*padding: 10px;
+  font-size: 16px;*/
   cursor: pointer;
+  margin:  0px 0px 0px 30px;
 }
 
 
@@ -112,6 +125,9 @@ body {
 
 #game {
   position: relative;
+  margin: 10px auto 0;
+  width: calc(var(--tile-size) * var(--board-size));
+  height: calc(var(--tile-size) * var(--board-size));
 }
 
 #board {
@@ -131,6 +147,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .actor {
@@ -145,10 +163,10 @@ body {
 }
 
 .actor-value{
-    font-size: 15px;
+    font-size: 12px;
     position: absolute;
-    top: 60px; /*--tile-size - font-size*/
-    left: 0px;
+    top: 75%;
+    left: -5px;
     font-weight: bold;
     color: white;
     text-align: right;

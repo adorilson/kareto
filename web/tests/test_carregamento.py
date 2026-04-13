@@ -8,6 +8,11 @@ Não testa interações do usuário, como clicar em botões ou digitar no consol
 from playwright.sync_api import sync_playwright
 
 
+# Mudar para 
+#import renderer.TILE_SIZE
+TILE_SIZE = 65
+
+
 def test_componentes_estaticos():
     """Testa se os componentes estáticos estão presentes na página."""
     with sync_playwright() as p:
@@ -45,7 +50,7 @@ def test_criacao_mundo_via_query_string():
     def assert_ator(tile_selector, x, y, z_index, img_src):
         tile = page.locator(tile_selector)
         assert tile.is_visible()
-        assert tile.get_attribute("style") == f"transform: translate({x*75}px, {y*75}px); z-index: {z_index};"
+        assert tile.get_attribute("style") == f"transform: translate({x*TILE_SIZE}px, {y*TILE_SIZE}px); z-index: {z_index};"
         assert tile.locator("img").get_attribute("src") == img_src
 
     with sync_playwright() as p:

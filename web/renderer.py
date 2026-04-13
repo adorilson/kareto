@@ -2,7 +2,7 @@ import random
 
 from browser import document
 
-TILE_SIZE = 75
+TILE_SIZE = 65
 
 class Renderer:
     def __init__(self, world):
