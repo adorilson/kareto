@@ -21,6 +21,11 @@ from random import random
 from freegames import line
 
 
+def verificar_vitoria(x, y):
+    """Verifica se o jogador chegou à borda do labirinto."""
+    return abs(x) >= 200 or abs(y) >= 200
+
+
 def desenhar():
     """Desenha o labirinto."""
     # Configuração visual inicial do labirinto
@@ -45,8 +50,24 @@ def desenhar():
 
 primeiro = True
 
+
+def fim_de_jogo():
+    """Exibe mensagem de fim de jogo."""
+    turtle.up()
+    turtle.goto(0, 0)
+    turtle.color('blue')
+    turtle.write("Parabéns! Você venceu!", align="center", font=("Arial", 16, "bold"))
+    turtle.onscreenclick(None)  # desativa o jogo
+
+
 def toque(x, y):
     """Desenha o caminho do jogador ao clicar."""
+
+    print(x, y)
+    if verificar_vitoria(x, y):
+        fim_de_jogo()
+        return
+
     # Verificação de limites da tela:
     # se sair da área jogável, a caneta é levantada
     if abs(x) > 198 or abs(y) > 198:
@@ -74,7 +95,7 @@ def toque(x, y):
 
 
 # Configuração da janela
-turtle.setup(420, 420, 370, 0)
+turtle.setup(500, 500, 370, 0)
 
 # O cursor não faz parte da estética do jogo
 turtle.hideturtle()
