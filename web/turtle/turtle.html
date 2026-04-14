@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kareto Web - Turtle Editor</title>
+
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="./codemirror-5.48.4/doc/docs.css">
+  <link rel="stylesheet" href="./codemirror-5.48.4/addon/hint/show-hint.css">
+  <link rel="stylesheet" href="./codemirror-5.48.4/lib/codemirror.css">
+
+
+  <!-- CodeMirror 5 -->
+  <!--
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+  -->
+
+
+  <!-- Brython -->
+  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+
+  <link href="./css/custom.css" rel="stylesheet">
+  <link href="./css/kareto.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .not-hidden {
+      display: block;
+    }
+
+    pre {
+      display: block;
+      padding: 0px;
+      margin: 0 2px 0px;
+      font-size: 14px;
+      line-height: 1;
+      word-break: break-all;
+      word-wrap: break-word;
+      color: white;
+      background-color: #000;
+      border: 0px solid #ccc;
+      border-radius: 0px;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    .row {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+
+    #console pre {
+      background-color: #000;
+      font-family: monospace;
+    }
+
+    #turtle-canvas {
+      width: 550px;
+      height: 550px;
+      margin-left: 0px;
+      border: 0px solid #000;
+    }
+
+    #turtle-div {
+      width: 500px;
+      height: 550px;
+      top: 35px;
+      left: 250px;
+      position: absolute;
+      border: 1px solid gray;
+    }
+
+    .CodeMirror {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #ddd;
+    }
+
+    .CodeMirror-scroll {
+      max-height: pxpx;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="editor-panel">
+      <div class="panel-header" style="display:flex">
+        <span style="flex-basis:50%">Editor de código</span>
+        <div>
+          <button id="reset-btn" class="btn btn-xs btn-danger">
+            <span class="glyphicon glyphicon-repeat"></span>
+            Restaurar código inicial
+          </button>
+          <button id="run-btn" class="btn btn-xs btn-default">
+            <span class="glyphicon glyphicon-play-circle"></span>
+            Executar
+          </button>
+          <button id="replay-scene" class="btn btn-xs btn-enabled" style="display:none">Repetir</button>
+          <!--<button class="btn btn-xs" onclick="copyToClipBoard()">Copy</button>-->
+        </div>
+      </div>
+
+      <textarea id="editor"></textarea>
+      <textarea id="editoraux" style="display:none"></textarea>
+      <!--<button id="run-btn">Executar</button>-->
+    </div>
+
+    <div id="game-panel">
+      <div class="panel-header" style="display:flex;">
+        <span>Área de execução</span>
+        <div>
+          <button id="clear" class="btn btn-xs btn-danger" style="position: relative; left: 350px;">
+            <span class="glyphicon glyphicon-repeat"></span> Recomeçar
+          </button>
+        </div>
+      </div>
+      <div id="game">
+        <div id="turtle-div"></div>
+      </div>
+    </div>
+
+    <div id="output-panel">
+      <div class="panel-header">
+        <span>Saídas</span>
+      </div>
+      <div id="turtle-print-output" class="outputarea"></div>
+      <span id="status-info"></span>
+      <!--<div id="output-content" ></div>-->
+    </div>
+
+    <div id="console-panel">
+      <div class="panel-header">
+        <span>Console interativo</span>
+      </div>
+      <div id="console" class="codearea" contenteditable></div>
+    </div>
+
+  </div>
+
+
+  <data id="confs" style="display:none">
+    cbo
+  </data>
+
+
+
+  <data id="test-cases" style="display:none">
+    {
+    'type': 'turtle_rules',
+    'strictSegments': 4,
+    'closeEps': 5,
+    'rules': [
+    { 'metric': 'segments', 'op': '==', 'value': 4 },
+    { 'metric': 'closed', 'op': '==', 'value': True },
+    { 'metric': 'turnMean', 'op': 'approx', 'value': 90, 'tol': 8 },
+    { 'metric': 'sideStd', 'op': '<=', 'value' : 5 } ], 'msg' : 'Desenhe um quadrado.' }
+  </data>
+
+
+  <data id="code_header" style="display:none">
+    # @cikey 23f33fc943d00e5799b061bdf21eb248
+    # @sid 8888
+    # @aid 1.1
+  </data>
+
+  <data id="init" style="display:none">
+    import turtle
+
+    artista = turtle.Turtle()
+    artista.shape('turtle')
+
+
+
+    # Instrução necessária para que a janela não se feche
+    turtle.done()
+  </data>
+
+  <data id="reset" style="display:none">
+    import turtle
+
+    artista = turtle.Turtle()
+    artista.shape('turtle')
+
+    # Instrução necessária para que a janela não se feche
+    turtle.done()
+  </data>
+
+
+    <script type="text/python" src="turtle/main.py"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript"
+      src="http://www.prepbootstrap.com/Content/js/single-page-admin/bootstrap.js"></script>
+
+    <script src="./codemirror-5.48.4/lib/codemirror.js"></script>
+    <script src="./codemirror-5.48.4/mode/clike/clike.js"></script>
+    <script src="./codemirror-5.48.4/mode/python/python.js"></script>
+    <script src="./codemirror-5.48.4/addon/selection/active-line.js"></script>
+    <script>
+
+      var nonEmpty = false;
+
+      /*
+            var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                name: "python",
+              indentUnit: 4,
+              matchBrackets: true,
+                styleActiveLine: true,
+                lineNumbers: true,
+                lineWrapping: true
+            });
+      */
+
+      function copyToClipBoard() {
+        var input = document.getElementById('editoraux');
+        input.select();
+        var result = document.execCommand('copy');
+        return result;
+      }
+
+
+      $(document).ready(function () {
+        /*
+        $("#run-btn").click(function () {
+          // foi colocado um timeout para o python colocar o código numa textarea auxiliar	
+          setTimeout(function () {
+            code_to_submit = $("#code_header").text() + "\n" + $("#editoraux").val();
+            console.log(code_to_submit);
+          }, 500);
+          //setTimeout(teste, 1000);
+        }
+        );
+      */
+
+        $('#enunciado-label').click(function () { //you can give id or class name here for $('button')
+          $(this).text(function (i, old) {
+            return old == 'Mostrar detalhes do exercício' ? 'Ocultar detalhes do exercício' : 'Mostrar detalhes do exercício';
+          });
+        });
+      });
+
+    </script>
+</body>
+
+</html>

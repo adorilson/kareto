@@ -1,0 +1,166 @@
+:root {
+  --tile-size: 50px;
+  --board-size: 8;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  height: 100%;
+}
+
+#layout {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 1fr 250px;
+  grid-template-areas:
+    "editor game"
+    "output console";
+  height: 100%;
+}
+
+#editor-panel {
+  font-family: monospace;
+  grid-area: editor;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  margin: 5px;
+}
+
+.CodeMirror {
+  height: 550px;
+}
+
+#game-panel {
+  grid-area: game;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  margin: 5px;
+  height: 600px;
+}
+
+
+#console-panel {
+  grid-area: console;
+  border-top: 1px solid #ddd;
+  background: #000;
+  color: #fff;
+  font-family: monospace;
+  margin: 5px;
+}
+
+
+.codearea {
+  height: 80%;
+  width: 100%;
+  background-color: black;
+  overflow-y: auto;
+}
+
+
+#output-panel {
+  grid-area: output;
+  border-top: 1px solid #ddd;
+  background: #000;
+  font-family: monospace;
+  margin: 5px;
+}
+
+
+#output-content {
+  overflow-y: auto;
+  height: 100%;
+  color:#111;
+  background: #f4f4f4;
+}
+
+.outputarea {
+  height: 80%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.output{
+  color: white;
+  margin: 0px;
+  display: inline;
+	white-space: pre-wrap;
+}
+
+.error{
+  color: red;
+  margin: 0px;
+  display: inline;
+	white-space: pre-wrap;
+}
+
+
+.panel-header {
+  padding: 6px 5px;
+  font-weight: bold;
+  font-size: 14px;
+  background: #0aa351;
+  color: #fff;
+}
+
+#editor {
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+#run-btn {
+  /*padding: 10px;
+  font-size: 16px;*/
+  cursor: pointer;
+  margin:  0px 0px 0px 30px;
+}
+
+
+/* Estilos do jogo */
+
+#game {
+  position: absolute;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), var(--tile-size));
+  grid-template-rows: repeat(var(--board-size), var(--tile-size));
+  background-color: rgba(130, 164, 74, 0.526);
+}
+
+.tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  border: 1px solid #ccc;
+}
+
+#actors {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.actor {
+  position: absolute;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  transition: transform 0.2s ease;
+}
+
+.actor-value{
+    font-size: 12px;
+    position: absolute;
+    top: 30px; /*--tile-size - font-size*/
+    left: -5px;
+    font-weight: bold;
+    color: white;
+    text-align: right;
+    width: 95%;
+}
