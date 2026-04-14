@@ -80,6 +80,11 @@ if not confs:
     confs = document.getElementById("confs").textContent.strip() 
     confs = ast.literal_eval(confs)
 
+initial_confs = {
+    key: list(value) if isinstance(value, (list, tuple)) else [value]
+    for key, value in confs.items()
+}
+
 try:
     bee = create_world(confs)
 except Exception as e:
@@ -163,6 +168,20 @@ window.editor = editor
 
 def limpa_output():
     document["output-content"].html = ""
+
+
+def reset_scene(event=None):
+    global bee, is_running, command_queue
+
+    if is_running:
+        command_queue.clear()
+        is_running = False
+
+    limpa_output()
+    bee = create_world(initial_confs)
+
+
+window.reset_scene = reset_scene
 
 
 # ----------------------------

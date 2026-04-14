@@ -3,6 +3,7 @@ Testa interações do usuário
 """
 
 from time import sleep
+import textwrap
 
 from playwright.sync_api import sync_playwright
 
@@ -81,3 +82,76 @@ def test_print42_console():
 
         assert page.locator('//*[@id="console"]/pre[7]').is_visible()
         assert page.locator('//*[@id="console"]/pre[7]').inner_text() == '>>> '
+
+
+def assert_ator(page, tile_selector, x, y, z_index, img_src):
+    tile = page.locator(tile_selector)
+    assert tile.is_visible()
+    assert tile.get_attribute("style") == f"transform: translate({x*TILE_SIZE}px, {y*TILE_SIZE}px); z-index: {z_index};"
+    assert tile.locator("img").get_attribute("src") == img_src
+    return tile
+
+
+def test_recomecar():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?bee=1,1,0&gs=3,2&gs=4,3")
+
+        abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=2, z_index=1, img_src="img/girassol.gif")
+        g2      = assert_ator(page, '#actors > div:nth-child(3)', x=4, y=3, z_index=1, img_src="img/girassol.gif")
+
+        data = "bee.avance()"
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        sleep(1)
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") != f"transform: translate({1*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+
+        page.locator("#clear").click()
+        sleep(1)
+
+        assert abelha.get_attribute("style") == f"transform: translate({1*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+        assert g1.is_visible()
+        assert g1.get_attribute("style") == f"transform: translate({3*TILE_SIZE}px, {2*TILE_SIZE}px); z-index: 1;"
+        assert g2.is_visible()
+        assert g2.get_attribute("style") == f"transform: translate({4*TILE_SIZE}px, {3*TILE_SIZE}px); z-index: 1;"
+
+
+def test_recomecar_com_nectar():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?bee=1,1,0&gs=2,1&gs=4,3")
+
+        abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1      = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
+        g2      = assert_ator(page, '#actors > div:nth-child(3)', x=4, y=3, z_index=1, img_src="img/girassol.gif")
+
+        data = """
+        bee.avance()
+        bee.extraia_nectar()
+        bee.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        sleep(2)
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") == f"transform: translate({3*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+        assert page.locator(
+            f'#actors > div[style="transform: translate({3*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 1;"]'
+        ).count() == 0
+        assert page.locator(
+            f'#actors > div[style="transform: translate({4*TILE_SIZE}px, {3*TILE_SIZE}px); z-index: 1;"]'
+        ).count() == 1
+
+        page.locator("#clear").click()
+        sleep(1)
+
+        abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1      = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
+        g2      = assert_ator(page, '#actors > div:nth-child(3)', x=4, y=3, z_index=1, img_src="img/girassol.gif")
