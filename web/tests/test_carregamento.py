@@ -7,10 +7,7 @@ Não testa interações do usuário, como clicar em botões ou digitar no consol
 
 from playwright.sync_api import sync_playwright
 
-
-# Mudar para 
-#import renderer.TILE_SIZE
-TILE_SIZE = 65
+from web.tests.common import assert_ator
 
 
 def test_componentes_estaticos():
@@ -47,21 +44,15 @@ def test_componentes_dinamicos():
 
 
 def test_criacao_mundo_via_query_string():
-    def assert_ator(tile_selector, x, y, z_index, img_src):
-        tile = page.locator(tile_selector)
-        assert tile.is_visible()
-        assert tile.get_attribute("style") == f"transform: translate({x*TILE_SIZE}px, {y*TILE_SIZE}px); z-index: {z_index};"
-        assert tile.locator("img").get_attribute("src") == img_src
-
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?bee=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4")
 
-        assert_ator('#actors > div:nth-child(1)', x=1, y=4, z_index=3, img_src="img/abelha_leste.gif")
-        assert_ator('#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
-        assert_ator('#actors > div:nth-child(3)', x=5, y=4, z_index=1, img_src="img/girassol.gif")
-        assert_ator('#actors > div:nth-child(4)', x=6, y=4, z_index=1, img_src="img/girassol.gif")
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=4, z_index=3, img_src="img/abelha_leste.gif")
+        assert_ator(page, '#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
+        assert_ator(page, '#actors > div:nth-child(3)', x=5, y=4, z_index=1, img_src="img/girassol.gif")
+        assert_ator(page, '#actors > div:nth-child(4)', x=6, y=4, z_index=1, img_src="img/girassol.gif")
 
 
 def test_configuracao_abelha_invalida():
