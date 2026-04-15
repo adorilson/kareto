@@ -59,7 +59,7 @@ def test_configuracao_abelha_invalida():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?bee=1,7&cag=1")
+        page.goto("http://localhost:8000/?bee=1,7&cag=1") # falta a direção da abelha
 
         # Verificar se a mensagem de erro foi exibida
         assert "Traceback" in page.locator("#output-content").inner_text().strip()
