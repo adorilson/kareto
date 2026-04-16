@@ -79,6 +79,20 @@ def ensure_editor_initialized():
         init_editor()
 
 
+def hide_loading_overlay(delay_ms=0):
+    overlay = document.getElementById("loading-overlay")
+    if not overlay:
+        return
+
+    def _hide():
+        overlay.class_name = "hidden"
+
+    if delay_ms > 0:
+        timer.set_timeout(_hide, delay_ms)
+    else:
+        _hide()
+
+
 init_editor()
 
 def report_exception(e=None):
@@ -306,3 +320,5 @@ class Interpreter(interpreter.Interpreter):
 
 
 Interpreter("console", globals=globals())
+
+hide_loading_overlay(250)

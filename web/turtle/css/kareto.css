@@ -9,6 +9,56 @@ body {
   height: 100%;
 }
 
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-family: sans-serif;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+  animation: spin 0.9s linear infinite;
+}
+
+.spinner-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 3;
+}
+
+.spinner-arc {
+  fill: none;
+  stroke: url(#spinner-gradient);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 170 70;
+}
+
+.loading-text {
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #layout {
   display: grid;
   grid-template-columns: 40% 60%;
@@ -16,6 +66,7 @@ body {
   grid-template-areas:
     "editor game"
     "output console";
+  position: relative;
   height: 100%;
 }
 

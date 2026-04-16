@@ -35,8 +35,6 @@
 
     <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://www.prepbootstrap.com" crossorigin>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
-    <script src="http://www.prepbootstrap.com/Content/js/single-page-admin/bootstrap.js" defer></script>
 
 
   <!-- Brython -->
@@ -120,7 +118,24 @@
 
   <brython-options cache="true"></brython-options>
 
-  <div id="layout">
+  <div id="layout" style="position: relative;">
+
+    <div id="loading-overlay" aria-live="polite" aria-busy="true" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: rgba(0, 0, 0, 0.6); color: #fff; z-index: 9999;">
+      <svg class="loading-spinner" viewBox="0 0 100 100" width="48" height="48" role="img" aria-label="Carregando" style="display: block; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45)); animation: spin 0.9s linear infinite; transform-origin: 50% 50%; transform-box: fill-box;">
+        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="0.9s" repeatCount="indefinite" />
+        <defs>
+          <linearGradient id="spinner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.2" />
+            <stop offset="60%" stop-color="#ffffff" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="1" />
+          </linearGradient>
+        </defs>
+        <circle class="spinner-track" cx="50" cy="50" r="36" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="6" />
+        <circle class="spinner-arc" cx="50" cy="50" r="36" fill="none" stroke="url(#spinner-gradient)" stroke-width="6" stroke-linecap="round" stroke-dasharray="170 70" />
+      </svg>
+      <div class="loading-text" style="font-size: 14px; letter-spacing: 1px;">Carregando ambiente de desenvolvimento...</div>
+    </div>
+
     <div id="editor-panel">
       <div class="panel-header" style="display:flex">
         <span style="flex-basis:50%">Editor de código</span>
@@ -222,6 +237,9 @@
     # Instrução necessária para que a janela não se feche
     turtle.done()
   </data>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://www.prepbootstrap.com/Content/js/single-page-admin/bootstrap.js"></script>
 
     <script type="text/python" src="turtle/main.py"></script>
 
