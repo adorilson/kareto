@@ -30,8 +30,6 @@ editor.setValue(code)
 # O cÃ³digo de reset (carregado do CodeInsights)
 reset_code = document.getElementById("reset").textContent.strip()
 
-document["clear"].class_name = "hidden"
-
 
 def inform(*args):
     document["status-info"].html = "".join(args)
