@@ -172,3 +172,36 @@ def svg_equal(svg1, svg2):
     window.console.log(f'Serialized SVG 2: {serialize(n2)}')
 
     return n1.isEqualNode(n2)
+
+
+def estimate_time(svg_str):
+    """Estima o tempo de execução com base na presença de animações.
+
+    Retorna o tempo em segundos.
+    """
+    doc = parse_svg(svg_str)
+    animates = doc.querySelectorAll('animate')
+    if not animates:
+        return 0
+
+    total_sec = 0
+    for animate in animates:
+        try:
+            dur = animate.getAttribute('dur')
+            if not dur:
+                continue
+            dur = dur.strip().lower()
+            if dur.endswith('ms'):
+                dur_sec = float(dur[:-2]) / 1000
+            elif dur.endswith('min'):
+                dur_sec = float(dur[:-3]) * 60
+            elif dur.endswith('s'):
+                dur_sec = float(dur[:-1])
+            else:
+                dur_sec = float(dur)
+
+            total_sec += dur_sec
+        except (ValueError, Exception):
+            window.console.warn('Valor de duração inválido - ignorando animação')
+
+    return total_sec

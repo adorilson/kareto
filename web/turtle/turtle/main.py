@@ -1,10 +1,13 @@
 import ast
 import sys
 import traceback
+
 import interpreter
 import browser
 from browser import window, document, timer
+
 from snapshot import send_snapshot, send_interpreter_snapshot
+from svg import estimate_time
 
 FIRST_TIME = True
 command_queue = []
@@ -117,31 +120,18 @@ def call_tests():
         send_snapshot(_code, 1, "")
 
 
-def trigger_tests(tentativa=5):
-    # Se não tem svg, não tem porque definir testes.
-    # Isso vai ocorrer quando houver erros que impeçam a execução do código,
-    # como erros de sintaxe, ou outra validações prévias
+def trigger_tests():
     svg = document.getElementById('turtle-canvas')
     if not svg:
         window.console.log('Não há elemento com id = turtle-canvas (svg)')
         return
 
-    g3 = document.querySelector('#turtle-canvas g:nth-child(3)')
-    try:
-        # TODO conferir que nem sempre a ultima tag no código é a última animação
-        # a ser executada
-        animate = g3.lastChild.lastChild
-    except Exception as e:
-        window.console.log(f'Erro ao configurar teste: {str(e)}')
-        if tentativa:
-            timer.set_timeout(lambda: trigger_tests(tentativa - 1), 1)
-        else:
-            print('Não foi possível configurar o teste após várias tentativas.')
-    else:
-        if animate:
-            animate.bind('endEvent', lambda ev: call_tests())
-        else:
-            window.console.log('animate não encontrado')
+    dur_sec = estimate_time(svg.outerHTML)
+    window.console.log(f'Estimativa de tempo para finalização das animações: {dur_sec} s')
+
+    test_timeout = int(dur_sec * 500)
+    window.console.log(f'Setando timeout para execução dos testes: {test_timeout} ms')
+    timer.set_timeout(call_tests, test_timeout)
 
 
 def run_code(ev):
@@ -164,9 +154,10 @@ def run_code(ev):
     try:
         exec_code()
 
-        # 10 foi um tempo ótimo para o elemento já existir no SVG, mas
-        # o evento de fim não ter ocorrido. Tanto pra programas de execução rápida
-        # (apenas 2 linhas, por exemplo) quando pra execuções mais demoradas
+        # 10ms foi um tempo ótimo para SVG já estar pronto, embora ainda não
+        # tenha terminado de ser processado.
+        # Tanto pra programas de execução rápida # (apenas 2 linhas, por exemplo)
+        # quando pra execuções mais demoradas
         # Pode ser que precise ser alterado no futuro
         # Vai setar apenas se não ouve erro durante exec_code
         timer.set_timeout(trigger_tests, 10)
