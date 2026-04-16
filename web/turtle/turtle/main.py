@@ -12,19 +12,10 @@ from svg import estimate_time
 FIRST_TIME = True
 command_queue = []
 
-editor = window.CodeMirror.fromTextArea(
-    document["editor"],
-    {
-        "lineNumbers": True,
-        "mode": "python",
-        "theme": "default",
-        "indentUnit": 4,
-    }
-)
+editor = None
 
 # O cÃ³digo inicial (carregado do CodeInsights)
 code = document.getElementById("init").textContent.strip()
-editor.setValue(code)
 
 
 # O cÃ³digo de reset (carregado do CodeInsights)
@@ -66,6 +57,29 @@ sys.stderr = ErrorOutput()
 def clear_print():
     document["turtle-print-output"].html = ""
 
+def init_editor():
+    global editor
+    if editor is not None:
+        return
+
+    editor = window.CodeMirror.fromTextArea(
+        document["editor"],
+        {
+            "lineNumbers": True,
+            "mode": "python",
+            "theme": "default",
+            "indentUnit": 4,
+        }
+    )
+    editor.setValue(code)
+
+
+def ensure_editor_initialized():
+    if editor is None:
+        init_editor()
+
+
+init_editor()
 
 def report_exception(e=None):
     """Show traceback in the output and send snapshot with error details"""
@@ -139,6 +153,7 @@ def trigger_tests():
 def run_code(ev):
     global FIRST_TIME
 
+    ensure_editor_initialized()
     clear_print()
     if FIRST_TIME:
         FIRST_TIME = False
@@ -175,8 +190,9 @@ def run_code(ev):
 
 def reset_the_code(ev):
 
-	if(browser.confirm("IrÃ¡ recomeÃ§ar o exercÃ­cio com o cÃ³digo inicialmente fornecido pelo professor. IrÃ¡ perder todas as alteraÃ§Ãµes que tenha realizado entretanto. Deseja mesmo continuar?")):
-        	editor.setValue(reset_code)
+    ensure_editor_initialized()
+    if(browser.confirm("IrÃ¡ recomeÃ§ar o exercÃ­cio com o cÃ³digo inicialmente fornecido pelo professor. IrÃ¡ perder todas as alteraÃ§Ãµes que tenha realizado entretanto. Deseja mesmo continuar?")):
+        editor.setValue(reset_code)
 
 document["reset-btn"].bind("click", reset_the_code)
 
@@ -189,6 +205,7 @@ document["run-btn"].bind("click", run_code)
 
 def exec_code():
     #_code = document["code"].value
+    ensure_editor_initialized()
     delayed_clear()
     _code = editor.getValue()
 

@@ -7,8 +7,14 @@
 
   <link rel="icon" href="favicon.ico">
 
-  <link rel="stylesheet" href="./codemirror-5.48.4/doc/docs.css">
-  <link rel="stylesheet" href="./codemirror-5.48.4/addon/hint/show-hint.css">
+  <!--
+  media e onload são usados para evitar que o carregamento do CSS
+  bloqueie a renderização da página, apresentando editor com código mais rapidamente. 
+  O CSS é carregado com media="print" e depois que o arquivo é carregado, onload é
+  chamado, mudando o media para "all", permitindo que o CSS seja aplicado à página.
+  -->
+  <link rel="stylesheet" href="./codemirror-5.48.4/doc/docs.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="./codemirror-5.48.4/addon/hint/show-hint.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="./codemirror-5.48.4/lib/codemirror.css">
 
 
@@ -21,13 +27,29 @@
   -->
 
 
+    <script src="./codemirror-5.48.4/lib/codemirror.js" defer></script>
+    <script src="./codemirror-5.48.4/mode/clike/clike.js" defer></script>
+    <script src="./codemirror-5.48.4/mode/python/python.js" defer></script>
+    <script src="./codemirror-5.48.4/addon/selection/active-line.js" defer></script>
+
+
+    <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://www.prepbootstrap.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
+    <script src="http://www.prepbootstrap.com/Content/js/single-page-admin/bootstrap.js" defer></script>
+
+
   <!-- Brython -->
-  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js" defer></script>
 
   <link href="./css/custom.css" rel="stylesheet">
   <link href="./css/kareto.css" rel="stylesheet">
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://netdna.bootstrapcdn.com" crossorigin>
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     .hidden {
       display: none;
@@ -200,17 +222,8 @@
     turtle.done()
   </data>
 
-
     <script type="text/python" src="turtle/main.py"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script type="text/javascript"
-      src="http://www.prepbootstrap.com/Content/js/single-page-admin/bootstrap.js"></script>
-
-    <script src="./codemirror-5.48.4/lib/codemirror.js"></script>
-    <script src="./codemirror-5.48.4/mode/clike/clike.js"></script>
-    <script src="./codemirror-5.48.4/mode/python/python.js"></script>
-    <script src="./codemirror-5.48.4/addon/selection/active-line.js"></script>
     <script>
 
       var nonEmpty = false;
