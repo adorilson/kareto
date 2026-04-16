@@ -123,12 +123,12 @@ def call_tests():
 
 
 def trigger_tests():
-    svg = document.getElementById('turtle-canvas')
-    if not svg:
+    turtle_canvas = document.getElementById('turtle-canvas')
+    if not turtle_canvas:
         window.console.log('Não há elemento com id = turtle-canvas (svg)')
         return
 
-    dur_sec = estimate_time(svg.outerHTML)
+    dur_sec = estimate_time(turtle_canvas.outerHTML)
     window.console.log(f'Estimativa de tempo para finalização das animações: {dur_sec} s')
 
     test_timeout = int(dur_sec * 500)
