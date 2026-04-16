@@ -102,6 +102,7 @@ def load_test_cases():
 
 
 def call_tests():
+    window.console.log('Iniciando execução dos testes...')
     _code = document["editoraux"].value
 
     test_cases = load_test_cases()
@@ -109,11 +110,14 @@ def call_tests():
     try:
         import validators
         validators.run_tests(test_cases)
+        window.console.log('Testes concluídos sem erros.')
     except AssertionError as e:
+        window.console.log(f'AssertionError durante execução dos testes: {str(e)}')
         msg = f'Falha ao analisar a saída: {str(e)}'
         sys.stderr.write(msg)
         send_snapshot(_code, 3, msg)
     except Exception as e:
+        window.console.log(f'Exception durante execução dos testes: {str(e)}')
         report_exception(e)
     else:
         print('Tarefa realizada com sucesso.')
