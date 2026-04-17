@@ -34,7 +34,7 @@ def escape_tags(text):
 class StdOutput:
     def write(self, *args):
         if args != ('\n',):
-            args = (args[0] + '\n') 
+            args = (args[0] + '\n')
 
         document["turtle-print-output"].html += '<pre class="editor-output">' + escape_tags("".join(args)) + "</pre>"
 
@@ -169,7 +169,7 @@ def trigger_tests():
     dur_sec = estimate_time(turtle_canvas.outerHTML)
     window.console.log(f'Estimativa de tempo para finalização das animações: {dur_sec} s')
 
-    test_timeout = int(dur_sec * 500)
+    test_timeout = int(dur_sec * 750)
     window.console.log(f'Setando timeout para execução dos testes: {test_timeout} ms')
     timer.set_timeout(call_tests, test_timeout)
 
