@@ -79,7 +79,15 @@ def ensure_editor_initialized():
         init_editor()
 
 
-def hide_loading_overlay(delay_ms=0):
+def keep_focus_on_top():
+    console_el = document.getElementById("console")
+    if console_el:
+        console_el.blur()
+    document.body.focus()
+    window.scrollTo(0, 0)
+
+
+def hide_loading_overlay_and_focus_on_top(delay_ms=0):
     overlay = document.getElementById("loading-overlay")
     if not overlay:
         return
@@ -91,6 +99,8 @@ def hide_loading_overlay(delay_ms=0):
         timer.set_timeout(_hide, delay_ms)
     else:
         _hide()
+
+    keep_focus_on_top()
 
 
 init_editor()
@@ -321,4 +331,5 @@ class Interpreter(interpreter.Interpreter):
 
 Interpreter("console", globals=globals())
 
-hide_loading_overlay(250)
+
+hide_loading_overlay_and_focus_on_top(250)
