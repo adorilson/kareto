@@ -44,7 +44,7 @@ Este diretorio concentra a logica de validacao, separada por responsabilidade. O
 - `_validators/__init__.py`: ponto de entrada que expoe `run()` e orquestra validacoes comuns.
 - `_validators/rules.py`: implementa `turtle_rules`, calculo de metricas e avaliacao das regras.
 - `_validators/shapes.py`: validacoes geometricas (poligonos, triangulos, hexagonos) e helpers de segmentos/pontos.
-- `_validators/parser.py`: validacoes baseadas em AST do codigo (configuracoes, sequencias, listas de cores).
+- `_validators/parser.py`: validacoes baseadas em AST do codigo (configuracoes, sequencias, listas de cores) e helpers privados para analise de codigo.
 
 ## Tipos principais
 
@@ -77,6 +77,7 @@ Permite definir regras por metricas. Mais flexivel, menos específico.
 Campos:
 - `type`: `turtle_rules`
 - `rules`: lista de regras
+- `codeRules`: regras aplicadas ao codigo (AST), avaliadas no `parser.py`, com metricas `code*`
 - `closeEps`: tolerancia para considerar fechado (distância entre ultimo e primeiro ponto)
 - `pointEps`: tolerancia para juntar pontos próximos (default = `closeEps`)
 - `nonZeroOnly`: ignora segmentos de comprimento ~0 (default `True`)
@@ -109,6 +110,37 @@ Métricas disponíveis:
 - `turnMean`: media dos angulos entre segmentos consecutivos (em graus).
 - `turnMin`: menor ângulo entre segmentos consecutivos.
 - `turnMax`: maior ângulo entre segmentos consecutivos.
+- `turnMeanSigned`: media dos angulos com sinal (positivo = direita, negativo = esquerda).
+- `turnMinSigned`: menor angulo com sinal entre segmentos.
+- `turnMaxSigned`: maior angulo com sinal entre segmentos.
+- `turnDir`: direcao media da curva (`right`, `left` ou `none`).
+- `codeForwardCount`: quantidade de chamadas a `forward()`/`fd()` no codigo.
+- `codeForwardLiteralCount`: quantidade de `forward()` com numero literal.
+- `codeForwardUnique`: quantidade de valores literais distintos em `forward()`.
+- `codeRightCount`: quantidade de chamadas a `right()`.
+- `codeRightLiteralCount`: quantidade de `right()` com numero literal.
+- `codeLeftCount`: quantidade de chamadas a `left()`.
+- `codeLeftLiteralCount`: quantidade de `left()` com numero literal.
+- `codeTurnCount`: total de chamadas de curva (`right()` + `left()`).
+
+Exemplo com `codeRules` + `rules` (retangulo, curva a direita):
+```python
+{
+  'type': 'turtle_rules',
+  'closeEps': 5,
+  'codeRules': [
+    { 'metric': 'codeForwardCount', 'op': '==', 'value': 4 }
+  ],
+  'rules': [
+    { 'metric': 'segments', 'op': '==', 'value': 4 },
+    { 'metric': 'closed', 'op': '==', 'value': True },
+    { 'metric': 'turnMean', 'op': 'approx', 'value': 90, 'tol': 10 },
+    { 'metric': 'turnDir', 'op': '==', 'value': 'right' },
+    { 'metric': 'bboxRatio', 'op': '>=', 'value': 1.2 }
+  ],
+  'msg': 'Desenhe um retangulo com curva a direita.'
+}
+```
 
 ## Tipos específicos existentes
 
@@ -919,14 +951,42 @@ turtle.done()
 
 
 ### 2.1 - Quadrangulo - valida apenas o final
+A partir do código inicial, execute os seguintes exercícios:
+
+1) Reduza as duas linhas com forward para apenas uma, mas que faça a mesma
+coisa que as atuais
+2) Faça a tartaruga virar para a direita
+3) Altere o comprimento dos lados do quadrado
+4) Transforme o quadrado em um retângulo
 
 ```python
+# não valida a direção
 {
   'type': 'rectangle',
   'sides': 4,
   'ratio': 1.2,
   'closeEps': 5,
   'msg': 'Tarefa nao realizada.'
+}
+```
+
+Exemplo completo (turtle_rules, valida direcao e so o final):
+```python
+{
+  'type': 'turtle_rules',
+  'closeEps': 5,
+  'lastN': 4,
+  'codeRules': [
+    { 'metric': 'codeForwardCount', 'op': '==', 'value': 4 }
+  ],
+  'rules': [
+    { 'metric': 'segments', 'op': '==', 'value': 4 },
+    { 'metric': 'closed', 'op': '==', 'value': True },
+    { 'metric': 'turnMean', 'op': 'approx', 'value': 90, 'tol': 10 },
+    { 'metric': 'turnDir', 'op': '==', 'value': 'right' },
+    { 'metric': 'bboxRatio', 'op': '>=', 'value': 1.2 }
+  ],
+  'msg': 'Tarefa não realizada.'
 }
 ```
 

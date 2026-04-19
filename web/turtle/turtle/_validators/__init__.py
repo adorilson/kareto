@@ -66,6 +66,42 @@ def compute_turn_angles_from_segments(segments, close_loop=True, eps=5):
     return turns
 
 
+def compute_signed_turn_angles_from_segments(segments, close_loop=True, eps=5):
+    if len(segments) < 2:
+        return []
+
+    segs = [list(seg) for seg in segments]
+    for i in range(len(segs) - 1):
+        x1, y1, x2, y2 = segs[i]
+        nx1, ny1, nx2, ny2 = segs[i + 1]
+        end = (x2, y2)
+        start_next = (nx1, ny1)
+        end_next = (nx2, ny2)
+        if point_dist(end, start_next) <= eps:
+            continue
+        if point_dist(end, end_next) <= eps:
+            segs[i + 1] = [nx2, ny2, nx1, ny1]
+
+    turns = []
+    end_idx = len(segs) - 1
+    pair_count = len(segs) if close_loop and len(segs) > 2 else end_idx
+    for i in range(pair_count):
+        a = segs[i]
+        b = segs[(i + 1) % len(segs)]
+        v1x, v1y = a[2] - a[0], a[3] - a[1]
+        v2x, v2y = b[2] - b[0], b[3] - b[1]
+        n1 = math.hypot(v1x, v1y)
+        n2 = math.hypot(v2x, v2y)
+        if n1 == 0 or n2 == 0:
+            continue
+        dot = v1x * v2x + v1y * v2y
+        cross = v1x * v2y - v1y * v2x
+        angle = math.degrees(math.atan2(cross, dot))
+        turns.append(angle)
+
+    return turns
+
+
 def get_line_points(line):
     x1 = float(line.getAttribute('x1') or 0)
     y1 = float(line.getAttribute('y1') or 0)
@@ -145,9 +181,11 @@ def run(test_cases):
         from _validators import shapes
         shapes.run_glasses_test(test_cases)
         return
-    if mode == 'turtle_rules': # TODO parece que esse não é usado
+    if mode == 'turtle_rules':
         from _validators import rules
         rules.run_rules_test(test_cases)
+        from _validators import parser
+        parser.run_code_rules_test(test_cases)
         return
     if mode == 'turtle_config':
         from _validators import parser

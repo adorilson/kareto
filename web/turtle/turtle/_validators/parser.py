@@ -41,7 +41,102 @@ def _extract_color_list(tree, var_name):
     return colors
 
 
+def collect_turtle_call_metrics(code):
+    tree = ast.parse(code, '<string>')
+
+    turtle_names = set()
+    forward_values = []
+    right_values = []
+    left_values = []
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign)and isinstance(node.value, ast.Call):
+            if _is_turtle_constructor(node.value):
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        turtle_names.add(target.id)
+
+        if isinstance(node, ast.Call)and isinstance(node.func, ast.Attribute):
+            if isinstance(node.func.value, ast.Name)and node.func.value.id in turtle_names:
+                method = node.func.attr
+                if method in {'forward', 'fd'} and node.args:
+                    forward_values.append(_get_literal_number(node.args[0]))
+                if method == 'right' and node.args:
+                    right_values.append(_get_literal_number(node.args[0]))
+                if method == 'left' and node.args:
+                    left_values.append(_get_literal_number(node.args[0]))
+
+    forward_literal = [val for val in forward_values if val is not None]
+    right_literal = [val for val in right_values if val is not None]
+    left_literal = [val for val in left_values if val is not None]
+
+    return {
+        'codeForwardCount': len(forward_values),
+        'codeForwardLiteralCount': len(forward_literal),
+        'codeForwardUnique': len(set(forward_literal)),
+        'codeRightCount': len(right_values),
+        'codeRightLiteralCount': len(right_literal),
+        'codeLeftCount': len(left_values),
+        'codeLeftLiteralCount': len(left_literal),
+        'codeTurnCount': len(right_values) + len(left_values),
+    }
+
+
+def _rule_ok(rule, metrics_lookup):
+    metric = rule.get('metric')
+    op = rule.get('op')
+    if isinstance(op, str):
+        op = op.replace('&gt;', '>').replace('&lt;', '<').replace('&amp;', '&').strip()
+    value = rule.get('value')
+    tol = float(rule.get('tol', rule.get('eps', 0)))
+    min_val = rule.get('min')
+    max_val = rule.get('max')
+
+    if metric not in metrics_lookup:
+        window.console.log(f'Unknown metric: {metric}')
+        return False
+
+    actual = metrics_lookup[metric]
+
+    if op == 'approx':
+        return abs(actual - float(value)) <= tol
+    if op == 'between':
+        if min_val is None or max_val is None:
+            return False
+        return float(min_val) <= actual <= float(max_val)
+    if op == '==':
+        return actual == value
+    if op == '!=':
+        return actual != value
+    if op == '>':
+        return actual > float(value)
+    if op == '>=':
+        return actual >= float(value)
+    if op == '<':
+        return actual < float(value)
+    if op == '<=':
+        return actual <= float(value)
+
+    window.console.log(f'Unknown op: {op}')
+    return False
+
+
 # PUBLIC API
+
+def run_code_rules_test(test_case):
+    code_rules = test_case.get('codeRules', [])
+    if not code_rules:
+        return
+
+    msg = test_case.get('msg', 'Não está pronto.')
+    code_metrics = collect_turtle_call_metrics(document['editoraux'].value)
+    for rule in code_rules:
+        if not _rule_ok(rule, code_metrics):
+            window.console.log(f'Code rule failed: {rule}')
+            fail(rule.get('msg', msg))
+
+
+
 
 def run_code_requirements_test(test_case):
     msg_color = test_case.get('msgColor', 'A cor da linha deve ser diferente de vermelho.')

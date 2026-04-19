@@ -7,6 +7,7 @@ from _validators import (
     segments_to_path_points,
     unique_points,
     compute_turn_angles_from_segments,
+    compute_signed_turn_angles_from_segments,
     point_dist,
     fail
     )
@@ -34,6 +35,7 @@ def run_rules_test(test_case):
     uniq = unique_points(points, point_eps)
     lengths = [math.hypot(x2 - x1, y2 - y1) for x1, y1, x2, y2 in segments]
     turns = compute_turn_angles_from_segments(segments, close_loop=True, eps=point_eps)
+    signed_turns = compute_signed_turn_angles_from_segments(segments, close_loop=True, eps=point_eps)
 
     xs = [p[0] for p in uniq] or [0]
     ys = [p[1] for p in uniq] or [0]
@@ -54,9 +56,13 @@ def run_rules_test(test_case):
         'turnMean': sum(turns) / len(turns) if turns else 0,
         'turnMin': min(turns) if turns else 0,
         'turnMax': max(turns) if turns else 0,
+        'turnMeanSigned': sum(signed_turns) / len(signed_turns) if signed_turns else 0,
+        'turnMinSigned': min(signed_turns) if signed_turns else 0,
+        'turnMaxSigned': max(signed_turns) if signed_turns else 0,
+        'turnDir': ('right' if (sum(signed_turns) / len(signed_turns)) > 1e-6 else 'left' if (sum(signed_turns) / len(signed_turns)) < -1e-6 else 'none') if signed_turns else 'none',
     }
 
-    def _rule_ok(rule):
+    def _rule_ok(rule, metrics_lookup):
         metric = rule.get('metric')
         op = rule.get('op')
         if isinstance(op, str):
@@ -66,11 +72,11 @@ def run_rules_test(test_case):
         min_val = rule.get('min')
         max_val = rule.get('max')
 
-        if metric not in metrics:
+        if metric not in metrics_lookup:
             window.console.log(f'Unknown metric: {metric}')
             return False
 
-        actual = metrics[metric]
+        actual = metrics_lookup[metric]
 
         if op == 'approx':
             return abs(actual - float(value)) <= tol
@@ -95,6 +101,7 @@ def run_rules_test(test_case):
         return False
 
     for rule in rules:
-        if not _rule_ok(rule):
+        if not _rule_ok(rule, metrics):
             window.console.log(f'Rule failed: {rule}')
             fail(rule.get('msg', msg))
+
