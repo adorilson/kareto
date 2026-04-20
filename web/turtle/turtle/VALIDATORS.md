@@ -875,6 +875,13 @@ turtle.done()
 
 ### 2.3 - Dois quadrados coloridos
 
+A partir do código inicial, execute os seguintes exercícios:
+
+1) Mude/defina a forma da tartaruga
+2) Mude a ordem das cores
+3) Mude a largura da linha
+4) Faça a tartaruga desenhar dois quadrados. Os quadrados devem estar horizontalmente alinhados.
+
 ```python
 {
   'type': 'turtle_sequence',
