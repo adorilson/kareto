@@ -203,6 +203,10 @@ def run(test_cases):
         from _validators import parser
         parser.run_envelope_test(test_cases)
         return
+    if mode == 'text_answer':
+        from _validators import parser
+        parser.run_text_answer_test(test_cases)
+        return
 
 
 

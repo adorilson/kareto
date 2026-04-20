@@ -152,6 +152,7 @@ Exemplo com `codeRules` + `rules` (retangulo, curva a direita):
 - `turtle_random_colors_triangle`: valida lista de cores + triangulo
 - `turtle_envelope`: valida envelope (tamanho, cores, aba)
 - `turtle_glasses`: valida oculos (2 lentes, gap)
+- `text_answer`: valida respostas textuais (ex.: multipla escolha)
 - Legado (lista): `selector` + `outerHTML`
 
 ## Presets para formas comuns
@@ -336,6 +337,87 @@ Se `test_cases` for uma lista, o validador usa `selector` + `outerHTML` e compar
 ## Exemplos historicos (movidos do HTML)
 
 Abaixo estao exemplos antigos que ficavam em `turtle.html` para referencia. Eles nao precisam estar no servidor.
+
+
+### 1.13 - Previsão
+
+Olhe atentamente para o código abaixo.
+O que acontece se ele for executado.
+
+O que acontece se ele for executado?
+
+A) A artista desenhará um triângulo com três lados iguais.
+
+B) O artista desenhará uma única linha.
+
+C) O artista desenhará um quadrado.
+
+D) O artista desenhará um retângulo.
+
+Use o código inicial para enviar sua resposta.
+
+#### Código para análise
+
+```python
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+artista.forward(200)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+artista.forward(200)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+turtle.done()
+```
+
+#### Código inicial
+
+```
+import turtle
+
+artista = turtle.Turtle()
+
+resposta = 'Sua resposta aqui' # Cuidado para não apagar as aspas
+artista.write(resposta)
+
+turtle.done()
+```
+
+#### Solução
+
+```
+import turtle
+
+artista = turtle.Turtle()
+
+resposta = 'D' # Cuidado para não apagar as aspas
+artista.write(resposta)
+
+turtle.done()
+```
+
+#### Casos de teste
+
+```python
+{
+  'type': 'text_answer',
+  'varName': 'resposta',
+  'value': 'D',
+  'caseInsensitive': True,
+  'msg': 'Resposta incorreta.'
+}
+```
+
+
 
 ### 1.12 - Triangulo 2 - 150 pixels, pra cima.
 

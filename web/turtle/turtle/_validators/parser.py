@@ -136,6 +136,51 @@ def run_code_rules_test(test_case):
             fail(rule.get('msg', msg))
 
 
+def run_text_answer_test(test_case):
+    msg = test_case.get('msg', 'Resposta incorreta.')
+    var_name = test_case.get('varName', 'resposta')
+    expected = test_case.get('value')
+    choices = test_case.get('choices')
+    case_insensitive = bool(test_case.get('caseInsensitive', False))
+    strip_value = bool(test_case.get('strip', True))
+
+    code = document['editoraux'].value
+    tree = ast.parse(code, '<string>')
+
+    answer = None
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id == var_name:
+                    answer = _get_literal_str(node.value)
+
+    if answer is None:
+        fail(msg)
+
+    if strip_value:
+        answer = answer.strip()
+
+    def _normalize(value):
+        if value is None:
+            return None
+        value = value.strip() if strip_value else value
+        return value.lower() if case_insensitive else value
+
+    normalized = _normalize(answer)
+
+    if choices is not None:
+        normalized_choices = [_normalize(str(choice)) for choice in choices]
+        if normalized not in normalized_choices:
+            fail(msg)
+        return
+
+    if expected is None:
+        fail(msg)
+
+    if normalized != _normalize(str(expected)):
+        fail(msg)
+
+
 
 
 def run_code_requirements_test(test_case):
