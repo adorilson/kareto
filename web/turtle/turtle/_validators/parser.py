@@ -341,7 +341,7 @@ def run_envelope_test(test_case):
     if require_color and (not color_values or all(value is None or value == 'black' for value in color_values)):
         fail(msg_color)
 
-    lines = list(document.select('#turtle-canvas g:nth-child(3)line'))
+    lines = list(document.select('#turtle-canvas g:nth-child(3) line'))
     non_zero_lines = []
 
     for line in lines:
@@ -422,6 +422,31 @@ def run_envelope_test(test_case):
                    math.hypot(flap_top[2] - body_top[0], flap_top[3] - body_top[1])<= align_tol)
     if not (same_dir or swapped_dir):
         window.console.log(f'Top flap line is not aligned with body top. Flap={flap_top}, Body={body_top}, tolerance: {align_tol}px')
+        fail(msg_flap)
+
+    def _line_endpoints(line):
+        x1, y1, x2, y2 = get_line_points(line)
+        return (x1, y1), (x2, y2)
+
+    def _match_corner(pt, corners):
+        for idx, corner in enumerate(corners):
+            if math.hypot(pt[0] - corner[0], pt[1] - corner[1]) <= align_tol:
+                return idx
+        return None
+
+    corners = [(body_top[0], body_top[1]), (body_top[2], body_top[3])]
+    corner_hits = set()
+    for line in flap_lines[1:]:
+        a, b = _line_endpoints(line)
+        hit = _match_corner(a, corners)
+        if hit is None:
+            hit = _match_corner(b, corners)
+        if hit is None:
+            window.console.log(f'Flap side does not connect to body corner. Line={get_line_points(line)}, corners={corners}')
+            fail(msg_flap)
+        corner_hits.add(hit)
+    if len(corner_hits) < 2:
+        window.console.log(f'Flap sides do not connect to both body corners. Hits={corner_hits}, corners={corners}')
         fail(msg_flap)
 
     def _find_point_off_top(lines_set, top_y):
