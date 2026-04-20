@@ -199,20 +199,11 @@
 
   <data id="test-cases" style="display:none">
     {
-    'type': 'turtle_rules',
-    'closeEps': 5,
-  'lastN': 4,
-  'codeRules': [
-    { 'metric': 'codeForwardCount', 'op': '==', 'value': 4 }
-  ],
-    'rules': [
-    { 'metric': 'segments', 'op': '==', 'value': 4 },
-    { 'metric': 'closed', 'op': '==', 'value': True },
-    { 'metric': 'turnMean', 'op': 'approx', 'value': 90, 'tol': 10 },
-    { 'metric': 'turnDir', 'op': '==', 'value': 'right' },
-    { 'metric': 'bboxRatio', 'op': '>=', 'value': 1.2 }
-  ],
-  'msg': 'Tarefa não concluída.'
+  'type': 'text_answer',
+  'varName': 'resposta',
+  'value': 'D',
+  'caseInsensitive': True,
+  'msg': 'Resposta incorreta.'
 } 
   </data>
 
@@ -227,11 +218,10 @@
     import turtle
 
     artista = turtle.Turtle()
-    artista.shape('turtle')
 
+resposta = 'Sua resposta aqui' # Cuidado para não apagar as aspas
+artista.write(resposta)
 
-
-    # Instrução necessária para que a janela não se feche
     turtle.done()
   </data>
 
