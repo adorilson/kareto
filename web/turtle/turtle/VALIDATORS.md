@@ -722,6 +722,15 @@ turtle.done()
 
 ### 2.5 - Envelope vermelho
 
+Exercícios 
+
+1) Aumente o tamanho do envelope
+2) Use formas diferentes da tartaruga enquanto faz a aba e enquanto faz o corpo
+3) Deixe o envelope colorido
+4) Reduza o aba do envelope
+
+
+### Casos de teste
 ```python
 {
   'type': 'turtle_envelope',
@@ -733,6 +742,65 @@ turtle.done()
   'msgFlap': 'A aba do envelope deve ser menor que o corpo.'
 }
 ```
+
+#### Código inicial
+
+```python
+import turtle
+
+bowser = turtle.Turtle()
+bowser.color('red')
+
+bowser.forward(100)
+bowser.right(120)
+bowser.forward(100)
+bowser.right(120)
+bowser.forward(100)
+bowser.right(120)
+
+bowser.forward(100)
+bowser.right(90)
+bowser.forward(100)
+bowser.right(90)
+bowser.forward(100)
+bowser.right(90)
+bowser.forward(100)
+bowser.right(90)
+
+turtle.done()
+```
+
+#### Solução
+
+
+```python
+import turtle
+
+bowser = turtle.Turtle()
+
+# Aba (menor)
+bowser.shape('turtle')
+bowser.color('red')
+bowser.forward(200)
+bowser.goto(100, -80)
+bowser.goto(0, 0)
+
+# Corpo (maior)
+bowser.shape('square')
+bowser.color('blue')
+bowser.setheading(0)
+bowser.forward(200)
+bowser.right(90)
+bowser.forward(120)
+bowser.right(90)
+bowser.forward(200)
+bowser.right(90)
+bowser.forward(120)
+bowser.right(90)
+
+turtle.done()
+```
+
 
 ### 2.4 - Triangulo colorido
 
