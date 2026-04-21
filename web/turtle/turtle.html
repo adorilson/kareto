@@ -199,11 +199,13 @@
 
   <data id="test-cases" style="display:none">
     {
-  'type': 'text_answer',
-  'varName': 'resposta',
-  'value': 'D',
-  'caseInsensitive': True,
-  'msg': 'Resposta incorreta.'
+  'type': 'turtle_envelope',
+  'requireSize': False,
+  'requireShape': False,
+  'requireColor': False,
+  'requireFlapRatio': False,
+  'requireOrientation': False,
+  'msgFlap': 'A aba do envelope deve estar alinhada com a parte superior.'
 } 
   </data>
 
@@ -217,10 +219,25 @@
   <data id="init" style="display:none">
     import turtle
 
-    artista = turtle.Turtle()
+donatello = turtle.Turtle()
+donatello.color('green')
 
-resposta = 'Sua resposta aqui' # Cuidado para não apagar as aspas
-artista.write(resposta)
+donatello.forward(100)
+donatello.right(120)
+donatello.forward(100)
+donatello.right(120)
+donatello.forward(100)
+donatello.right(120)
+
+donatello.left(90)
+donatello.forward(100)
+donatello.left(90)
+donatello.forward(100)
+donatello.left(90)
+donatello.forward(100)
+donatello.left(90)
+donatello.forward(100)
+
 
     turtle.done()
   </data>

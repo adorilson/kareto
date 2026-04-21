@@ -758,14 +758,18 @@ turtle.done()
 
 ### 2.6 - Ops... envelope errado
 
+Ops...
+
+Era para ser um envelope. Mas saiu errado. Corrija.
+
 ```python
 {
   'type': 'turtle_envelope',
   'requireSize': False,
   'requireShape': False,
   'requireColor': False,
-  'flapRatio': 0.9,
   'requireFlapRatio': False,
+  'requireOrientation': False,
   'msgFlap': 'A aba do envelope deve estar alinhada com a parte superior.'
 }
 ```
@@ -773,7 +777,29 @@ turtle.done()
 #### Código inicial
 
 ```python
+import turtle
 
+donatello = turtle.Turtle()
+donatello.color('green')
+
+donatello.forward(100)
+donatello.right(120)
+donatello.forward(100)
+donatello.right(120)
+donatello.forward(100)
+donatello.right(120)
+
+donatello.left(90)
+donatello.forward(100)
+donatello.left(90)
+donatello.forward(100)
+donatello.left(90)
+donatello.forward(100)
+donatello.left(90)
+donatello.forward(100)
+
+
+turtle.done()
 ```
 
 #### Solução
