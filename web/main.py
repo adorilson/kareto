@@ -49,11 +49,16 @@ def create_world(confs):
     renderer.reset()
     # isso será algo pra vir na configuração da fase
 
+    window.console.log("create_world: aplicando configuracoes")
+
     queue_delay_ms = 500
     auto_collect_delay_ms = 300
     if 'fast' in confs or 'test' in confs:
         queue_delay_ms = 0
         auto_collect_delay_ms = 0
+        window.console.log("create_world: modo rapido habilitado")
+    else:
+        window.console.log(f"create_world: delays padrao (fila={queue_delay_ms}ms, coleta={auto_collect_delay_ms}ms)")
 
     world.girassois = []
 
@@ -64,11 +69,18 @@ def create_world(confs):
         except ValueError, TypeError:
             pass
         coleta_automatica_de_girassol = bool(cag_value)
+        window.console.log(f"create_world: coleta automatica={'ligada' if coleta_automatica_de_girassol else 'desligada'}")
+    else:
+        coleta_automatica_de_girassol = False
+        window.console.log("create_world: coleta automatica=desligada (sem cag)")
 
     if 'maia' in confs:
         maia_coords = confs['maia'][0].split(',')
         x, y, direcao = int(maia_coords[0]), int(maia_coords[1]), int(maia_coords[2])
         maia = Abelha(world, renderer, command_queue, x=x, y=y, direcao=direcao)
+        window.console.log(f"create_world: maia em ({x}, {y}) direcao={direcao}")
+    else:
+        window.console.log("create_world: sem maia na configuracao")
 
     if 'gs' in confs:
         for i, gs in enumerate(confs['gs']):
@@ -80,6 +92,9 @@ def create_world(confs):
                 nectares = None
             gs = Girassol(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
             world.girassois.append(gs)
+        window.console.log(f"create_world: girassois={len(world.girassois)}")
+    else:
+        window.console.log("create_world: sem girassois na configuracao")
 
     return maia
 
