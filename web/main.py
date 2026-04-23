@@ -57,10 +57,10 @@ def create_world(confs):
             pass
         coleta_automatica_de_girassol = bool(cag_value)
 
-    if 'bee' in confs:
-        bee_coords = confs['bee'][0].split(',')
-        x, y, direcao = int(bee_coords[0]), int(bee_coords[1]), int(bee_coords[2])
-        bee = Abelha(world, renderer, command_queue, x=x, y=y, direcao=direcao)
+    if 'maia' in confs:
+        maia_coords = confs['maia'][0].split(',')
+        x, y, direcao = int(maia_coords[0]), int(maia_coords[1]), int(maia_coords[2])
+        maia = Abelha(world, renderer, command_queue, x=x, y=y, direcao=direcao)
 
     if 'gs' in confs:
         for i, gs in enumerate(confs['gs']):
@@ -73,7 +73,7 @@ def create_world(confs):
             gs = Girassol(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
             world.girassois.append(gs)
 
-    return bee
+    return maia
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
 if not confs:
@@ -86,7 +86,7 @@ initial_confs = {
 }
 
 try:
-    bee = create_world(confs)
+    maia = create_world(confs)
 except Exception as e:
     sys.stderr = ErrorOutput()
     traceback.print_exc()
@@ -97,7 +97,7 @@ except Exception as e:
 
 def verifica_girassol():
     for girassol in world.girassois:
-        if girassol.posicao == bee.posicao:
+        if girassol.posicao == maia.posicao:
             girassol.esconda()
             girassol.ativa = False
 
@@ -151,16 +151,16 @@ editor = window.CodeMirror.fromTextArea(
 editor.setValue(
 """
 for _ in range(4):
-    bee.avance()
-    bee.avance()
-    bee.direita()
-    bee.avance()
+    maia.avance()
+    maia.avance()
+    maia.direita()
+    maia.avance()
 
 for _ in range(4):
-    bee.avance()
-    bee.avance()
-    bee.esquerda()
-    bee.avance()
+    maia.avance()
+    maia.avance()
+    maia.esquerda()
+    maia.avance()
 """
 )
 
@@ -171,14 +171,14 @@ def limpa_output():
 
 
 def reset_scene(event=None):
-    global bee, is_running, command_queue
+    global maia, is_running, command_queue
 
     if is_running:
         command_queue.clear()
         is_running = False
 
     limpa_output()
-    bee = create_world(initial_confs)
+    maia = create_world(initial_confs)
 
 
 window.reset_scene = reset_scene

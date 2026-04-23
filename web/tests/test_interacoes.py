@@ -19,7 +19,7 @@ def test_captura_automatica():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?bee=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4")
+        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=4, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
@@ -27,7 +27,7 @@ def test_captura_automatica():
         g3      = assert_ator(page, '#actors > div:nth-child(4)', x=6, y=4, z_index=1, img_src="img/girassol.gif") 
         
         assert page.locator('.CodeMirror').is_visible()
-        data = """for _ in range(5): bee.avance()"""
+        data = """for _ in range(5): maia.avance()"""
         page.evaluate('data => {window.editor.setValue(data)}', data)
 
         page.locator("#run-btn").click()
@@ -83,13 +83,13 @@ def test_recomecar():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?bee=1,1,0&gs=3,2&gs=4,3")
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=3,2&gs=4,3")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=2, z_index=1, img_src="img/girassol.gif")
         g2      = assert_ator(page, '#actors > div:nth-child(3)', x=4, y=3, z_index=1, img_src="img/girassol.gif")
 
-        data = "bee.avance()"
+        data = "maia.avance()"
         page.evaluate('data => {window.editor.setValue(data)}', data)
         page.locator("#run-btn").click()
         sleep(1)
@@ -111,16 +111,16 @@ def test_recomecar_com_nectar():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?bee=1,1,0&gs=2,1&gs=4,3")
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gs=4,3")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
         g2      = assert_ator(page, '#actors > div:nth-child(3)', x=4, y=3, z_index=1, img_src="img/girassol.gif")
 
         data = """
-        bee.avance()
-        bee.extraia_nectar()
-        bee.avance()
+        maia.avance()
+        maia.extraia_nectar()
+        maia.avance()
         """
         data = textwrap.dedent(data)
         page.evaluate('data => {window.editor.setValue(data)}', data)
