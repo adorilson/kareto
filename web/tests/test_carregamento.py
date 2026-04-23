@@ -55,6 +55,29 @@ def test_criacao_mundo_via_query_string():
         assert_ator(page, '#actors > div:nth-child(4)', x=6, y=4, z_index=1, img_src="img/girassol.gif")
 
 
+def test_criacao_mundo_via_documento():
+    """Testa se o mundo é criado corretamente a partir das configurações
+    presentes no documento HTML, caso a query string não esteja presente.
+    
+    Assume que existe a seguinte configuração no documento:
+    {
+      "maia": ["1,3,0"],
+      "gs": ["3,4", "1,5"],
+      "cag":[1]
+    }
+    """
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000")
+
+        page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 3")
+
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=3, z_index=3, img_src="img/abelha_leste.gif")
+        assert_ator(page, '#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
+        assert_ator(page, '#actors > div:nth-child(3)', x=1, y=5, z_index=1, img_src="img/girassol.gif")
+
+
 def test_configuracao_abelha_invalida():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
@@ -64,3 +87,4 @@ def test_configuracao_abelha_invalida():
         # Verificar se a mensagem de erro foi exibida
         assert "Traceback" in page.locator("#output-content").inner_text().strip()
         assert "IndexError" in page.locator("#output-content").inner_text().strip()
+
