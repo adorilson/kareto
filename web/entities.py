@@ -222,8 +222,13 @@ class Girassol(Ator):
 
         self.renderer = renderer
         self.renderer.register_actor(self)
+        self._hidden = False
 
     def esconda(self):
+        if self._hidden:
+            return
+
+        self._hidden = True
         self.renderer.remove_actor(self)
 
     def extract_nectar(self):

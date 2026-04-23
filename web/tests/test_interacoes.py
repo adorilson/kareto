@@ -142,3 +142,33 @@ def test_recomecar_com_nectar():
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
         g2      = assert_ator(page, '#actors > div:nth-child(3)', x=4, y=3, z_index=1, img_src="img/girassol.gif")
+
+
+def test_sem_erro_ao_girar_apos_coleta_automatica():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,3,0&gs=3,4&gs=1,5&cag=1")
+
+        page.wait_for_function("() => window.editor && typeof window.editor.setValue === 'function'")
+
+        data = """
+        maia.avance()
+        maia.avance()
+        maia.direita()
+
+        maia.avance()
+        maia.avance()
+        maia.direita()
+
+        maia.avance()
+        maia.avance()
+        maia.direita()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        sleep(5)
+
+        output = page.locator("#output-content").inner_text()
+        assert "KeyError" not in output
