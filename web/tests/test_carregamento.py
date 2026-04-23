@@ -78,6 +78,30 @@ def test_criacao_mundo_via_documento():
         assert_ator(page, '#actors > div:nth-child(3)', x=1, y=5, z_index=1, img_src="img/girassol.gif")
 
 
+def test_criacao_mundo_com_query_string_sem_chaves_validas():
+    """Testa se a query string é ignorada quando não contém chaves de
+    configuração de mundo válidas. Neste caso, o mundo deve ser criado a
+    partir das configurações presentes.
+    
+    Assume que existe a seguinte configuração no documento:
+    {
+      "maia": ["1,3,0"],
+      "gs": ["3,4", "1,5"],
+      "cag":[1]
+    }"""
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000?aid=314&type=new")
+
+        page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 3")
+
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=3, z_index=3, img_src="img/abelha_leste.gif")
+        assert_ator(page, '#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
+        assert_ator(page, '#actors > div:nth-child(3)', x=1, y=5, z_index=1, img_src="img/girassol.gif")
+
+
+
 def test_configuracao_abelha_invalida():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)

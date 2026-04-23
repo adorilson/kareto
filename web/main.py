@@ -84,9 +84,15 @@ def create_world(confs):
     return maia
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
-if not confs:
-    confs = document.getElementById("confs").textContent.strip() 
+valid_world_keys = {"maia", "gs", "cag"}
+if confs and valid_world_keys.intersection(confs.keys()):
+    window.console.log("confs: origem=querystring")
+else:
+    if confs:
+        window.console.log("confs: querystring ignorada (sem chaves de mundo)")
+    confs = document.getElementById("confs").textContent.strip()
     confs = ast.literal_eval(confs)
+    window.console.log("confs: origem=documento")
 
 initial_confs = {
     key: list(value) if isinstance(value, (list, tuple)) else [value]
