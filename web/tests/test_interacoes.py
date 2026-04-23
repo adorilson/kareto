@@ -2,7 +2,6 @@
 Testa interações do usuário
 """
 
-from time import sleep
 import textwrap
 
 from playwright.sync_api import sync_playwright
@@ -19,7 +18,7 @@ def test_captura_automatica():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4")
+        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4&fast=1")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=4, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
@@ -31,8 +30,7 @@ def test_captura_automatica():
         page.evaluate('data => {window.editor.setValue(data)}', data)
 
         page.locator("#run-btn").click()
-
-        sleep(3)
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         # nova posicao da abelha
         x, y = 6, 4
@@ -83,7 +81,7 @@ def test_recomecar():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&gs=3,2&gs=4,3")
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=3,2&gs=4,3&fast=1")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=2, z_index=1, img_src="img/girassol.gif")
@@ -92,13 +90,13 @@ def test_recomecar():
         data = "maia.avance()"
         page.evaluate('data => {window.editor.setValue(data)}', data)
         page.locator("#run-btn").click()
-        sleep(1)
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         assert abelha.is_visible()
         assert abelha.get_attribute("style") != f"transform: translate({1*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
 
         page.locator("#clear").click()
-        sleep(1)
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         assert abelha.get_attribute("style") == f"transform: translate({1*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
         assert g1.is_visible()
@@ -111,7 +109,7 @@ def test_recomecar_com_nectar():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gs=4,3")
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gs=4,3&fast=1")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -125,7 +123,7 @@ def test_recomecar_com_nectar():
         data = textwrap.dedent(data)
         page.evaluate('data => {window.editor.setValue(data)}', data)
         page.locator("#run-btn").click()
-        sleep(2)
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         assert abelha.is_visible()
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=3, y=1, z_index=3, img_src="img/abelha_leste.gif")
@@ -137,7 +135,7 @@ def test_recomecar_com_nectar():
         ).count() == 1
 
         page.locator("#clear").click()
-        sleep(1)
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -148,7 +146,7 @@ def test_sem_erro_ao_girar_apos_coleta_automatica():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,3,0&gs=3,4&gs=1,5&cag=1")
+        page.goto("http://localhost:8000/?maia=1,3,0&gs=3,4&gs=1,5&cag=1&fast=1")
 
         page.wait_for_function("() => window.editor && typeof window.editor.setValue === 'function'")
 
@@ -168,7 +166,7 @@ def test_sem_erro_ao_girar_apos_coleta_automatica():
         data = textwrap.dedent(data)
         page.evaluate('data => {window.editor.setValue(data)}', data)
         page.locator("#run-btn").click()
-        sleep(5)
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         output = page.locator("#output-content").inner_text()
         assert "KeyError" not in output

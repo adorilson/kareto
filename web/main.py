@@ -32,6 +32,8 @@ class ErrorOutput:
 command_queue = []
 is_running = False
 coleta_automatica_de_girassol = False
+queue_delay_ms = 500
+auto_collect_delay_ms = 300
 
 # ----------------------------
 # Setup do mundo
@@ -41,11 +43,17 @@ world = World(8, 8)
 renderer = Renderer(world)
 
 def create_world(confs):
-    global command_queue, is_running, coleta_automatica_de_girassol
+    global command_queue, is_running, coleta_automatica_de_girassol, queue_delay_ms, auto_collect_delay_ms
     command_queue = []
     is_running = False
     renderer.reset()
     # isso será algo pra vir na configuração da fase
+
+    queue_delay_ms = 500
+    auto_collect_delay_ms = 300
+    if 'fast' in confs or 'test' in confs:
+        queue_delay_ms = 0
+        auto_collect_delay_ms = 0
 
     world.girassois = []
 
@@ -101,38 +109,67 @@ def verifica_girassol():
             girassol.esconda()
             girassol.ativa = False
 
+
+def _update_runtime_state():
+    window.is_running = is_running
+    window.command_queue_len = len(command_queue)
+
+
+def _handle_command_error(error, repl=None):
+    window.alert(f"Erro lógico: {str(error)}")
+    command_queue.clear()
+    window.console.log('TEM repl. inserindo coisas no repl após exceção' if repl is not None else 'nao tem repl. imprimindo traceback no painel de saída')
+    if repl is not None:
+        repl.trata_excecao()
+    else:
+        traceback.print_exc()
+
+
+def _run_next_command(repl=None):
+    global is_running
+
+    command = command_queue.pop(0)
+    try:
+        command()
+    except Exception as e:
+        is_running = False
+        _update_runtime_state()
+        _handle_command_error(e, repl)
+        return False
+
+    if coleta_automatica_de_girassol:
+        if auto_collect_delay_ms == 0:
+            verifica_girassol()
+        else:
+            timer.set_timeout(verifica_girassol, auto_collect_delay_ms)
+
+    return True
+
+
 def process_queue(repl=None):
     global is_running
 
     if not command_queue:
         is_running = False
+        _update_runtime_state()
         return
 
     is_running = True
+    _update_runtime_state()
 
-    command = command_queue.pop(0)
+    if queue_delay_ms == 0:
+        while command_queue:
+            if not _run_next_command(repl):
+                return
 
-    try:
-        command()
-    except Exception as e:
-        window.alert(f"Erro lógico: {str(e)}")
-        # Limpa a fila para evitar comportamentos estranhos após erro
-        # Isso precisa ser feito aqui pois assíncrono
-        command_queue.clear() 
         is_running = False
-        if repl is not None: #TODO melhorar isso, talvez criando um método específico para lidar com erros no repl
-            window.console.log('TEM repl. inserindo coisas no repl após exceção')
-            repl.trata_excecao()
-        else:
-            window.console.log('nao tem repl. imprimindo traceback no painel de saída')
-            traceback.print_exc()
-            return
+        _update_runtime_state()
+        return
 
-    if coleta_automatica_de_girassol:
-        timer.set_timeout(verifica_girassol, 300)
+    if not _run_next_command(repl):
+        return
 
-    # agenda próximo passo
-    timer.set_timeout(lambda: process_queue(repl), 500)
+    timer.set_timeout(lambda: process_queue(repl), queue_delay_ms)
 
 # ----------------------------
 # CodeMirror 5 Setup
