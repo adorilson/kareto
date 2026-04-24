@@ -132,15 +132,23 @@ def verifica_girassol():
             girassol.ativa = False
 
 
-def _atualiza_estado_execucao(finaliza=False):
+def _todos_girassois_capturados():
+    return all(getattr(girassol, "_hidden", False) for girassol in world.girassois)
+
+
+def _atualiza_estado_execucao(finaliza=False, sucesso=False):
     """Atualiza estado publico da execucao e finaliza quando solicitado."""
     global execution_started
 
     window.is_running = is_running
     window.command_queue_len = len(command_queue)
 
-    if finaliza and execution_started:
-        print("Tarefa concluída com sucesso!")
+    if finaliza:
+        if sucesso and execution_started:
+            if _todos_girassois_capturados():
+                print("Tarefa concluída com sucesso!")
+            else:
+                sys.stderr.write("Tarefa não concluída\n")
         execution_started = False
 
 
@@ -162,7 +170,7 @@ def _run_next_command(repl=None):
         command()
     except Exception as e:
         is_running = False
-        _atualiza_estado_execucao(finaliza=True)
+        _atualiza_estado_execucao(finaliza=True, sucesso=False)
         _handle_command_error(e, repl)
         return False
 
@@ -180,7 +188,7 @@ def process_queue(repl=None):
 
     if not command_queue:
         is_running = False
-        _atualiza_estado_execucao(finaliza=True)
+        _atualiza_estado_execucao(finaliza=True, sucesso=True)
         return
 
     is_running = True
@@ -192,7 +200,7 @@ def process_queue(repl=None):
                 return
 
         is_running = False
-        _atualiza_estado_execucao(finaliza=True)
+        _atualiza_estado_execucao(finaliza=True, sucesso=True)
         return
 
     if not _run_next_command(repl):

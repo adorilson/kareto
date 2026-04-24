@@ -30,6 +30,26 @@ def test_saida_tarefa_concluida_com_sucesso():
         assert dialog_state["dialogs"] == []
 
 
+def test_saida_tarefa_nao_concluida():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        dialog_state = monitor_dialogs(page)
+        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&fast=1")
+
+        assert page.locator('.CodeMirror').is_visible()
+        data = """for _ in range(2): maia.avance()"""
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        output = page.locator("#output-content").inner_text()
+        assert "Tarefa concluída com sucesso!" not in output
+        assert "Tarefa não concluída" in output
+        assert dialog_state["dialogs"] == []
+
+
 def test_print42_editor():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
