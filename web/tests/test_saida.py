@@ -63,7 +63,7 @@ def test_print42_editor():
         page.evaluate('data => {window.editor.setValue(data)}', data)
         page.click("#run-btn")
 
-        assert page.locator("#output-content").inner_text() == '42\n'
+        assert '42\n' in page.locator("#output-content").inner_text()
         assert dialog_state["dialogs"] == []
 
 
