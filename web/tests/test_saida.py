@@ -2,6 +2,8 @@
 Testa saidas do sistema.
 """
 
+import textwrap
+
 from playwright.sync_api import sync_playwright
 
 from common import monitor_dialogs
@@ -81,6 +83,7 @@ def test_sem_erro_ao_girar_apos_coleta_automatica():
         maia.avance()
         maia.direita()
         """
+        data = textwrap.dedent(data)
         page.evaluate('data => {window.editor.setValue(data)}', data)
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
