@@ -13,6 +13,7 @@ def test_saida_tarefa_concluida_com_sucesso():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
+        dialog_state = monitor_dialogs(page)
         page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&fast=1")
 
         assert page.locator('.CodeMirror').is_visible()
@@ -26,12 +27,14 @@ def test_saida_tarefa_concluida_com_sucesso():
         assert "Análise de código concluída sem erros de sintaxe." in output
         assert "Executando o código. Aguarde..." in output
         assert "Tarefa concluída com sucesso!" in output
+        assert dialog_state["dialogs"] == []
 
 
 def test_print42_editor():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
+        dialog_state = monitor_dialogs(page)
         page.goto("http://localhost:8000")
 
         assert page.locator('.CodeMirror').is_visible()
@@ -41,12 +44,14 @@ def test_print42_editor():
         page.click("#run-btn")
 
         assert page.locator("#output-content").inner_text() == '42\n'
+        assert dialog_state["dialogs"] == []
 
 
 def test_print42_console():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
+        dialog_state = monitor_dialogs(page)
         page.goto("http://localhost:8000")
 
         page.locator("#console").click()
@@ -60,12 +65,14 @@ def test_print42_console():
 
         assert page.locator('//*[@id="console"]/pre[7]').is_visible()
         assert page.locator('//*[@id="console"]/pre[7]').inner_text() == '>>> '
+        assert dialog_state["dialogs"] == []
 
 
 def test_sem_erro_ao_girar_apos_coleta_automatica():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
+        dialog_state = monitor_dialogs(page)
         page.goto("http://localhost:8000/?maia=1,3,0&gs=3,4&gs=1,5&cag=1&fast=1")
 
         page.wait_for_function("() => window.editor && typeof window.editor.setValue === 'function'")
@@ -90,6 +97,7 @@ def test_sem_erro_ao_girar_apos_coleta_automatica():
 
         output = page.locator("#output-content").inner_text()
         assert "KeyError" not in output
+        assert dialog_state["dialogs"] == []
 
 
 def test_erro_sintaxe():
