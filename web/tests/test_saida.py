@@ -4,6 +4,8 @@ Testa saidas do sistema.
 
 from playwright.sync_api import sync_playwright
 
+from common import monitor_dialogs
+
 
 def test_saida_tarefa_concluida_com_sucesso():
     with sync_playwright() as p:
@@ -85,3 +87,23 @@ def test_sem_erro_ao_girar_apos_coleta_automatica():
 
         output = page.locator("#output-content").inner_text()
         assert "KeyError" not in output
+
+
+def test_erro_sintaxe():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        dialog_state = monitor_dialogs(page)
+        page.goto("http://localhost:8000")
+
+        assert page.locator('.CodeMirror').is_visible()
+        data = """for _ in range(3):\n    maia.avance("""
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+
+        output = page.locator("#output-content").inner_text()
+        assert "SyntaxError: '(' was never closed" in output
+        assert dialog_state["dialogs"] == []
+
+
+

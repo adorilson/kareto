@@ -269,7 +269,6 @@ def run_code(event):
         limpa_output()
         exec(code)
     except SyntaxError as e:
-        window.alert(f"Erro de sintaxe. Veja detalhes na área de Saída.")
         sys.stderr = ErrorOutput()
         traceback.print_exc()
         return
