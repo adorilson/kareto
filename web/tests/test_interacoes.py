@@ -42,6 +42,24 @@ def test_captura_automatica():
         assert g3.is_hidden()
 
 
+def test_saida_tarefa_concluida_com_sucesso():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&fast=1")
+
+        assert page.locator('.CodeMirror').is_visible()
+        data = """for _ in range(5): maia.avance()"""
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        output = page.locator("#output-content").inner_text()
+        assert "Análise de código concluída sem erros de sintaxe." in output
+        assert "Executando o código. Aguarde..." in output
+        assert "Tarefa concluída com sucesso!" in output
+
 
 def test_print42_editor():
     with sync_playwright() as p:

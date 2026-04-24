@@ -34,6 +34,7 @@ is_running = False
 coleta_automatica_de_girassol = False
 queue_delay_ms = 500
 auto_collect_delay_ms = 300
+execution_started = False
 
 # ----------------------------
 # Setup do mundo
@@ -131,9 +132,16 @@ def verifica_girassol():
             girassol.ativa = False
 
 
-def _update_runtime_state():
+def _atualiza_estado_execucao(finaliza=False):
+    """Atualiza estado publico da execucao e finaliza quando solicitado."""
+    global execution_started
+
     window.is_running = is_running
     window.command_queue_len = len(command_queue)
+
+    if finaliza and execution_started:
+        print("Tarefa concluída com sucesso!")
+        execution_started = False
 
 
 def _handle_command_error(error, repl=None):
@@ -154,7 +162,7 @@ def _run_next_command(repl=None):
         command()
     except Exception as e:
         is_running = False
-        _update_runtime_state()
+        _atualiza_estado_execucao(finaliza=True)
         _handle_command_error(e, repl)
         return False
 
@@ -168,15 +176,15 @@ def _run_next_command(repl=None):
 
 
 def process_queue(repl=None):
-    global is_running
+    global is_running, execution_started
 
     if not command_queue:
         is_running = False
-        _update_runtime_state()
+        _atualiza_estado_execucao(finaliza=True)
         return
 
     is_running = True
-    _update_runtime_state()
+    _atualiza_estado_execucao()
 
     if queue_delay_ms == 0:
         while command_queue:
@@ -184,7 +192,7 @@ def process_queue(repl=None):
                 return
 
         is_running = False
-        _update_runtime_state()
+        _atualiza_estado_execucao(finaliza=True)
         return
 
     if not _run_next_command(repl):
@@ -248,7 +256,7 @@ window.reset_scene = reset_scene
 
 @bind(document["run-btn"], "click")
 def run_code(event):
-    global is_running
+    global is_running, execution_started
 
     if is_running: # impede execução simultânea
         window.alert("O código já está em execução. Por favor, aguarde.")
@@ -265,6 +273,10 @@ def run_code(event):
         sys.stderr = ErrorOutput()
         traceback.print_exc()
         return
+
+    print("Análise de código concluída sem erros de sintaxe.")
+    print("Executando o código. Aguarde...")
+    execution_started = True
 
     sys.stderr = ErrorOutput()
     process_queue()
