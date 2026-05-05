@@ -26,7 +26,7 @@ def test_saida_tarefa_concluida_com_sucesso():
         output = page.locator("#output-content").inner_text()
         assert "Análise de código concluída sem erros de sintaxe." in output
         assert "Executando o código. Aguarde..." in output
-        assert "Tarefa concluída com sucesso!" in output
+        assert "Tarefa realizada com sucesso." in output
         assert dialog_state["dialogs"] == []
 
 
@@ -45,8 +45,8 @@ def test_saida_tarefa_nao_concluida():
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         output = page.locator("#output-content").inner_text()
-        assert "Tarefa concluída com sucesso!" not in output
-        assert "Tarefa não concluída" in output
+        assert "Tarefa realizada com sucesso." not in output
+        assert "Algum nectar não foi coletado." in output
         assert dialog_state["dialogs"] == []
 
 

@@ -112,3 +112,14 @@ def test_configuracao_abelha_invalida():
         assert "Traceback" in page.locator("#output-content").inner_text().strip()
         assert "IndexError" in page.locator("#output-content").inner_text().strip()
 
+
+def test_overlay():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000")
+
+        assert page.locator("#loading-overlay").is_visible()
+
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+        assert page.locator("#loading-overlay").is_visible() is False

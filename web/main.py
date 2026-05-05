@@ -6,10 +6,21 @@ from urllib.parse import parse_qs
 import interpreter
 from browser import document, window, timer, bind
 
+from snapshot import send_snapshot, send_interpreter_snapshot
+
 from world import World
 from renderer import Renderer
-from entities import Abelha, Girassol
+from entities import Abelha, Girassol, Direcao
 
+
+editor = None
+
+# O cÃ³digo inicial (carregado do CodeInsights)
+code = document.getElementById("init").textContent.strip()
+
+
+# O cÃ³digo de reset (carregado do CodeInsights)
+reset_code = document.getElementById("reset").textContent.strip()
 
 # Redirecionamento de prints e exceções para a interface web
 def escape_tags(text):
@@ -29,12 +40,69 @@ class ErrorOutput:
         document["output-content"].html += '<pre class="error">' + escape_tags("".join(args)) + "</pre>"
 
 
+# Isso é manipulado quando o foco alterna entre editor e console interativo
+sys.stdout = StdOutput()
+sys.stderr = ErrorOutput()
+
+
 command_queue = []
 is_running = False
 coleta_automatica_de_girassol = False
 queue_delay_ms = 500
 auto_collect_delay_ms = 300
-execution_started = False
+
+has_exception = False
+
+
+# ----------------------------
+# Setup do ambiente de desenvolvimento
+# ----------------------------
+
+def init_editor():
+    global editor
+    if editor is not None:
+        return
+
+    editor = window.CodeMirror.fromTextArea(
+        document["editor"],
+        {
+            "lineNumbers": True,
+            "mode": "python",
+            "theme": "default",
+            "indentUnit": 4,
+        }
+    )
+    editor.setValue(code)
+
+
+def ensure_editor_initialized():
+    if editor is None:
+        init_editor()
+
+def keep_focus_on_top():
+    console_el = document.getElementById("console")
+    if console_el:
+        console_el.blur()
+    document.body.focus()
+    window.scrollTo(0, 0)
+
+
+def hide_loading_overlay_and_focus_on_top(delay_ms=0):
+    overlay = document.getElementById("loading-overlay")
+    if not overlay:
+        return
+
+    def _hide():
+        overlay.class_name = "hidden"
+
+    if delay_ms > 0:
+        timer.set_timeout(_hide, delay_ms)
+    else:
+        _hide()
+
+    keep_focus_on_top()
+
+
 
 # ----------------------------
 # Setup do mundo
@@ -78,7 +146,7 @@ def create_world(confs):
     if 'maia' in confs:
         maia_coords = confs['maia'][0].split(',')
         x, y, direcao = int(maia_coords[0]), int(maia_coords[1]), int(maia_coords[2])
-        maia = Abelha(world, renderer, command_queue, x=x, y=y, direcao=direcao)
+        maia = Abelha(world, renderer, command_queue, x=x, y=y, direcao=Direcao(direcao))
         window.console.log(f"create_world: maia em ({x}, {y}) direcao={direcao}")
     else:
         window.console.log("create_world: sem maia na configuracao")
@@ -132,34 +200,20 @@ def verifica_girassol():
             girassol.ativa = False
 
 
-def _todos_girassois_capturados():
-    return all(getattr(girassol, "_hidden", False) for girassol in world.girassois)
-
-
-def _atualiza_estado_execucao(finaliza=False, sucesso=False):
-    """Atualiza estado publico da execucao e finaliza quando solicitado."""
-    global execution_started
-
+def _update_runtime_state():
     window.is_running = is_running
     window.command_queue_len = len(command_queue)
 
-    if finaliza:
-        if sucesso and execution_started:
-            if _todos_girassois_capturados():
-                print("Tarefa concluída com sucesso!")
-            else:
-                sys.stderr.write("Tarefa não concluída\n")
-        execution_started = False
-
 
 def _handle_command_error(error, repl=None):
-    window.alert(f"Erro lógico: {str(error)}")
+    global has_exception
+    has_exception = True
     command_queue.clear()
     window.console.log('TEM repl. inserindo coisas no repl após exceção' if repl is not None else 'nao tem repl. imprimindo traceback no painel de saída')
     if repl is not None:
         repl.trata_excecao()
     else:
-        traceback.print_exc()
+        report_exception(error)
 
 
 def _run_next_command(repl=None):
@@ -170,7 +224,7 @@ def _run_next_command(repl=None):
         command()
     except Exception as e:
         is_running = False
-        _atualiza_estado_execucao(finaliza=True, sucesso=False)
+        _update_runtime_state()
         _handle_command_error(e, repl)
         return False
 
@@ -184,15 +238,15 @@ def _run_next_command(repl=None):
 
 
 def process_queue(repl=None):
-    global is_running, execution_started
+    global is_running
 
     if not command_queue:
         is_running = False
-        _atualiza_estado_execucao(finaliza=True, sucesso=True)
+        _update_runtime_state()
         return
 
     is_running = True
-    _atualiza_estado_execucao()
+    _update_runtime_state()
 
     if queue_delay_ms == 0:
         while command_queue:
@@ -200,7 +254,7 @@ def process_queue(repl=None):
                 return
 
         is_running = False
-        _atualiza_estado_execucao(finaliza=True, sucesso=True)
+        _update_runtime_state()
         return
 
     if not _run_next_command(repl):
@@ -208,37 +262,6 @@ def process_queue(repl=None):
 
     timer.set_timeout(lambda: process_queue(repl), queue_delay_ms)
 
-# ----------------------------
-# CodeMirror 5 Setup
-# ----------------------------
-
-editor = window.CodeMirror.fromTextArea(
-    document["editor"],
-    {
-        "lineNumbers": True,
-        "mode": "python",
-        "theme": "default",
-        "indentUnit": 4,
-    }
-)
-
-editor.setValue(
-"""
-for _ in range(4):
-    maia.avance()
-    maia.avance()
-    maia.direita()
-    maia.avance()
-
-for _ in range(4):
-    maia.avance()
-    maia.avance()
-    maia.esquerda()
-    maia.avance()
-"""
-)
-
-window.editor = editor
 
 def limpa_output():
     document["output-content"].html = ""
@@ -246,6 +269,8 @@ def limpa_output():
 
 def reset_scene(event=None):
     global maia, is_running, command_queue
+
+    window.console.log('Resetando cena...')
 
     if is_running:
         command_queue.clear()
@@ -255,38 +280,127 @@ def reset_scene(event=None):
     maia = create_world(initial_confs)
 
 
-window.reset_scene = reset_scene
+
 
 
 # ----------------------------
 # Execução do código
 # ----------------------------
 
+#common
+def report_exception(e=None):
+    """Show traceback in the output and send snapshot with error details"""
+    if type(e) == Exception:
+        sys.stderr.write("Erro inesperado. Parem as máquinas.\n")
+
+    traceback.print_exc(limit=-1)
+    tb = traceback.format_exc(limit=-1)
+
+    code = document["editoraux"].value
+
+    send_snapshot(code, 4, tb)
+
+# common
+def load_test_cases():
+    # Por enquanto, não há definição de "test_cases" para ambiente Kareto,
+    # mas essa função é necessária para manter a compatibilidade com a estrutura
+    # de testes. Ela pode ser expandida no futuro se quisermos adicionar casos de
+    # teste específicos para o mundo do Kareto.
+    global world
+    return {'world': world}
+
+
+# common
+def call_tests():
+    window.console.log('Iniciando execução dos testes...')
+    _code = document["editoraux"].value
+
+    test_cases = load_test_cases()
+
+    sys.stdout = StdOutput()
+
+    try:
+        import validators
+        validators.run_tests(test_cases)
+        window.console.log('Testes concluídos sem erros.')
+    except AssertionError as e:
+        window.console.log(f'AssertionError durante execução dos testes: {str(e)}')
+        msg = f'Falha ao analisar a saída: {str(e)}'
+        sys.stderr.write(msg)
+        send_snapshot(_code, 3, msg)
+    except Exception as e:
+        window.console.log(f'Exception durante execução dos testes: {str(e)}')
+        report_exception(e)
+    else:
+        print('Tarefa realizada com sucesso.')
+        send_snapshot(_code, 1, "")
+
+
+# common
+def trigger_tests():
+    global is_running
+    global has_exception
+
+    if is_running:
+        window.console.log('Código ainda em execução, aguardando para rodar os testes...')
+        timer.set_timeout(trigger_tests, 1000)
+        return
+
+    if not has_exception:
+        call_tests()
+
+
 @bind(document["run-btn"], "click")
 def run_code(event):
-    global is_running, execution_started
+    global is_running
 
     if is_running: # impede execução simultânea
         window.alert("O código já está em execução. Por favor, aguarde.")
         return  
 
-    code = editor.getValue()
+    _code = editor.getValue()
 
+    #para o cÃ³digo estar disponÃ­vel para o pedido AJAX
+    document["editoraux"].value = document["code_header"].textContent + "\n" + _code
+
+    reset_scene()
+    limpa_output()
+
+    # Isso precisa ser redefinido por causa do REPL
     sys.stdout = StdOutput()
-    try:
-        limpa_output()
-        exec(code)
-    except SyntaxError as e:
-        sys.stderr = ErrorOutput()
-        traceback.print_exc()
-        return
-
-    print("Análise de código concluída sem erros de sintaxe.")
-    print("Executando o código. Aguarde...")
-    execution_started = True
-
     sys.stderr = ErrorOutput()
+
+    try:
+        import validators
+        is_valid, message = validators.validate_code(_code, '<string>')
+    except RuntimeError as e:
+        window.console.log(f'Capturou RuntimeError on exec_code: {e}')
+        msg = f'Falha ao analisar o código: {str(e)}'
+        sys.stderr.write(msg)
+        send_snapshot(_code, 3, msg)
+        return
+    except SyntaxError as e:
+        window.console.log(f'Capturou SyntaxError on exec_code: {e}')
+        report_exception(e)
+        return
+    except Exception as e:
+        window.console.log(f'Capturou Exception on exec_code: {e}')
+        report_exception(e)
+        return
+    else:
+        if not is_valid:
+            print(message)
+            _code = document["editoraux"].value
+            send_snapshot(_code, 4, message)
+            return
+        print('Análise de código concluída sem erros de sintaxe.')
+
+    exec(_code)
+    print('Executando o código. Aguarde...')
+    global has_exception
+    has_exception = False
     process_queue()
+    trigger_tests()
 
 
 class Interpreter(interpreter.Interpreter):
@@ -309,5 +423,18 @@ class Interpreter(interpreter.Interpreter):
         sys.stdout = sys.stderr =  interpreter.Output(self)
 
 
-Interpreter("console", globals=globals())
+def start_ambiente():
+    window.console.log('Iniciando ambiente interativo...')
+    Interpreter("console", globals=globals())
 
+    ensure_editor_initialized()
+    hide_loading_overlay_and_focus_on_top(250)
+
+    window.reset_scene = reset_scene
+    window.reset_code = reset_code
+    window.editor = editor
+
+
+# Chamar no final para garantir que tudo esteja definido antes de iniciar o ambiente
+# mover a chamada para o cliente
+start_ambiente()
