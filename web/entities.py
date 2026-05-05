@@ -22,7 +22,7 @@ class Ator:
         Direcao.SUL: ATOR_SUL}
 
     def __init__(self, world, command_queue, x=None, y=None, direcao=Direcao.LESTE):
-        super().__init__(visible=False)
+        super().__init__()
         self._shape = ''
         self._value = ''
 
@@ -48,11 +48,10 @@ class Ator:
     def setheading(self, to_angle):
         if to_angle is None:
             return self.direcao
-        elif to_angle not in Direcao:
-            raise ValueError(f"Direção inválida: {to_angle}.")
-        else:
-            self.direcao = to_angle
-            self.shape(self.IMAGENS[self.direcao])
+        
+        direcao = Direcao(to_angle)
+        self.direcao = direcao
+        self.shape(self.IMAGENS[self.direcao])
     
     def heading(self):
         return self.direcao
