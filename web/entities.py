@@ -116,7 +116,7 @@ class Abelha(Ator):
 
     def _avance(self):
         if not self.tem_caminho_frente():
-            raise ValueError("Movimento para fora dos limites do mundo.")
+            raise RuntimeError("Movimento para fora dos limites do mundo.")
 
         match self.heading():
             case Direcao.LESTE:

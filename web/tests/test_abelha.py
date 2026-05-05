@@ -100,7 +100,7 @@ def test_avance_raises_out_of_bounds():
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=0, direcao=Direcao.LESTE)
 
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         abelha._avance()
 
 
