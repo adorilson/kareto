@@ -50,5 +50,5 @@ def test_girassol_em_retorna_correspondente():
 def test_girassol_em_gera_erro_quando_nao_encontra():
     world = World()
 
-    with pytest.raises(WorldError):
+    with pytest.raises(RuntimeError):
         world.girassol_em((9, 9))
