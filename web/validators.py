@@ -12,15 +12,15 @@ def validate_code(code: str, filename):
 
 
 def run_tests(test_cases):
-    window.console.log('Running tests...')
-
-    world = test_cases.get('world')
     def _nectar_zero(girassol):
         try:
             return int(getattr(girassol, "nectares", -1)) == 0
         except (TypeError, ValueError):
             return False
 
+    window.console.log('Running tests...')
+
+    world = test_cases.get('world')
     todos = all(
         getattr(girassol, "_hidden") or _nectar_zero(girassol)
         for girassol in world.girassois
