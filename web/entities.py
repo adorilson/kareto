@@ -240,5 +240,36 @@ class Girassol(Ator):
         else:
             return '' # TODO isso de retornar tipos diferentes não é legal.
 
+
+class GirassolPersistente(Girassol):
+    def __init__(self, world, renderer, command_queue, x=None, y=None, nectares=None):
+        super().__init__(world, renderer, command_queue, x, y, nectares)
+        self.nectares = self._parse_nectares(nectares)
+        self.renderer.render_actor(self)
+
+    def _parse_nectares(self, nectares):
+        if nectares is None:
+            return 0
+
+        try:
+            return int(nectares)
+        except (TypeError, ValueError):
+            return 0
+
+    def esconda(self):
+        self._hidden = False
+        self.renderer.render_actor(self)
+
+    def extract_nectar(self):
+        if self.nectares <= 0:
+            raise RuntimeError("Não há néctar para extrair.")
+
+        self.nectares -= 1
+        self.renderer.render_actor(self)
+
+    @property
+    def value(self):
+        return self.nectares
+
 class GirassolError(Exception):
     pass

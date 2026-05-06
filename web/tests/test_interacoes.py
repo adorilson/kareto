@@ -107,3 +107,25 @@ def test_recomecar_com_nectar():
         g2      = assert_ator(page, '#actors > div:nth-child(3)', x=4, y=3, z_index=1, img_src="img/girassol.gif")
 
 
+def test_girassol_persistente_nao_some_e_mostra_zero():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,1&fast=1")
+
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
+
+        data = """
+        maia.avance()
+        maia.extraia_nectar()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert g1.is_visible()
+        assert g1.locator(".actor-value").inner_text() == "0"
+
+

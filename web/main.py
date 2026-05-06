@@ -10,7 +10,7 @@ from snapshot import send_snapshot, send_interpreter_snapshot
 
 from world import World
 from renderer import Renderer
-from entities import Abelha, Girassol, Direcao
+from entities import Abelha, Girassol, GirassolPersistente, Direcao
 
 
 editor = None
@@ -151,16 +151,26 @@ def create_world(confs):
     else:
         window.console.log("create_world: sem maia na configuracao")
 
+    def _add_girassol(gs_conf, GirassolType):
+        conf_gs = gs_conf.split(',')
+        x, y = conf_gs[0], conf_gs[1]
+        try:
+            nectares = conf_gs[2]
+        except IndexError:
+            nectares = None
+
+        gs = GirassolType(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
+        world.girassois.append(gs)
+
     if 'gs' in confs:
-        for i, gs in enumerate(confs['gs']):
-            conf_gs = gs.split(',')
-            x, y = conf_gs[0], conf_gs[1]
-            try:
-                nectares = conf_gs[2]
-            except:
-                nectares = None
-            gs = Girassol(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
-            world.girassois.append(gs)
+        for gs in confs['gs']:
+            _add_girassol(gs, GirassolType=Girassol)
+
+    if 'gsp' in confs:
+        for gs in confs['gsp']:
+            _add_girassol(gs, GirassolType=GirassolPersistente)
+
+    if 'gs' in confs or 'gsp' in confs:
         window.console.log(f"create_world: girassois={len(world.girassois)}")
     else:
         window.console.log("create_world: sem girassois na configuracao")
@@ -168,7 +178,7 @@ def create_world(confs):
     return maia
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
-valid_world_keys = {"maia", "gs", "cag"}
+valid_world_keys = {"maia", "gs", "gsp", "cag"}
 if confs and valid_world_keys.intersection(confs.keys()):
     window.console.log("confs: origem=querystring")
 else:
@@ -196,7 +206,7 @@ except Exception as e:
 def verifica_girassol():
     for girassol in world.girassois:
         if girassol.posicao == maia.posicao:
-            girassol.esconda()
+            girassol.extract_nectar()
             girassol.ativa = False
 
 
