@@ -12,7 +12,7 @@ class World:
             if gs.posicao == posicao:
                 return gs
 
-        raise RuntimeError(f'Não há girassol em na posição {posicao}')
+        raise RuntimeError(f'Não há girassol na posição {posicao}')
 
 class WorldError(Exception):
     pass
