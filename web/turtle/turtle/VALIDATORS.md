@@ -539,7 +539,13 @@ turtle.done()
 ]
 ```
 
-### 1.8 - Retangulo (modo legado, outerHTML)
+### 1.8 - Retângulo (modo legado, outerHTML)  
+
+Desenhe um retângulo em que os lados longos tenham 200 pixels e os lados curtos tenham 100 pixels cada.
+
+As rotações da tartaruga devem ser para a direita, conforme animação abaixo.
+
+<aqui vai uma animação de um retângulo>
 
 ```python
 [
@@ -579,6 +585,43 @@ turtle.done()
     'msg': 'Depois de virar, a tartaruga deve ter avancado 100 pixels para frente.'
   },
 ]
+```
+
+#### Código inicial
+```python
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+## Seu código a partir daqui
+
+
+# Instrução para indicar que o desenho deve ser feito
+turtle.done()
+```
+
+#### Solução
+
+```
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+artista.forward(200)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+artista.forward(200)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+turtle.done()
 ```
 
 ### 1.6 - Triangulo (modo legado, outerHTML) Desenhe um triângulo. Cada lado do triângulo possui 100 pixels e 120 graus nos ângulos. A rotação deve ser para a esquerda. O triângulo deve ser formado por um lado horizontal e dois lados inclinados para baixo, como um "V" invertido.
