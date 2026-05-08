@@ -27,6 +27,8 @@ Este documento descreve o formato de `test_cases` usado pelo editor Turtle e lis
   - [2.3 - Dois quadrados coloridos](#23---dois-quadrados-coloridos)
   - [2.2 - Quadrado vermelho](#22---quadrado-vermelho)
   - [2.1 - Quadrangulo](#21---quadrangulo---valida-apenas-o-final)
+  - [5.1 - Quadrado com laco](#51---quadrado-com-laco)
+
 
 ## Como o `test_cases` e lido
 
@@ -652,6 +654,30 @@ turtle.done()
 ]
 ```
 
+#### Solução
+
+```python
+import turtle
+
+artista = turtle.Turtle()
+
+# Seu código a partir daqui
+
+artista.shape('turtle') # comece tirando o # no início dessa linha
+
+artista.forward(100)
+artista.right(90)
+artista.forward(100)
+
+artista.right(90)
+artista.forward(100)
+artista.right(90)
+artista.forward(100)
+
+# Instrução necessária para que a janela não se feche
+turtle.done()
+```
+
 ### 1.3 - L invertido (modo legado, outerHTML) - A partir do código inicial, escreva as instruções necessárias para que a artista desenhe um L invertido. Cada lado tem 100 pixels de comprimento. Sendo a rotação para a direita, o L deve ser formado por um lado horizontal e outro lado vertical para baixo.
 
 ```python
@@ -1221,4 +1247,71 @@ crush.right(90)
 
 turtle.done()
 
+```
+
+
+### 5.1 - Quadrado com laço
+
+Refaça o quadrado feito no exercicio 1.5, mas agora usando laço de repetição (`for n in range(???):`).
+
+Cada lado deve medir 100 pixels e todos os angulos são de 90 graus.
+
+#### Casos de teste
+
+```python
+{
+  'type': 'turtle_rules',
+  'strictSegments': 4,
+  'closeEps': 5,
+  'codeRules': [
+    { 'metric': 'codeForwardCount', 'op': '==', 'value': 1, 'msg': 'Use um laço para repetir o movimento.' },
+    { 'metric': 'codeTurnCount', 'op': '==', 'value': 1, 'msg': 'Use um laço para repetir o movimento.' }
+  ],
+  'rules': [
+    { 'metric': 'segments', 'op': '==', 'value': 4 },
+    { 'metric': 'closed', 'op': '==', 'value': True },
+    { 'metric': 'turnMean', 'op': 'approx', 'value': 90, 'tol': 8 },
+    { 'metric': 'sideMean', 'op': 'approx', 'value': 100, 'tol': 6 },
+    { 'metric': 'sideStd', 'op': '<=', 'value': 5 }
+  ],
+  'msg': 'Desenhe um quadrado de 100 pixels usando laço de repetição.'
+}
+```
+
+#### Código inicial
+
+```python
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+artista.forward(100)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+turtle.done()
+```
+
+
+#### Solução
+```python
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+for _ in range(4):
+  artista.forward(100)
+  artista.right(90)
+
+turtle.done()
 ```
