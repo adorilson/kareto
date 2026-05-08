@@ -30,6 +30,7 @@ Este documento descreve o formato de `test_cases` usado pelo editor Turtle e lis
   - [5.1 - Quadrado com laco](#51---quadrado-com-laco)
   - [5.2 - Triangulo com laco](#52---triangulo-com-laco)
   - [5.3 - Retângulo com laço](#53---retângulo-com-laço)
+  - [5.4 - Desafio quebra-cabeça com laços](#54---desafio-quebra-cabeça-com-laços)
 
 
 ## Como o `test_cases` e lido
@@ -1490,6 +1491,64 @@ for _ in range(2):
     artista.right(90)
     artista.forward(100)
     artista.right(90)
+
+turtle.done()
+```
+
+### 5.4 - Desafio quebra-cabeça com laços
+
+Refaça o desafio 1.11 com laço de repetição.
+
+#### Casos de teste
+
+```python
+{
+  'type': 'turtle_rules',
+  'strictSegments': 6,
+  'closeEps': 5,
+  'codeRules': [
+    { 'metric': 'codeForwardCount', 'op': '==', 'value': 1, 'msg': 'Use um laço para repetir o movimento.' },
+    { 'metric': 'codeLeftCount', 'op': '==', 'value': 1, 'msg': 'Use um laço para repetir o movimento.' }
+  ],
+  'rules': [
+    { 'metric': 'segments', 'op': '==', 'value': 6 },
+    { 'metric': 'closed', 'op': '==', 'value': True },
+    { 'metric': 'turnMean', 'op': 'approx', 'value': 60, 'tol': 8 },
+    { 'metric': 'turnDir', 'op': '==', 'value': 'left' },
+    { 'metric': 'sideStd', 'op': '>=', 'value': 10 }
+  ],
+  'msg': 'Desenhe um hexágono irregular usando laço de repetição.'
+}
+```
+
+#### Código inicial
+
+```python
+import turtle
+
+t = turtle.Turtle()
+
+for _ in range(2):
+    t.forward(100)
+    t.left(60)
+    t.forward(50)
+    t.left(60)
+    t.forward(50)
+    t.left(60)
+
+turtle.done()
+```
+
+#### Solução
+
+```python
+import turtle
+
+t = turtle.Turtle()
+
+for lado in [100, 50, 50, 100, 50, 50]:
+    t.forward(lado)
+    t.left(60)
 
 turtle.done()
 ```
