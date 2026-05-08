@@ -127,6 +127,9 @@ Métricas disponíveis:
 - `codeLeftCount`: quantidade de chamadas a `left()`.
 - `codeLeftLiteralCount`: quantidade de `left()` com número literal.
 - `codeTurnCount`: total de chamadas de curva (`right()` + `left()`).
+- `codeForCount`: quantidade de laços `for` no código.
+- `codeWhileCount`: quantidade de laços `while` no código.
+- `codeLoopCount`: total de laços (`for` + `while`).
 
 Exemplo com `codeRules` + `rules` (retângulo, curva a direita):
 ```python

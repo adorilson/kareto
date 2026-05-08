@@ -70,6 +70,16 @@ def collect_turtle_call_metrics(code):
     right_literal = [val for val in right_values if val is not None]
     left_literal = [val for val in left_values if val is not None]
 
+    for_count = 0
+    while_count = 0
+    for node in ast.walk(tree):
+        if isinstance(node, ast.For):
+            for_count += 1
+        if isinstance(node, ast.While):
+            while_count += 1
+
+    loop_count = for_count + while_count
+
     return {
         'codeForwardCount': len(forward_values),
         'codeForwardLiteralCount': len(forward_literal),
@@ -79,6 +89,9 @@ def collect_turtle_call_metrics(code):
         'codeLeftCount': len(left_values),
         'codeLeftLiteralCount': len(left_literal),
         'codeTurnCount': len(right_values) + len(left_values),
+        'codeForCount': for_count,
+        'codeWhileCount': while_count,
+        'codeLoopCount': loop_count,
     }
 
 
@@ -130,6 +143,7 @@ def run_code_rules_test(test_case):
 
     msg = test_case.get('msg', 'Não está pronto.')
     code_metrics = collect_turtle_call_metrics(document['editoraux'].value)
+
     for rule in code_rules:
         if not _rule_ok(rule, code_metrics):
             window.console.log(f'Code rule failed: {rule}')
