@@ -1,93 +1,93 @@
 # Turtle validators
 
-Este documento descreve o formato de `test_cases` usado pelo editor Turtle e lista os tipos de validacao disponiveis. O foco aqui e o conteudo que vai no campo de teste (inserido na plataforma web), nao o HTML.
+Este documento descreve o formato de `test_cases` usado pelo editor Turtle e lista os tipos de validação disponíveis. O foco aqui é o conteúdo que vai no campo de teste (inserido na plataforma web), não o HTML.
 
-## Indice
+## Índice
 
-- [Como o `test_cases` e lido](#como-o-test_cases-e-lido)
-- [Diretorio `_validators`](#diretorio-_validators)
+- [Como o `test_cases` é lido](#como-o-test_cases-e-lido)
+- [Diretório `_validators`](#diretório-_validators)
 - [Tipos principais](#tipos-principais)
-  - [`turtle_shape` (formas geometricas)](#turtle_shape-formas-geometricas)
+  - [`turtle_shape` (formas geométricas)](#turtle_shape-formas-geométricas)
   - [`turtle_rules` (DSL leve de regras)](#turtle_rules-dsl-leve-de-regras)
-- [Tipos especificos existentes](#tipos-especificos-existentes)
+- [Tipos específicos existentes](#tipos-específicos-existentes)
 - [Presets para formas comuns](#presets-para-formas-comuns)
 - [Modo legado: `outerHTML`](#modo-legado-outerhtml)
-- [Exemplos historicos (movidos do HTML)](#exemplos-historicos-movidos-do-html)
-  - [1.12 - Triangulo 2](#112---triangulo-2---150-pixels-pra-cima)
-  - [1.11 - Hexagono irregular](#111---hexagono-irregular-sem-definicao-das-dimensoes)
+- [Exemplos históricos (movidos do HTML)](#exemplos-históricos-movidos-do-html)
+  - [1.12 - Triângulo 2](#112---triângulo-2---150-pixels-pra-cima)
+  - [1.11 - Hexágono irregular](#111---hexágono-irregular-sem-definição-das-dimensões)
   - [1.9 - Plaquinha](#19---plaquinha-modo-legado-outerhtml)
-  - [1.8 - Retangulo](#18---retangulo-modo-legado-outerhtml)
-  - [1.6 - Triangulo](#16---triangulo-modo-legado-outerhtml-desenhe-um-triangulo-cada-lado-do-triangulo-possui-100-pixels-e-120-graus-nos-angulos-a-rotacao-deve-ser-para-a-esquerda-o-triangulo-deve-ser-formado-por-um-lado-horizontal-e-dois-lados-inclinados-para-baixo-como-um-v-invertido)
-  - [1.5 - Quadrado](#15---quadrado-modo-legado-outerhtml---vamos-agora-completar-o-quadrado-cada-lado-deve-medir-100-pixels-e-todos-os-angulos-sao-de-90-graus)
-  - [1.3 - L invertido](#13---l-invertido-modo-legado-outerhtml---a-partir-do-codigo-inicial-escreva-as-instrucoes-necessarias-para-que-a-artista-desenhe-um-l-invertido-cada-lado-tem-100-pixels-de-comprimento-sendo-a-rotacao-para-a-direita-o-l-deve-ser-formado-por-um-lado-horizontal-e-outro-lado-vertical-para-baixo)
-  - [2.7 - Oculos](#27---oculos)
+  - [1.8 - Retângulo](#18---retângulo-modo-legado-outerhtml)
+  - [1.6 - Triângulo](#16---triângulo-modo-legado-outerhtml-desenhe-um-triângulo-cada-lado-do-triângulo-possui-100-pixels-e-120-graus-nos-ângulos-a-rotação-deve-ser-para-a-esquerda-o-triângulo-deve-ser-formado-por-um-lado-horizontal-e-dois-lados-inclinados-para-baixo-como-um-v-invertido)
+  - [1.5 - Quadrado](#15---quadrado-modo-legado-outerhtml---vamos-agora-completar-o-quadrado-cada-lado-deve-medir-100-pixels-e-todos-os-ângulos-sao-de-90-graus)
+  - [1.3 - L invertido](#13---l-invertido-modo-legado-outerhtml---a-partir-do-código-inicial-escreva-as-instruções-necessárias-para-que-a-artista-desenhe-um-l-invertido-cada-lado-tem-100-pixels-de-comprimento-sendo-a-rotação-para-a-direita-o-l-deve-ser-formado-por-um-lado-horizontal-e-outro-lado-vertical-para-baixo)
+  - [2.7 - Óculos](#27---óculos)
   - [2.6 - Ops... envelope errado](#26---ops-envelope-errado)
   - [2.5 - Envelope vermelho](#25---envelope-vermelho)
-  - [2.4 - Triangulo colorido](#24---triangulo-colorido)
+  - [2.4 - Triângulo colorido](#24---triângulo-colorido)
   - [2.3 - Dois quadrados coloridos](#23---dois-quadrados-coloridos)
   - [2.2 - Quadrado vermelho](#22---quadrado-vermelho)
-  - [2.1 - Quadrangulo](#21---quadrangulo---valida-apenas-o-final)
-  - [5.1 - Quadrado com laco](#51---quadrado-com-laco)
-  - [5.2 - Triangulo com laco](#52---triangulo-com-laco)
+  - [2.1 - Quadrângulo](#21---quadrângulo---valida-apenas-o-final)
+  - [5.1 - Quadrado com laço](#51---quadrado-com-laço)
+  - [5.2 - Triângulo com laço](#52---triângulo-com-laço)
   - [5.3 - Retângulo com laço](#53---retângulo-com-laço)
   - [5.4 - Desafio quebra-cabeça com laços](#54---desafio-quebra-cabeça-com-laços)
 
 
-## Como o `test_cases` e lido
+## Como o `test_cases` é lido
 
-- O conteudo do elemento `data#test-cases` e lido como texto e convertido via `ast.literal_eval`.
-- O formato aceito e:
-  - Um dicionario unico (ex.: `{ 'type': 'turtle_shape', ... }`), ou
-  - Uma lista de dicionarios (modo legado com `selector` + `outerHTML`).
+- O conteúdo do elemento `data#test-cases` é lido como texto e convertido via `ast.literal_eval`.
+- O formato aceito é:
+  - Um dicionário único (ex.: `{ 'type': 'turtle_shape', ... }`), ou
+  - Uma lista de dicionários (modo legado com `selector` + `outerHTML`).
 
-Observacao: em HTML, operadores como `>` e `<` podem virar `&gt;` e `&lt;`. O validador de regras ja normaliza esses escapes.
+Observação: em HTML, operadores como `>` e `<` podem virar `&gt;` e `&lt;`. O validador de regras já normaliza esses escapes.
 
-## Diretorio `_validators`
+## Diretório `_validators`
 
-Este diretorio concentra a logica de validacao, separada por responsabilidade. O arquivo `validators.py` atua como dispatcher e delega para esses modulos.
+Este diretório concentra a lógica de validação, separada por responsabilidade. O arquivo `validators.py` atua como dispatcher e delega para esses módulos.
 
-- `_validators/__init__.py`: ponto de entrada que expoe `run()` e orquestra validacoes comuns.
-- `_validators/rules.py`: implementa `turtle_rules`, calculo de metricas e avaliacao das regras.
-- `_validators/shapes.py`: validacoes geometricas (poligonos, triangulos, hexagonos) e helpers de segmentos/pontos.
-- `_validators/parser.py`: validacoes baseadas em AST do codigo (configuracoes, sequencias, listas de cores) e helpers privados para analise de codigo.
+- `_validators/__init__.py`: ponto de entrada que expõe `run()` e orquestra validações comuns.
+- `_validators/rules.py`: implementa `turtle_rules`, cálculo de métricas e avaliação das regras.
+- `_validators/shapes.py`: validações geométricas (polígonos, triângulos, hexágonos) e helpers de segmentos/pontos.
+- `_validators/parser.py`: validações baseadas em AST do código (configurações, sequências, listas de cores) e helpers privados para análise de código.
 
 ## Tipos principais
 
-### `turtle_shape` (formas geometricas)
+### `turtle_shape` (formas geométricas)
 
-Valida apenas a forma, com tolerancias. Ideal para quadrado, triangulo, hexagono etc.
+Valida apenas a forma, com tolerâncias. Ideal para quadrado, triângulo, hexágono etc.
 
 Campos:
 - `type`: `turtle_shape`
 - `shape`: apenas `polygon` (por enquanto)
-- `sides`: numero de lados (obrigatorio)
+- `sides`: número de lados (obrigatório)
 - `side`: tamanho do lado (opcional)
-- `sideTol`: tolerancia de lado
+- `sideTol`: tolerância de lado
 - `equalSides`: `True` para lados iguais
-- `ratio`: usado quando `equalSides` esta ativo (max/min <= ratio)
-- `closeEps`: tolerancia de fechamento
-- `pointEps`: tolerancia para juntar pontos (default = `closeEps`)
-- `turnMean`: media dos angulos internos esperados (opcional)
-- `turnTol`: tolerancia para `turnMean`
+- `ratio`: usado quando `equalSides` está ativo (max/min <= ratio)
+- `closeEps`: tolerância de fechamento
+- `pointEps`: tolerância para juntar pontos (default = `closeEps`)
+- `turnMean`: média dos ângulos internos esperados (opcional)
+- `turnTol`: tolerância para `turnMean`
 - `strict`: `True` exige exatamente `sides` segmentos (nada antes/depois)
-- `lastN`: pega apenas os ultimos N segmentos
+- `lastN`: pega apenas os últimos N segmentos
 - `nonZeroOnly`: ignora segmentos de comprimento ~0 (default `True`)
 - `minLen`: limite de comprimento para ignorar segmentos (default `0.5`)
 - `msg`: mensagem de erro
 
 ### `turtle_rules` (DSL leve de regras)
 
-Permite definir regras por metricas. Mais flexivel, menos específico.
+Permite definir regras por métricas. Mais flexível, menos específico.
 
 Campos:
 - `type`: `turtle_rules`
 - `rules`: lista de regras
-- `codeRules`: regras aplicadas ao codigo (AST), avaliadas no `parser.py`, com metricas `code*`
-- `closeEps`: tolerancia para considerar fechado (distância entre ultimo e primeiro ponto)
-- `pointEps`: tolerancia para juntar pontos próximos (default = `closeEps`)
+- `codeRules`: regras aplicadas ao código (AST), avaliadas no `parser.py`, com métricas `code*`
+- `closeEps`: tolerância para considerar fechado (distância entre último e primeiro ponto)
+- `pointEps`: tolerância para juntar pontos próximos (default = `closeEps`)
 - `nonZeroOnly`: ignora segmentos de comprimento ~0 (default `True`)
 - `minLen`: limite de comprimento para ignorar segmentos (default `0.5`)
-- `lastN`: usa apenas os últimos N segmentos para calcular as metricas
+- `lastN`: usa apenas os últimos N segmentos para calcular as métricas
 - `strictSegments`: exige exatamente N segmentos
 - `msg`: mensagem de erro
 
@@ -97,38 +97,38 @@ Formato de regra:
 ```
 
 Operadores suportados:
-- Comparacao: `==`, `!=`, `>`, `>=`, `<`, `<=`
-- Aproximacao: `approx` (usa `tol`)
+- Comparação: `==`, `!=`, `>`, `>=`, `<`, `<=`
+- Aproximação: `approx` (usa `tol`)
 - Intervalo: `between` (usa `min` e `max`)
 
 Métricas disponíveis:
 - `segments`: quantidade de segmentos de linha considerados.
-- `uniquePoints`: quantidade de pontos distintos (apos juntar por tolerancia).
-- `closed`: `True` se o ponto final esta dentro de `closeEps` do ponto inicial.
-- `sideMean`: media dos comprimentos dos segmentos.
+- `uniquePoints`: quantidade de pontos distintos (após juntar por tolerância).
+- `closed`: `True` se o ponto final está dentro de `closeEps` do ponto inicial.
+- `sideMean`: média dos comprimentos dos segmentos.
 - `sideMin`: menor comprimento de segmento.
 - `sideMax`: maior comprimento de segmento.
-- `sideStd`: desvio padrao dos comprimentos dos segmentos.
-- `bboxWidth`: largura do retangulo envolvente (minX -> maxX).
-- `bboxHeight`: altura do retangulo envolvente (minY -> maxY).
+- `sideStd`: desvio padrão dos comprimentos dos segmentos.
+- `bboxWidth`: largura do retângulo envolvente (minX -> maxX).
+- `bboxHeight`: altura do retângulo envolvente (minY -> maxY).
 - `bboxRatio`: proporção largura/altura do bbox.
-- `turnMean`: media dos angulos entre segmentos consecutivos (em graus).
+- `turnMean`: média dos ângulos entre segmentos consecutivos (em graus).
 - `turnMin`: menor ângulo entre segmentos consecutivos.
 - `turnMax`: maior ângulo entre segmentos consecutivos.
-- `turnMeanSigned`: media dos angulos com sinal (positivo = direita, negativo = esquerda).
-- `turnMinSigned`: menor angulo com sinal entre segmentos.
-- `turnMaxSigned`: maior angulo com sinal entre segmentos.
-- `turnDir`: direcao media da curva (`right`, `left` ou `none`).
-- `codeForwardCount`: quantidade de chamadas a `forward()`/`fd()` no codigo.
-- `codeForwardLiteralCount`: quantidade de `forward()` com numero literal.
+- `turnMeanSigned`: média dos ângulos com sinal (positivo = direita, negativo = esquerda).
+- `turnMinSigned`: menor ângulo com sinal entre segmentos.
+- `turnMaxSigned`: maior ângulo com sinal entre segmentos.
+- `turnDir`: direção média da curva (`right`, `left` ou `none`).
+- `codeForwardCount`: quantidade de chamadas a `forward()`/`fd()` no código.
+- `codeForwardLiteralCount`: quantidade de `forward()` com número literal.
 - `codeForwardUnique`: quantidade de valores literais distintos em `forward()`.
 - `codeRightCount`: quantidade de chamadas a `right()`.
-- `codeRightLiteralCount`: quantidade de `right()` com numero literal.
+- `codeRightLiteralCount`: quantidade de `right()` com número literal.
 - `codeLeftCount`: quantidade de chamadas a `left()`.
-- `codeLeftLiteralCount`: quantidade de `left()` com numero literal.
+- `codeLeftLiteralCount`: quantidade de `left()` com número literal.
 - `codeTurnCount`: total de chamadas de curva (`right()` + `left()`).
 
-Exemplo com `codeRules` + `rules` (retangulo, curva a direita):
+Exemplo com `codeRules` + `rules` (retângulo, curva a direita):
 ```python
 {
   'type': 'turtle_rules',
@@ -143,20 +143,20 @@ Exemplo com `codeRules` + `rules` (retangulo, curva a direita):
     { 'metric': 'turnDir', 'op': '==', 'value': 'right' },
     { 'metric': 'bboxRatio', 'op': '>=', 'value': 1.2 }
   ],
-  'msg': 'Desenhe um retangulo com curva a direita.'
+  'msg': 'Desenhe um retângulo com curva a direita.'
 }
 ```
 
 ## Tipos específicos existentes
 
-- `hexagon`: hexagono irregular (2 lados maiores)
-- `triangle`: triangulo com base horizontal e ponta para cima
+- `hexagon`: hexágono irregular (2 lados maiores)
+- `triangle`: triângulo com base horizontal e ponta para cima
 - `polygon`: poligono generico (lados e fechamento)
-- `turtle_config`: valida configuracoes no codigo (cor, shape, tamanho)
-- `turtle_sequence`: valida sequencias especificas (cores, pensize, 2 quadrados)
-- `turtle_random_colors_triangle`: valida lista de cores + triangulo
+- `turtle_config`: valida configurações no código (cor, shape, tamanho)
+- `turtle_sequence`: valida sequências especificas (cores, pensize, 2 quadrados)
+- `turtle_random_colors_triangle`: valida lista de cores + triângulo
 - `turtle_envelope`: valida envelope (tamanho, cores, aba)
-- `turtle_glasses`: valida oculos (2 lentes, gap)
+- `turtle_glasses`: valida óculos (2 lentes, gap)
 - `text_answer`: valida respostas textuais (ex.: multipla escolha)
 - Legado (lista): `selector` + `outerHTML`
 
@@ -233,7 +233,7 @@ for x in range(4):
 turtle.done()
 ```
 
-### Retangulo (estrito)
+### Retângulo (estrito)
 
 `turtle_rules` (lado maior e menor diferentes):
 ```python
@@ -248,11 +248,11 @@ turtle.done()
     { 'metric': 'sideMax', 'op': '>=', 'value': 150 },
     { 'metric': 'sideMin', 'op': '<=', 'value': 110 }
   ],
-  'msg': 'Desenhe um retangulo.'
+  'msg': 'Desenhe um retângulo.'
 }
 ```
 
-### Triangulo equilatero (estrito)
+### Triângulo equilatero (estrito)
 
 `turtle_shape`:
 ```python
@@ -265,13 +265,13 @@ turtle.done()
   'closeEps': 5,
   'turnMean': 60,
   'turnTol': 8,
-  'msg': 'Desenhe um triangulo equilatero.'
+  'msg': 'Desenhe um triângulo equilatero.'
 }
 ```
 
-### Triangulo isosceles (base horizontal)
+### Triângulo isosceles (base horizontal)
 
-`turtle_shape` (base horizontal e ponta para cima nao e verificada aqui):
+`turtle_shape` (base horizontal e ponta para cima não e verificada aqui):
 ```python
 {
     'type': 'triangle',
@@ -301,7 +301,7 @@ turtle.done()
 }
 ```
 
-### Hexagono regular (estrito)
+### Hexágono regular (estrito)
 
 `turtle_shape`:
 ```python
@@ -314,11 +314,11 @@ turtle.done()
   'closeEps': 5,
   'turnMean': 120,
   'turnTol': 8,
-  'msg': 'Desenhe um hexagono regular.'
+  'msg': 'Desenhe um hexágono regular.'
 }
 ```
 
-### Losango (lado igual, angulo livre)
+### Losango (lado igual, ângulo livre)
 
 `turtle_rules`:
 ```python
@@ -337,11 +337,11 @@ turtle.done()
 
 ## Modo legado: `outerHTML`
 
-Se `test_cases` for uma lista, o validador usa `selector` + `outerHTML` e compara o SVG de forma exata. Isso e rigido e sensivel a pequenas variacoes.
+Se `test_cases` for uma lista, o validador usa `selector` + `outerHTML` e compara o SVG de forma exata. Isso é rígido e sensível a pequenas variações.
 
-## Exemplos historicos (movidos do HTML)
+## Exemplos históricos (movidos do HTML)
 
-Abaixo estao exemplos antigos que ficavam em `turtle.html` para referencia. Eles nao precisam estar no servidor.
+Abaixo estao exemplos antigos que ficavam em `turtle.html` para referencia. Eles não precisam estar no servidor.
 
 
 ### 1.13 - Previsão
@@ -424,7 +424,7 @@ turtle.done()
 
 
 
-### 1.12 - Triangulo 2 - 150 pixels, pra cima.
+### 1.12 - Triângulo 2 - 150 pixels, pra cima.
 
 ```python
 {
@@ -434,7 +434,7 @@ turtle.done()
   'closeEps': 5,
   'baseEps': 6,
   'minHeightRatio': 0.5,
-  'msg': 'A tartaruga deve ter desenhado um triangulo. Todos os lados devem ter 150 pixels de comprimento, sendo a ponta do triangulo apontando para cima.'
+  'msg': 'A tartaruga deve ter desenhado um triângulo. Todos os lados devem ter 150 pixels de comprimento, sendo a ponta do triângulo apontando para cima.'
 }
 ```
 
@@ -460,14 +460,14 @@ t.left(120)
 turtle.done()
 ```
 
-### 1.11 - Hexagono irregular sem definicao das dimensoes
+### 1.11 - Hexágono irregular sem definição das dimensões
 
 ```python
 {
   'type': 'hexagon',
   'ratio': 1.3,
   'closeEps': 5,
-  'msg': 'A tartaruga deve ter desenhado um hexagono irregular. Os lados maiores devem ser pelo menos 1.3 vezes os lados menores. A figura deve estar fechada, ou seja, o ponto final do desenho deve estar no ponto inicial.'
+  'msg': 'A tartaruga deve ter desenhado um hexágono irregular. Os lados maiores devem ser pelo menos 1.3 vezes os lados menores. A figura deve estar fechada, ou seja, o ponto final do desenho deve estar no ponto inicial.'
 }
 ```
 
@@ -506,7 +506,7 @@ turtle.done()
   { # anda 200 pixels
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(4)',
     'outerHTML': '<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame12" attributeName="x2" attributeType="XML" from="0" to="141.4213562373095" dur=" 1.070s" fill="freeze" begin="animation_frame11.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame11.end" from="0" to="141.4213562373095" dur=" 1.070s" fill="freeze"></animate></line>',
-    'msg': 'A tartaruga deve ter avancado 200 pixels para frente.'
+    'msg': 'A tartaruga deve ter avançado 200 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(13)',
@@ -516,7 +516,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(5)',
     'outerHTML': '<line x1="141.4213562373095" y1="141.4213562373095" x2="141.4213562373095" y2="141.4213562373095" style="stroke: black; stroke-width: 1;"><animate id="animation_frame14" attributeName="x2" attributeType="XML" from="141.4213562373095" to="0" dur=" 1.070s" fill="freeze" begin="animation_frame13.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame13.end" from="141.4213562373095" to="282.842712474619" dur=" 1.070s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 200 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 200 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(17)',
@@ -526,7 +526,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(6)',
     'outerHTML': '<line x1="0" y1="282.842712474619" x2="0" y2="282.842712474619" style="stroke: black; stroke-width: 1;"><animate id="animation_frame16" attributeName="x2" attributeType="XML" from="0" to="-141.4213562373095" dur=" 1.070s" fill="freeze" begin="animation_frame15.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame15.end" from="282.842712474619" to="141.4213562373095" dur=" 1.070s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 200 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 200 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(21)',
@@ -536,7 +536,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(7)',
     'outerHTML': '<line x1="-141.4213562373095" y1="141.4213562373095" x2="-141.4213562373095" y2="141.4213562373095" style="stroke: black; stroke-width: 1;"><animate id="animation_frame18" attributeName="x2" attributeType="XML" from="-141.4213562373095" to="0" dur=" 1.070s" fill="freeze" begin="animation_frame17.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame17.end" from="141.4213562373095" to="0" dur=" 1.070s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 200 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 200 pixels para frente.'
   },
 ]
 ```
@@ -554,7 +554,7 @@ As rotações da tartaruga devem ser para a direita, conforme animação abaixo.
   { # topo
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(4)',
     'outerHTML': '<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame11" attributeName="x2" attributeType="XML" from="0" to="200" dur=" 1.070s" fill="freeze" begin="animation_frame10.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame10.end" from="0" to="0" dur=" 1.070s" fill="freeze"></animate></line>',
-    'msg': 'A tartaruga deve ter avancado 200 pixels para frente.'
+    'msg': 'A tartaruga deve ter avançado 200 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(11)',
@@ -564,7 +564,7 @@ As rotações da tartaruga devem ser para a direita, conforme animação abaixo.
   { # lado direito
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(5)',
     'outerHTML': '<line x1="200" y1="0" x2="200" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame13" attributeName="x2" attributeType="XML" from="200" to="200" dur=" 0.535s" fill="freeze" begin="animation_frame12.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame12.end" from="0" to="100" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 100 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 100 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(15)',
@@ -574,7 +574,7 @@ As rotações da tartaruga devem ser para a direita, conforme animação abaixo.
   { # lado inferior
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(6)',
     'outerHTML': '<line x1="200" y1="100" x2="200" y2="100" style="stroke: black; stroke-width: 1;"><animate id="animation_frame15" attributeName="x2" attributeType="XML" from="200" to="0" dur=" 1.070s" fill="freeze" begin="animation_frame14.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame14.end" from="100" to="100" dur=" 1.070s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 200 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 200 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(19)',
@@ -584,7 +584,7 @@ As rotações da tartaruga devem ser para a direita, conforme animação abaixo.
   { # lado esquerdo
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(7)',
     'outerHTML': '<line x1="0" y1="100" x2="0" y2="100" style="stroke: black; stroke-width: 1;"><animate id="animation_frame17" attributeName="x2" attributeType="XML" from="0" to="0" dur=" 0.535s" fill="freeze" begin="animation_frame16.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame16.end" from="100" to="0" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 100 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 100 pixels para frente.'
   },
 ]
 ```
@@ -626,14 +626,14 @@ artista.right(90)
 turtle.done()
 ```
 
-### 1.6 - Triangulo (modo legado, outerHTML) Desenhe um triângulo. Cada lado do triângulo possui 100 pixels e 120 graus nos ângulos. A rotação deve ser para a esquerda. O triângulo deve ser formado por um lado horizontal e dois lados inclinados para baixo, como um "V" invertido.
+### 1.6 - Triângulo (modo legado, outerHTML) Desenhe um triângulo. Cada lado do triângulo possui 100 pixels e 120 graus nos ângulos. A rotação deve ser para a esquerda. O triângulo deve ser formado por um lado horizontal e dois lados inclinados para baixo, como um "V" invertido.
 
 ```python
 [
   { # base
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(4)',
     'outerHTML': '<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame11" attributeName="x2" attributeType="XML" from="0" to="100" dur=" 0.535s" fill="freeze" begin="animation_frame10.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame10.end" from="0" to="0" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'A tartaruga deve ter avancado 100 pixels para frente.',
+    'msg': 'A tartaruga deve ter avançado 100 pixels para frente.',
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(11)',
@@ -643,7 +643,7 @@ turtle.done()
   { # lado subindo
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(5)',
     'outerHTML': '<line x1="100" y1="0" x2="100" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame13" attributeName="x2" attributeType="XML" from="100" to="50.00000000000002" dur=" 0.535s" fill="freeze" begin="animation_frame12.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame12.end" from="0" to="-86.60254037844388" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 100 pixels para frente.',
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 100 pixels para frente.',
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(15)',
@@ -653,7 +653,7 @@ turtle.done()
   { # lado descendo
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(6)',
     'outerHTML': '<line x1="50.00000000000002" y1="-86.60254037844388" x2="50.00000000000002" y2="-86.60254037844388" style="stroke: black; stroke-width: 1;"><animate id="animation_frame15" attributeName="x2" attributeType="XML" from="50.00000000000002" to="-2.1316282072803006e-14" dur=" 0.535s" fill="freeze" begin="animation_frame14.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame14.end" from="-86.60254037844388" to="-4.263256414560601e-14" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 100 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 100 pixels para frente.'
   },
 ]
 ```
@@ -665,7 +665,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(4)',
     'outerHTML': '<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame11" attributeName="x2" attributeType="XML" from="0" to="100" dur=" 0.535s" fill="freeze" begin="animation_frame10.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame10.end" from="0" to="0" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'A tartaruga deve ter avancado 100 pixels para frente.'
+    'msg': 'A tartaruga deve ter avançado 100 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(11)',
@@ -675,7 +675,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(5)',
     'outerHTML': '<line x1="100" y1="0" x2="100" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame13" attributeName="x2" attributeType="XML" from="100" to="100" dur=" 0.535s" fill="freeze" begin="animation_frame12.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame12.end" from="0" to="100" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve avancar 100 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve avançar 100 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(15)',
@@ -685,7 +685,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(6)',
     'outerHTML': '<line x1="100" y1="100" x2="100" y2="100" style="stroke: black; stroke-width: 1;"><animate id="animation_frame15" attributeName="x2" attributeType="XML" from="100" to="0" dur=" 0.535s" fill="freeze" begin="animation_frame14.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame14.end" from="100" to="100.00000000000001" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve avancar 100 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve avançar 100 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(19)',
@@ -695,7 +695,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(7)',
     'outerHTML': '<line x1="0" y1="100.00000000000001" x2="0" y2="100.00000000000001" style="stroke: black; stroke-width: 1;"><animate id="animation_frame17" attributeName="x2" attributeType="XML" from="0" to="-1.8369701987210297e-14" dur=" 0.535s" fill="freeze" begin="animation_frame16.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame16.end" from="100.00000000000001" to="1.4210854715202004e-14" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve avancar 100 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve avançar 100 pixels para frente.'
   },
 ]
 ```
@@ -731,7 +731,7 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(4)',
     'outerHTML': '<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame11" attributeName="x2" attributeType="XML" from="0" to="100" dur=" 0.535s" fill="freeze" begin="animation_frame10.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame10.end" from="0" to="0" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'A tartaruga deve ter avancado 100 pixels para frente.'
+    'msg': 'A tartaruga deve ter avançado 100 pixels para frente.'
   },
   {
     'selector': '#turtle-canvas g:nth-child(5) polygon:nth-child(2) animateTransform:nth-child(11)',
@@ -741,12 +741,12 @@ turtle.done()
   {
     'selector': '#turtle-canvas g:nth-child(3) line:nth-child(5)',
     'outerHTML': '<line x1="100" y1="0" x2="100" y2="0" style="stroke: black; stroke-width: 1;"><animate id="animation_frame13" attributeName="x2" attributeType="XML" from="100" to="100" dur=" 0.535s" fill="freeze" begin="animation_frame12.end"></animate><animate attributeName="y2" attributeType="XML" begin="animation_frame12.end" from="0" to="100" dur=" 0.535s" fill="freeze"></animate></line>',
-    'msg': 'Depois de virar, a tartaruga deve ter avancado 100 pixels para frente.'
+    'msg': 'Depois de virar, a tartaruga deve ter avançado 100 pixels para frente.'
   },
 ]
 ```
 
-### 2.7 - Oculos
+### 2.7 - Óculos
 
 ```python
 {
@@ -982,7 +982,7 @@ turtle.done()
 ```
 
 
-### 2.4 - Triangulo colorido
+### 2.4 - Triângulo colorido
 
 ```python
 {
@@ -990,9 +990,9 @@ turtle.done()
   'minColors': 5,
   'forbidColors': ['red'],
   'colorsVar': 'cores',
-  'msgColors': 'A lista de cores deve ter ao menos 5 cores e nao pode incluir vermelho.',
+  'msgColors': 'A lista de cores deve ter ao menos 5 cores e não pode incluir vermelho.',
   'msgPensize': 'A largura da linha deve ser alterada.',
-  'msgTriangle': 'O triangulo deve apontar para cima.'
+  'msgTriangle': 'O triângulo deve apontar para cima.'
 }
 ```
 
@@ -1065,7 +1065,7 @@ A partir do código inicial, execute os seguintes exercícios:
 ```python
 {
   'type': 'turtle_sequence',
-  'msgShape': 'A forma da tartaruga deve ser diferente do padrao classic.',
+  'msgShape': 'A forma da tartaruga deve ser diferente do padrão classic.',
   'msgColors': 'A ordem das cores deve ser diferente da original.',
   'msgPensize': 'A largura da linha deve ser diferente de 5.',
   'msgSquares': 'A tartaruga deve desenhar dois quadrados.'
@@ -1155,7 +1155,7 @@ turtle.done()
   'requireShapeChange': True,
   'requireSquareSizeChange': True,
   'msgColor': 'A cor da linha deve ser diferente de vermelho.',
-  'msgShape': 'O formato da tartaruga deve ser diferente do padrao classic.',
+  'msgShape': 'O formato da tartaruga deve ser diferente do padrão classic.',
   'msgSize': 'O tamanho do quadrado deve ser diferente de 100.'
 }
 ```
@@ -1205,7 +1205,7 @@ turtle.done()
 ```
 
 
-### 2.1 - Quadrangulo - valida apenas o final
+### 2.1 - Quadrângulo - valida apenas o final
 A partir do código inicial, execute os seguintes exercícios:
 
 1) Reduza as duas linhas com forward para apenas uma, mas que faça a mesma
@@ -1221,11 +1221,11 @@ coisa que as atuais
   'sides': 4,
   'ratio': 1.2,
   'closeEps': 5,
-  'msg': 'Tarefa nao realizada.'
+  'msg': 'Tarefa não realizada.'
 }
 ```
 
-Exemplo completo (turtle_rules, valida direcao e so o final):
+Exemplo completo (turtle_rules, valida direção e so o final):
 ```python
 {
   'type': 'turtle_rules',
@@ -1362,9 +1362,9 @@ turtle.done()
 ```
 
 
-### 5.2 - Triângulo com laco
+### 5.2 - Triângulo com laço
 
-Refaça o triângulo feito no exercicio 1.6, mas agora usando laço de repetição (`for n in range(???):`).
+Refaça o triângulo feito no exercício 1.6, mas agora usando laço de repetição (`for n in range(???):`).
 
 Cada lado do triângulo possui 100 pixels e 120 graus nos ângulos.
 
