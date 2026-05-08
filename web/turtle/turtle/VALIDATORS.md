@@ -29,6 +29,7 @@ Este documento descreve o formato de `test_cases` usado pelo editor Turtle e lis
   - [2.1 - Quadrangulo](#21---quadrangulo---valida-apenas-o-final)
   - [5.1 - Quadrado com laco](#51---quadrado-com-laco)
   - [5.2 - Triangulo com laco](#52---triangulo-com-laco)
+  - [5.3 - Retângulo com laço](#53---retângulo-com-laço)
 
 
 ## Como o `test_cases` e lido
@@ -1294,11 +1295,11 @@ turtle.done()
 ```
 
 
-### 5.1 - Quadrado com laco
+### 5.1 - Quadrado com laço
 
-Refaca o quadrado feito no exercicio 1.5, mas agora usando laco de repeticao (`for n in range(???):`).
+Refaça o quadrado feito no exercício 1.5, mas agora usando laço de repetição (`for n in range(???):`).
 
-Cada lado deve medir 100 pixels e todos os angulos sao de 90 graus.
+Cada lado deve medir 100 pixels e todos os ângulos são de 90 graus.
 
 #### Casos de teste
 
@@ -1308,8 +1309,8 @@ Cada lado deve medir 100 pixels e todos os angulos sao de 90 graus.
   'strictSegments': 4,
   'closeEps': 5,
   'codeRules': [
-    { 'metric': 'codeForwardCount', 'op': '==', 'value': 1, 'msg': 'Use um laco para repetir o movimento.' },
-    { 'metric': 'codeTurnCount', 'op': '==', 'value': 1, 'msg': 'Use um laco para repetir o movimento.' }
+    { 'metric': 'codeForwardCount', 'op': '==', 'value': 1, 'msg': 'Use um laço para repetir o movimento.' },
+    { 'metric': 'codeTurnCount', 'op': '==', 'value': 1, 'msg': 'Use um laço para repetir o movimento.' }
   ],
   'rules': [
     { 'metric': 'segments', 'op': '==', 'value': 4 },
@@ -1318,7 +1319,7 @@ Cada lado deve medir 100 pixels e todos os angulos sao de 90 graus.
     { 'metric': 'sideMean', 'op': 'approx', 'value': 100, 'tol': 6 },
     { 'metric': 'sideStd', 'op': '<=', 'value': 5 }
   ],
-  'msg': 'Desenhe um quadrado de 100 pixels usando laco de repeticao.'
+  'msg': 'Desenhe um quadrado de 100 pixels usando laço de repetição.'
 }
 ```
 
@@ -1345,7 +1346,7 @@ artista.right(90)
 turtle.done()
 ```
 
-#### Solucao
+#### Solução
 ```python
 import turtle
 
@@ -1423,3 +1424,73 @@ for _ in range(3):
 
 turtle.done()
 ```
+
+### 5.3 - Retângulo com laço
+
+Refaça o retângulo feito no exercício 1.8, mas agora usando laço de repetição (`for n in range(???):`).
+
+O retângulo deve ter lados de 200 e 100 pixels, com ângulos de 90 graus.
+
+#### Casos de teste
+
+```python
+{
+  'type': 'turtle_rules',
+  'strictSegments': 4,
+  'closeEps': 5,
+  'codeRules': [
+    { 'metric': 'codeForwardCount', 'op': '==', 'value': 2, 'msg': 'Use um laço para repetir o movimento.' },
+    { 'metric': 'codeRightCount', 'op': '==', 'value': 2, 'msg': 'Use um laço para repetir o movimento.' }
+  ],
+  'rules': [
+    { 'metric': 'segments', 'op': '==', 'value': 4 },
+    { 'metric': 'closed', 'op': '==', 'value': True },
+    { 'metric': 'turnMean', 'op': 'approx', 'value': 90, 'tol': 8 },
+    { 'metric': 'turnDir', 'op': '==', 'value': 'right' },
+    { 'metric': 'sideMax', 'op': 'approx', 'value': 200, 'tol': 6 },
+    { 'metric': 'sideMin', 'op': 'approx', 'value': 100, 'tol': 6 }
+  ],
+  'msg': 'Desenhe um retângulo usando laço de repetição.'
+}
+```
+
+#### Código inicial
+
+```python
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+artista.forward(200)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+artista.forward(200)
+artista.right(90)
+
+artista.forward(100)
+artista.right(90)
+
+turtle.done()
+```
+
+#### Solução
+
+```python
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+for _ in range(2):
+    artista.forward(200)
+    artista.right(90)
+    artista.forward(100)
+    artista.right(90)
+
+turtle.done()
+```
+
