@@ -31,6 +31,7 @@ Este documento descreve o formato de `test_cases` usado pelo editor Turtle e lis
   - [5.2 - Triângulo com laço](#52---triângulo-com-laço)
   - [5.3 - Retângulo com laço](#53---retângulo-com-laço)
   - [5.4 - Desafio quebra-cabeça com laços](#54---desafio-quebra-cabeça-com-laços)
+  - [5.5 - Uma grande refatoração](#55---uma-grande-refatoração)
 
 
 ## Como o `test_cases` é lido
@@ -1552,6 +1553,48 @@ t = turtle.Turtle()
 for lado in [100, 50, 50, 100, 50, 50]:
     t.forward(lado)
     t.left(60)
+
+turtle.done()
+```
+
+### 5.5 - Uma grande refatoração
+
+No exercício 1.2, você e sua tartaruga artista fizeram um grande trabalho.
+
+Agora que você sabe como repetir ações, identifique oportunidades de melhoria naquele trabalho, substituindo código repetido por instruções de repetição.
+
+#### Casos de teste
+
+```python
+{
+  'type': 'turtle_rules',
+  'codeRules': [
+    { 'metric': 'codeLoopCount', 'op': '>=', 'value': 1, 'msg': 'Use ao menos um laço de repetição.' }
+  ],
+  'rules': [
+    { 'metric': 'segments', 'op': '>=', 'value': 1 }
+  ],
+  'msg': 'Use ao menos um laço de repetição.'
+}
+```
+
+#### Código inicial
+
+```python
+## Este é todo com você. ##
+```
+
+#### Solução
+
+```python
+import turtle
+
+artista = turtle.Turtle()
+artista.shape('turtle')
+
+for _ in range(4):
+    artista.forward(100)
+    artista.right(90)
 
 turtle.done()
 ```
