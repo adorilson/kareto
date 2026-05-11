@@ -1,6 +1,9 @@
+import random
+
 import pytest
 
 from web.entities import Ator, Direcao
+from web.world import World
 
 
 def make_actor(x=2, y=3, direcao=Direcao.LESTE, shape=""):
@@ -68,3 +71,13 @@ def test_str_includes_position_and_direction():
 
     assert "(4, 6)" in text
     assert f"facing {Direcao.SUL}" in text
+
+
+def test_init_randomizes_y_when_missing_and_x_provided():
+    random.seed(123)
+    world = World(width=4, height=6)
+
+    actor = Ator(world=world, command_queue=[], x=1, y=None)
+
+    assert isinstance(actor.y, int)
+    assert world.in_bounds(actor.x, actor.y)

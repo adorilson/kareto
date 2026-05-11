@@ -31,7 +31,7 @@ class Ator:
         self.queue = command_queue
 
         self.x = x if x is not None else random.randint(0, world.width - 1)
-        self.y = y if x is not None else random.randint(0, world.height - 1)
+        self.y = y if y is not None else random.randint(0, world.height - 1)
 
         self.setheading(direcao)
 
