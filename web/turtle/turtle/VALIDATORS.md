@@ -131,7 +131,7 @@ Métricas disponíveis:
 - `codeWhileCount`: quantidade de laços `while` no código.
 - `codeLoopCount`: total de laços (`for` + `while`).
 
-Exemplo com `codeRules` + `rules` (retângulo, curva a direita):
+Exemplo com `codeRules` + `rules` (retângulo, curva à direita):
 ```python
 {
   'type': 'turtle_rules',
@@ -154,13 +154,13 @@ Exemplo com `codeRules` + `rules` (retângulo, curva a direita):
 
 - `hexagon`: hexágono irregular (2 lados maiores)
 - `triangle`: triângulo com base horizontal e ponta para cima
-- `polygon`: poligono generico (lados e fechamento)
+- `polygon`: polígono genérico (lados e fechamento)
 - `turtle_config`: valida configurações no código (cor, shape, tamanho)
-- `turtle_sequence`: valida sequências especificas (cores, pensize, 2 quadrados)
+- `turtle_sequence`: valida sequências específicas (cores, pensize, 2 quadrados)
 - `turtle_random_colors_triangle`: valida lista de cores + triângulo
 - `turtle_envelope`: valida envelope (tamanho, cores, aba)
 - `turtle_glasses`: valida óculos (2 lentes, gap)
-- `text_answer`: valida respostas textuais (ex.: multipla escolha)
+- `text_answer`: valida respostas textuais (ex.: múltipla escolha)
 - Legado (lista): `selector` + `outerHTML`
 
 ## Presets para formas comuns
@@ -255,7 +255,7 @@ turtle.done()
 }
 ```
 
-### Triângulo equilatero (estrito)
+### Triângulo equilátero (estrito)
 
 `turtle_shape`:
 ```python
@@ -268,13 +268,13 @@ turtle.done()
   'closeEps': 5,
   'turnMean': 60,
   'turnTol': 8,
-  'msg': 'Desenhe um triângulo equilatero.'
+  'msg': 'Desenhe um triângulo equilátero.'
 }
 ```
 
-### Triângulo isosceles (base horizontal)
+### Triângulo isósceles (base horizontal)
 
-`turtle_shape` (base horizontal e ponta para cima não e verificada aqui):
+`turtle_shape` (base horizontal e ponta para cima não é verificada aqui):
 ```python
 {
     'type': 'triangle',
@@ -283,11 +283,11 @@ turtle.done()
     'closeEps': 5,
     'baseEps': 6,
     'minHeightRatio': 0.5,
-    'msg': 'Desenhe um triângulo equilatero com lado de 150 pixels.'
+    'msg': 'Desenhe um triângulo equilátero com lado de 150 pixels.'
   }
 ```
 
-### Pentagono regular (estrito)
+### Pentágono regular (estrito)
 
 `turtle_shape`:
 ```python
@@ -300,7 +300,7 @@ turtle.done()
   'closeEps': 5,
   'turnMean': 108,
   'turnTol': 8,
-  'msg': 'Desenhe um pentagono regular.'
+  'msg': 'Desenhe um pentágono regular.'
 }
 ```
 
