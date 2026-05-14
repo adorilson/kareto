@@ -310,14 +310,30 @@ def report_exception(e=None):
 
     send_snapshot(code, 4, tb)
 
-# common
+#common
 def load_test_cases():
-    # Por enquanto, não há definição de "test_cases" para ambiente Kareto,
-    # mas essa função é necessária para manter a compatibilidade com a estrutura
-    # de testes. Ela pode ser expandida no futuro se quisermos adicionar casos de
-    # teste específicos para o mundo do Kareto.
     global world
-    return {'world': world}
+
+    test_cases = None
+    try:
+        test_cases = str(document.getElementById("test-cases").innerHTML).strip()
+    except Exception as e:
+        window.console.log('Não há elemento com id = test-cases')
+        window.console.log(e)
+        return {'world': world}
+
+    if test_cases:
+        try:
+            test_cases = ast.literal_eval(test_cases)
+        except Exception as e:
+            report_exception(e)
+            return {'world': world}
+
+    if not isinstance(test_cases, dict):
+        test_cases = {}
+
+    test_cases['world'] = world
+    return test_cases
 
 
 # common
@@ -333,6 +349,11 @@ def call_tests():
         import validators
         validators.run_tests(test_cases)
         window.console.log('Testes concluídos sem erros.')
+    except validators.CodeRulesError as e:
+        window.console.log(f'CodeRulesError durante execução dos testes: {str(e)}')
+        msg = f'Falha ao validar o código: {str(e)}'
+        sys.stderr.write(msg)
+        send_snapshot(_code, 3, msg)
     except AssertionError as e:
         window.console.log(f'AssertionError durante execução dos testes: {str(e)}')
         msg = f'Falha ao analisar a saída: {str(e)}'
