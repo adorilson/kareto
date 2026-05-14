@@ -6,7 +6,7 @@ import interpreter
 import browser
 from browser import window, document, timer
 
-from snapshot import send_snapshot, send_interpreter_snapshot
+from snapshot import SnapshotStatus, send_snapshot, send_interpreter_snapshot
 from svg import estimate_time
 
 FIRST_TIME = True
@@ -115,7 +115,7 @@ def report_exception(e=None):
 
     code = document["editoraux"].value
 
-    send_snapshot(code, 4, tb)
+    send_snapshot(code, SnapshotStatus.ERROR, tb)
 
 
 def load_test_cases():
@@ -151,13 +151,13 @@ def call_tests():
         window.console.log(f'AssertionError durante execução dos testes: {str(e)}')
         msg = f'Falha ao analisar a saída: {str(e)}'
         sys.stderr.write(msg)
-        send_snapshot(_code, 3, msg)
+        send_snapshot(_code, SnapshotStatus.FAIL, msg)
     except Exception as e:
         window.console.log(f'Exception durante execução dos testes: {str(e)}')
         report_exception(e)
     else:
         print('Tarefa realizada com sucesso.')
-        send_snapshot(_code, 1, "")
+        send_snapshot(_code, SnapshotStatus.SUCCESS, "")
 
 
 def trigger_tests():
@@ -204,12 +204,6 @@ def run_code(ev):
         timer.set_timeout(trigger_tests, 10)
     except Exception as e:
         report_exception(e)
-        """
-        traceback.print_exc(limit=-1)
-        tb = traceback.format_exc(limit=-1)
-        _code = document["editoraux"].value
-        send_snapshot(_code, 4, tb)
-        """
 
 
 def reset_the_code(ev):
@@ -243,7 +237,7 @@ def exec_code():
         window.console.log(f'Capturou RuntimeError on exec_code: {e}')
         msg = f'Falha ao analisar o código: {str(e)}'
         sys.stderr.write(msg)
-        send_snapshot(_code, 3, msg)
+        send_snapshot(_code, SnapshotStatus.FAIL, msg)
         return
     except SyntaxError as e:
         window.console.log(f'Capturou SyntaxError on exec_code: {e}')
@@ -257,7 +251,7 @@ def exec_code():
         if not is_valid:
             print(message)
             _code = document["editoraux"].value
-            send_snapshot(_code, 4, message)
+            send_snapshot(_code, SnapshotStatus.ERROR, message)
             return
         print('Análise de código concluída sem erros de sintaxe.')
 

@@ -1,8 +1,17 @@
+from enum import IntEnum
+
 from browser import window, document
 from config import API_URL, INTERPRETER_API_URL
 
 last_submitted_code = ""
 last_interpreter_payload = ""
+
+
+class SnapshotStatus(IntEnum):
+    SUCCESS = 1
+    PARTIALSUCESS = 2
+    FAIL = 3
+    ERROR = 4
 
 
 def send_snapshot(code, result, details):
