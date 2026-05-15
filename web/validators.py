@@ -1,6 +1,5 @@
 
 import ast
-import math
 
 from browser import window, document
 
