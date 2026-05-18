@@ -10,7 +10,7 @@ from snapshot import SnapshotStatus, send_snapshot, send_interpreter_snapshot
 
 from world import World
 from renderer import Renderer
-from entities import Abelha, Girassol, GirassolPersistente, Direcao
+from entities import Abelha, Girassol, GirassolPersistente, Colmeia, Direcao
 
 
 editor = None
@@ -129,7 +129,9 @@ def create_world(confs):
     else:
         window.console.log(f"create_world: delays padrao (fila={queue_delay_ms}ms, coleta={auto_collect_delay_ms}ms)")
 
+    # TODO mover isso para o construtor do World ou algo assim
     world.girassois = []
+    world.colmeias = []
 
     if 'cag' in confs:
         cag_value = confs['cag'][0]
@@ -175,10 +177,25 @@ def create_world(confs):
     else:
         window.console.log("create_world: sem girassois na configuracao")
 
+    if 'c' in confs:
+        for c_conf in confs['c']:
+            conf_c = c_conf.split(',')
+            x, y = conf_c[0], conf_c[1]
+            try:
+                nectares = conf_c[2]
+            except IndexError:
+                nectares = 0
+
+            colmeia = Colmeia(world, renderer, command_queue, x=int(x), y=int(y), nectares=int(nectares))
+            world.colmeias.append(colmeia)
+        window.console.log(f"create_world: colmeias={len(world.colmeias)}")
+    else:
+        window.console.log("create_world: sem colmeias na configuracao")
+
     return maia
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
-valid_world_keys = {"maia", "gs", "gsp", "cag"}
+valid_world_keys = {"maia", "gs", "gsp", "c", "cag"}
 if confs and valid_world_keys.intersection(confs.keys()):
     window.console.log("confs: origem=querystring")
 else:
