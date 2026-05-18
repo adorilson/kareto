@@ -208,6 +208,13 @@ class Abelha(Ator):
         girassol = self.world.girassol_em(self.posicao)
         girassol.extract_nectar()
 
+    def faça_mel(self):
+        self.queue.append(self._faça_mel)
+
+    def _faça_mel(self):
+        colmeia = self.world.colmeia_em(self.posicao)
+        colmeia.faça_mel()
+
 
 class Girassol(Ator):
     GIRASSOL = "girassol.gif"

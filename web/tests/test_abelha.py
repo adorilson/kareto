@@ -20,6 +20,7 @@ class DummyWorld:
         self.width = width
         self.height = height
         self._girassois = {}
+        self._colmeias = {}
 
     def in_bounds(self, x, y):
         return 0 <= x < self.width and 0 <= y < self.height
@@ -32,6 +33,14 @@ class DummyWorld:
             raise KeyError("girassol not found")
         return self._girassois[posicao]
 
+    def add_colmeia(self, posicao, colmeia):
+        self._colmeias[posicao] = colmeia
+
+    def colmeia_em(self, posicao):
+        if posicao not in self._colmeias:
+            raise KeyError("colmeia not found")
+        return self._colmeias[posicao]
+
 
 class DummyGirassol:
     def __init__(self):
@@ -39,6 +48,14 @@ class DummyGirassol:
 
     def extract_nectar(self):
         self.extracted += 1
+
+
+class DummyColmeia:
+    def __init__(self, nectares=0):
+        self.nectares = nectares
+
+    def faça_mel(self):
+        self.nectares -= 1
 
 
 def make_abelha(x=1, y=1, direcao=Direcao.LESTE, world=None, renderer=None):
@@ -137,3 +154,18 @@ def test_extraia_nectar_enqueues_and_extracts():
     assert len(queue) == 1
     queue.pop(0)()
     assert girassol.extracted == 1
+
+
+def test_faca_mel_enqueues_and_extracts():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+    colmeia = DummyColmeia(nectares=2)
+    world.add_colmeia((1, 1), colmeia)
+
+    abelha.faça_mel()
+
+    assert len(queue) == 1
+    queue.pop(0)()
+    assert colmeia.nectares == 1
