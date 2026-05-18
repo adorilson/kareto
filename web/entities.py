@@ -306,7 +306,7 @@ class Colmeia(Ator):
 
     def faça_mel(self):
         if self.nectares <= 0:
-            raise RuntimeError("Não há mais nectar para fazer mel.")
+            raise RuntimeError("Não há mais néctar para fazer mel.")
 
         self.nectares = self.nectares - 1
         self.renderer.render_actor(self)

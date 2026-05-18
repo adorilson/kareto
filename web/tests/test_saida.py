@@ -46,7 +46,7 @@ def test_saida_tarefa_nao_concluida_com_nectar_nao_coletado():
 
         output = page.locator("#output-content").inner_text()
         assert "Tarefa realizada com sucesso." not in output
-        assert "Algum nectar não foi coletado." in output
+        assert "Algum néctar não foi coletado." in output
         assert dialog_state["dialogs"] == []
 
 
@@ -70,7 +70,7 @@ def test_saida_tarefa_nao_concluida_com_nectar_na_colmeia():
 
         output = page.locator("#output-content").inner_text()
         assert "Tarefa realizada com sucesso." not in output
-        assert "Alguma colmeia ainda tem nectar." in output
+        assert "Alguma colmeia ainda tem néctar." in output
         assert dialog_state["dialogs"] == []
 
 
