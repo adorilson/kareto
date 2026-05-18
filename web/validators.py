@@ -113,9 +113,9 @@ def run_tests(test_cases):
         window.console.log('No test cases provided.')
         return
 
-    def _nectar_zero(girassol):
+    def _nectar_zero(deposito_de_nectar):
         try:
-            return int(getattr(girassol, "nectares", -1)) == 0
+            return int(getattr(deposito_de_nectar, "nectares", -1)) == 0
         except (TypeError, ValueError):
             return False
 
@@ -125,14 +125,21 @@ def run_tests(test_cases):
     if world is None:
         window.console.log('Test not passed: missing world in test cases.')
         raise AssertionError('Configuração de teste inválida: mundo não encontrado.')
-    todos = all(
+    girassois_ok = all(
         getattr(girassol, "_hidden") or _nectar_zero(girassol)
         for girassol in world.girassois
     )
 
-    if not todos:
-        window.console.log('Test not passed: At least one girassol is not hidden.')
-        raise AssertionError('Algum nectar não foi coletado.')
+    colmeias_ok = all(
+        _nectar_zero(colmeia)
+        for colmeia in getattr(world, "colmeias", [])
+    )
+
+    if not girassois_ok:
+        raise AssertionError('Algum néctar não foi coletado.')
+
+    if not colmeias_ok:
+        raise AssertionError('Alguma colmeia ainda tem néctar.')
 
     if isinstance(test_cases, dict):
         run_code_rules_test(test_cases)

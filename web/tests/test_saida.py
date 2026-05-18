@@ -30,7 +30,7 @@ def test_saida_tarefa_concluida_com_sucesso():
         assert dialog_state["dialogs"] == []
 
 
-def test_saida_tarefa_nao_concluida():
+def test_saida_tarefa_nao_concluida_com_nectar_nao_coletado():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
@@ -48,6 +48,31 @@ def test_saida_tarefa_nao_concluida():
         assert "Tarefa realizada com sucesso." not in output
         assert "Algum nectar não foi coletado." in output
         assert dialog_state["dialogs"] == []
+
+
+def test_saida_tarefa_nao_concluida_com_nectar_na_colmeia():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        dialog_state = monitor_dialogs(page)
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,2&fast=1")
+
+        assert page.locator('.CodeMirror').is_visible()
+        data = """
+        maia.avance()
+        maia.faça_mel()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        output = page.locator("#output-content").inner_text()
+        assert "Tarefa realizada com sucesso." not in output
+        assert "Alguma colmeia ainda tem nectar." in output
+        assert dialog_state["dialogs"] == []
+
 
 
 def test_print42_editor():

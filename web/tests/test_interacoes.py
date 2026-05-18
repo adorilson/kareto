@@ -129,3 +129,25 @@ def test_girassol_persistente_nao_some_e_mostra_zero():
         assert g1.locator(".actor-value").inner_text() == "0"
 
 
+def test_colmeia_consume_nectar():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,2&fast=1")
+
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        colmeia = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
+
+        data = """
+        maia.avance()
+        maia.faça_mel()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert colmeia.is_visible()
+        assert colmeia.locator(".actor-value").inner_text() == "1"
+
+
