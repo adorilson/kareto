@@ -273,3 +273,37 @@ class GirassolPersistente(Girassol):
 
 class GirassolError(Exception):
     pass
+
+
+class Colmeia(Ator):
+    COLMEIA = "colmeia.gif"
+
+    def __init__(self, world, renderer, command_queue, x=None, y=None, nectares=None):
+        super().__init__(world, command_queue, x, y)
+
+        self.shape(self.COLMEIA)
+        self.z_index = 1
+        self.nectares = self._parse_nectares(nectares)
+
+        self.renderer = renderer
+        self.renderer.register_actor(self)
+
+    def _parse_nectares(self, nectares):
+        if nectares is None:
+            return 0
+        elif isinstance(nectares, int):
+            return nectares
+        else:
+            raise TypeError(f"nectares deve ser um inteiro ou None, recebeu {type(nectares)}")
+
+
+    def faça_mel(self):
+        if self.nectares <= 0:
+            raise RuntimeError("Não há mais nectar para fazer mel.")
+
+        self.nectares = self.nectares - 1
+        self.renderer.render_actor(self)
+
+    @property
+    def value(self):
+        return self.nectares
