@@ -3,6 +3,7 @@ class World:
         self.width = width
         self.height = height
         self.girassois = []
+        self.colmeias = []
 
     def in_bounds(self, x, y):
         return 0 <= x < self.width and 0 <= y < self.height
@@ -13,6 +14,14 @@ class World:
                 return gs
 
         raise RuntimeError(f'Não há girassol na posição {posicao}')
+
+    def colmeia_em(self, posicao):
+        for colmeia in self.colmeias:
+            if colmeia.posicao == posicao:
+                return colmeia
+
+        raise RuntimeError(f'Não há colmeia na posição {posicao}')
+
 
 class WorldError(Exception):
     pass

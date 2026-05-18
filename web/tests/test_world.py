@@ -18,6 +18,7 @@ def test_init_defaults():
     assert world.width == 8
     assert world.height == 8
     assert world.girassois == []
+    assert world.colmeias == []
 
 
 def test_in_bounds_true():
@@ -52,3 +53,30 @@ def test_girassol_em_gera_erro_quando_nao_encontra():
 
     with pytest.raises(RuntimeError):
         world.girassol_em((9, 9))
+
+
+class DummyColmeia:
+    def __init__(self, x, y):
+        self._posicao = (x, y)
+
+    @property
+    def posicao(self):
+        return self._posicao
+
+
+def test_colmeia_em_retorna_correspondente():
+    world = World()
+    c1 = DummyColmeia(2, 1)
+    c2 = DummyColmeia(4, 3)
+
+    world.colmeias.extend([c1, c2])
+
+    assert world.colmeia_em((2, 1)) is c1
+    assert world.colmeia_em((4, 3)) is c2
+
+
+def test_colmeia_em_gera_erro_quando_nao_encontra():
+    world = World()
+
+    with pytest.raises(RuntimeError):
+        world.colmeia_em((9, 9))
