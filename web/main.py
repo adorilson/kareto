@@ -137,7 +137,7 @@ def create_world(confs):
         cag_value = confs['cag'][0]
         try:
             cag_value = int(cag_value)
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             pass
         coleta_automatica_de_girassol = bool(cag_value)
         window.console.log(f"create_world: coleta automatica={'ligada' if coleta_automatica_de_girassol else 'desligada'}")
