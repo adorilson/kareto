@@ -370,7 +370,7 @@ def call_tests():
         window.console.log(f'CodeRulesError durante execução dos testes: {str(e)}')
         msg = f'Falha ao validar o código: {str(e)}'
         sys.stderr.write(msg)
-        send_snapshot(_code, SnapshotStatus.PARTIALSUCESS, msg)
+        send_snapshot(_code, SnapshotStatus.PARTIALSUCCESS, msg)
     except AssertionError as e:
         window.console.log(f'AssertionError durante execução dos testes: {str(e)}')
         msg = f'Falha ao analisar a saída: {str(e)}'
@@ -425,6 +425,7 @@ def run_code(event):
         window.console.log(f'Capturou RuntimeError on exec_code: {e}')
         msg = f'Falha ao analisar o código: {str(e)}'
         sys.stderr.write(msg)
+        # TODO testes parecem não passar por aqui
         send_snapshot(_code, SnapshotStatus.FAIL, msg)
         return
     except SyntaxError as e:
@@ -439,6 +440,7 @@ def run_code(event):
         if not is_valid:
             print(message)
             _code = document["editoraux"].value
+            # TODO os testes parecem não passar por aqui,
             send_snapshot(_code, SnapshotStatus.ERROR, message)
             return
         print('Análise de código concluída sem erros de sintaxe.')
