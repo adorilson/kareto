@@ -1,3 +1,4 @@
+# TODO implemementar testes para esse arquivo e todo no pacote turtle, na verdade.
 import ast
 import sys
 import traceback
@@ -151,12 +152,14 @@ def call_tests():
         window.console.log(f'AssertionError durante execução dos testes: {str(e)}')
         msg = f'Falha ao analisar a saída: {str(e)}'
         sys.stderr.write(msg)
+        #TODO parece que os testes não estão passando por aqui
         send_snapshot(_code, SnapshotStatus.FAIL, msg)
     except Exception as e:
         window.console.log(f'Exception durante execução dos testes: {str(e)}')
         report_exception(e)
     else:
         print('Tarefa realizada com sucesso.')
+        #TODO parece que os testes não estão passando por aqui
         send_snapshot(_code, SnapshotStatus.SUCCESS, "")
 
 
