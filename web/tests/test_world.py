@@ -81,3 +81,30 @@ def test_colmeia_em_gera_erro_quando_nao_encontra():
 
     with pytest.raises(RuntimeError):
         world.colmeia_em((9, 9))
+
+
+class DummyRenderer:
+    def __init__(self):
+        self.removed = []
+
+    def remove_actor(self, actor):
+        self.removed.append(actor)
+
+
+class DummyNuvem:
+    def __init__(self, renderer):
+        self.renderer = renderer
+
+
+def test_remove_nuvens_limpa_e_remove_do_renderer():
+    world = World()
+    renderer = DummyRenderer()
+    nuvem1 = DummyNuvem(renderer)
+    nuvem2 = DummyNuvem(renderer)
+
+    world.nuvens.extend([nuvem1, nuvem2])
+
+    world.remove_nuvens()
+
+    assert renderer.removed == [nuvem1, nuvem2]
+    assert world.nuvens == []

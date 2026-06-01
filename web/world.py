@@ -23,6 +23,11 @@ class World:
 
         raise RuntimeError(f'Não há colmeia na posição {posicao}')
 
+    def remove_nuvens(self):
+        for nuvem in self.nuvens:
+            nuvem.renderer.remove_actor(nuvem)
+        self.nuvens = []
+
 
 class WorldError(Exception):
     pass
