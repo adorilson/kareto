@@ -25,6 +25,7 @@ class Ator:
         super().__init__()
         self._shape = ''
         self._value = ''
+        self.image_size = (80, 80)
 
         self.world = world
         
@@ -324,6 +325,7 @@ class Nuvem(Ator):
 
         self.shape(self.NUVEM)
         self.z_index = 2
+        self.image_size = (140, 140)
 
         self.renderer = renderer
         self.renderer.register_actor(self)

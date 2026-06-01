@@ -75,6 +75,7 @@ def test_init_registers_actor_and_sets_shape_and_zindex():
     assert renderer.registered == [abelha]
     assert abelha.z_index == 3
     assert abelha.shape() == Abelha.IMAGENS[Direcao.NORTE]
+    assert abelha.image_size == (80, 80)
 
 
 def test_goto_enqueues_and_moves_and_renders():
