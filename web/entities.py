@@ -314,3 +314,18 @@ class Colmeia(Ator):
     @property
     def value(self):
         return self.nectares
+
+
+class Nuvem(Ator):
+    NUVEM = "nuvem.gif"
+
+    def __init__(self, world, renderer, command_queue, x=None, y=None):
+        super().__init__(world, command_queue, x, y)
+
+        self.shape(self.NUVEM)
+        self.z_index = 2
+
+        self.renderer = renderer
+        self.renderer.register_actor(self)
+
+
