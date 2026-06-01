@@ -151,3 +151,20 @@ def test_colmeia_consume_nectar():
         assert colmeia.locator(".actor-value").inner_text() == "1"
 
 
+def test_run_code_remove_nuvens():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&n=2,1&fast=1")
+
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=2, img_src="img/nuvem.gif")
+
+        data = "pass"
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert page.locator('img[src="img/nuvem.gif"]').count() == 0
+
+

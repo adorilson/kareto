@@ -482,6 +482,7 @@ def run_code(event):
             return
         print('Análise de código concluída sem erros de sintaxe.')
 
+    world.remove_nuvens()
     exec(_code)
     print('Executando o código. Aguarde...')
     global has_exception
