@@ -10,7 +10,7 @@ from snapshot import SnapshotStatus, send_snapshot, send_interpreter_snapshot
 
 from world import World
 from renderer import Renderer
-from entities import Abelha, Girassol, GirassolPersistente, Colmeia, Direcao
+from entities import Abelha, Girassol, GirassolPersistente, Colmeia, Nuvem, Direcao
 
 
 editor = None
@@ -132,6 +132,7 @@ def create_world(confs):
     # TODO mover isso para o construtor do World ou algo assim
     world.girassois = []
     world.colmeias = []
+    world.nuvens = []
 
     if 'cag' in confs:
         cag_value = confs['cag'][0]
@@ -192,10 +193,21 @@ def create_world(confs):
     else:
         window.console.log("create_world: sem colmeias na configuracao")
 
+    if 'n' in confs:
+        for n_conf in confs['n']:
+            conf_n = n_conf.split(',')
+            x, y = conf_n[0], conf_n[1]
+
+            nuvem = Nuvem(world, renderer, command_queue, x=int(x), y=int(y))
+            world.nuvens.append(nuvem)
+        window.console.log(f"create_world: nuvens={len(world.nuvens)}")
+    else:
+        window.console.log("create_world: sem nuvens na configuracao")
+
     return maia
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
-valid_world_keys = {"maia", "gs", "gsp", "c", "cag"}
+valid_world_keys = {"maia", "gs", "gsp", "c", "cag", "n"}
 if confs and valid_world_keys.intersection(confs.keys()):
     window.console.log("confs: origem=querystring")
 else:
