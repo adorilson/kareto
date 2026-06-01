@@ -155,6 +155,15 @@ def create_world(confs):
     else:
         window.console.log("create_world: sem maia na configuracao")
 
+    def _parse_probabilidade_value(raw):
+        if raw.startswith("p="):
+            raw = raw[2:]
+
+        try:
+            return float(raw)
+        except ValueError:
+            return None
+
     def _parse_probabilidade(conf_gs, index):
         try:
             raw = conf_gs[index].strip()
@@ -164,30 +173,28 @@ def create_world(confs):
         if not raw:
             return None
 
-        if raw.startswith("p="):
-            raw = raw[2:]
+        return _parse_probabilidade_value(raw)
 
+    def _parse_nectares_e_probabilidade(conf_gs):
         try:
-            return float(raw)
-        except ValueError:
-            return None
+            raw_nectares = conf_gs[2].strip()
+        except IndexError:
+            return None, _parse_probabilidade(conf_gs, 3)
+
+        if not raw_nectares:
+            return None, _parse_probabilidade(conf_gs, 3)
+
+        if raw_nectares.startswith("p="):
+            return None, _parse_probabilidade_value(raw_nectares)
+
+        return raw_nectares, _parse_probabilidade(conf_gs, 3)
 
     def _add_girassol(gs_conf, GirassolType):
         conf_gs = gs_conf.split(',')
         x, y = conf_gs[0], conf_gs[1]
-        try:
-            nectares = conf_gs[2]
-        except IndexError:
-            nectares = None
-
-        prob = _parse_probabilidade(conf_gs, 3)
-        if prob is not None:
-            if prob <= 0:
-                return
-            if prob < 1 and random.random() > prob:
-                return
-
+        nectares, prob = _parse_nectares_e_probabilidade(conf_gs)
         gs = GirassolType(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
+        gs.remove_prob = prob
         world.girassois.append(gs)
 
     if 'gs' in confs:
@@ -482,13 +489,16 @@ def run_code(event):
             return
         print('Análise de código concluída sem erros de sintaxe.')
 
-    world.remove_nuvens()
+    timer.set_timeout(world.sorteia_girassois, queue_delay_ms)
+    timer.set_timeout(world.remove_nuvens, queue_delay_ms)
+
     exec(_code)
+
     print('Executando o código. Aguarde...')
     global has_exception
     has_exception = False
-    process_queue()
-    trigger_tests()
+    timer.set_timeout(process_queue, queue_delay_ms)
+    timer.set_timeout(trigger_tests, queue_delay_ms+100)  # Garante que os testes só rodem depois que a fila começar a ser processada
 
 
 class Interpreter(interpreter.Interpreter):

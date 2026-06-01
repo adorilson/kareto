@@ -1,3 +1,5 @@
+import random
+
 class World:
     def __init__(self, width=8, height=8):
         self.width = width
@@ -27,6 +29,17 @@ class World:
         for nuvem in self.nuvens:
             nuvem.renderer.remove_actor(nuvem)
         self.nuvens = []
+
+
+    def sorteia_girassois(self):
+        for girassol in list(self.girassois):
+            prob = getattr(girassol, "remove_prob", None)
+            if prob is None or prob <= 0:
+                continue
+
+            if prob >= 1 or random.random() <= prob:
+                girassol.renderer.remove_actor(girassol)
+                self.girassois.remove(girassol)
 
 
 class WorldError(Exception):
