@@ -57,6 +57,30 @@ def test_criacao_mundo_via_query_string():
         assert_ator(page, '#actors > div:nth-child(6)', x=4, y=4, z_index=2, img_src="img/nuvem.gif")
 
 
+def test_girassol_persistente_probabilidade_zero_nao_cria():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,1,p=0")
+
+        page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 1")
+
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        assert page.locator('#actors > div:nth-child(2)').count() == 0
+
+
+def test_girassol_persistente_probabilidade_um_cria():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,1,p=1")
+
+        page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 1")
+
+        assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
+
+
 def test_criacao_mundo_via_documento():
     """Testa se o mundo é criado corretamente a partir das configurações
     presentes no documento HTML, caso a query string não esteja presente.

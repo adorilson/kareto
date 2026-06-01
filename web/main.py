@@ -1,4 +1,5 @@
 import ast
+import random
 import sys
 import traceback
 from urllib.parse import parse_qs
@@ -154,6 +155,23 @@ def create_world(confs):
     else:
         window.console.log("create_world: sem maia na configuracao")
 
+    def _parse_probabilidade(conf_gs, index):
+        try:
+            raw = conf_gs[index].strip()
+        except IndexError:
+            return None
+
+        if not raw:
+            return None
+
+        if raw.startswith("p="):
+            raw = raw[2:]
+
+        try:
+            return float(raw)
+        except ValueError:
+            return None
+
     def _add_girassol(gs_conf, GirassolType):
         conf_gs = gs_conf.split(',')
         x, y = conf_gs[0], conf_gs[1]
@@ -161,6 +179,13 @@ def create_world(confs):
             nectares = conf_gs[2]
         except IndexError:
             nectares = None
+
+        prob = _parse_probabilidade(conf_gs, 3)
+        if prob is not None:
+            if prob <= 0:
+                return
+            if prob < 1 and random.random() > prob:
+                return
 
         gs = GirassolType(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
         world.girassois.append(gs)
