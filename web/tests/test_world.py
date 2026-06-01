@@ -19,6 +19,7 @@ def test_init_defaults():
     assert world.height == 8
     assert world.girassois == []
     assert world.colmeias == []
+    assert world.nuvens == []
 
 
 def test_in_bounds_true():
