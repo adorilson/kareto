@@ -42,6 +42,11 @@ class DummyWorld:
         return self._colmeias[posicao]
 
 
+class DummyWorldNoRaise(DummyWorld):
+    def girassol_em(self, posicao):
+        return self._girassois.get(posicao)
+
+
 class DummyGirassol:
     def __init__(self):
         self.extracted = 0
@@ -170,3 +175,22 @@ def test_faca_mel_enqueues_and_extracts():
     assert len(queue) == 1
     queue.pop(0)()
     assert colmeia.nectares == 1
+
+
+def test_no_girassol_retornando_true_quando_na_mesma_posicao():
+    world = DummyWorldNoRaise()
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+    world.add_girassol((1, 1), DummyGirassol())
+
+    assert abelha.no_girassol() is True
+
+
+def test_no_girassol_retornando_false_quando_nao_ha_girassol():
+    world = DummyWorldNoRaise()
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+
+    assert abelha.no_girassol() is False

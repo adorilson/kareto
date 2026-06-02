@@ -216,6 +216,9 @@ class Abelha(Ator):
         colmeia = self.world.colmeia_em(self.posicao)
         colmeia.faça_mel()
 
+    def no_girassol(self):
+        return self.world.girassol_em(self.posicao) is not None
+
 
 class Girassol(Ator):
     GIRASSOL = "girassol.gif"
