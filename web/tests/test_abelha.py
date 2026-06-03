@@ -30,7 +30,7 @@ class DummyWorld:
 
     def girassol_em(self, posicao):
         if posicao not in self._girassois:
-            raise KeyError("girassol not found")
+            raise RuntimeError("girassol not found")
         return self._girassois[posicao]
 
     def add_colmeia(self, posicao, colmeia):
@@ -40,11 +40,6 @@ class DummyWorld:
         if posicao not in self._colmeias:
             raise KeyError("colmeia not found")
         return self._colmeias[posicao]
-
-
-class DummyWorldNoRaise(DummyWorld):
-    def girassol_em(self, posicao):
-        return self._girassois.get(posicao)
 
 
 class DummyGirassol:
@@ -147,6 +142,21 @@ def test_esquerda_enqueues_and_rotates():
     assert abelha.heading() == Direcao.NORTE
 
 
+def test_proxima_posicao():
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.LESTE)
+
+    assert abelha.proxima_posicao() == (2, 1)
+
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.SUL)
+    assert abelha.proxima_posicao() == (1, 2)
+
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.OESTE)
+    assert abelha.proxima_posicao() == (0, 1)
+
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.NORTE)
+    assert abelha.proxima_posicao() == (1, 0)
+
+
 def test_extraia_nectar_enqueues_and_extracts():
     world = DummyWorld()
     renderer = DummyRenderer()
@@ -178,7 +188,7 @@ def test_faca_mel_enqueues_and_extracts():
 
 
 def test_no_girassol_retornando_true_quando_na_mesma_posicao():
-    world = DummyWorldNoRaise()
+    world = DummyWorld()
     renderer = DummyRenderer()
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
@@ -188,9 +198,61 @@ def test_no_girassol_retornando_true_quando_na_mesma_posicao():
 
 
 def test_no_girassol_retornando_false_quando_nao_ha_girassol():
-    world = DummyWorldNoRaise()
+    world = DummyWorld()
     renderer = DummyRenderer()
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
 
     assert abelha.no_girassol() is False
+
+
+def test_avance():
+    """
+    Abelha.avance() should call _avance() and enqueue it, plus
+    update Abelha._posicao_virtual
+    """
+    world = DummyWorld(width=4, height=4)
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+
+    abelha.avance()
+
+    assert len(queue) == 1
+    queue[0] == Abelha.avance  # executa o avance enqueued
+    assert abelha.posicao == (1, 1)  # posição real não deve mudar até a execução
+    assert abelha._posicao_virtual == (2, 1)
+
+
+def test_queued_avance():
+    """
+    Executar a função enqueued por Abelha.avance() deve atualizar a posição real
+    """
+    world = DummyWorld(width=4, height=4)
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+
+    abelha.avance()
+
+    cmd = queue.pop(0)
+    cmd()  # executa o avance enqueued
+    assert abelha.posicao == (2, 1)  # posição real deve ser atualizada
+
+
+def test_direita():
+    """
+    Abelha.direita() should call _direita() and enqueue it, plus
+    update Abelha._direcao_virtual
+    """
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+
+    abelha.direita()
+
+    assert len(queue) == 1
+    queue[0] == Abelha.direita  # executa o direita enqueued
+    assert abelha.heading() == Direcao.LESTE  # direção real não deve mudar até a execução
+    assert abelha._direcao_virtual == Direcao.SUL

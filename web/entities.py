@@ -1,5 +1,6 @@
 import random
 from enum import IntEnum
+from re import match
 
 
 class Direcao(IntEnum):
@@ -33,6 +34,9 @@ class Ator:
 
         self.x = x if x is not None else random.randint(0, world.width - 1)
         self.y = y if y is not None else random.randint(0, world.height - 1)
+
+        self._posicao_virtual = (self.x, self.y)
+        self._direcao_virtual = direcao
 
         self.setheading(direcao)
 
@@ -98,7 +102,39 @@ class Abelha(Ator):
         self.renderer.render_actor(self)
 
     def avance(self):
+        self._posicao_virtual = self._proxima_posicao_virtual()
         self.queue.append(self._avance)
+
+    def _proxima_posicao_virtual(self):
+        x, y = self._posicao_virtual
+        match self._direcao_virtual:
+            case Direcao.LESTE:
+                return x + 1, y
+            case Direcao.OESTE:
+                return x - 1, y
+            case Direcao.NORTE:
+                return x, y - 1
+            case Direcao.SUL:
+                return x, y + 1
+            case _:
+                raise NotImplementedError(
+                    f"Direção não implementada: {self._direcao_virtual=}."
+                )
+
+    def proxima_posicao(self):
+        match self.heading():
+            case Direcao.LESTE:
+                return self.x + 1, self.y
+            case Direcao.OESTE:
+                return self.x - 1, self.y
+            case Direcao.NORTE:
+                return self.x, self.y - 1
+            case Direcao.SUL:
+                return self.x, self.y + 1
+            case _:
+                raise NotImplementedError(
+                    f"Direção não implementada: {self.heading()=}."
+                )
 
     def tem_caminho_frente(self):
         match self.heading():
@@ -135,8 +171,39 @@ class Abelha(Ator):
 
         self.renderer.render_actor(self)
 
+    def _proxima_direcao_virtual(self):
+        match self._direcao_virtual:
+            case Direcao.LESTE:
+                return Direcao.SUL
+            case Direcao.SUL:
+                return Direcao.OESTE
+            case Direcao.OESTE:
+                return Direcao.NORTE
+            case Direcao.NORTE:
+                return Direcao.LESTE
+            case _:
+                raise NotImplementedError(
+                    f"Direção não implementada: {self._direcao_virtual=}."
+                )
+
     def direita(self):
+        self._direcao_virtual = self._direita_virtual()
         self.queue.append(self._direita)
+
+    def _direita_virtual(self):
+        match self._direcao_virtual:
+            case Direcao.LESTE:
+                return Direcao.SUL
+            case Direcao.SUL:
+                return Direcao.OESTE
+            case Direcao.OESTE:
+                return Direcao.NORTE
+            case Direcao.NORTE:
+                return Direcao.LESTE
+            case _:
+                raise NotImplementedError(
+                    f"Direção não implementada: {self._direcao_virtual=}."
+                )
 
     def _direita(self):
         match self.heading():
@@ -156,7 +223,23 @@ class Abelha(Ator):
         self.renderer.render_actor(self)
 
     def esquerda(self):
+        self._direcao_virtual = self._esquerda_virtual()
         self.queue.append(self._esquerda)
+
+    def _esquerda_virtual(self):
+        match self._direcao_virtual:
+            case Direcao.LESTE:
+                return Direcao.NORTE
+            case Direcao.SUL:
+                return Direcao.LESTE
+            case Direcao.OESTE:
+                return Direcao.SUL
+            case Direcao.NORTE:
+                return Direcao.OESTE
+            case _:
+                raise NotImplementedError(
+                    f"Direção não implementada: {self._direcao_virtual=}."
+                )
 
     def _esquerda(self):
         match self.heading():
@@ -216,8 +299,14 @@ class Abelha(Ator):
         colmeia = self.world.colmeia_em(self.posicao)
         colmeia.faça_mel()
 
+    def _no_girassol(self):
+        try:
+            return self.world.girassol_em(self.posicao) is not None
+        except RuntimeError:
+            return False
+
     def no_girassol(self):
-        return self.world.girassol_em(self.posicao) is not None
+        return self._no_girassol()
 
 
 class Girassol(Ator):

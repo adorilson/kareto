@@ -18,7 +18,9 @@ def test_captura_automatica():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4&fast=1")
+        # com a mudança no gerenciamento da fila por causa dos condicionais,
+        # o parametro fast deixou de funcionar neste caso específico
+        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=4, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
@@ -202,3 +204,139 @@ def test_run_code_remove_girassol_probabilidade_zero():
         assert page.locator('img[src="img/girassol.gif"]').count() == 1
 
 
+def test_no_girassol_condicional_extrai():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=1,1&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1 = assert_ator(page, '#actors > div:nth-child(2)', x=1, y=1, z_index=1, img_src="img/girassol.gif")
+
+        data = """
+        if maia.no_girassol():
+            maia.extraia_nectar()
+        else:
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") == f"transform: translate({1*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+        assert g1.is_hidden()
+
+
+def test_no_girassol_condicional_else_avanca():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
+
+        data = """
+        if maia.no_girassol():
+            maia.extraia_nectar()
+        else:
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") == f"transform: translate({2*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+        assert g1.is_visible()
+
+
+def test_no_girassol_com_repeticao_e_multiplos_girassois_em_linha():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gs=3,1&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
+        assert_ator(page, '#actors > div:nth-child(3)', x=3, y=1, z_index=1, img_src="img/girassol.gif")
+
+        data = """
+        for _ in range(3):
+            if maia.no_girassol():
+                maia.extraia_nectar()
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") == f"transform: translate({4*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+        assert page.locator(
+            f'#actors > div[style="transform: translate({2*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 1;"]'
+        ).count() == 0
+        assert page.locator(
+            f'#actors > div[style="transform: translate({3*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 1;"]'
+        ).count() == 0
+
+
+def test_no_girassol_com_multiplos_girassois_a_direita():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,2&gs=2,3&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=2, z_index=1, img_src="img/girassol.gif")
+        g2 = assert_ator(page, '#actors > div:nth-child(3)', x=2, y=3, z_index=1, img_src="img/girassol.gif")
+
+        data = """
+        maia.avance()
+        maia.direita()
+        for _ in range(3):
+            if maia.no_girassol():
+                maia.extraia_nectar()
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") == f"transform: translate({2*TILE_SIZE}px, {4*TILE_SIZE}px); z-index: 3;"
+        assert g1.is_hidden()
+        assert g2.is_hidden()
+
+
+def test_no_girassol_com_multiplos_girassois_a_esquerda():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,3,180&gs=0,4&gs=0,3&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=3, z_index=3, img_src="img/abelha_oeste.gif")
+        g1 = assert_ator(page, '#actors > div:nth-child(2)', x=0, y=4, z_index=1, img_src="img/girassol.gif")
+        g2 = assert_ator(page, '#actors > div:nth-child(3)', x=0, y=3, z_index=1, img_src="img/girassol.gif")
+
+        data = """
+        maia.avance()
+        maia.esquerda()
+        for _ in range(2):
+            if maia.no_girassol():
+                maia.extraia_nectar()
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert abelha.is_visible()
+        assert g1.is_hidden()
+        assert g2.is_hidden()

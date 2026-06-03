@@ -41,12 +41,44 @@ class ErrorOutput:
         document["output-content"].html += '<pre class="error">' + escape_tags("".join(args)) + "</pre>"
 
 
+class CommandQueue:
+    def __init__(self, auto_process=False):
+        self._queue = []
+        self.auto_process = auto_process
+
+    def append(self, command):
+        if self.auto_process:
+            try:
+                command()
+            except Exception as e:
+                global is_running, has_exception
+                is_running = False
+                has_exception = True
+                _update_runtime_state()
+                report_exception(e)
+            return
+
+        self._queue.append(command)
+
+    def pop(self, index=0):
+        return self._queue.pop(index)
+
+    def clear(self):
+        self._queue.clear()
+
+    def __len__(self):
+        return len(self._queue)
+
+    def __bool__(self):
+        return bool(self._queue)
+
+
 # Isso é manipulado quando o foco alterna entre editor e console interativo
 sys.stdout = StdOutput()
 sys.stderr = ErrorOutput()
 
 
-command_queue = []
+command_queue = CommandQueue()
 is_running = False
 coleta_automatica_de_girassol = False
 queue_delay_ms = 500
@@ -114,7 +146,6 @@ renderer = Renderer(world)
 
 def create_world(confs):
     global command_queue, is_running, coleta_automatica_de_girassol, queue_delay_ms, auto_collect_delay_ms
-    command_queue = []
     is_running = False
     renderer.reset()
     # isso será algo pra vir na configuração da fase
@@ -129,6 +160,8 @@ def create_world(confs):
         window.console.log("create_world: modo rapido habilitado")
     else:
         window.console.log(f"create_world: delays padrao (fila={queue_delay_ms}ms, coleta={auto_collect_delay_ms}ms)")
+
+    command_queue = CommandQueue(auto_process=(queue_delay_ms == 0))
 
     # TODO mover isso para o construtor do World ou algo assim
     world.girassois = []
@@ -492,13 +525,16 @@ def run_code(event):
     timer.set_timeout(world.sorteia_girassois, queue_delay_ms)
     timer.set_timeout(world.remove_nuvens, queue_delay_ms)
 
-    exec(_code)
+    # Pequeno delay para garantir a visualização da cena resetada antes
+    # do inicio do movimento da abelha
+    timer.set_timeout(lambda: exec(_code), queue_delay_ms + 100)
 
     print('Executando o código. Aguarde...')
     global has_exception
     has_exception = False
-    timer.set_timeout(process_queue, queue_delay_ms)
-    timer.set_timeout(trigger_tests, queue_delay_ms+100)  # Garante que os testes só rodem depois que a fila começar a ser processada
+    timer.set_timeout(process_queue, queue_delay_ms + 200)
+    # Garante que os testes só rodem depois que a fila começar a ser processada
+    timer.set_timeout(trigger_tests, queue_delay_ms + 300)
 
 
 class Interpreter(interpreter.Interpreter):
