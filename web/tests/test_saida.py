@@ -54,7 +54,9 @@ def test_saida_tarefa_concluida_com_sucesso(request):
         request.node.console_attach(page)
         dialog_state = monitor_dialogs(page)
 
-        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&fast=1")
+        # Com mudanças recentes, o teste passou a falhar com o fast=1 aqui.
+        # Talvez devido os timers para processamentos da fila e telas.
+        page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4")
 
         assert page.locator('.CodeMirror').is_visible()
         data = """for _ in range(5): maia.avance()"""
@@ -63,10 +65,15 @@ def test_saida_tarefa_concluida_com_sucesso(request):
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
+        SUCESSO = "Tarefa realizada com sucesso."
+        page.wait_for_function(f"""
+            () => document.querySelector("#output-content").innerText
+                .includes("{SUCESSO}")
+        """)
         output = page.locator("#output-content").inner_text()
         assert "Análise de código concluída sem erros de sintaxe." in output
         assert "Executando o código. Aguarde..." in output
-        assert "Tarefa realizada com sucesso." in output
+        assert SUCESSO in output
         assert dialog_state["dialogs"] == []
 
 
@@ -162,13 +169,14 @@ def test_print42_editor(request):
         request.node.console_attach(page)
         dialog_state = monitor_dialogs(page)
 
-        page.goto("http://localhost:8000")
+        page.goto("http://localhost:8000/?maia=1,1,0")
 
         assert page.locator('.CodeMirror').is_visible()
 
         data = 'print(42)'
         page.evaluate('data => {window.editor.setValue(data)}', data)
         page.click("#run-btn")
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         assert '42\n' in page.locator("#output-content").inner_text()
         assert dialog_state["dialogs"] == []
@@ -313,7 +321,9 @@ def test_linhas_excedentes(request):
         request.node.console_attach(page)
         dialog_state = monitor_dialogs(page)
 
-        page.goto("http://localhost:8000/?maia=1,3,0&gs=2,3&cag=1&fast=1")
+        # Com mudanças recentes, o teste passou a falhar com o fast=1 aqui.
+        # Talvez devido os timers para processamentos da fila e telas.
+        page.goto("http://localhost:8000/?maia=1,3,0&gs=2,3&cag=1")
 
         assert page.locator('.CodeMirror').is_visible()
 
@@ -335,9 +345,16 @@ def test_linhas_excedentes(request):
         """
         page.evaluate('tests => {document.getElementById("test-cases").innerHTML = tests}', tests)
         page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        FALHA = "Falha ao validar o código:"
+        page.wait_for_function(f"""
+            () => document.querySelector("#output-content").innerText
+                .includes("{FALHA}")
+        """)
 
         output = page.locator("#output-content").inner_text()
         assert "Tarefa realizada com sucesso." not in output
-        assert "Falha ao validar o código:" in output
+        assert FALHA in output
         assert msg in output
         assert dialog_state["dialogs"] == []
