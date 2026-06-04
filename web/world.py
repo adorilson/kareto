@@ -41,6 +41,16 @@ class World:
                 girassol.renderer.remove_actor(girassol)
                 self.girassois.remove(girassol)
 
+    def sorteia_colmeias(self):
+        for colmeia in list(self.colmeias):
+            prob = getattr(colmeia, "remove_prob", None)
+            if prob is None or prob <= 0:
+                continue
+
+            if prob >= 1 or random.random() <= prob:
+                colmeia.renderer.remove_actor(colmeia)
+                self.colmeias.remove(colmeia)
+
 
 class WorldError(Exception):
     pass

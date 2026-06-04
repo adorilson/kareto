@@ -58,8 +58,9 @@ def test_girassol_em_gera_erro_quando_nao_encontra():
 
 
 class DummyColmeia:
-    def __init__(self, x, y):
+    def __init__(self, x, y, renderer=None):
         self._posicao = (x, y)
+        self.renderer = renderer
 
     @property
     def posicao(self):
@@ -145,3 +146,39 @@ def test_sorteia_girassois_remove_com_probabilidade_varias():
 
     assert renderer.removed == [g1]
     assert world.girassois == [g2, g3]
+
+
+def test_sorteia_colmeias_remove_com_probabilidade_1_e_deixa_com_0():
+    world = World()
+    renderer = DummyRenderer()
+    c1 = DummyColmeia(1, 2, renderer)
+    c1.remove_prob = 1
+    c2 = DummyColmeia(3, 4, renderer)
+    c2.remove_prob = 0
+
+    world.colmeias.extend([c1, c2])
+
+    world.sorteia_colmeias()
+
+    assert renderer.removed == [c1]
+    assert world.colmeias == [c2]
+
+
+def test_sorteia_colmeias_remove_com_probabilidade_varias():
+    world = World()
+    renderer = DummyRenderer()
+    c1 = DummyColmeia(1, 2, renderer)
+    c1.remove_prob = 0.5
+    c2 = DummyColmeia(3, 4, renderer)
+    c2.remove_prob = 0.5
+    c3 = DummyColmeia(5, 6, renderer)
+    c3.remove_prob = 0.5
+
+    world.colmeias.extend([c1, c2, c3])
+
+    import random
+    random.seed(1)  # Garante que o teste seja determinístico
+    world.sorteia_colmeias()
+
+    assert renderer.removed == [c1]
+    assert world.colmeias == [c2, c3]
