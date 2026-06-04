@@ -38,7 +38,7 @@ class DummyWorld:
 
     def colmeia_em(self, posicao):
         if posicao not in self._colmeias:
-            raise KeyError("colmeia not found")
+            raise RuntimeError("colmeia not found")
         return self._colmeias[posicao]
 
 
@@ -256,3 +256,22 @@ def test_direita():
     queue[0] == Abelha.direita  # executa o direita enqueued
     assert abelha.heading() == Direcao.LESTE  # direção real não deve mudar até a execução
     assert abelha._direcao_virtual == Direcao.SUL
+
+
+def test_na_colmeia_retornando_true_quando_na_mesma_posicao():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+    world.add_colmeia((1, 1), DummyColmeia())
+
+    assert abelha.na_colmeia() is True
+
+
+def test_na_colmeia_retornando_false_quando_nao_ha_colmeia():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+
+    assert abelha.na_colmeia() is False

@@ -308,6 +308,15 @@ class Abelha(Ator):
     def no_girassol(self):
         return self._no_girassol()
 
+    def _na_colmeia(self):
+        try:
+            return self.world.colmeia_em(self.posicao) is not None
+        except RuntimeError:
+            return False
+
+    def na_colmeia(self):
+        return self._na_colmeia()
+
 
 class Girassol(Ator):
     GIRASSOL = "girassol.gif"
