@@ -301,7 +301,7 @@ class Abelha(Ator):
 
     def _no_girassol(self):
         try:
-            return self.world.girassol_em(self.posicao) is not None
+            return self.world.girassol_em(self._posicao_virtual) is not None
         except RuntimeError:
             return False
 
@@ -310,7 +310,7 @@ class Abelha(Ator):
 
     def _na_colmeia(self):
         try:
-            return self.world.colmeia_em(self.posicao) is not None
+            return self.world.colmeia_em(self._posicao_virtual) is not None
         except RuntimeError:
             return False
 

@@ -204,6 +204,154 @@ def test_run_code_remove_girassol_probabilidade_zero():
         assert page.locator('img[src="img/girassol.gif"]').count() == 1
 
 
+def test_na_colmeia_condicional_faz_mel():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&c=1,1,1&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(2)', x=1, y=1, z_index=1, img_src="img/colmeia.gif")
+        assert c1.inner_text() == "1"
+
+        data = """
+        if maia.na_colmeia():
+            maia.faça_mel()
+        else:
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") == f"transform: translate({1*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+        assert c1.inner_text() == "0"
+
+
+def test_na_colmeia_condicional_else_avanca():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,1&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
+        assert c1.inner_text() == "1"
+
+        data = """
+        if maia.na_colmeia():
+            maia.faça_mel()
+        else:
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        assert abelha.is_visible()
+        assert abelha.get_attribute("style") == f"transform: translate({2*TILE_SIZE}px, {1*TILE_SIZE}px); z-index: 3;"
+        assert c1.is_visible()
+        assert c1.inner_text() == "1"
+
+
+def test_na_colmeia_com_repeticao_e_multiplas_colmeias_em_linha():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,1&c=3,1,1&c=4,1,1&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
+        c2 = assert_ator(page, '#actors > div:nth-child(3)', x=3, y=1, z_index=1, img_src="img/colmeia.gif")
+        c3 = assert_ator(page, '#actors > div:nth-child(4)', x=4, y=1, z_index=1, img_src="img/colmeia.gif")
+
+        assert c1.inner_text() == "1"
+        assert c2.inner_text() == "1"
+        assert c3.inner_text() == "1"
+
+        data = """
+        for _ in range(3):
+            if maia.na_colmeia():
+                maia.faça_mel()
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=4, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
+        c2 = assert_ator(page, '#actors > div:nth-child(3)', x=3, y=1, z_index=1, img_src="img/colmeia.gif")
+        c3 = assert_ator(page, '#actors > div:nth-child(4)', x=4, y=1, z_index=1, img_src="img/colmeia.gif")
+
+        assert abelha.is_visible()
+        assert c1.inner_text() == "0"
+        assert c2.inner_text() == "0"
+        assert c3.inner_text() == "1"
+
+
+def test_na_colmeia_com_multiplos_colmeias_a_direita():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,2,1&c=2,3,1")
+
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        data = """
+        maia.avance()
+        maia.direita()
+        for _ in range(3):
+            if maia.na_colmeia():
+                maia.faça_mel()
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=2, y=4, z_index=3, img_src="img/abelha_sul.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=2, z_index=1, img_src="img/colmeia.gif")
+        c2 = assert_ator(page, '#actors > div:nth-child(3)', x=2, y=3, z_index=1, img_src="img/colmeia.gif")
+
+        assert c1.inner_text() == "0"
+        assert c2.inner_text() == "0"
+
+
+def test_na_colmeia_com_multiplos_colmeias_a_esquerda():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,3,180&c=0,4,1&c=0,3,1&fast=1")
+
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        data = """
+        maia.avance()
+        maia.esquerda()
+        for _ in range(2):
+            if maia.na_colmeia():
+                maia.faça_mel()
+            maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=0, y=5, z_index=3, img_src="img/abelha_sul.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(2)', x=0, y=4, z_index=1, img_src="img/colmeia.gif")
+        c2 = assert_ator(page, '#actors > div:nth-child(3)', x=0, y=3, z_index=1, img_src="img/colmeia.gif")
+
+        assert c1.inner_text() == "0"
+        assert c2.inner_text() == "0"
+
+
 def test_no_girassol_condicional_extrai():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
