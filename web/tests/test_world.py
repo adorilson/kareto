@@ -4,8 +4,9 @@ from web.world import World, WorldError
 
 
 class DummyGirassol:
-    def __init__(self, x, y):
+    def __init__(self, x, y, renderer=None):
         self._posicao = (x, y)
+        self.renderer = renderer
 
     @property
     def posicao(self):
@@ -108,3 +109,39 @@ def test_remove_nuvens_limpa_e_remove_do_renderer():
 
     assert renderer.removed == [nuvem1, nuvem2]
     assert world.nuvens == []
+
+
+def test_sorteia_girassois_remove_com_probabilidade_1_e_deixa_com_0():
+    world = World()
+    renderer = DummyRenderer()
+    g1 = DummyGirassol(1, 2, renderer)
+    g1.remove_prob = 1
+    g2 = DummyGirassol(3, 4, renderer)
+    g2.remove_prob = 0
+
+    world.girassois.extend([g1, g2])
+
+    world.sorteia_girassois()
+
+    assert renderer.removed == [g1]
+    assert world.girassois == [g2]
+
+
+def test_sorteia_girassois_remove_com_probabilidade_varias():
+    world = World()
+    renderer = DummyRenderer()
+    g1 = DummyGirassol(1, 2, renderer)
+    g1.remove_prob = 0.5
+    g2 = DummyGirassol(3, 4, renderer)
+    g2.remove_prob = 0.5
+    g3 = DummyGirassol(5, 6, renderer)
+    g3.remove_prob = 0.5
+
+    world.girassois.extend([g1, g2, g3])
+
+    import random
+    random.seed(1)  # Garante que o teste seja determinístico
+    world.sorteia_girassois()
+
+    assert renderer.removed == [g1]
+    assert world.girassois == [g2, g3]
