@@ -8,7 +8,8 @@ from playwright.sync_api import sync_playwright
 
 
 
-from web.tests.common import assert_ator
+from web.tests.common import assert_ator, wait_for_output_content
+
 # Mudar para 
 #import renderer.TILE_SIZE
 TILE_SIZE = 65
@@ -488,3 +489,46 @@ def test_no_girassol_com_multiplos_girassois_a_esquerda():
         assert abelha.is_visible()
         assert g1.is_hidden()
         assert g2.is_hidden()
+
+
+def test_girassol_e_colmeia_sob_nuvem():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,1&c=2,1,1&n=2,1&fast=1")
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(3)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
+        n1 = assert_ator(page, '#actors > div:nth-child(4)', x=2, y=1, z_index=2, img_src="img/nuvem.gif")
+
+        data = """
+        maia.avance()
+        if maia.no_girassol():
+            maia.extraia_nectar()
+        else:
+            maia.faça_mel()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        # rodar o código algumas vezes para garantir que tanto o girassol
+        # quanto a colmeia sejam testados
+        girassois = 0
+        colmeias = 0
+        for _ in range(4):
+            page.locator("#run-btn").click()
+            page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+            wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+            ator = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1)
+            assert ator.locator("div.actor-value").inner_text() == "0"
+            girassois =  girassois + (ator.locator("img").get_attribute("src") == "img/girassol.gif")
+            colmeias = colmeias + (ator.locator("img").get_attribute("src") == "img/colmeia.gif")
+
+            if girassois and colmeias:
+                break
+
+        assert girassois > 0
+        assert colmeias > 0
+

@@ -522,7 +522,10 @@ def run_code(event):
             return
         print('Análise de código concluída sem erros de sintaxe.')
 
+    # esses sorteios em sequencia funcionam pq a probilidade dos girassois sumirem é 0,
+    # mas talvez seja melhor criar um comando específico pra isso no futuro
     timer.set_timeout(world.sorteia_girassois, queue_delay_ms)
+    timer.set_timeout(world.sorteia_girassois_e_colmeias, queue_delay_ms)
     timer.set_timeout(world.remove_nuvens, queue_delay_ms)
 
     # Pequeno delay para garantir a visualização da cena resetada antes
