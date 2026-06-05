@@ -182,6 +182,9 @@ def create_world(confs):
 
     if 'maia' in confs:
         maia_coords = confs['maia'][0].split(',')
+        if len(maia_coords)<3:
+            window.console.log("create_world: configuracao da maia invalida, deve conter x,y,direcao (ex: 1,2,0)")
+            raise RuntimeError("Configuração da maia inválida")
         x, y, direcao = int(maia_coords[0]), int(maia_coords[1]), int(maia_coords[2])
         maia = Abelha(world, renderer, command_queue, x=x, y=y, direcao=Direcao(direcao))
         window.console.log(f"create_world: maia em ({x}, {y}) direcao={direcao}")
@@ -287,11 +290,6 @@ initial_confs = {
     for key, value in confs.items()
 }
 
-try:
-    maia = create_world(confs)
-except Exception as e:
-    sys.stderr = ErrorOutput()
-    traceback.print_exc()
 
 # ----------------------------
 # Executor da fila
@@ -575,3 +573,12 @@ def start_ambiente():
 # Chamar no final para garantir que tudo esteja definido antes de iniciar o ambiente
 # mover a chamada para o cliente
 start_ambiente()
+
+
+try:
+    maia = create_world(confs)
+except Exception as e:
+    window.console.log(f'Erro ao criar o mundo: {e}')
+    #report_exception(e)
+    sys.stderr = ErrorOutput()
+    traceback.print_exc()

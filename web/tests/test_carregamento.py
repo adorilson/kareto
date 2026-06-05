@@ -7,7 +7,7 @@ Não testa interações do usuário, como clicar em botões ou digitar no consol
 
 from playwright.sync_api import sync_playwright
 
-from web.tests.common import assert_ator
+from web.tests.common import assert_ator, wait_for_output_content
 
 
 def test_componentes_estaticos():
@@ -135,10 +135,11 @@ def test_configuracao_abelha_invalida():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,7&cag=1") # falta a direção da abelha
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         # Verificar se a mensagem de erro foi exibida
-        assert "Traceback" in page.locator("#output-content").inner_text().strip()
-        assert "IndexError" in page.locator("#output-content").inner_text().strip()
+        wait_for_output_content(page, 'Traceback')
+        wait_for_output_content(page, 'RuntimeError: Configuração da maia inválida')
 
 
 def test_overlay():
