@@ -8,7 +8,7 @@ import pytest
 
 from playwright.sync_api import sync_playwright
 
-from common import monitor_dialogs
+from common import monitor_dialogs, wait_for_output_content
 
 
 @pytest.fixture(autouse=True)
@@ -66,14 +66,12 @@ def test_saida_tarefa_concluida_com_sucesso(request):
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         SUCESSO = "Tarefa realizada com sucesso."
-        page.wait_for_function(f"""
-            () => document.querySelector("#output-content").innerText
-                .includes("{SUCESSO}")
-        """)
+        wait_for_output_content(page, SUCESSO)
+
         output = page.locator("#output-content").inner_text()
         assert "Análise de código concluída sem erros de sintaxe." in output
         assert "Executando o código. Aguarde..." in output
-        assert SUCESSO in output
+
         assert dialog_state["dialogs"] == []
 
 
@@ -348,10 +346,7 @@ def test_linhas_excedentes(request):
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
         FALHA = "Falha ao validar o código:"
-        page.wait_for_function(f"""
-            () => document.querySelector("#output-content").innerText
-                .includes("{FALHA}")
-        """)
+        wait_for_output_content(page, FALHA)
 
         output = page.locator("#output-content").inner_text()
         assert "Tarefa realizada com sucesso." not in output

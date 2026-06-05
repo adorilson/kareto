@@ -8,6 +8,13 @@ def assert_ator(page, tile_selector, x, y, z_index, img_src):
     return tile
 
 
+def wait_for_output_content(page, message):
+    page.wait_for_function(f"""
+        () => document.querySelector("#output-content").innerText
+            .includes("{message}")
+    """)
+
+
 def monitor_dialogs(page):
     """Registra dialogs exibidos pela pagina e os dispensa automaticamente."""
     state = {"dialogs": []}
