@@ -182,3 +182,24 @@ def test_sorteia_colmeias_remove_com_probabilidade_varias():
 
     assert renderer.removed == [c1]
     assert world.colmeias == [c2, c3]
+
+
+def test_solteia_girassois_e_colmeias_juntos():
+    world = World()
+    renderer = DummyRenderer()
+    g1 = DummyGirassol(1, 2, renderer)
+    c1 = DummyColmeia(1, 2, renderer)
+
+    g2 = DummyGirassol(4, 2, renderer)
+    c2 = DummyColmeia(4, 2, renderer)
+
+    world.girassois.extend([g1, g2])
+    world.colmeias.extend([c1, c2])
+
+    import random
+    random.seed(1)  # Garante que o teste seja determinístico
+    world.sorteia_girassois_e_colmeias()
+
+    assert renderer.removed == [c1, g2]
+    assert world.girassois == [g1]
+    assert world.colmeias == [c2]

@@ -51,6 +51,22 @@ class World:
                 colmeia.renderer.remove_actor(colmeia)
                 self.colmeias.remove(colmeia)
 
+    def sorteia_girassois_e_colmeias(self):
+        posicoes_girassois = (gs.posicao for gs in self.girassois)
+        for posicao in posicoes_girassois:
+            try:
+                colmeia = self.colmeia_em(posicao)
+            except RuntimeError:
+                continue
+
+            if random.random() <= 0.5:
+                colmeia.renderer.remove_actor(colmeia)
+                self.colmeias.remove(colmeia)
+            else:
+                girassol = self.girassol_em(posicao)
+                girassol.renderer.remove_actor(girassol)
+                self.girassois.remove(girassol)
+
 
 class WorldError(Exception):
     pass
