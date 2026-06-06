@@ -22,6 +22,7 @@ def test_captura_automatica():
         # com a mudança no gerenciamento da fila por causa dos condicionais,
         # o parametro fast deixou de funcionar neste caso específico
         page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&gs=6,4")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=4, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=4, z_index=1, img_src="img/girassol.gif")
@@ -50,6 +51,7 @@ def test_recomecar():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gs=3,2&gs=4,3&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=3, y=2, z_index=1, img_src="img/girassol.gif")
@@ -78,6 +80,7 @@ def test_recomecar_com_nectar():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gs=4,3&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha  = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1      = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -115,6 +118,7 @@ def test_girassol_persistente_nao_some_e_mostra_zero():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -137,6 +141,7 @@ def test_colmeia_consume_nectar():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,2&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         colmeia = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
@@ -159,6 +164,7 @@ def test_run_code_remove_nuvens():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&n=2,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=2, img_src="img/nuvem.gif")
@@ -176,6 +182,7 @@ def test_run_code_remove_girassol_probabilidade_um():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,,p=1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -193,6 +200,7 @@ def test_run_code_remove_girassol_probabilidade_zero():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,,p=0&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -210,6 +218,7 @@ def test_na_colmeia_condicional_faz_mel():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&c=1,1,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         c1 = assert_ator(page, '#actors > div:nth-child(2)', x=1, y=1, z_index=1, img_src="img/colmeia.gif")
@@ -236,6 +245,7 @@ def test_na_colmeia_condicional_else_avanca():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         c1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
@@ -263,6 +273,7 @@ def test_na_colmeia_com_repeticao_e_multiplas_colmeias_em_linha():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,1&c=3,1,1&c=4,1,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         c1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
@@ -358,6 +369,7 @@ def test_no_girassol_condicional_extrai():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gs=1,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1 = assert_ator(page, '#actors > div:nth-child(2)', x=1, y=1, z_index=1, img_src="img/girassol.gif")
@@ -383,6 +395,7 @@ def test_no_girassol_condicional_else_avanca():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -408,6 +421,7 @@ def test_no_girassol_com_repeticao_e_multiplos_girassois_em_linha():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gs=3,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")
@@ -439,6 +453,7 @@ def test_no_girassol_com_multiplos_girassois_a_direita():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gs=2,2&gs=2,3&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=2, z_index=1, img_src="img/girassol.gif")
@@ -468,6 +483,7 @@ def test_no_girassol_com_multiplos_girassois_a_esquerda():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,3,180&gs=0,4&gs=0,3&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=3, z_index=3, img_src="img/abelha_oeste.gif")
         g1 = assert_ator(page, '#actors > div:nth-child(2)', x=0, y=4, z_index=1, img_src="img/girassol.gif")
@@ -496,6 +512,7 @@ def test_girassol_e_colmeia_sob_nuvem():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,1&c=2,1,1&n=2,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
         g1 = assert_ator(page, '#actors > div:nth-child(2)', x=2, y=1, z_index=1, img_src="img/girassol.gif")

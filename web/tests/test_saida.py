@@ -55,8 +55,10 @@ def test_saida_tarefa_concluida_com_sucesso(request):
         dialog_state = monitor_dialogs(page)
 
         # Com mudanças recentes, o teste passou a falhar com o fast=1 aqui.
-        # Talvez devido os timers para processamentos da fila e telas.
+        # Talvez devido os timers para processamentos da fila e testes
+        # pós-execução.
         page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert page.locator('.CodeMirror').is_visible()
         data = """for _ in range(5): maia.avance()"""
@@ -84,6 +86,7 @@ def test_saida_tarefa_nao_concluida_com_nectar_nao_coletado(request):
         dialog_state = monitor_dialogs(page)
         
         page.goto("http://localhost:8000/?maia=1,4,0&cag=1&gs=3,4&gs=5,4&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert page.locator('.CodeMirror').is_visible()
         data = """for _ in range(2): maia.avance()"""
@@ -92,9 +95,11 @@ def test_saida_tarefa_nao_concluida_com_nectar_nao_coletado(request):
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
+        NECTAR_NAO_COLETADO = "Algum néctar não foi coletado."
+        wait_for_output_content(page, NECTAR_NAO_COLETADO)
+
         output = page.locator("#output-content").inner_text()
         assert "Tarefa realizada com sucesso." not in output
-        assert "Algum néctar não foi coletado." in output
         assert dialog_state["dialogs"] == []
 
 
@@ -107,6 +112,7 @@ def test_saida_tarefa_nao_concluida_com_nectar_na_colmeia(request):
         dialog_state = monitor_dialogs(page)
 
         page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,2&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
         assert page.locator('.CodeMirror').is_visible()
         data = """
@@ -135,6 +141,8 @@ def test_sem_erro_no_console_da_janela_quando_falha_code_rules(request):
 
 
         page.goto("http://localhost:8000/?maia=1,1,0&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
 
         page.wait_for_function("() => document.getElementById('test-cases')")
         page.evaluate(
@@ -168,6 +176,8 @@ def test_print42_editor(request):
         dialog_state = monitor_dialogs(page)
 
         page.goto("http://localhost:8000/?maia=1,1,0")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
 
         assert page.locator('.CodeMirror').is_visible()
 
@@ -189,6 +199,8 @@ def test_print42_console(request):
         dialog_state = monitor_dialogs(page)
 
         page.goto("http://localhost:8000")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
 
         page.locator("#console").click()
         page.keyboard.type("print(42)")
@@ -248,6 +260,8 @@ def test_erro_sintaxe(request):
         dialog_state = monitor_dialogs(page)
 
         page.goto("http://localhost:8000")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
 
         assert page.locator('.CodeMirror').is_visible()
         data = """for _ in range(3):\n    maia.avance("""
@@ -322,6 +336,8 @@ def test_linhas_excedentes(request):
         # Com mudanças recentes, o teste passou a falhar com o fast=1 aqui.
         # Talvez devido os timers para processamentos da fila e telas.
         page.goto("http://localhost:8000/?maia=1,3,0&gs=2,3&cag=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
 
         assert page.locator('.CodeMirror').is_visible()
 
