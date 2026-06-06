@@ -256,6 +256,7 @@ def create_world(confs):
                 nectares = 0
 
             colmeia = Colmeia(world, renderer, command_queue, x=int(x), y=int(y), nectares=int(nectares))
+            colmeia.remove_prob = _parse_probabilidade(conf_c, 3)
             world.colmeias.append(colmeia)
         window.console.log(f"create_world: colmeias={len(world.colmeias)}")
     else:
@@ -520,9 +521,11 @@ def run_code(event):
             return
         print('Análise de código concluída sem erros de sintaxe.')
 
-    # esses sorteios em sequencia funcionam pq a probilidade dos girassois sumirem é 0,
-    # mas talvez seja melhor criar um comando específico pra isso no futuro
+    # esses sorteios em sequencia funcionam pq a probabilidade dos girassois e
+    # colmeias sumirem é 0,
+    # mas talvez seja melhor criar um comando específico para isso no futuro
     timer.set_timeout(world.sorteia_girassois, queue_delay_ms)
+    timer.set_timeout(world.sorteia_colmeias, queue_delay_ms)
     timer.set_timeout(world.sorteia_girassois_e_colmeias, queue_delay_ms)
     timer.set_timeout(world.remove_nuvens, queue_delay_ms)
 

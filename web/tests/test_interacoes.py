@@ -532,3 +532,44 @@ def test_girassol_e_colmeia_sob_nuvem():
         assert girassois > 0
         assert colmeias > 0
 
+
+def test_sorteia_colmeias():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&c=1,2,1,p=0.5&c=2,1,1,p=0.5&n=1,2&n=2,1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+
+        abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
+        c1 = assert_ator(page, '#actors > div:nth-child(2)', x=1, y=2, z_index=1, img_src="img/colmeia.gif")
+        c2 = assert_ator(page, '#actors > div:nth-child(3)', x=2, y=1, z_index=1, img_src="img/colmeia.gif")
+        n1 = assert_ator(page, '#actors > div:nth-child(4)', x=1, y=2, z_index=2, img_src="img/nuvem.gif")
+        n2 = assert_ator(page, '#actors > div:nth-child(5)', x=2, y=1, z_index=2, img_src="img/nuvem.gif")
+
+        data = """
+        for _ in range(4):
+            maia.avance()
+            if maia.na_colmeia():
+                maia.faça_mel()
+            maia.direita()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        # rodar o código algumas vezes para garantir mais de uma configuração
+        # de colmeias
+        configuracoes_colmeias = [False, False, False]
+
+        for _ in range(4):
+            page.locator("#run-btn").click()
+            page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+            wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+            atores = page.locator('img[src="img/colmeia.gif"]').count()
+            configuracoes_colmeias[atores] = True
+
+            if sum(configuracoes_colmeias) >= 2:
+                break
+
+        assert sum(configuracoes_colmeias) >= 2
