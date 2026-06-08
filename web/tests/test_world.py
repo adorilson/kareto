@@ -1,16 +1,24 @@
+import random
 import pytest
 
 from web.world import World, WorldError
 
-
-class DummyGirassol:
-    def __init__(self, x, y, renderer=None):
-        self._posicao = (x, y)
+class DummyAtor:
+    def __init__(self, x=None, y=None, renderer=None):
+        self.x = x if x is not None else random.randint(0, 8)
+        self.y = y if y is not None else random.randint(0, 8)
         self.renderer = renderer
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.x}, {self.y})'
 
     @property
     def posicao(self):
-        return self._posicao
+        return self.x, self.y
+
+
+class DummyGirassol(DummyAtor):
+    pass
 
 
 def test_init_defaults():
@@ -57,14 +65,8 @@ def test_girassol_em_gera_erro_quando_nao_encontra():
         world.girassol_em((9, 9))
 
 
-class DummyColmeia:
-    def __init__(self, x, y, renderer=None):
-        self._posicao = (x, y)
-        self.renderer = renderer
-
-    @property
-    def posicao(self):
-        return self._posicao
+class DummyColmeia(DummyAtor):
+    pass
 
 
 def test_colmeia_em_retorna_correspondente():
@@ -93,16 +95,16 @@ class DummyRenderer:
         self.removed.append(actor)
 
 
-class DummyNuvem:
-    def __init__(self, renderer):
-        self.renderer = renderer
+class DummyNuvem(DummyAtor):
+    pass
+
 
 
 def test_remove_nuvens_limpa_e_remove_do_renderer():
     world = World()
     renderer = DummyRenderer()
-    nuvem1 = DummyNuvem(renderer)
-    nuvem2 = DummyNuvem(renderer)
+    nuvem1 = DummyNuvem(renderer=renderer)
+    nuvem2 = DummyNuvem(renderer=renderer)
 
     world.nuvens.extend([nuvem1, nuvem2])
 
@@ -203,3 +205,27 @@ def test_solteia_girassois_e_colmeias_juntos():
     assert renderer.removed == [c1, g2]
     assert world.girassois == [g1]
     assert world.colmeias == [c2]
+
+
+def test_sorteia_4_girassois_e_4_colmeias_com_nuvens():
+    world = World()
+    renderer = DummyRenderer()
+
+    posicoes = [(4, 1), (7, 1), (7, 4), (4, 4)]
+    for x, y in posicoes:
+        g = DummyGirassol(x, y, renderer)
+        g.remove_prob = 1
+        world.girassois.append(g)
+
+        c = DummyColmeia(x, y, renderer)
+        c.remove_prob = 1
+        world.colmeias.append(c)
+
+        n = DummyNuvem(x, y, renderer)
+        world.nuvens.append(n)
+
+    assert len(world.girassois) + len(world.colmeias) == 8
+    world.sorteia_girassois_e_colmeias()
+
+    assert len(world.girassois) + len(world.colmeias) == 4
+    assert len({gs.posicao for gs in world.girassois} | {c.posicao for c in world.colmeias}) == 4

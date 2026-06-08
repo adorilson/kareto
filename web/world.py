@@ -52,7 +52,7 @@ class World:
                 self.colmeias.remove(colmeia)
 
     def sorteia_girassois_e_colmeias(self):
-        posicoes_girassois = (gs.posicao for gs in self.girassois)
+        posicoes_girassois = tuple(gs.posicao for gs in self.girassois)
         for posicao in posicoes_girassois:
             try:
                 colmeia = self.colmeia_em(posicao)
