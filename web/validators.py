@@ -36,17 +36,21 @@ def collect_code_metrics(code):
 
     for_count = 0
     while_count = 0
+    if_count = 0
     for node in ast.walk(tree):
         if isinstance(node, ast.For):
             for_count += 1
         if isinstance(node, ast.While):
             while_count += 1
+        if isinstance(node, ast.If):
+            if_count += 1
 
     loop_count = for_count + while_count
 
     return {
         'codeForCount': for_count,
         'codeWhileCount': while_count,
+        'codeIfCount': if_count,
         'codeLoopCount': loop_count,
         'codeLineCount': _count_code_lines(code),
     }
