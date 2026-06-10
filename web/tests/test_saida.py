@@ -435,3 +435,69 @@ def test_contagem_if(request):
         assert msg not in output
 
         assert dialog_state["dialogs"] == []
+
+
+def test_contagem_else(request):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+
+        request.node.console_attach(page)
+        dialog_state = monitor_dialogs(page)
+
+        page.goto("http://localhost:8000/?maia=1,1,0&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        assert page.locator('.CodeMirror').is_visible()
+
+        FALHA = "Falha ao validar o código:"
+        SUCESSO = "Tarefa realizada com sucesso."
+
+        msg = "O código deve conter pelo menos 1 instrução condicional else."
+        tests = """
+        {
+            "codeRules": [
+                { "metric": "codeElseCount", "op": ">=", "value": 1, "msg": '""" + msg + """'}
+            ]
+        }
+        """
+
+        page.evaluate('tests => {document.getElementById("test-cases").innerHTML = tests}', tests)
+
+        # Isso poderia ser dois testes separados, mas para evitar a demora do carregamento do ambiente,
+        # coloquei os dois cenários aqui.
+
+        # FALHA
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        wait_for_output_content(page, FALHA)
+
+        output = page.locator("#output-content").inner_text()
+
+        assert SUCESSO not in output
+        assert FALHA in output
+        assert msg in output
+
+        # SUCESSO
+        data = """
+        if True:
+            print(1)
+        else:
+            print(2)
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        wait_for_output_content(page, SUCESSO)
+
+        output = page.locator("#output-content").inner_text()
+
+        assert SUCESSO in output
+        assert FALHA not in output
+        assert msg not in output
+
+        assert dialog_state["dialogs"] == []
