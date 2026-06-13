@@ -1,3 +1,6 @@
+import pytest
+
+
 TILE_SIZE = 65 #deveria vir de renderer.TILE_SIZE
 
 def assert_ator(page, tile_selector, x, y, z_index, img_src=None):
@@ -26,3 +29,37 @@ def monitor_dialogs(page):
 
     page.on("dialog", _on_dialog)
     return state
+
+
+@pytest.fixture(autouse=True)
+def fail_on_console_errors(request):
+    messages = {
+        "debug": [],
+        "error": [],
+        "log": [],
+        "info": [],
+    }
+
+    def _on_console(msg):
+        if msg.type not in messages:
+            raise Exception(f"Console message of type {msg.type} not handled: {msg.text}")
+
+        messages[msg.type].append(msg.text)
+
+    def _on_page_error(exc):
+        raise Exception(f"Page error: {exc}")
+
+    def attach(page):
+        page.on("console", _on_console)
+        page.on("pageerror", _on_page_error)
+
+    # Disponibiliza para o teste, se quiser
+    request.node.console_attach = attach
+    request.node.messages = messages
+
+    yield
+
+    for msg in messages["error"]:
+        print(f"{msg}")
+
+    assert not messages["error"], f"Errors: {messages['error']}"  

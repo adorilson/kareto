@@ -8,42 +8,7 @@ import pytest
 
 from playwright.sync_api import sync_playwright
 
-from common import monitor_dialogs, wait_for_output_content
-
-
-@pytest.fixture(autouse=True)
-def fail_on_console_errors(request):
-
-    debug_msgs = []
-    errors = []
-
-    def _on_console(msg):
-        if msg.type in ("debug", "error", "assert"):
-            # TODO Melhorar isso fazendo mocks das chamadas http
-            if 'XMLHttpRequest' not in msg.text and 'net::ERR_FAILED' not in msg.text:
-                debug_msgs.append(msg.type + ": " + msg.text)
-
-    def _on_page_error(exc):
-        errors.append(exc)
-
-
-    def attach(page):
-        page.on("console", _on_console)
-        page.on("pageerror", _on_page_error)
-
-    # Disponibiliza para o teste, se quiser
-    request.node.console_attach = attach
-    request.node.debug_msgs = debug_msgs 
-    request.node.errors = errors
-
-    yield
-
-    fails = debug_msgs + errors
-    for msg in fails:
-        print(f"{msg}")
-
-    assert not fails, f"Fails: {fails}"
-
+from common import monitor_dialogs, wait_for_output_content, fail_on_console_errors
 
 
 def test_saida_tarefa_concluida_com_sucesso(request):
@@ -75,6 +40,17 @@ def test_saida_tarefa_concluida_com_sucesso(request):
         assert "Executando o código. Aguarde..." in output
 
         assert dialog_state["dialogs"] == []
+
+        NAO_ENVIO = "Codigo identico ao ultimo enviado, nao enviando snapshot"
+        assert NAO_ENVIO not in request.node.messages["log"]
+
+        # Reexecutando para testar se é feito novo enviou ou não.
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+
+        wait_for_output_content(page, SUCESSO)
+
+        assert NAO_ENVIO in request.node.messages["log"]
 
 
 def test_saida_tarefa_nao_concluida_com_nectar_nao_coletado(request):
