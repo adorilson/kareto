@@ -1,6 +1,5 @@
 import random
 from enum import IntEnum
-from re import match
 
 
 class Direcao(IntEnum):
