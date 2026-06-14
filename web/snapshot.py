@@ -6,6 +6,7 @@ from browser import window, document
 from config import API_URL, INTERPRETER_API_URL
 
 last_submitted_code = ""
+last_status = None
 last_interpreter_payload = ""
 
 
@@ -17,10 +18,10 @@ class SnapshotStatus(IntEnum):
 
 
 def send_snapshot(code, result, details):
-    global last_submitted_code
+    global last_submitted_code, last_status
 
-    if code == last_submitted_code:
-        window.console.log("Codigo identico ao ultimo enviado, nao enviando snapshot")
+    if code == last_submitted_code and result == last_status:
+        window.console.log("Código e status idênticos ao último enviado, não enviando snapshot.")
         return
 
     if not hasattr(window, "jQuery"):
@@ -35,6 +36,7 @@ def send_snapshot(code, result, details):
     }
     window.jQuery.post(API_URL, payload)
     last_submitted_code = code
+    last_status = result
 
 
 def send_interpreter_snapshot(result, details, code=""):

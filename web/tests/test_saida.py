@@ -41,7 +41,7 @@ def test_saida_tarefa_concluida_com_sucesso(request):
 
         assert dialog_state["dialogs"] == []
 
-        NAO_ENVIO = "Codigo identico ao ultimo enviado, nao enviando snapshot"
+        NAO_ENVIO = "Código e status idênticos ao último enviado, não enviando snapshot."
         assert NAO_ENVIO not in request.node.messages["log"]
 
         # Reexecutando para testar se é feito novo enviou ou não.
