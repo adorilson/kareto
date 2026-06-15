@@ -69,5 +69,17 @@ class World:
                 self.girassois.remove(girassol)
 
 
+    def tem_nectar_no_girassol(self, posicao=None):
+        if posicao is None:
+            posicao = self.abelha.posicao
+
+        try:
+            girassol = self.girassol_em(posicao)
+        except RuntimeError:
+            return False
+
+        return girassol.tem_nectar()
+
+
 class WorldError(Exception):
     pass

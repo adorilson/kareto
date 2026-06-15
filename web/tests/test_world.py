@@ -18,7 +18,8 @@ class DummyAtor:
 
 
 class DummyGirassol(DummyAtor):
-    pass
+    def tem_nectar(self):
+        return getattr(self, 'nectares', 0) > 0
 
 
 def test_init_defaults():
@@ -230,3 +231,38 @@ def test_sorteia_4_girassois_e_4_colmeias_com_nuvens():
 
     assert len(world.girassois) + len(world.colmeias) == 4
     assert len({gs.posicao for gs in world.girassois} | {c.posicao for c in world.colmeias}) == 4
+
+
+def test_tem_nectar_no_girassol_retorna_true_quando_tem_nectar():
+    world = World()
+    g1 = DummyGirassol(1, 2)
+    g1.nectares = 2
+    world.girassois.append(g1)
+
+    assert world.tem_nectar_no_girassol((1, 2)) is True
+
+
+def test_tem_nectar_no_girassol_retorna_false_quando_nao_tem_nectar():
+    world = World()
+    g1 = DummyGirassol(1, 2)
+    g1.nectares = 0
+    world.girassois.append(g1)
+
+    assert world.tem_nectar_no_girassol((1, 2)) is False
+
+class DummyAbelha:
+    pass
+
+def test_tem_nectar_no_girassol_com_posicao_none():
+    world = World()
+    abelha = DummyAbelha()
+    abelha.posicao = (1, 2)
+    world.abelha = abelha
+    g1 = DummyGirassol(1, 2)
+    world.girassois.append(g1)
+
+    g1.nectares = 1
+    assert world.tem_nectar_no_girassol() is True
+
+    g1.nectares = 0
+    assert world.tem_nectar_no_girassol() is False

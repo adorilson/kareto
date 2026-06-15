@@ -144,6 +144,9 @@ def hide_loading_overlay_and_focus_on_top(delay_ms=0):
 world = World(8, 8)
 renderer = Renderer(world)
 
+# Expondo alguns métodos de world pra que sejam usado como funções embutidas
+tem_nectar_no_girassol = world.tem_nectar_no_girassol
+
 def create_world(confs):
     global command_queue, is_running, coleta_automatica_de_girassol, queue_delay_ms, auto_collect_delay_ms
     is_running = False
