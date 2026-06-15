@@ -573,15 +573,11 @@ def start_ambiente():
     window.editor = editor
 
 
-# Chamar no final para garantir que tudo esteja definido antes de iniciar o ambiente
-# mover a chamada para o cliente
-start_ambiente()
-
-
 try:
     maia = create_world(confs)
 except Exception as e:
-    window.console.log(f'Erro ao criar o mundo: {e}')
-    #report_exception(e)
-    sys.stderr = ErrorOutput()
-    traceback.print_exc()
+    message = f'Erro ao carregar o ambiente de desenvolvimento: {e}'
+    tag = f'<div class="loading-text error" style="font-size: 24px; letter-spacing: 1px;">{message}</div>'
+    document["loading-overlay"].html = tag
+else:
+    start_ambiente()

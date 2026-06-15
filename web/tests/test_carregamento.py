@@ -135,11 +135,15 @@ def test_configuracao_abelha_invalida():
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
         page.goto("http://localhost:8000/?maia=1,7&cag=1") # falta a direção da abelha
-        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+        assert page.locator("#loading-overlay").is_visible()
 
-        # Verificar se a mensagem de erro foi exibida
-        wait_for_output_content(page, 'Traceback')
-        wait_for_output_content(page, 'RuntimeError: Configuração da maia inválida')
+        message = 'Erro ao carregar o ambiente de desenvolvimento'
+        page.wait_for_function(
+            f"""() => document.querySelector("#loading-overlay").innerText
+            .includes("{message}")
+        """)
+
+        assert page.locator("#loading-overlay").is_visible()
 
 
 def test_overlay():
