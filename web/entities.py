@@ -91,7 +91,7 @@ class Abelha(Ator):
 
         self.renderer = renderer
         self.renderer.register_actor(self)
-        
+        world.abelha = self
 
     def goto(self, x, y):
         self.queue.append(lambda: self._goto(x, y))

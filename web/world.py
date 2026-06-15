@@ -7,6 +7,7 @@ class World:
         self.girassois = []
         self.colmeias = []
         self.nuvens = []
+        self.abelha = None
 
     def in_bounds(self, x, y):
         return 0 <= x < self.width and 0 <= y < self.height

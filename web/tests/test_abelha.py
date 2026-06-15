@@ -65,13 +65,14 @@ def make_abelha(x=1, y=1, direcao=Direcao.LESTE, world=None, renderer=None):
     return Abelha(world, renderer, queue, x=x, y=y, direcao=direcao), queue
 
 
-def test_init_registers_actor_and_sets_shape_and_zindex():
+def test_init():
     world = DummyWorld()
     renderer = DummyRenderer()
     queue = []
 
     abelha = Abelha(world, renderer, queue, x=2, y=3, direcao=Direcao.NORTE)
 
+    assert world.abelha == abelha
     assert renderer.registered == [abelha]
     assert abelha.z_index == 3
     assert abelha.shape() == Abelha.IMAGENS[Direcao.NORTE]

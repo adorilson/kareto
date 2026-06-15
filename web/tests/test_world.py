@@ -29,6 +29,7 @@ def test_init_defaults():
     assert world.girassois == []
     assert world.colmeias == []
     assert world.nuvens == []
+    assert world.abelha == None
 
 
 def test_in_bounds_true():
