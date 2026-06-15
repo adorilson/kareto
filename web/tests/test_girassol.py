@@ -49,3 +49,23 @@ def test_girassol_persistente_sem_nectar_gera_erro():
 
     with pytest.raises(RuntimeError):
         girassol.extract_nectar()
+
+
+def test_tem_nectar_retorna_true_quando_tem_nectar():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+
+    girassol = GirassolPersistente(world, renderer, queue, x=0, y=0, nectares=2)
+
+    assert girassol.tem_nectar() is True
+
+
+def test_tem_nectar_retorna_false_quando_nao_tem_nectar():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+
+    girassol = GirassolPersistente(world, renderer, queue, x=0, y=0, nectares=0)
+
+    assert girassol.tem_nectar() is False

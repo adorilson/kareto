@@ -348,6 +348,9 @@ class Girassol(Ator):
         else:
             return '' # TODO isso de retornar tipos diferentes não é legal.
 
+    def tem_nectar(self):
+        return self.nectares is not None and self.nectares > 0
+
 
 class GirassolPersistente(Girassol):
     def __init__(self, world, renderer, command_queue, x=None, y=None, nectares=None):
