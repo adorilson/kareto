@@ -71,7 +71,7 @@ class World:
 
     def tem_nectar_no_girassol(self, posicao=None):
         if posicao is None:
-            posicao = self.abelha.posicao
+            posicao = self.abelha._posicao_virtual
 
         try:
             girassol = self.girassol_em(posicao)

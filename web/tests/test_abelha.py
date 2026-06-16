@@ -131,6 +131,7 @@ def test_direita_enqueues_and_rotates():
     abelha, queue = make_abelha(direcao=Direcao.LESTE)
 
     abelha.direita()
+    assert abelha.heading() == Direcao.LESTE
 
     assert len(queue) == 1
     queue.pop(0)()
@@ -229,6 +230,9 @@ def test_avance():
     assert abelha.posicao == (1, 1)  # posição real não deve mudar até a execução
     assert abelha._posicao_virtual == (2, 1)
 
+    queue.pop(0)()  # executa o avance enqueued
+    assert abelha.posicao == (2, 1)  # posição real deve ser atualizada
+    assert abelha._posicao_virtual == (2, 1) # posição virtual se mantém igual à real após a execução do avance
 
 def test_queued_avance():
     """

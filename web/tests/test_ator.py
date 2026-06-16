@@ -81,3 +81,17 @@ def test_init_randomizes_y_when_missing_and_x_provided():
 
     assert isinstance(actor.y, int)
     assert world.in_bounds(actor.x, actor.y)
+
+
+def test_ator_init_default_values():
+    world = World()
+    actor = Ator(world=world, command_queue=[])
+
+    assert actor.x is not None
+    assert actor.y is not None
+    assert actor._direcao_virtual == None
+
+    assert actor.queue == []
+    assert actor._shape == ""
+    assert actor._value == None
+

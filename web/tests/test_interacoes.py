@@ -310,7 +310,7 @@ def test_na_colmeia_com_multiplos_colmeias_a_direita():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&c=2,2,1&c=2,3,1")
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,2,1&c=2,3,1&fast=1")
 
         page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
@@ -554,7 +554,7 @@ def test_sorteia_colmeias():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&c=1,2,1,p=0.5&c=2,1,1,p=0.5&n=1,2&n=2,1")
+        page.goto("http://localhost:8000/?maia=1,1,0&c=1,2,1,p=0.5&c=2,1,1,p=0.5&n=1,2&n=2,1&fast=1")
         page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
 
 
@@ -590,3 +590,51 @@ def test_sorteia_colmeias():
                 break
 
         assert sum(configuracoes_colmeias) >= 2
+
+
+def test_tem_nectar_no_girassol_na_web():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,3&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        data = """
+        while tem_nectar_no_girassol():
+            maia.extraia_nectar()
+
+        maia.avance()
+
+        while tem_nectar_no_girassol():
+            maia.extraia_nectar()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+        wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+
+
+def test_tem_nectar_no_girassol_condicional_na_web():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,3,0&gsp=3,4,2&gsp=1,5,3&cag=0&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        data = """
+        for _ in range(3):
+            for _ in range(2):
+                maia.avance()
+                while tem_nectar_no_girassol():
+                    maia.extraia_nectar()
+            
+            maia.direita()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+        wait_for_output_content(page, 'Tarefa realizada com sucesso.')

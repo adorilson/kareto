@@ -78,7 +78,6 @@ sys.stdout = StdOutput()
 sys.stderr = ErrorOutput()
 
 
-command_queue = CommandQueue()
 is_running = False
 coleta_automatica_de_girassol = False
 queue_delay_ms = 500
@@ -477,6 +476,13 @@ def trigger_tests():
         call_tests()
 
 
+def fill_and_process_command_queue(_code):
+    exec(_code)
+
+    print('Executando o código. Aguarde...')
+    process_queue()
+
+
 @bind(document["run-btn"], "click")
 def run_code(event):
     global is_running
@@ -534,14 +540,12 @@ def run_code(event):
 
     # Pequeno delay para garantir a visualização da cena resetada antes
     # do inicio do movimento da abelha
-    timer.set_timeout(lambda: exec(_code), queue_delay_ms + 100)
+    timer.set_timeout(lambda: fill_and_process_command_queue(_code), queue_delay_ms + 100)
 
-    print('Executando o código. Aguarde...')
     global has_exception
     has_exception = False
-    timer.set_timeout(process_queue, queue_delay_ms + 200)
     # Garante que os testes só rodem depois que a fila começar a ser processada
-    timer.set_timeout(trigger_tests, queue_delay_ms + 300)
+    timer.set_timeout(trigger_tests, queue_delay_ms + 200)
 
 
 class Interpreter(interpreter.Interpreter):

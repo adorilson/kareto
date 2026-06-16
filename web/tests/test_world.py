@@ -256,7 +256,7 @@ class DummyAbelha:
 def test_tem_nectar_no_girassol_com_posicao_none():
     world = World()
     abelha = DummyAbelha()
-    abelha.posicao = (1, 2)
+    abelha._posicao_virtual = (1, 2)
     world.abelha = abelha
     g1 = DummyGirassol(1, 2)
     world.girassois.append(g1)
