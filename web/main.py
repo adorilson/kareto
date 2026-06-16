@@ -72,6 +72,11 @@ class CommandQueue:
     def __bool__(self):
         return bool(self._queue)
 
+    def show_queue(self):
+        window.console.log(f'Fila antes da execução: {len(self)} comandos')
+        for x in self._queue:
+            window.console.log(f'Próximo comando: {x}')
+
 
 # Isso é manipulado quando o foco alterna entre editor e console interativo
 sys.stdout = StdOutput()
@@ -586,5 +591,6 @@ except Exception as e:
     message = f'Erro ao carregar o ambiente de desenvolvimento: {e}'
     tag = f'<div class="loading-text error" style="font-size: 24px; letter-spacing: 1px;">{message}</div>'
     document["loading-overlay"].html = tag
+    window.console.log(traceback.format_exc())
 else:
     start_ambiente()
