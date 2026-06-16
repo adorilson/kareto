@@ -291,7 +291,8 @@ class Abelha(Ator):
         self.y = self.y - 1
 
     def extraia_nectar(self):
-        self.queue.append(self._extraia_nectar)
+        girassol = self.world.girassol_em(self._posicao_virtual)
+        girassol.extract_nectar()
 
     def _extraia_nectar(self):  
         girassol = self.world.girassol_em(self.posicao)
@@ -331,11 +332,21 @@ class Girassol(Ator):
 
         self.shape(self.GIRASSOL)
         self.z_index = 1
-        self.nectares = nectares
+        self.nectares = self._parse_nectares(nectares)
+        self._nectares_virtual = self.nectares
 
         self.renderer = renderer
         self.renderer.register_actor(self)
         self._hidden = False
+
+    def _parse_nectares(self, nectares):
+        if nectares is None:
+            return None
+
+        try:
+            return int(nectares)
+        except (TypeError, ValueError):
+            return 0
 
     def esconda(self):
         if self._hidden:
@@ -349,44 +360,36 @@ class Girassol(Ator):
 
     @property
     def value(self):
-        if self.nectares is not None:
-            return self.nectares
-        else:
-            return '' # TODO isso de retornar tipos diferentes não é legal.
+        return self._nectares_virtual
 
     def tem_nectar(self):
-        return self.nectares is not None and self.nectares > 0
+        return self._nectares_virtual is not None and self._nectares_virtual > 0
 
 
 class GirassolPersistente(Girassol):
     def __init__(self, world, renderer, command_queue, x=None, y=None, nectares=None):
         super().__init__(world, renderer, command_queue, x, y, nectares)
-        self.nectares = self._parse_nectares(nectares)
         self.renderer.render_actor(self)
 
-    def _parse_nectares(self, nectares):
-        if nectares is None:
-            return 0
-
-        try:
-            return int(nectares)
-        except (TypeError, ValueError):
-            return 0
 
     def esconda(self):
         self._hidden = False
         self.renderer.render_actor(self)
 
-    def extract_nectar(self):
+    def _extract_nectar(self):
         if self.nectares <= 0:
             raise RuntimeError("Não há néctar para extrair.")
 
         self.nectares -= 1
         self.renderer.render_actor(self)
 
+    def extract_nectar(self):
+        self._nectares_virtual = self._nectares_virtual - 1
+        self.queue.append(self._extract_nectar)
+
     @property
     def value(self):
-        return self.nectares
+        return self.nectares or 0
 
 class GirassolError(Exception):
     pass

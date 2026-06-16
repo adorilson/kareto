@@ -43,11 +43,15 @@ class DummyWorld:
 
 
 class DummyGirassol:
-    def __init__(self):
+    def __init__(self, queue):
         self.extracted = 0
+        self.queue = queue
 
     def extract_nectar(self):
-        self.extracted += 1
+        self.queue.append(self._extract_nectar)
+
+    def _extract_nectar(self):
+        self.extracted = 1
 
 
 class DummyColmeia:
@@ -163,10 +167,11 @@ def test_extraia_nectar_enqueues_and_extracts():
     renderer = DummyRenderer()
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
-    girassol = DummyGirassol()
+    girassol = DummyGirassol(queue=queue)
     world.add_girassol((1, 1), girassol)
 
     abelha.extraia_nectar()
+    assert girassol.extracted == 0
 
     assert len(queue) == 1
     queue.pop(0)()
@@ -193,7 +198,7 @@ def test_no_girassol_retornando_true_quando_na_mesma_posicao():
     renderer = DummyRenderer()
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
-    world.add_girassol((1, 1), DummyGirassol())
+    world.add_girassol((1, 1), DummyGirassol(queue=queue))
 
     assert abelha.no_girassol() is True
 
