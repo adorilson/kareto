@@ -34,12 +34,19 @@ class Renderer:
         self.actor_elements[actor] = el
         self.render_actor(actor)
 
+    def as_tag_html(self, actor):
+        width, height = getattr(actor, "image_size", (80, 80))
+        s = actor.shape()
+        v = actor.value if actor.value is not None else ''
+        return f"""<img src="img/{s}" style="width: {width}%; height: {height}%;"/>
+                    <div class="actor-value">{v}</div>"""
+
     def render_actor(self, actor):
         el = self.actor_elements[actor]
+        el.innerHTML = f'{self.as_tag_html(actor)}'
+
         x_px = actor.x * TILE_SIZE
         y_px = actor.y * TILE_SIZE
-        width, height = getattr(actor, "image_size", (80, 80))
-        el.innerHTML = f'<img src="img/{actor.shape()}" style="width: {width}%; height: {height}%;"/> <div class="actor-value">{actor.value}</div>'
         el.style.transform = f"translate({x_px}px, {y_px}px)"
         el.style.zIndex = actor.z_index
 

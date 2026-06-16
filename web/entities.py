@@ -21,10 +21,10 @@ class Ator:
         Direcao.OESTE: ATOR_OESTE,
         Direcao.SUL: ATOR_SUL}
 
-    def __init__(self, world, command_queue, x=None, y=None, direcao=Direcao.LESTE):
+    def __init__(self, world, command_queue, x=None, y=None, direcao=None):
         super().__init__()
         self._shape = ''
-        self._value = ''
+        self._value = None
         self.image_size = (80, 80)
 
         self.world = world
