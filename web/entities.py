@@ -69,7 +69,13 @@ class Ator:
         return self.x, self.y
 
     def __str__(self):
-        return super().__str__() + f" at ({self.x}, {self.y}) facing {self.direcao}"
+        cls = self.__class__.__name__
+        x = self.x
+        y = self.y
+        v = self.value
+        d = self.direcao
+        _str = f"{cls}(x={x}, y={y}, value={v}) facing {d}"
+        return _str
 
 
 class Abelha(Ator):

@@ -69,7 +69,7 @@ def test_str_includes_position_and_direction():
 
     text = str(actor)
 
-    assert "(4, 6)" in text
+    assert "(x=4, y=6, value=)" in text
     assert f"facing {Direcao.SUL}" in text
 
 
