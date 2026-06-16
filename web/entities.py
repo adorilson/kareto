@@ -1,3 +1,4 @@
+from abc import ABC
 import random
 from enum import IntEnum
 
@@ -9,7 +10,7 @@ class Direcao(IntEnum):
     SUL = 270
 
 
-class Ator:
+class Ator(ABC):
     ATOR_LESTE = "abelha_leste.gif"
     ATOR_NORTE = "abelha_norte.gif"
     ATOR_OESTE = "abelha_oeste.gif"
@@ -31,9 +32,21 @@ class Ator:
         
         self.queue = command_queue
 
+        # Se x ou y não forem fornecidos, sorteia uma posição aleatória dentro
+        # dos limites do mundo.
+        # Representam a posição real do ator, atualizadas apenas quando o comando
+        # da fila de comandos é processado
         self.x = x if x is not None else random.randint(0, world.width - 1)
         self.y = y if y is not None else random.randint(0, world.height - 1)
 
+
+        # direcao é a direção real do ator, atualizada apenas quando o da fila
+        # de comandos é processado
+        self.direcao = direcao
+
+        # Inicializando as posições e direção virtuais, que são atualizadas
+        # imediatamente quando os métodos de movimento ou rotação são chamados,
+        # enquanto a posição e direção reais só são atualizadas quando os comandos são processados
         self._posicao_virtual = (self.x, self.y)
         self._direcao_virtual = direcao
 
