@@ -347,11 +347,18 @@ class Abelha(Ator):
             girassol.extract_nectar()
 
     def faça_mel(self):
-        self.queue.append(self._faça_mel)
+        self._faça_mel()
 
     def _faça_mel(self):
-        colmeia = self.world.colmeia_em(self.posicao)
-        colmeia.faça_mel()
+        try:
+            colmeia = self.world.colmeia_em(self._posicao_virtual)
+            if window:
+                window.console.log(f"Fazendo mel na colmeia na posição {self._posicao_virtual}")
+        except RuntimeError as e:
+            self.queue.append(lambda: _raise(e))
+            stop_execution()
+        else:
+            colmeia.faça_mel()
 
     def _no_girassol(self):
         try:

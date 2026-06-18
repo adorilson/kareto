@@ -55,11 +55,16 @@ class DummyGirassol:
 
 
 class DummyColmeia:
-    def __init__(self, nectares=0):
+    def __init__(self, queue=None, nectares=0):
         self.nectares = nectares
+        self.queue = queue if queue is not None else []
+        self.mel_feito = 0
 
     def faça_mel(self):
-        self.nectares -= 1
+        self.queue.append(self._faça_mel)
+
+    def _faça_mel(self):
+        self.mel_feito = 1
 
 
 def make_abelha(x=1, y=1, direcao=Direcao.LESTE, world=None, renderer=None):
@@ -179,19 +184,21 @@ def test_extraia_nectar_enqueues_and_extracts():
     assert girassol.extracted == 1
 
 
-def test_faca_mel_enqueues_and_extracts():
+def test_abelha_faça_mel_enqueues_and_makes_honey():
     world = DummyWorld()
     renderer = DummyRenderer()
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
-    colmeia = DummyColmeia(nectares=2)
+    colmeia = DummyColmeia(queue=queue, nectares=2)
     world.add_colmeia((1, 1), colmeia)
 
     abelha.faça_mel()
+    assert len(queue) == 1
+    assert colmeia.mel_feito == 0
 
     assert len(queue) == 1
     queue.pop(0)()
-    assert colmeia.nectares == 1
+    assert colmeia.mel_feito == 1
 
 
 def test_no_girassol_retornando_true_quando_na_mesma_posicao():
