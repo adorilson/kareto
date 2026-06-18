@@ -452,6 +452,7 @@ class Colmeia(Ator):
         self.shape(self.COLMEIA)
         self.z_index = 1
         self.nectares = self._parse_nectares(nectares)
+        self._nectares_virtual = self.nectares
 
         self.renderer = renderer
         self.renderer.register_actor(self)
@@ -475,6 +476,9 @@ class Colmeia(Ator):
     @property
     def value(self):
         return self.nectares
+
+    def tem_nectar(self):
+        return self._nectares_virtual is not None and self._nectares_virtual > 0
 
 
 class Nuvem(Ator):

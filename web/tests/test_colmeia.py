@@ -74,3 +74,23 @@ def test_colmeia_faca_mel_sem_nectar_gera_erro():
 
     with pytest.raises(RuntimeError):
         colmeia.faça_mel()
+
+
+def test_colmeia_tem_nectar_retorna_true_quando_tem_nectar():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+
+    colmeia = Colmeia(world, renderer, queue, x=0, y=0, nectares=2)
+
+    assert colmeia.tem_nectar() is True
+
+
+def test_colmeia_tem_nectar_retorna_false_quando_nao_tem_nectar():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+
+    colmeia = Colmeia(world, renderer, queue, x=0, y=0, nectares=0)
+
+    assert colmeia.tem_nectar() is False
