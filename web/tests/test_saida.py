@@ -479,3 +479,44 @@ def test_contagem_else(request):
         assert msg not in output
 
         assert dialog_state["dialogs"] == []
+
+
+def test_saida_deve_ter_4_linhas(request):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+
+        request.node.console_attach(page)
+        dialog_state = monitor_dialogs(page)
+
+        page.goto("http://localhost:8000/?maia=1,1,0&fast=1")
+        page.wait_for_function(
+            "() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        assert page.locator('.CodeMirror').is_visible()
+
+        code = 'nome_invalido'
+        code = textwrap.dedent(code)
+        page.evaluate('code => {window.editor.setValue(code)}', code)
+        page.locator("#run-btn").click()
+
+        page.wait_for_function(
+            "() => window.is_running === false && window.command_queue_len === 0")
+
+        # Esperadas
+        LINHA1 = 'Análise de código concluída sem erros de sintaxe.'
+        LINHA2 = 'Traceback (most recent call last):'
+        # r e \ para escapar as aspas do JavaScript
+        LINHA3 = r'File \"<string>\", line 1, in <module>'
+        LINHA4 = "NameError: name 'nome_invalido' is not defined"
+        wait_for_output_content(page, LINHA1)
+        wait_for_output_content(page, LINHA2)
+        wait_for_output_content(page, LINHA3)
+        wait_for_output_content(page, LINHA4)
+
+        # 4 Linhas esperadas devem gerar 8 tags <pre> no output-content
+        page.wait_for_function(
+            "() => document.getElementById('output-content').children.length == 8")
+
+        assert dialog_state["dialogs"] == []

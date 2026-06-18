@@ -489,6 +489,12 @@ def fill_and_process_command_queue(_code):
         exec(_code)
     except WorldError as e:
         window.console.log(f'Erro durante exec(_code): {e}')
+    except Exception as e:
+        window.is_running = False
+        window.command_queue_len = 0
+        window.console.log(f'Exception durante exec(_code): {e}')
+        report_exception(e)
+        return
 
     try:
         print('Executando o código. Aguarde...')
