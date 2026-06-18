@@ -660,3 +660,26 @@ def test_deve_levantar_runtime_error():
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
         wait_for_output_content(page, 'RuntimeError: Não há girassol na posição')
+
+
+def test_tem_nectar_na_colmeia_na_web():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,1,3&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        data = """
+        maia.avance()
+
+        while tem_nectar_na_colmeia():
+            maia.faça_mel()
+
+        maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+        wait_for_output_content(page, 'Tarefa realizada com sucesso.')
