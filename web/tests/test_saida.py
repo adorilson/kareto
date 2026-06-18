@@ -101,9 +101,11 @@ def test_saida_tarefa_nao_concluida_com_nectar_na_colmeia(request):
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
+        NECTAR_NAO_COLETADO = "Alguma colmeia ainda tem néctar."
+        wait_for_output_content(page, NECTAR_NAO_COLETADO)
+
         output = page.locator("#output-content").inner_text()
         assert "Tarefa realizada com sucesso." not in output
-        assert "Alguma colmeia ainda tem néctar." in output
         assert dialog_state["dialogs"] == []
 
 
@@ -296,8 +298,8 @@ def test_nectar_nao_coletado(request):
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
 
-        output = page.locator("#output-content").inner_text()
-        assert "Falha ao analisar a saída: Algum néctar não foi coletado" in output
+        FALHA = "Falha ao analisar a saída: Algum néctar não foi coletado."
+        wait_for_output_content(page, FALHA)
         assert dialog_state["dialogs"] == []
 
 
