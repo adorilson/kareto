@@ -9,7 +9,7 @@ from browser import document, window, timer, bind
 
 from snapshot import SnapshotStatus, send_snapshot, send_interpreter_snapshot
 
-from world import World
+from world import World, WorldError
 from renderer import Renderer
 from entities import Abelha, Girassol, GirassolPersistente, Colmeia, Nuvem, Direcao
 
@@ -482,10 +482,22 @@ def trigger_tests():
 
 
 def fill_and_process_command_queue(_code):
-    exec(_code)
+    global has_exception
+    has_exception = False
 
-    print('Executando o código. Aguarde...')
-    process_queue()
+    try:
+        exec(_code)
+    except WorldError as e:
+        window.console.log(f'Erro durante exec(_code): {e}')
+
+    try:
+        print('Executando o código. Aguarde...')
+        process_queue()
+        timer.set_timeout(trigger_tests, queue_delay_ms + 200)
+    except Exception as e:
+        window.console.log(f'Erro durante o processamento da fila de comandos: {e}')
+        report_exception(e)
+        return
 
 
 @bind(document["run-btn"], "click")
@@ -546,11 +558,6 @@ def run_code(event):
     # Pequeno delay para garantir a visualização da cena resetada antes
     # do inicio do movimento da abelha
     timer.set_timeout(lambda: fill_and_process_command_queue(_code), queue_delay_ms + 100)
-
-    global has_exception
-    has_exception = False
-    # Garante que os testes só rodem depois que a fila começar a ser processada
-    timer.set_timeout(trigger_tests, queue_delay_ms + 200)
 
 
 class Interpreter(interpreter.Interpreter):

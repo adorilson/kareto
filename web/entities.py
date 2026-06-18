@@ -2,6 +2,35 @@ from abc import ABC
 import random
 from enum import IntEnum
 
+# Tentando importar window do browser, caso não esteja disponível (por exemplo,
+# ao executar o código fora do navegador), define window como None.
+# TODO conseguir importar window de forma mais elegante, sem precisar usar try/except
+try:
+    from browser import window
+except ImportError:
+    window = None
+
+# Tentando importar WorldError do módulo world, com e sem o pacote web, para
+# compatibilidade com diferentes ambientes de execução.
+# TODO: Refatorar para evitar a necessidade de múltiplas importações.
+try:
+    from world import WorldError
+except ImportError:
+    from web.world import WorldError
+
+
+def _raise(exception):
+    """O propósito desta função é permitir que exceções sejam levantadas dentro
+    de uma função lambda que serão adicionadas a fila de comandos."""
+    raise exception
+
+
+def stop_execution():
+    """Função para interromper a análise do código do usuário e o preechimento
+    da fila de comandos, evitando que sejam adicionados comandos a fila que nunca
+    serão executados."""
+    raise WorldError("Execução interrompida pelo comando stop_execution.")
+
 
 class Direcao(IntEnum):
     LESTE = 0
@@ -304,12 +333,18 @@ class Abelha(Ator):
         self.y = self.y - 1
 
     def extraia_nectar(self):
-        girassol = self.world.girassol_em(self._posicao_virtual)
-        girassol.extract_nectar()
+        self._extraia_nectar()
 
-    def _extraia_nectar(self):  
-        girassol = self.world.girassol_em(self.posicao)
-        girassol.extract_nectar()
+    def _extraia_nectar(self):
+        try:
+            girassol = self.world.girassol_em(self._posicao_virtual)
+            if window:
+                window.console.log(f"Extraindo néctar do girassol na posição {self._posicao_virtual}")
+        except RuntimeError as e:
+            self.queue.append(lambda: _raise(e))
+            stop_execution()
+        else:
+            girassol.extract_nectar()
 
     def faça_mel(self):
         self.queue.append(self._faça_mel)

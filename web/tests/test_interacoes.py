@@ -638,3 +638,25 @@ def test_tem_nectar_no_girassol_condicional_na_web():
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
         wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+
+
+def test_deve_levantar_runtime_error():
+    """Testa que o erro de tentar extrair néctar de um espaço sem girassol é
+    mostrado na saída.
+    O erro deve aparecer apenas quando a animação estiver em execução"""
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,1,0&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        data = """
+        maia.avance()
+        maia.extraia_nectar()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+        wait_for_output_content(page, 'RuntimeError: Não há girassol na posição')
