@@ -80,6 +80,17 @@ class World:
 
         return girassol.tem_nectar()
 
+    def tem_nectar_na_colmeia(self, posicao=None):
+        if posicao is None:
+            posicao = self.abelha._posicao_virtual
+
+        try:
+            colmeia = self.colmeia_em(posicao)
+        except RuntimeError:
+            return False
+
+        return colmeia.tem_nectar()
+
 
 class WorldError(Exception):
     pass

@@ -68,7 +68,8 @@ def test_girassol_em_gera_erro_quando_nao_encontra():
 
 
 class DummyColmeia(DummyAtor):
-    pass
+    def tem_nectar(self):
+        return getattr(self, 'nectares', 0) > 0
 
 
 def test_colmeia_em_retorna_correspondente():
@@ -266,3 +267,37 @@ def test_tem_nectar_no_girassol_com_posicao_none():
 
     g1.nectares = 0
     assert world.tem_nectar_no_girassol() is False
+
+
+def test_world_tem_nectar_na_colmeia_retorna_true_quando_tem_nectar():
+    world = World()
+    c1 = DummyColmeia(1, 2)
+    c1.nectares = 2
+    world.colmeias.append(c1)
+
+    assert world.tem_nectar_na_colmeia((1, 2)) is True
+
+
+def test_world_tem_nectar_na_colmeia_retorna_false_quando_nao_tem_nectar():
+    world = World()
+    c1 = DummyColmeia(1, 2)
+    c1.nectares = 0
+    world.colmeias.append(c1)
+
+    assert world.tem_nectar_na_colmeia((1, 2)) is False
+
+
+def test_world_tem_nectar_na_colmeia_com_posicao_none():
+    """Testa o método tem_nectar_na_colmeia com posicao=None, usando a posição virtual da abelha."""
+    world = World()
+    abelha = DummyAbelha()
+    abelha._posicao_virtual = (1, 2)
+    world.abelha = abelha
+    c1 = DummyColmeia(1, 2)
+    world.colmeias.append(c1)
+
+    c1.nectares = 1
+    assert world.tem_nectar_na_colmeia() is True
+
+    c1.nectares = 0
+    assert world.tem_nectar_na_colmeia() is False
