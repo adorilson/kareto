@@ -50,22 +50,22 @@ def test_colmeia_init_com_nectar_nao_inteiro():
         colmeia = Colmeia(world, renderer, queue, x=2, y=1, nectares='42')
 
 
-def test_colmeia_faca_mel_diminui_e_renderiza():
+def test_colmeia_faça_mel_diminui_e_renderiza():
     world = DummyWorld()
     renderer = DummyRenderer()
     queue = []
 
     colmeia = Colmeia(world, renderer, queue, x=0, y=0, nectares=2)
 
-    colmeia.faça_mel()
+    colmeia._faça_mel()
     assert colmeia.value == 1
     assert renderer.rendered[-1] == (0, 0)
 
-    colmeia.faça_mel()
+    colmeia._faça_mel()
     assert colmeia.value == 0
 
 
-def test_colmeia_faca_mel_sem_nectar_gera_erro():
+def test_colmeia_faça_mel_sem_nectar_gera_erro():
     world = DummyWorld()
     renderer = DummyRenderer()
     queue = []
@@ -73,7 +73,7 @@ def test_colmeia_faca_mel_sem_nectar_gera_erro():
     colmeia = Colmeia(world, renderer, queue, x=0, y=0, nectares=0)
 
     with pytest.raises(RuntimeError):
-        colmeia.faça_mel()
+        colmeia._faça_mel()
 
 
 def test_colmeia_tem_nectar_retorna_true_quando_tem_nectar():
@@ -94,3 +94,20 @@ def test_colmeia_tem_nectar_retorna_false_quando_nao_tem_nectar():
     colmeia = Colmeia(world, renderer, queue, x=0, y=0, nectares=0)
 
     assert colmeia.tem_nectar() is False
+
+
+def test_colmeia_faça_mel_enqueues_and_makes_honey():
+    world = DummyWorld()
+    renderer = DummyRenderer()
+    queue = []
+
+    colmeia = Colmeia(world, renderer, queue, x=0, y=0, nectares=2)
+
+    assert colmeia.value == 2
+
+    colmeia.faça_mel()
+    assert colmeia.value == 2
+
+    assert len(queue) == 1
+    queue.pop(0)()
+    assert colmeia.value == 1

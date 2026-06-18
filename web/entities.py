@@ -465,13 +465,16 @@ class Colmeia(Ator):
         else:
             raise TypeError(f"nectares deve ser um inteiro ou None, recebeu {type(nectares)}")
 
+    def _faça_mel(self):
+        if self.nectares <= 0:
+            raise RuntimeError("Não há néctar para fazer mel.")
+
+        self.nectares -= 1
+        self.renderer.render_actor(self)
 
     def faça_mel(self):
-        if self.nectares <= 0:
-            raise RuntimeError("Não há mais néctar para fazer mel.")
-
-        self.nectares = self.nectares - 1
-        self.renderer.render_actor(self)
+        self._nectares_virtual = self._nectares_virtual - 1
+        self.queue.append(self._faça_mel)
 
     @property
     def value(self):
