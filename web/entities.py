@@ -40,6 +40,8 @@ class Direcao(IntEnum):
 
 
 class Ator(ABC):
+    IMAGE_SIZE = (80, 80)
+
     ATOR_LESTE = "abelha_leste.gif"
     ATOR_NORTE = "abelha_norte.gif"
     ATOR_OESTE = "abelha_oeste.gif"
@@ -55,7 +57,6 @@ class Ator(ABC):
         super().__init__()
         self._shape = ''
         self._value = None
-        self.image_size = (80, 80)
 
         self.world = world
         
@@ -493,13 +494,13 @@ class Colmeia(Ator):
 
 class Nuvem(Ator):
     NUVEM = "nuvem.gif"
+    IMAGE_SIZE = (140, 140)
 
     def __init__(self, world, renderer, command_queue, x=None, y=None):
         super().__init__(world, command_queue, x, y)
 
         self.shape(self.NUVEM)
         self.z_index = 2
-        self.image_size = (140, 140)
 
         self.renderer = renderer
         self.renderer.register_actor(self)

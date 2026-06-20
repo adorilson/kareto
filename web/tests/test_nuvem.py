@@ -29,4 +29,4 @@ def test_nuvem_init_registra_e_define_shape_e_zindex():
     assert renderer.registered == [nuvem]
     assert nuvem.shape() == Nuvem.NUVEM
     assert nuvem.z_index == 2
-    assert nuvem.image_size == (140, 140)
+    assert nuvem.IMAGE_SIZE == (140, 140)

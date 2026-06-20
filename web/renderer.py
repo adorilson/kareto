@@ -35,7 +35,7 @@ class Renderer:
         self.render_actor(actor)
 
     def as_tag_html(self, actor):
-        width, height = getattr(actor, "image_size", (80, 80))
+        width, height = actor.IMAGE_SIZE
         s = actor.shape()
         v = actor.value if actor.value is not None else ''
         return f"""<img src="img/{s}" style="width: {width}%; height: {height}%;"/>
