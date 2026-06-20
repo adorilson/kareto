@@ -74,7 +74,7 @@ def make_abelha(x=1, y=1, direcao=Direcao.LESTE, world=None, renderer=None):
     return Abelha(world, renderer, queue, x=x, y=y, direcao=direcao), queue
 
 
-def test_init():
+def test_abelha_init():
     world = DummyWorld()
     renderer = DummyRenderer()
     queue = []
@@ -85,7 +85,7 @@ def test_init():
     assert renderer.registered == [abelha]
     assert abelha.z_index == 3
     assert abelha.shape() == Abelha.IMAGENS[Direcao.NORTE]
-    assert abelha.image_size == (80, 80)
+    assert abelha.IMAGE_SIZE == (80, 80)
 
 
 def test_goto_enqueues_and_moves_and_renders():
