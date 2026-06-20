@@ -40,6 +40,13 @@ class Direcao(IntEnum):
 
 
 class Ator(ABC):
+    # Valores padrão para os offsets e tamanho da imagem, que podem ser
+    # sobrescritos por atores específicos, como NuvemPequena
+    # TODO refatorar pra ser calculado em função TILE_SIZE ao invés de ser um
+    # valor fixo
+    X_OFFSET = 0
+    Y_OFFSET = 0
+
     IMAGE_SIZE = (80, 80)
 
     ATOR_LESTE = "abelha_leste.gif"
@@ -506,3 +513,7 @@ class Nuvem(Ator):
         self.renderer.register_actor(self)
 
 
+class NuvemPequena(Nuvem):
+    X_OFFSET = 20
+    Y_OFFSET = 20
+    IMAGE_SIZE = (40, 40)

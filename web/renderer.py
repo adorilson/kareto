@@ -45,8 +45,8 @@ class Renderer:
         el = self.actor_elements[actor]
         el.innerHTML = f'{self.as_tag_html(actor)}'
 
-        x_px = actor.x * TILE_SIZE
-        y_px = actor.y * TILE_SIZE
+        x_px = actor.x * TILE_SIZE + actor.X_OFFSET
+        y_px = actor.y * TILE_SIZE + actor.Y_OFFSET
         el.style.transform = f"translate({x_px}px, {y_px}px)"
         el.style.zIndex = actor.z_index
 
