@@ -261,9 +261,9 @@ def create_world(confs):
             try:
                 nectares = conf_c[2]
             except IndexError:
-                nectares = 0
+                nectares = None
 
-            colmeia = Colmeia(world, renderer, command_queue, x=int(x), y=int(y), nectares=int(nectares))
+            colmeia = Colmeia(world, renderer, command_queue, x=int(x), y=int(y), nectares=nectares)
             colmeia.remove_prob = _parse_probabilidade(conf_c, 3)
             world.colmeias.append(colmeia)
         window.console.log(f"create_world: colmeias={len(world.colmeias)}")

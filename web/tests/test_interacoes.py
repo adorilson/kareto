@@ -694,3 +694,14 @@ def test_tem_nectar_na_colmeia_na_web():
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
         wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+
+        # Chamando novamente, mas agora sem nectar na URL.
+        # O néctar será gerado de forma aleatória.
+        page.goto("http://localhost:8000/?maia=1,1,0&c=2,1&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+        wait_for_output_content(page, 'Tarefa realizada com sucesso.')

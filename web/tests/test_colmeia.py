@@ -43,11 +43,17 @@ def test_colmeia_init_com_nectar_nao_inteiro():
 
     colmeia = Colmeia(world, renderer, queue, x=2, y=1, nectares=None)
 
-    assert colmeia.value == 0
+    assert 1 <= colmeia.value <= 5
     assert renderer.rendered[-1] == (2, 1)
 
-    with pytest.raises(TypeError):
-        colmeia = Colmeia(world, renderer, queue, x=2, y=1, nectares='42')
+    colmeia = Colmeia(world, renderer, queue, x=2, y=1, nectares='42')
+    assert colmeia.value == 42
+
+    colmeia = Colmeia(world, renderer, queue, x=2, y=1, nectares='4')
+    assert colmeia.value == 4
+
+    colmeia = Colmeia(world, renderer, queue, x=2, y=1, nectares='non_integer')
+    assert colmeia.value == 0
 
 
 def test_colmeia_faça_mel_diminui_e_renderiza():

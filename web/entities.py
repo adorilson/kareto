@@ -477,11 +477,12 @@ class Colmeia(Ator):
 
     def _parse_nectares(self, nectares):
         if nectares is None:
+            return random.randint(1, 5)
+
+        try:
+            return int(nectares)
+        except (TypeError, ValueError):
             return 0
-        elif isinstance(nectares, int):
-            return nectares
-        else:
-            raise TypeError(f"nectares deve ser um inteiro ou None, recebeu {type(nectares)}")
 
     def _faça_mel(self):
         if self.nectares <= 0:

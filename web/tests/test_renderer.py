@@ -10,10 +10,9 @@ def test_renderer_atores():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gsp=3,2,2&gsp=4,2&gsp=5,2,0&n=4,1&np=2,2&c=1,2")
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gsp=3,2,2&gsp=4,2&gsp=5,2,0&n=4,1&np=2,2&c=1,2,3")
 
-        page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 1")
-
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
         # TODO os parametros x e y de assert_ator estão sem serventia.
 
         # Abelha
@@ -61,7 +60,7 @@ def test_renderer_atores():
 
         # Colmeia
         colmeia = assert_ator(page, '#actors > div:nth-child(6)', x=1, y=2, z_index=1, img_src="img/colmeia.gif")
-        assert colmeia.locator('.actor-value').inner_text() == '0'
+        assert colmeia.locator('.actor-value').inner_text() == '3'
         x_px = 1 * TILE_SIZE
         y_px = 2 * TILE_SIZE
         assert colmeia.evaluate(f"el => el.style.transform.includes('translate({x_px}px, {y_px}px)')")
@@ -94,3 +93,10 @@ def test_renderer_atores():
 
         assert nuvem_pequena.locator('img').evaluate("img => img.style.width") == '40%'
         assert nuvem_pequena.locator('img').evaluate("img => img.style.height") == '40%'
+
+        # Colmeia sem nectares na URL.
+        page.goto("http://localhost:8000/?maia=1,1,0&c=1,2,3")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        colmeia = assert_ator(page, '#actors > div:nth-child(2)', x=1, y=2, z_index=1, img_src="img/colmeia.gif")
+        assert 1 <= int(colmeia.locator('.actor-value').inner_text()) <= 5
