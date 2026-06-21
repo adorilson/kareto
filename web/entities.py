@@ -157,8 +157,12 @@ class Abelha(Ator):
         self.renderer.render_actor(self)
 
     def avance(self):
-        self._posicao_virtual = self._proxima_posicao_virtual()
-        self.queue.append(self._avance)
+        if self.world.tem_caminho():
+            self._posicao_virtual = self._proxima_posicao_virtual()
+            self.queue.append(self._avance)
+        else:
+            self.queue.append(lambda: _raise(RuntimeError("Movimento para fora do caminho.")))
+            stop_execution()
 
     def _proxima_posicao_virtual(self):
         x, y = self._posicao_virtual

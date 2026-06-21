@@ -1,5 +1,6 @@
 import pytest
 
+from web.world import World, WorldError
 from web.entities import Abelha, Direcao
 
 
@@ -233,12 +234,13 @@ def test_no_girassol_retornando_false_quando_nao_ha_girassol():
     assert abelha.no_girassol() is False
 
 
-def test_avance():
+def test_abelha_avance():
     """
     Abelha.avance() should call _avance() and enqueue it, plus
     update Abelha._posicao_virtual
     """
     world = DummyWorld(width=4, height=4)
+    world.tem_caminho = lambda: True  # Override tem_caminho to check the path
     renderer = DummyRenderer()
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
@@ -247,12 +249,36 @@ def test_avance():
 
     assert len(queue) == 1
     queue[0] == Abelha.avance  # executa o avance enqueued
-    assert abelha.posicao == (1, 1)  # posição real não deve mudar até a execução
+    # posição real não deve mudar até a execução
+    assert abelha.posicao == (1, 1)
     assert abelha._posicao_virtual == (2, 1)
 
     queue.pop(0)()  # executa o avance enqueued
     assert abelha.posicao == (2, 1)  # posição real deve ser atualizada
-    assert abelha._posicao_virtual == (2, 1) # posição virtual se mantém igual à real após a execução do avance
+    # posição virtual se mantém igual à real após a execução do avance
+    assert abelha._posicao_virtual == (2, 1)
+
+
+def test_abelha_avance_sem_caminho():
+    """
+    Abelha.avance() should raise RuntimeError when there is no path to the
+    next position
+    """
+    world = DummyWorld(width=4, height=4)
+    world.path = [(1, 1), (1, 2)]  # Only allow movement to (1, 2)
+    world.tem_caminho = lambda: False  # Override tem_caminho to check the path
+    renderer = DummyRenderer()
+    queue = []
+    abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
+
+    with pytest.raises(WorldError):
+        abelha.avance()
+
+    assert len(queue) == 1
+    with pytest.raises(RuntimeError):
+        # This should raise an error since (2, 1) is not in the path
+        queue.pop(0)()
+
 
 def test_queued_avance():
     """
