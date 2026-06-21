@@ -4,6 +4,8 @@ import pytest
 TILE_SIZE = 65 #deveria vir de renderer.TILE_SIZE
 
 def assert_ator(page, tile_selector, x, y, z_index, img_src=None):
+    # TODO decidir o que fazer com x e y, que são coordenadas do mundo,
+    # e não pixels.
     tile = page.locator(tile_selector)
     assert tile.is_visible()
     if img_src:

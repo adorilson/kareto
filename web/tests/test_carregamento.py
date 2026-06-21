@@ -61,7 +61,7 @@ def test_girassol_persistente_probabilidade_zero_carrega():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,,p=0")
+        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,0,p=0")
 
         page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 1")
 
@@ -74,7 +74,7 @@ def test_girassol_persistente_probabilidade_um_carrega():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,,p=1")
+        page.goto("http://localhost:8000/?maia=1,1,0&gsp=2,1,0,p=1")
 
         page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 1")
 

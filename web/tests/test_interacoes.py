@@ -639,6 +639,17 @@ def test_tem_nectar_no_girassol_condicional_na_web():
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
         wait_for_output_content(page, 'Tarefa realizada com sucesso.')
 
+        # Chamando novamente, mas agora sem nectar na URL.
+        # O néctar será gerado de forma aleatória.
+        page.goto("http://localhost:8000/?maia=1,3,0&gsp=3,4&gsp=1,5&cag=0&fast=1")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
+        wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+
 
 def test_deve_levantar_runtime_error():
     """Testa que o erro de tentar extrair néctar de um espaço sem girassol é

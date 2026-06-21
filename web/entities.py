@@ -432,6 +432,9 @@ class Girassol(Ator):
 class GirassolPersistente(Girassol):
     def __init__(self, world, renderer, command_queue, x=None, y=None, nectares=None):
         super().__init__(world, renderer, command_queue, x, y, nectares)
+        if self.nectares is None:
+            self.nectares = random.randint(1, 5)
+            self._nectares_virtual = self.nectares
         self.renderer.render_actor(self)
 
 

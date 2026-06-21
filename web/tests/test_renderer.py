@@ -10,9 +10,11 @@ def test_renderer_atores():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
         page = browser.new_page()
-        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gsp=3,2,2&n=4,1&np=2,2&c=1,2")
+        page.goto("http://localhost:8000/?maia=1,1,0&gs=2,1&gsp=3,2,2&gsp=4,2&gsp=5,2,0&n=4,1&np=2,2&c=1,2")
 
         page.wait_for_function("() => document.querySelectorAll('#actors > div').length >= 1")
+
+        # TODO os parametros x e y de assert_ator estão sem serventia.
 
         # Abelha
         abelha = assert_ator(page, '#actors > div:nth-child(1)', x=1, y=1, z_index=3, img_src="img/abelha_leste.gif")
@@ -51,9 +53,14 @@ def test_renderer_atores():
         assert girassolpersist.locator('img').evaluate("img => img.style.width") == '80%'
         assert girassolpersist.locator('img').evaluate("img => img.style.height") == '80%'
 
+        girassolpersist_sem_nectares = assert_ator(page, '#actors > div:nth-child(4)', x=3, y=2, z_index=1, img_src="img/girassol.gif")
+        assert girassolpersist_sem_nectares.locator('.actor-value').inner_text() != '0'
+
+        girassolpersist_zero_nectares = assert_ator(page, '#actors > div:nth-child(5)', x=3, y=2, z_index=1, img_src="img/girassol.gif")
+        assert girassolpersist_zero_nectares.locator('.actor-value').inner_text() == '0'
 
         # Colmeia
-        colmeia = assert_ator(page, '#actors > div:nth-child(4)', x=1, y=2, z_index=1, img_src="img/colmeia.gif")
+        colmeia = assert_ator(page, '#actors > div:nth-child(6)', x=1, y=2, z_index=1, img_src="img/colmeia.gif")
         assert colmeia.locator('.actor-value').inner_text() == '0'
         x_px = 1 * TILE_SIZE
         y_px = 2 * TILE_SIZE
@@ -65,7 +72,7 @@ def test_renderer_atores():
 
 
         # Nuvem
-        nuvem = assert_ator(page, '#actors > div:nth-child(5)', x=4, y=1, z_index=2, img_src="img/nuvem.gif")
+        nuvem = assert_ator(page, '#actors > div:nth-child(7)', x=4, y=1, z_index=2, img_src="img/nuvem.gif")
         assert nuvem.locator('.actor-value').inner_text() == ''
         assert nuvem.evaluate(f"el => el.style.transform.includes('translate({4 * TILE_SIZE}px, {TILE_SIZE}px)')")
         assert nuvem.evaluate("el => el.style.zIndex == '2'")
@@ -75,7 +82,7 @@ def test_renderer_atores():
 
 
         # Nuvem Pequena
-        nuvem_pequena = assert_ator(page, '#actors > div:nth-child(6)', x=2, y=2, z_index=2, img_src="img/nuvem.gif")
+        nuvem_pequena = assert_ator(page, '#actors > div:nth-child(8)', x=2, y=2, z_index=2, img_src="img/nuvem.gif")
         assert nuvem_pequena.locator('.actor-value').inner_text() == ''
 
         X_OFFSET = 20
