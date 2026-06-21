@@ -333,3 +333,19 @@ def test_world_tem_caminho_com_path_definido_com_abelha():
     assert world.tem_caminho((3, 2)) is True
     assert world.tem_caminho((4, 4)) is False
 
+
+def test_world_xy_to_pos():
+    world = World(width=8, height=8)
+
+    assert world.xy_to_pos(0, 0) == 1
+    assert world.xy_to_pos(1, 0) == 2
+    assert world.xy_to_pos(2, 0) == 3
+    assert world.xy_to_pos(0, 1) == 9
+    assert world.xy_to_pos(1, 1) == 10
+    assert world.xy_to_pos(2, 1) == 11
+    assert world.xy_to_pos(3, 1) == 12
+    assert world.xy_to_pos(4, 1) == 13
+    assert world.xy_to_pos(5, 1) == 14
+    assert world.xy_to_pos(4, 2) == 21
+    assert world.xy_to_pos(4, 3) == 29
+    assert world.xy_to_pos(7, 7) == 64

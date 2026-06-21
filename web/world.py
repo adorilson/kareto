@@ -103,5 +103,17 @@ class World:
         return destino in self.path
 
 
+    def xy_to_pos(self, x, y):
+        """Converte coordenadas (x, y) em posição linear (1 a width*height).
+        A posição 1 corresponde a (0, 0), a posição 2 corresponde a (1, 0), e
+        assim por diante, até a posição width*height que corresponde a
+        (width-1, height-1).
+        """
+        if not self.in_bounds(x, y):
+            raise RuntimeError(f'Coordenadas fora dos limites do mundo: ({x}, {y})')
+
+        return y * self.width + x + 1
+
+
 class WorldError(Exception):
     pass
