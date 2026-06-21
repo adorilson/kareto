@@ -301,3 +301,35 @@ def test_world_tem_nectar_na_colmeia_com_posicao_none():
 
     c1.nectares = 0
     assert world.tem_nectar_na_colmeia() is False
+
+
+def test_world_tem_caminho_sem_path_definido():
+    world = World()
+
+    # Se world não tem path definido, todos os caminhos
+    # devem ser considerados como válidos
+    assert world.tem_caminho()
+
+
+def test_world_tem_caminho_com_path_definido_sem_abelha():
+    path = ((2, 1), (2, 2), (3, 2))
+
+    world = World(path=path)
+
+    assert world.tem_caminho((3, 2)) is True
+    assert world.tem_caminho((4, 4)) is False
+
+def test_world_tem_caminho_com_path_definido_com_abelha():
+    path = ((2, 1), (2, 2), (3, 2))
+
+    world = World(path=path)
+    abelha = DummyAbelha()
+    abelha._posicao_virtual = (2, 1)
+    abelha._direcao_virtual = 0
+    abelha._proxima_posicao_virtual = lambda: (2, 2)
+    world.abelha = abelha
+
+    assert world.tem_caminho() is True
+    assert world.tem_caminho((3, 2)) is True
+    assert world.tem_caminho((4, 4)) is False
+

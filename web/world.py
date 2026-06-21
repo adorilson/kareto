@@ -1,12 +1,13 @@
 import random
 
 class World:
-    def __init__(self, width=8, height=8):
+    def __init__(self, width=8, height=8, path=None):
         self.width = width
         self.height = height
         self.girassois = []
         self.colmeias = []
         self.nuvens = []
+        self.path = path
         self.abelha = None
 
     def in_bounds(self, x, y):
@@ -90,6 +91,16 @@ class World:
             return False
 
         return colmeia.tem_nectar()
+
+    def tem_caminho(self, destino=None):
+        if self.path is None:
+            return True
+
+        if destino is not None:
+            return destino in self.path
+
+        destino = self.abelha._proxima_posicao_virtual()
+        return destino in self.path
 
 
 class WorldError(Exception):
