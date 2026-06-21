@@ -153,9 +153,8 @@ def test_esquerda_enqueues_and_rotates():
     assert abelha.heading() == Direcao.NORTE
 
 
-def test_proxima_posicao():
+def test_abelha_proxima_posicao():
     abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.LESTE)
-
     assert abelha.proxima_posicao() == (2, 1)
 
     abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.SUL)
@@ -166,6 +165,20 @@ def test_proxima_posicao():
 
     abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.NORTE)
     assert abelha.proxima_posicao() == (1, 0)
+
+
+def test_abelha_proxima_posicao_virtual():
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.LESTE)
+    assert abelha._proxima_posicao_virtual() == (2, 1)
+
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.SUL)
+    assert abelha._proxima_posicao_virtual() == (1, 2)
+
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.OESTE)
+    assert abelha._proxima_posicao_virtual() == (0, 1)
+
+    abelha, _ = make_abelha(x=1, y=1, direcao=Direcao.NORTE)
+    assert abelha._proxima_posicao_virtual() == (1, 0)
 
 
 def test_extraia_nectar_enqueues_and_extracts():
