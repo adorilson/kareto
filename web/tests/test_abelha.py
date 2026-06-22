@@ -280,11 +280,12 @@ def test_abelha_avance_sem_caminho():
         queue.pop(0)()
 
 
-def test_queued_avance():
+def test_abelha_avance_na_fila():
     """
     Executar a função enqueued por Abelha.avance() deve atualizar a posição real
     """
     world = DummyWorld(width=4, height=4)
+    world.tem_caminho = lambda: True  # Override tem_caminho to check the path
     renderer = DummyRenderer()
     queue = []
     abelha = Abelha(world, renderer, queue, x=1, y=1, direcao=Direcao.LESTE)
