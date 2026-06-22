@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 
 
 
-from web.tests.common import assert_ator, wait_for_output_content
+from web.tests.common import assert_ator, monitor_dialogs, wait_for_output_content, fail_on_console_errors
 
 # Mudar para 
 #import renderer.TILE_SIZE
@@ -705,3 +705,70 @@ def test_tem_nectar_na_colmeia_na_web():
         page.locator("#run-btn").click()
         page.wait_for_function("() => window.is_running === false && window.command_queue_len === 0")
         wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+
+
+def test_tem_caminho_na_web(request):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+
+        request.node.console_attach(page)
+        dialog_state = monitor_dialogs(page)
+
+        page.goto(
+            "http://localhost:8000/?maia=1,4,0&gsp=2,2,3&path=1,4,2,4,2,3,2,2,2,1&fast=1")
+        page.wait_for_function(
+            "() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        data = """
+        while tem_caminho():
+            maia.avance()
+
+        maia.esquerda()
+
+        while tem_caminho():
+            maia.avance()
+            while tem_nectar_no_girassol():
+                maia.extraia_nectar()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function(
+            "() => window.is_running === false && window.command_queue_len === 0")
+        wait_for_output_content(page, 'Tarefa realizada com sucesso.')
+
+        data = """
+        maia.avance()
+        maia.avance()
+        """
+        data = textwrap.dedent(data)
+        page.evaluate('data => {window.editor.setValue(data)}', data)
+
+        page.locator("#run-btn").click()
+        page.wait_for_function(
+            "() => window.is_running === false && window.command_queue_len === 0")
+
+        LINHA1 = 'Análise de código concluída sem erros de sintaxe.'
+        LINHA2 = 'Executando o código. Aguarde...'
+        LINHA3 = 'Traceback (most recent call last):'
+        LINHA4 = 'File "http://localhost:8000/entities.py", line 25, in _raise'
+        LINHA5 = 'raise exception'
+        LINHA6 = 'RuntimeError: Movimento para fora do caminho.'
+
+        wait_for_output_content(page, LINHA1)
+        wait_for_output_content(page, LINHA2)
+        wait_for_output_content(page, LINHA3)
+        # A linha 4 não é testada pode as coisas ali podem mudar.
+        # wait_for_output_content(page, LINHA4)
+        wait_for_output_content(page, LINHA5)
+        wait_for_output_content(page, LINHA6)
+
+        # Embora sejam 6 linhas no visual, as linhas 4 e 5 geram apenas um par
+        # de <pre>, daí serem esperadas 10 filhos.
+        page.wait_for_function(
+            "() => document.getElementById('output-content').children.length == 10")
+
+        assert dialog_state["dialogs"] == []

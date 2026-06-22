@@ -151,6 +151,7 @@ renderer = Renderer(world)
 # Expondo alguns métodos de world pra que sejam usado como funções embutidas
 tem_nectar_no_girassol = world.tem_nectar_no_girassol
 tem_nectar_na_colmeia = world.tem_nectar_na_colmeia
+tem_caminho = world.tem_caminho
 
 def create_world(confs):
     global command_queue, is_running, coleta_automatica_de_girassol, queue_delay_ms, auto_collect_delay_ms
