@@ -29,7 +29,7 @@ class Renderer:
         path_positions = self.world.path_as_pos()
         for pos in path_positions:
             tile = self.board_element.children[pos-1]
-            tile.attrs['style'] = 'background-color: darkblue;'
+            tile.attrs['style'] = 'background-color: lightskyblue'
 
     def reset(self):
         self.actors_element.clear()

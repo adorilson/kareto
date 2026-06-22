@@ -114,4 +114,5 @@ def test_renderer_draw_caminho():
         for x, y in path_positions:
             tile_selector = f"div.tile:nth-child({y * 8 + x + 1})"
             tile = page.locator(tile_selector)
-            assert tile.evaluate("el => el.style.backgroundColor == 'darkblue'")
+            assert tile.evaluate("el => el.style.backgroundColor == 'lightskyblue'")
+
