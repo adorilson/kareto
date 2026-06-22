@@ -114,6 +114,16 @@ class World:
 
         return y * self.width + x + 1
 
+    def path_as_pos(self):
+        """Retorna uma tupla de posições lineares correspondentes às coordenadas
+        do caminho, caso o caminho esteja definido. Caso contrário, retorna uma
+        tupla vazia.
+        """
+        if self.path is None:
+            return tuple()
+
+        return (self.xy_to_pos(x, y) for x, y in self.path)
+
 
 class WorldError(Exception):
     pass

@@ -349,3 +349,13 @@ def test_world_xy_to_pos():
     assert world.xy_to_pos(4, 2) == 21
     assert world.xy_to_pos(4, 3) == 29
     assert world.xy_to_pos(7, 7) == 64
+
+
+def test_world_path_as_pos():
+    path = ((2, 1), (2, 2), (3, 2))
+    world = World(path=path)
+
+    assert tuple(world.path_as_pos()) == (11, 19, 20)
+
+    world = World()
+    assert tuple(world.path_as_pos()) == tuple()
