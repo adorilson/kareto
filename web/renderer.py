@@ -15,12 +15,21 @@ class Renderer:
 
     def _create_board(self):
         self.board_element.clear()
+        tons_de_verde = "green", "darkgreen", "forestgreen", "seagreen"
         for _ in range(self.world.width * self.world.height):
             tile = document.createElement("div")
             tile.className = "tile"
-            tons_de_verde = "green", "darkgreen", "forestgreen", "seagreen"
             tile.attrs['style'] = f'background-color: {random.choice(tons_de_verde)}'
+
             self.board_element <= tile
+
+        self.draw_path()
+
+    def draw_path(self):
+        path_positions = self.world.path_as_pos()
+        for pos in path_positions:
+            tile = self.board_element.children[pos-1]
+            tile.attrs['style'] = 'background-color: darkblue;'
 
     def reset(self):
         self.actors_element.clear()

@@ -289,10 +289,23 @@ def create_world(confs):
             nuvem = NuvemPequena(world, renderer, command_queue, x=int(x), y=int(y))
             world.nuvens.append(nuvem)
 
+    if 'path' in confs:
+        path_conf = confs['path'][0]
+        path_coords = path_conf.split(',')
+        if len(path_coords) % 2 != 0:
+            window.console.log("create_world: configuração de caminho invalida, deve conter pares de coordenadas x,y")
+            raise RuntimeError("Configuração de caminho inválida")
+        path_positions = []
+        for i in range(0, len(path_coords), 2):
+            pos = int(path_coords[i]), int(path_coords[i + 1])
+            path_positions.append(pos)
+        world.path = path_positions
+        window.console.log(f"create_world: path={world.path}")
+
     return maia
 
 confs = parse_qs(document.location.search[1:])  # Ignora o '?'
-valid_world_keys = {"maia", "gs", "gsp", "c", "cag", "n", "np"}
+valid_world_keys = {"maia", "gs", "gsp", "c", "cag", "n", "np", "path"}
 if confs and valid_world_keys.intersection(confs.keys()):
     window.console.log("confs: origem=querystring")
 else:
@@ -615,4 +628,5 @@ except Exception as e:
     document["loading-overlay"].html = tag
     window.console.log(traceback.format_exc())
 else:
+    renderer.draw_path()
     start_ambiente()

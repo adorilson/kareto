@@ -100,3 +100,18 @@ def test_renderer_atores():
 
         colmeia = assert_ator(page, '#actors > div:nth-child(2)', x=1, y=2, z_index=1, img_src="img/colmeia.gif")
         assert 1 <= int(colmeia.locator('.actor-value').inner_text()) <= 5
+
+
+def test_renderer_draw_caminho():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"],)
+        page = browser.new_page()
+        page.goto("http://localhost:8000/?maia=1,4,0&path=0,0,1,3,4,2,4,3,4,4,4,5,4,6,7,7")
+        page.wait_for_function("() => document.getElementById('loading-overlay').className == 'hidden'")
+
+        # Verifica se o caminho está correto
+        path_positions = [(0,0), (1, 3), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (7, 7)]
+        for x, y in path_positions:
+            tile_selector = f"div.tile:nth-child({y * 8 + x + 1})"
+            tile = page.locator(tile_selector)
+            assert tile.evaluate("el => el.style.backgroundColor == 'darkblue'")
